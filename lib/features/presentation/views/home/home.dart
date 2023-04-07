@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../data/models/Course.dart';
 import 'components/CourseCard.dart';
@@ -35,10 +35,10 @@ class Body extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 "Ongoing Courses",
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 20.spMin,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),

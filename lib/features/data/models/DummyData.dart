@@ -26,4 +26,10 @@ class Course {
   });
 }
 
-List<Course> CoursesList = [];
+List<Course> CoursesList = [
+  Course(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/icons/laptop.jpg',
+  ),
+];
