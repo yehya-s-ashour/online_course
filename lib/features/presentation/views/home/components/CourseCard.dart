@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ilearn/models/Lesson.dart';
+import 'package:online_course/features/data/models/Course.dart';
 
-class LessonCard extends StatelessWidget {
-  final Lesson lesson;
-  const LessonCard({
+class CourseCard extends StatelessWidget {
+  final Course course;
+  const CourseCard({
     Key? key,
-    required this.lesson,
+    required this.course,
   }) : super(key: key);
 
   @override
@@ -31,14 +31,13 @@ class LessonCard extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       image: DecorationImage(
-                          image: AssetImage(lesson.thumbnail),
-                          fit: BoxFit.cover)),
+                          image: AssetImage(course.image), fit: BoxFit.cover)),
                 ),
                 SizedBox(
                   width: 15,
                 ),
                 Text(
-                  lesson.name,
+                  course.name,
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -49,9 +48,9 @@ class LessonCard extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Text(lesson.name),
+            Text(course.name),
             Text(
-              "${lesson.noOfLessons.toString()} courses",
+              "${course.numberOfLessons.toString()} courses",
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
