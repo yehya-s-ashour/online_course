@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../data/models/category.dart';
+import '../../../../data/models/DummyData.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
