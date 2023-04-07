@@ -122,6 +122,7 @@ class _UploadCourseState extends State<UploadCourse> {
               ),
             ),
             SizedBox(height: 20),
+            SizedBox(height: 20),
             IconButton(
               iconSize: 100,
               icon: const Icon(Icons.upload),
