@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "697866112452",
+    "project_id": "ilearn-app-1181f",
+    "storage_bucket": "ilearn-app-1181f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697866112452:android:5ed0296f45a2e2caf8e891",
+        "android_client_info": {
+          "package_name": "com.example.online_course"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697866112452-7guim13qoaq2k2up4ujqee2g482objeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEqqE7a3_xJ9JO1je1fDxPWaytxzWhFaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697866112452-7guim13qoaq2k2up4ujqee2g482objeb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
