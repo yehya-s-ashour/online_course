@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/presentation/views/serachScreen/components/recentSearchListView.dart';
 
-import '../homeScreen/components/homeAppBar.dart';
 import 'components/searchScreenAppBar.dart';
 import 'components/searchScreenSearchTextField.dart';
 

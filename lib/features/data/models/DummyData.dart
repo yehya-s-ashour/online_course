@@ -152,4 +152,87 @@ List<RecentSearch> searchList = [
     name: 'Development',
     image: 'assets/images/image.jpg',
   ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+];
+
+class Notifications {
+  String image;
+  String description;
+
+  Notifications({
+    required this.image,
+    required this.description,
+  });
+}
+
+List<Notifications> notificationList = [
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
+  Notifications(
+    description:
+        'test notification test notification test notification test notification test notification test notification test notification',
+    image: 'assets/images/image.jpg',
+  ),
 ];

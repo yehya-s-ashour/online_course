@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:online_course/features/presentation/views/noticctionsScreen/components/notificationsScreenAppBar.dart';
 
 import 'features/presentation/views/homeScreen/homeScreen.dart';
+import 'features/presentation/views/noticctionsScreen/notificationsScreen.dart';
 import 'features/presentation/views/serachScreen/SearchScreen.dart';
 
 void main() async {
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         home: child,
       ),
-      child: searchScreen(),
+      child: notificationsScreen(),
     );
   }
 }
