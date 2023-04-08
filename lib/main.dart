@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'features/presentation/views/home/home.dart';
+
+import 'features/presentation/views/homeScreen/homeScreen.dart';
+import 'features/presentation/views/serachScreen/SearchScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         home: child,
       ),
-      child: home(),
+      child: searchScreen(),
     );
   }
 }

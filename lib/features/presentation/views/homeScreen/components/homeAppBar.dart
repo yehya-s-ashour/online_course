@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'SearchTextField.dart';
+import 'homeScreenSearchTextField.dart';
 
 Widget homeAppBar() {
   return Container(
-    padding: EdgeInsetsDirectional.only(top: 50.h, start: 20.w, end: 20.w),
+    padding: EdgeInsetsDirectional.only(
+      top: 50.h,
+    ),
     height: 235.h,
     width: double.infinity,
     decoration: BoxDecoration(
@@ -26,9 +28,10 @@ Widget homeAppBar() {
     child: Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              width: 18.w,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,11 +49,14 @@ Widget homeAppBar() {
                 ),
               ],
             ),
+            SizedBox(
+              width: 113.w,
+            ),
             IconButton(
                 icon: Icon(
                   Icons.notifications,
                   color: Colors.white,
-                  size: 35.spMax,
+                  size: 30.spMax,
                 ),
                 onPressed: () {}),
           ],
@@ -58,7 +64,7 @@ Widget homeAppBar() {
         SizedBox(
           height: 54.h,
         ),
-        SearchTextField(),
+        SizedBox(width: 320.w, child: homeScreenSearchTextField()),
       ],
     ),
   );

@@ -13,7 +13,7 @@ class onGoingCourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 256.w,
+      width: 248.w,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         decoration: BoxDecoration(
@@ -46,7 +46,7 @@ class onGoingCourseCard extends StatelessWidget {
                           image: AssetImage(course.image), fit: BoxFit.cover)),
                 ),
                 SizedBox(
-                  width: 25.w,
+                  width: 17.w,
                 ),
                 SizedBox(
                   width: 150.w,
@@ -66,7 +66,7 @@ class onGoingCourseCard extends StatelessWidget {
               height: 10.h,
             ),
             LinearPercentIndicator(
-              width: 233.0.w,
+              width: 228.0.w,
               lineHeight: 10.0.h,
               percent: 0.4,
               barRadius: Radius.circular(5.r),
@@ -91,7 +91,7 @@ class onGoingCourseCard extends StatelessWidget {
                       color: Colors.white),
                 ),
                 SizedBox(
-                  width: 120.w,
+                  width: 110.w,
                 ),
                 Text(
                   "63 Lessons",

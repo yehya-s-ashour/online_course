@@ -120,3 +120,36 @@ List<Category> categoryList = [
     thumbnail: 'assets/images/image.jpg',
   ),
 ];
+
+class RecentSearch {
+  String image;
+  String name;
+
+  RecentSearch({
+    required this.image,
+    required this.name,
+  });
+}
+
+List<RecentSearch> searchList = [
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+  RecentSearch(
+    name: 'Development',
+    image: 'assets/images/image.jpg',
+  ),
+];

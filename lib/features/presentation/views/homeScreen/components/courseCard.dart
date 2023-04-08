@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
-import 'package:online_course/features/presentation/views/home/components/starsRating.dart';
+import 'package:online_course/features/presentation/views/homeScreen/components/starsRating.dart';
 
 class courseCard extends StatelessWidget {
   final Category category;
@@ -55,7 +55,7 @@ class courseCard extends StatelessWidget {
               SizedBox(
                 width: 7.w,
               ),
-              const starsRating(),
+              starsRating(),
             ],
           ),
           SizedBox(
