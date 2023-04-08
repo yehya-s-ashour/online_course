@@ -1,144 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:online_course/features/presentation/views/home/components/starsRating.dart';
 
-class CourseCard extends StatelessWidget {
-  final Course course;
-  const CourseCard({
+class courseCard extends StatelessWidget {
+  final Category category;
+  const courseCard({
     Key? key,
-    required this.course,
+    required this.category,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      width: 280,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Color(0xff5d54dd),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 7.h,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 8.w,
-                ),
-                Container(
-                  height: 55.h,
-                  width: 55.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                          image: AssetImage(course.image), fit: BoxFit.cover)),
-                ),
-                SizedBox(
-                  width: 25,
-                ),
-                SizedBox(
-                  width: 150.w,
-                  child: Text(
-                    course.name,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            LinearPercentIndicator(
-              width: 238.0.w,
-              lineHeight: 10.0.h,
-              percent: 0.4,
-              barRadius: Radius.circular(5),
-              backgroundColor:
-                  Color.fromARGB(255, 246, 244, 244).withOpacity(0.2),
-              progressColor: Color(0xFFFCBC63),
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 12.w,
-                ),
-                Text(
-                  "43 Lessons",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10,
-                      color: Colors.white),
-                ),
-                SizedBox(
-                  width: 120.w,
-                ),
-                Text(
-                  "63 Lessons",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10,
-                      color: Colors.white),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 78.w,
-                ),
-                Text(
-                  "64 Video",
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10,
-                      color: Colors.white),
-                ),
-                SizedBox(
-                  width: 5.w,
-                ),
-                Text(
-                  '٠',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 12,
-                      color: Color.fromARGB(255, 196, 193, 193)),
-                ),
-                SizedBox(
-                  width: 5.w,
-                ),
-                Text(
-                  "27 Quiz",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10,
-                      color: Colors.white),
-                ),
-              ],
-            )
-          ],
-        ),
+    return Container(
+      height: 5.h,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.2),
+            blurRadius: 4.0.r,
+            spreadRadius: .05.r,
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 100.h,
+            width: 200.w,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.r),
+                image: DecorationImage(
+                    image: AssetImage(category.thumbnail), fit: BoxFit.cover)),
+          ),
+          SizedBox(
+            height: 8.h,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 7.w,
+              ),
+              Text(
+                category.name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontSize: 15.5.spMin,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+              SizedBox(
+                width: 7.w,
+              ),
+              const starsRating(),
+            ],
+          ),
+          SizedBox(
+            height: 4.h,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 10.w,
+              ),
+              Text(
+                "64 Lessons",
+                style: TextStyle(
+                    fontSize: 9.spMin,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 153, 151, 151)),
+              ),
+              SizedBox(
+                width: 50.w,
+              ),
+              Text(
+                "+40 Exercise",
+                style: TextStyle(
+                    fontSize: 9.spMin,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 153, 151, 151)),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

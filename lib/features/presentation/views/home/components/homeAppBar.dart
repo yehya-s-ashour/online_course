@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'SearchTextField.dart';
 
 Widget homeAppBar() {
   return Container(
-    padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-    height: 235,
+    padding: EdgeInsetsDirectional.only(top: 50.h, start: 20.w, end: 20.w),
+    height: 235.h,
     width: double.infinity,
-    decoration: const BoxDecoration(
+    decoration: BoxDecoration(
       borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(20),
-        bottomRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20.r),
+        bottomRight: Radius.circular(20.r),
       ),
       gradient: LinearGradient(
         begin: Alignment.topLeft,
@@ -31,34 +32,31 @@ Widget homeAppBar() {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   "Hey User,",
                   style: TextStyle(
-                      fontSize: 27,
+                      fontSize: 27.spMin,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
                 Text(
                   " Let's Start Learning",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 22.spMin, color: Colors.white),
                 ),
               ],
             ),
             IconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.notifications,
                   color: Colors.white,
-                  size: 35,
+                  size: 35.spMax,
                 ),
                 onPressed: () {}),
           ],
         ),
-        const SizedBox(
-          height: 24,
-        ),
-        const SizedBox(
-          height: 30,
+        SizedBox(
+          height: 54.h,
         ),
         SearchTextField(),
       ],

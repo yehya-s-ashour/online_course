@@ -97,21 +97,26 @@ List<Category> categoryList = [
   Category(
     name: 'Development',
     noOfCourses: 55,
-    thumbnail: 'assets/icons/laptop.jpg',
+    thumbnail: 'assets/images/image.jpg',
   ),
   Category(
-    name: 'Accounting',
-    noOfCourses: 20,
-    thumbnail: 'assets/icons/accounting.jpg',
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
   ),
   Category(
-    name: 'Photography',
-    noOfCourses: 16,
-    thumbnail: 'assets/icons/photography.jpg',
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
   ),
   Category(
-    name: 'Product Design',
-    noOfCourses: 25,
-    thumbnail: 'assets/icons/design.jpg',
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
   ),
 ];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
@@ -9,15 +10,15 @@ class SearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        prefixIcon: const Icon(
+        prefixIcon: Icon(
           Icons.search,
           color: Colors.grey,
-          size: 26,
+          size: 26.spMin,
         ),
-        suffixIcon: const Icon(
+        suffixIcon: Icon(
           Icons.mic,
-          color: Colors.grey,
-          size: 26,
+          color: Color(0xff463bce),
+          size: 26.spMin,
         ),
         floatingLabelBehavior: FloatingLabelBehavior.never,
         labelText: "Search in courses",
@@ -25,7 +26,7 @@ class SearchTextField extends StatelessWidget {
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15.r),
         ),
         isDense: true,
       ),
