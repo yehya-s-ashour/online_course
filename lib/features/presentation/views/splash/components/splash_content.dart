@@ -13,36 +13,40 @@ class SplashContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        const Spacer(flex: 2),
-        Image.asset(
-          image!,
-          height: 255.h,
-          width: 235.w,
-        ),
-        const Spacer(),
-        Text(
-          title ?? "",
-          style: const TextStyle(
-            fontSize: 30,
-            color: kPrimaryColor,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Column(
+
+        children: <Widget>[
+          const Spacer(flex: 2),
+          Image.asset(
+            image!,
+            height: 255.h,
+            width: 235.w,
           ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Text(
-          text!,
-          textAlign: TextAlign.center,
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-      ],
+          const Spacer(),
+          Text(
+            title ?? "",
+            style: const TextStyle(
+              fontSize: 30,
+              color: kPrimaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          Text(
+            text!,
+            textAlign: TextAlign.center,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+        ],
+      ),
     );
   }
 }

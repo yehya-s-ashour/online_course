@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/views/profile/components/setting_profile.dart';
 
@@ -12,8 +13,15 @@ class ProfileMenuModel {
 
   ProfileMenuModel(
       {required this.text, required this.icon, required this.ontap});
+
   static List<ProfileMenuModel> listData = [
     // ProfileMenuModel(text: "Dark Mode", icon: "assets/icons/moon_solid.svg", ontap: (){}),
+    ProfileMenuModel(
+        text: "Dark Mode",
+        icon: "assets/icons/moon_solid.svg",
+        ontap: () {
+          Get.to(() => const SettingProfile());
+        }),
     ProfileMenuModel(
         text: "Setting",
         icon: "assets/icons/gear_solid.svg",
@@ -31,26 +39,28 @@ class ProfileMenuModel {
 }
 
 class ProfileMenu extends StatelessWidget {
-  const ProfileMenu({
-    Key? key,
-    this.traiding,
+  ProfileMenu({
+    required this.isNotDark,
     required this.data,
-  }) : super(key: key);
+  });
 
   final ProfileMenuModel data;
-  final Widget? traiding;
+  final bool isNotDark;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 4.h),
-      child: SizedBox(
-        height: 50,
-        child: InkWell(
-          onTap: data.ontap,
-          child: Card(
-            color: const Color(0xFFF5F6F9),
-            margin: EdgeInsets.zero,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          //set border radius more than 50% of height and width to make circle
+        ),
+        color: Color(0xFF463bce),
+        child: SizedBox(
+          height: 50,
+          child: InkWell(
+            onTap: data.ontap,
             child: Row(
               children: [
                 Card(
@@ -65,19 +75,28 @@ class ProfileMenu extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 20),
-                Expanded(
-                    child: Text(
-                  data.text,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 15.r),
-                )),
-                traiding ??
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18.r,
-                    ),
+                SizedBox(
+                  width: 130.w,
+                  child: Text(
+                      data.text,
+                      style: GoogleFonts.cairo(color: Colors.white)
+                  ),
+                ),
+                Spacer(),
+                isNotDark ?
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 18.r, color: Colors.white,
+                ) : Switch(
+                  activeColor: Colors.white54,
+                  inactiveTrackColor: Colors.blueAccent,
+                  value: true,
+                  onChanged: (val) {
+
+                  },
+                ),
+                if(isNotDark)
+                SizedBox(width: 10.w,)
               ],
             ),
           ),

@@ -5,10 +5,13 @@ import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 
 import '../../../components/custom_textfeild.dart';
+import '../../../components/no_account_text.dart';
 import '../../forgot_password/forgot_password_screen.dart';
 import '../../main_home_screen/main_home_screen.dart';
 import 'package:online_course/features/presentation/controllers/sing_in_cubit/LoginState.dart';
 import 'package:online_course/features/presentation/controllers/sing_in_cubit/LoginCubit.dart';
+
+import '../../sign_up/sign_up_screen.dart';
 
 class SignForm extends StatefulWidget {
   const SignForm({super.key});
@@ -36,51 +39,66 @@ class _SignFormState extends State<SignForm> {
             }
           },
           builder: (context, state) {
-            return Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFieldWidget(
-                    text: 'Email',
-                  ),
-                  TextFieldWidget(
-                    hint: 'Password',
-                    isHidden: true,
-                    inkell: const Icon(Icons.remove_red_eye),
-                  ),
-                  SizedBox(height: 10.h),
-                  SizedBox(
-                    width: 1.sw,
-                    child: Row(
-                      children: [
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => const ForgotPasswordScreen());
-                          },
-                          child: Text(
-                            "Forgot Password",
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle2!
-                                .copyWith(color: kPrimaryColor),
-                          ),
-                        )
-                      ],
+            return SizedBox(
+              width: 1.sw,
+              height: 1.sh*0.5,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFieldWidget(
+                      text: 'Email',
                     ),
-                  ),
-                  SizedBox(height: 20.h),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          minimumSize: Size(1.sw, 50),
-                          maximumSize: Size(1.sw, 50),
-                          foregroundColor: kWhiteColor),
-                      onPressed: () {
-                        LoginCubit.get(context)
-                            .userLogin(email: email!, password: password!);
+                    TextFieldWidget(
+                      hint: 'Password',
+                      isHidden: true,
+                      inkell: const Icon(Icons.remove_red_eye),
+                    ),
+                    SizedBox(height: 10.h),
+                    SizedBox(
+                      width: 1.sw,
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => const ForgotPasswordScreen());
+                            },
+                            child: Text(
+                              "Forgot Password",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(color: kPrimaryColor),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    const Spacer(),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(1.sw, 50),
+                            maximumSize: Size(1.sw, 50),
+                            foregroundColor: kWhiteColor),
+                        onPressed: () {
+                          Get.to(()=>const MainHomeScreen());
+                          // LoginCubit.get(context)
+                          //     .userLogin(email: email!, password: password!);
+                        },
+                        child: const Text('Sign In')),
+                    SizedBox(height: 20.h),
+                    NoAccountText(
+                      text: "Don’t have an account? ",
+                      goTitle: "Sign Up",
+                      onTapTitle: () {
+                        Get.to(() => const SignUpScreen());
                       },
-                      child: const Text('Sign In')),
-                ],
+                    ),
+                    const Spacer(flex: 1,),
+                  ],
+                ),
               ),
             );
           },

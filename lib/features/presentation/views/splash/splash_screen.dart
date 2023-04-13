@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 import 'package:online_course/features/presentation/views/LogoScreen/Logo_Screen.dart';
@@ -23,19 +24,19 @@ class _IntroScreenState extends State<IntroScreen> {
     {
       "title": "Teaching",
       "text":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Our new service makes it easy for you to work anywhere, there are new features will ready help you.",
       "image": "assets/images/baorder3.png"
     },
     {
       "title": "Learning",
       "text":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Our new service makes it easy for you to work anywhere, there are new features will ready help you",
       "image": "assets/images/baorder2.png"
     },
     {
       "title": "Examination",
       "text":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Our new service makes it easy for you to work anywhere, there are new features will ready help you.",
       "image": "assets/images/baorder1.png"
     },
   ];
@@ -104,8 +105,10 @@ class _IntroScreenState extends State<IntroScreen> {
                   padding: EdgeInsets.only(top: 6.h),
                   child: Center(
                       child: Text(
-                    currentPage >= 2 ? 'Get start' : 'skip',
-                    style: Theme.of(context).textTheme.bodyText2,
+                    currentPage >= 2 ? 'Get started' : 'Skip',
+                    style: GoogleFonts.cairo(
+                        fontSize: 18.sp, fontWeight: FontWeight.w600,color: Color(
+                        0xF90E0E0E)),
                   )),
                 )),
           )
@@ -114,93 +117,97 @@ class _IntroScreenState extends State<IntroScreen> {
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                flex: 4,
-                child: PageView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  pageSnapping: false,
-                  onPageChanged: (value) {
-                    setState(() {
-                      currentPage = value;
-                      if (value == 1) {
-                        _progress = 0.66;
-                      } else if (value == 2) {
-                        _progress = 1;
-                      } else {
-                        _progress -= 0.33;
-                      }
-                    });
-                  },
-                  itemCount: splashData.length,
-                  itemBuilder: (context, index) => SplashContent(
-                    title: splashData[currentPage]["title"],
-                    image: splashData[currentPage]["image"],
-                    text: splashData[currentPage]['text'],
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 6.w),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 4,
+                  child: PageView.builder(
+
+                    physics: const BouncingScrollPhysics(),
+                    pageSnapping: false,
+                    onPageChanged: (value) {
+                      setState(() {
+                        currentPage = value;
+                        if (value == 1) {
+                          _progress = 0.66;
+                        } else if (value == 2) {
+                          _progress = 1;
+                        } else {
+                          _progress -= 0.33;
+                        }
+                      });
+                    },
+                    itemCount: splashData.length,
+                    itemBuilder: (context, index) => SplashContent(
+                      title: splashData[currentPage]["title"],
+                      image: splashData[currentPage]["image"],
+                      text: splashData[currentPage]['text'],
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                // flex: 2,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: <Widget>[
-                      const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          splashData.length,
-                          (index) => buildDot(index: index),
+                Expanded(
+                  // flex: 2,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Column(
+                      children: <Widget>[
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            splashData.length,
+                            (index) => buildDot(index: index),
+                          ),
                         ),
-                      ),
-                      const Spacer(flex: 3),
-                      GestureDetector(
-                        onTap: _incrementProgress,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: 80.0,
-                              height: 80.0,
-                              padding: EdgeInsets.all(8.r),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.grey[100]!,
-                                  width: 4.0,
-                                ),
-                              ),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: kPrimaryColor,
+                        const Spacer(flex: 3),
+                        GestureDetector(
+                          onTap: _incrementProgress,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                width: 80.0,
+                                height: 80.0,
+                                padding: EdgeInsets.all(8.r),
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.grey[100]!,
+                                    width: 4.0,
+                                  ),
                                 ),
-                                child: const Center(
-                                    child: Icon(
-                                  Icons.arrow_right_alt_sharp,
-                                  color: Colors.white,
-                                )),
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    color: kPrimaryColor,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Center(
+                                      child: Icon(
+                                    Icons.arrow_right_alt_sharp,
+                                    color: Colors.white,
+                                  )),
+                                ),
                               ),
-                            ),
-                            CustomPaint(
-                              size: const Size(80.0, 80.0),
-                              painter: CircularProgressPainter(
-                                progress: _progress,
-                                color: kPrimaryColor,
-                                strokeWidth: 4.0,
+                              CustomPaint(
+                                size: const Size(80.0, 80.0),
+                                painter: CircularProgressPainter(
+                                  progress: _progress,
+                                  color: kPrimaryColor,
+                                  strokeWidth: 4.0,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                    ],
+                        const Spacer(),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+import 'core/Theme/theme.dart';
 import 'features/presentation/views/splash_screen.dart';
 
 void main() async {
@@ -25,8 +26,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         home: child,
+        theme: AppTheme.light(context),
       ),
-      child: SplashScreen(),
+
+      child: const SplashScreen(),
     );
   }
 }

@@ -10,6 +10,9 @@ import 'package:online_course/features/presentation/controllers/sing_up_cubit/Re
 import 'package:online_course/features/presentation/controllers/sing_up_cubit/RegisterState.dart';
 import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
+import '../../../components/no_account_text.dart';
+import '../../sign_in/sign_in_screen.dart';
+
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
 
@@ -37,36 +40,52 @@ class _SignUpFormState extends State<SignUpForm> {
           } else if (state is CreateUseErrorState) {}
         },
         builder: (context, state) {
-          return Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                TextFieldWidget(
-                  text: 'Name',
-                ),
-                TextFieldWidget(
-                  text: 'Email',
-                ),
-                TextFieldWidget(
-                  hint: 'Password',
-                  isHidden: true,
-                  inkell: const Icon(Icons.remove_red_eye),
-                ),
-                SizedBox(height: 20.h),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: Size(1.sw, 50),
-                        maximumSize: Size(1.sw, 50),
-                        foregroundColor: kWhiteColor),
-                    onPressed: () {
-                      RegisterCubit.get(context).userRegister(
-                          name: 'Ahmed',
-                          phone: '0598376479',
-                          email: email!,
-                          password: password!);
+          return SizedBox(
+            width: 1.sw,
+            height: 1.sh*0.6,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFieldWidget(
+                    text: 'Name',
+
+
+                  ),
+                  
+                  TextFieldWidget(
+                    text: 'Email',
+                  ),
+                  TextFieldWidget(
+                    hint: 'Password',
+                    isHidden: true,
+                    inkell: const Icon(Icons.remove_red_eye),
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: Size(1.sw, 50),
+                          maximumSize: Size(1.sw, 50),
+                          foregroundColor: kWhiteColor),
+                      onPressed: () {
+                        RegisterCubit.get(context).userRegister(
+                            name: 'Ahmed',
+                            phone: '0598376479',
+                            email: email!,
+                            password: password!);
+                      },
+                      child: const Text('Sign Up')),
+                  SizedBox(height: 20.h),
+                  NoAccountText(
+                    text: 'Already have an account?',
+                    goTitle: 'Sign In',
+                    onTapTitle: () {
+                      Get.to(() => const SignInScreen());
                     },
-                    child: const Text('Sign Up')),
-              ],
+                  ),
+                  const Spacer(),
+                ],
+              ),
             ),
           );
         },

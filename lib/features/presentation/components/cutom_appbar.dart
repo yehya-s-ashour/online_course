@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/Theme/styles/colors.dart';
 
@@ -54,10 +55,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : Text(
               title!,
-              style: Theme.of(context)
-                  .textTheme
-                  .displayLarge!
-                  .copyWith(color: kDBackGColor, fontSize: 20),
+              style: GoogleFonts.cairo(
+                  fontSize: 20.sp, fontWeight: FontWeight.w400,color: Colors.black87),
             ),
       centerTitle: true,
       actions: action,

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/components/custom_textfeild.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
+import 'package:online_course/generated/assets.dart';
 
 class PrviewsScreen extends StatefulWidget {
   const PrviewsScreen({Key? key}) : super(key: key);
@@ -41,22 +43,155 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
 
   int currentIndex = 0;
   double rating = 3.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
         title: 'Reviews',
       ),
-      body: SizedBox(
-        height: double.maxFinite,
-        width: double.maxFinite,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsetsDirectional.only(start: 20.w, end: 20.w, top: 12.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              buildPaddingToggle(context,
-                  data: listSlider, preview: 4.8, numOfVoice: 58),
-              // buildPaddingToggle(context,data:listSliderTwo ,preview: 3.2,numOfVoice:2 ),
+              Text(
+                4.8.toString(),
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              SizedBox(
+                height: 7.h,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ...List.generate(
+                      5,
+                      (index) => Icon(
+                            Icons.star,
+                            color: kPreviewsColors,
+                            size: 14.r,
+                          ))
+                ],
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              Text(
+                'Based on ${58} reviews',
+                style: GoogleFonts.cairo(color: Colors.grey[400]),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              ...listSlider
+                  .map((e) =>
+                      buildRowSilder(title: e['title'], percen: e['percen']))
+                  .toList(),
+              SizedBox(
+                height: 8.h,
+              ),
+              Card(
+                color: Colors.white,
+                child: Container(
+                  height: 20.h+(4*85.h),
+                    child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                        itemBuilder: (context, index) => buildColumn(context),
+                        itemCount: 10)),
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(1.sw / 1.2, 44.h),
+                    maximumSize: Size(1.sw / 1.2, 44.h),
+                  ),
+                  onPressed: () {
+                    showMaterialModalBottomSheet(
+                      context: context,
+                      builder: (context) => SingleChildScrollView(
+                        controller: ModalScrollController.of(context),
+                        child: StatefulBuilder(
+                          builder: (BuildContext context, StateSetter func) {
+                            double rating1 = 3.0;
+                            return Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12.w, vertical: 10.h),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'write review ',
+                                    style:
+                                        Theme.of(context).textTheme.headlineSmall,
+                                  ),
+                                  TextFieldWidget(
+                                    hint: "write review ",
+                                    maxLine: 3,
+                                  ),
+                                  SizedBox(
+                                    height: 8.h,
+                                  ),
+                                  SizedBox(
+                                    width: 1.sw,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        RatingBar.builder(
+                                          initialRating: rating1,
+                                          minRating: 1,
+                                          direction: Axis.horizontal,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
+                                          itemSize: 25.r,
+                                          itemPadding: const EdgeInsets.symmetric(
+                                              horizontal: 4.0),
+                                          itemBuilder: (context, _) => const Icon(
+                                            Icons.star,
+                                            color: Colors.amber,
+                                          ),
+                                          onRatingUpdate: (rating) {
+                                            rating1 = rating;
+                                            setState(() {
+                                              func(() {});
+                                            });
+                                            func(() {});
+                                          },
+                                        ),
+                                        Text(rating1.toString()),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 6.h,
+                                  ),
+                                  Center(
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              foregroundColor: kWhiteColor),
+                                          onPressed: () {
+                                            func(() {});
+                                            Get.back();
+                                          },
+                                          child: const Text('Review')))
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Write a Reviews',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(color: kWhiteColor),
+                  )),
             ],
           ),
         ),
@@ -106,6 +241,7 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
           SizedBox(
             height: 10.h,
           ),
+          const Spacer(),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(1.sw / 1.2, 44.h),
@@ -192,7 +328,7 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
                 'Write a Reviews',
                 style: Theme.of(context)
                     .textTheme
-                    .subtitle1!
+                    .titleMedium!
                     .copyWith(color: kWhiteColor),
               ))
         ],
@@ -212,27 +348,33 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
               children: [
                 Row(
                   children: [
-                    const CircleAvatar(
+                     CircleAvatar(
+                      backgroundImage: AssetImage(Assets.assetsImagesFrontend),
                       radius: 22,
                     ),
                     SizedBox(
-                      width: 10.w,
+                      width: 6.w,
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Kawsar Ahamed'),
+                        Text('Kawsar Ahamed',style: GoogleFonts.cairo()),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ...List.generate(
                                 5,
-                                (index) => Icon(
-                                      Icons.star,
-                                      color: kPreviewsColors,
-                                      size: 13.r,
+                                (index) => Padding(
+                                      padding:
+                                          EdgeInsetsDirectional.only(start: 3.w),
+                                      child: Icon(
+                                        Icons.star,
+                                        color: kPreviewsColors,
+                                        size: 14.r,
+                                      ),
                                     )),
                             SizedBox(
-                              width: 3.w,
+                              width: 7.w,
                             ),
                             const Text('3.5'),
                           ],
@@ -251,11 +393,12 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
               ],
             ),
           ),
+          SizedBox(height: 5.h,),
           Text(
-            ''' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            ''' It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
                     ''',
             maxLines: 3,
-            style: Theme.of(context).textTheme.bodySmall,
+            style: GoogleFonts.cairo(color: Colors.grey[500],fontSize: 14.spMin,fontWeight: FontWeight.w500),
             overflow: TextOverflow.ellipsis,
           ),
         ],
@@ -270,23 +413,21 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-              child: Text(
-            title,
-            style: Theme.of(context).textTheme.bodySmall,
-          )),
-          Expanded(
-            flex: 2,
+          Text(title,
+              style: GoogleFonts.cairo(
+                  color: Colors.grey[400], fontSize: 16.spMin)),
+          SizedBox(
+            width: 5.w,
+          ),
+          Container(
+            height: 5.h,
+            alignment: Alignment.centerLeft,
+            width: 200.w,
+            decoration: const BoxDecoration(color: kLightColor),
             child: Container(
-              height: 5.h,
-              alignment: Alignment.centerLeft,
-              width: lenghtSlider,
-              decoration: const BoxDecoration(color: kLightColor),
-              child: Container(
-                height: 4.h,
-                width: lenghtSlider * percen,
-                decoration: const BoxDecoration(color: kPrimaryColor),
-              ),
+              height: 4.h,
+              width: lenghtSlider * percen,
+              decoration: const BoxDecoration(color: kPrimaryColor),
             ),
           ),
         ],

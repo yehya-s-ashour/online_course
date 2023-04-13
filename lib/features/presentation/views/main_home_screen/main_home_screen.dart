@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/views/depart_screen/depart_screen.dart';
+import 'package:online_course/features/presentation/views/home/home.dart';
 import 'package:online_course/features/presentation/views/privew_screen/priviews_screen.dart';
 import 'package:online_course/features/presentation/views/profile/components/setting_profile.dart';
 import 'package:online_course/features/presentation/views/profile/profile_screen.dart';
@@ -25,7 +26,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   ];
 
   final List<Widget> _body = [
-    const DepartmentScreen(),
+     home(),
     const PrviewsScreen(),
     const SettingProfileTeach(),
     const ProfileScreen(),

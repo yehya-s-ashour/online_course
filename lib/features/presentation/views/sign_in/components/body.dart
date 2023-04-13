@@ -22,12 +22,12 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(height: Get.height * 0.04),
                 SizedBox(
-                  width: 1.sw / 2.5,
-                  child: const Text(
+                  width: 1.sw / 2.1,
+                  child:  Text(
                     "Welcome Back!",
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 28,
+                      fontSize: 28.w,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -35,13 +35,7 @@ class Body extends StatelessWidget {
                 SizedBox(height: Get.height * 0.08),
                 const SignForm(),
                 SizedBox(height: 10.h),
-                NoAccountText(
-                  text: "Don’t have an account? ",
-                  goTitle: "Sign Up",
-                  onTapTitle: () {
-                    Get.to(() => SignUpScreen());
-                  },
-                ),
+
                 SizedBox(height: Get.height * 0.08),
                 SizedBox(height: 20.w),
               ],

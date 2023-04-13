@@ -25,7 +25,7 @@ class Body extends StatelessWidget {
                 SizedBox(
                   width: 1.sw / 2.5,
                   child: const Text(
-                    "Create Account",
+                    "Create Account!",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 28,
@@ -36,16 +36,10 @@ class Body extends StatelessWidget {
                 SizedBox(height: 12.h),
                 const SignUpForm(),
                 SizedBox(height: 10.h),
-                NoAccountText(
-                  text: 'Already have an account?',
-                  goTitle: 'Sign In',
-                  onTapTitle: () {
-                    Get.to(() => const SignInScreen());
-                  },
-                ),
+
                 SizedBox(height: Get.height * 0.08),
 
-                SizedBox(height: 20.w),
+
               ],
             ),
           ),

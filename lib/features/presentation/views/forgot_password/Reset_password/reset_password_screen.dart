@@ -47,7 +47,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       isHidden: true,
                       inkell: const Icon(Icons.remove_red_eye),
                     ),
-                    SizedBox(height: 30.h),
+                    SizedBox(height: 50.h),
+
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             minimumSize: Size(1.sw, 50),

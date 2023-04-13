@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 
 import 'components/profile_menu.dart';
@@ -48,9 +49,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               bioOrEnail:
                   "During a typical development cycle, you test an app using flutter run ",
             ),
+            SizedBox(height: 10.h,),
             Expanded(
               child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 children: [
                   SizedBox(
                     width: 1.sw,
@@ -60,8 +62,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         ...List.generate(
                             ItemsProfileCourse.listItems.length,
-                            (index) => buildContainer(context,
-                                data: ItemsProfileCourse.listItems[index])),
+                            (index) => Padding(
+                              padding:  EdgeInsetsDirectional.only(start: 15.w,end: 15.w),
+                              child: buildContainer(context,
+                                  data: ItemsProfileCourse.listItems[index]),
+                            )),
                       ],
                     ),
                   ),
@@ -70,6 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ProfileMenuModel.listData.length,
                       (index) => ProfileMenu(
                             data: ProfileMenuModel.listData[index],
+                        isNotDark: index!=0,
                           )),
                 ],
               ),
@@ -84,8 +90,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       {required ItemsProfileCourse data}) {
     return Container(
       padding: EdgeInsets.all(4.r),
-      height: 50.h,
-      width: 100.w,
+      height: 45.h,
+      width: 130.w,
       decoration: BoxDecoration(
         color: kPrimaryColor,
         borderRadius: BorderRadius.circular(8.r),
@@ -156,7 +162,7 @@ class HearderProfile extends StatelessWidget {
                         bottomRight: Radius.circular(15.r))),
                 child: SizedBox(
                   width: 1.sw,
-                  height: 30.h,
+                  height: 35.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -167,28 +173,30 @@ class HearderProfile extends StatelessWidget {
                             Get.back();
                           },
                           child: Container(
-                            padding: EdgeInsets.all(3.r),
+                            width: 40.w,
+                            height: 40.w,
+                            padding: EdgeInsets.all(5.r),
                             decoration: const BoxDecoration(
                               color: kWhiteColor,
                               shape: BoxShape.circle,
                             ),
-                            child: const Icon(
-                              Icons.arrow_back,
-                              size: 24,
-                              color: kDBackGColor,
+                            child: const Center(
+                              child: Icon(
+                                CupertinoIcons.arrow_left,
+                                size: 24,
+                                color: kDBackGColor,
+                              ),
                             ),
                           ),
                         ),
                       ),
                       Text(
-                        'My Profile',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(color: kWhiteColor),
+                        'Profile',
+                        textAlign: TextAlign.center,
+                          style: GoogleFonts.cairo(color: Colors.white,fontSize: 18.spMin)
                       ),
                       SizedBox(
-                        width: 20.w,
+                        width: 60.w,
                       ),
                     ],
                   ),
@@ -206,13 +214,14 @@ class HearderProfile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text('Kawser Ahmed'),
+               Text('Kawser Ahmed',style: GoogleFonts.cairo(color: Colors.black87,fontSize: 18.spMin,fontWeight: FontWeight.w500)),
               SizedBox(
                   width: 1.sw / 1.3,
                   child: Text(
                     bioOrEnail ?? '',
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.cairo(color: Colors.grey[400],fontSize: 16.spMin),
                     maxLines: 2,
                   )),
             ],

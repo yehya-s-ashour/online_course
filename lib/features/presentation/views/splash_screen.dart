@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
               'KR LEARNING',
               style: Theme.of(context)
                   .textTheme
-                  .displayMedium!
+                  .bodyMedium!
                   .copyWith(color: kWhiteColor),
             ),
             Text(
