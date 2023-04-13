@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:online_course/constants.dart';
-
-import '../Theme/styles/colors.dart';
-
-
+import 'package:online_course/core/Theme/styles/colors.dart';
 
 class NoAccountText extends StatelessWidget {
-  final String text,goTitle;
+  final String text, goTitle;
   final Function()? onTapTitle;
   const NoAccountText({
-    Key? key, required this.text, required this.goTitle, this.onTapTitle,
+    Key? key,
+    required this.text,
+    required this.goTitle,
+    this.onTapTitle,
   }) : super(key: key);
 
   @override
@@ -17,15 +16,17 @@ class NoAccountText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-         Text(
+        Text(
           text,
-
         ),
         GestureDetector(
           onTap: onTapTitle,
-          child:  Text(
-           goTitle,style: Theme.of(context).textTheme.subtitle2!.copyWith(color: kPrimaryColor),
-
+          child: Text(
+            goTitle,
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall!
+                .copyWith(color: kPrimaryColor),
           ),
         ),
       ],

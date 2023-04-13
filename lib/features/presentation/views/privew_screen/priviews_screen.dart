@@ -3,11 +3,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:online_course/components/custom_textfeild.dart';
-import 'package:online_course/components/cutom_appbar.dart';
-
-
-import '../../Theme/styles/colors.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/components/custom_textfeild.dart';
+import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 
 class PrviewsScreen extends StatefulWidget {
   const PrviewsScreen({Key? key}) : super(key: key);
@@ -42,11 +40,9 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
   ];
 
   int currentIndex = 0;
-  double rating=3.0;
+  double rating = 3.0;
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: MyAppBar(
         title: 'Reviews',
@@ -55,12 +51,11 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
         height: double.maxFinite,
         width: double.maxFinite,
         child: SingleChildScrollView(
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-              buildPaddingToggle(context,data:listSlider ,preview: 4.8,numOfVoice:58 ),
+              buildPaddingToggle(context,
+                  data: listSlider, preview: 4.8, numOfVoice: 58),
               // buildPaddingToggle(context,data:listSliderTwo ,preview: 3.2,numOfVoice:2 ),
             ],
           ),
@@ -86,11 +81,11 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
             children: [
               ...List.generate(
                   5,
-                      (index) => Icon(
-                    Icons.star,
-                    color: kPreviewsColors,
-                    size: 14.r,
-                  ))
+                  (index) => Icon(
+                        Icons.star,
+                        color: kPreviewsColors,
+                        size: 14.r,
+                      ))
             ],
           ),
           SizedBox(
@@ -112,81 +107,94 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
             height: 10.h,
           ),
           ElevatedButton(
-
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(1.sw/1.2, 44.h),
-                maximumSize: Size(1.sw/1.2, 44.h),
+                minimumSize: Size(1.sw / 1.2, 44.h),
+                maximumSize: Size(1.sw / 1.2, 44.h),
               ),
-              onPressed: (){
-
+              onPressed: () {
                 showMaterialModalBottomSheet(
                   context: context,
                   builder: (context) => SingleChildScrollView(
                     controller: ModalScrollController.of(context),
-                    child: StatefulBuilder(builder: (BuildContext context,StateSetter func){
-                      double rating1=3.0;
-                      return Container(
-                        padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 10.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-
-                            Text('write review ',style: Theme.of(context).textTheme.headlineSmall,),
-                            TextFieldWidget(
-                              hint: "write review ",
-                              maxLine: 3,
-
-                            ),
-                            SizedBox(height: 8.h,),
-
-                            SizedBox(
-                              width: 1.sw,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  RatingBar.builder(
-                                    initialRating: rating1,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 25.r,
-                                    itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                                    itemBuilder: (context, _) =>  const Icon(
-                                      Icons.star,
-
-                                      color: Colors.amber,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      rating1=rating;
-                                      setState(() {
-                                        func((){});
-                                      });
-                                      func((){});
-                                    },
-                                  ),
-                                  Text(rating1.toString()),
-                                ],
+                    child: StatefulBuilder(
+                      builder: (BuildContext context, StateSetter func) {
+                        double rating1 = 3.0;
+                        return Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 10.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'write review ',
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall,
                               ),
-                            ),
-                            SizedBox(height: 6.h,),
-                            Center(
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        foregroundColor: kWhiteColor
+                              TextFieldWidget(
+                                hint: "write review ",
+                                maxLine: 3,
+                              ),
+                              SizedBox(
+                                height: 8.h,
+                              ),
+                              SizedBox(
+                                width: 1.sw,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    RatingBar.builder(
+                                      initialRating: rating1,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 25.r,
+                                      itemPadding: const EdgeInsets.symmetric(
+                                          horizontal: 4.0),
+                                      itemBuilder: (context, _) => const Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        rating1 = rating;
+                                        setState(() {
+                                          func(() {});
+                                        });
+                                        func(() {});
+                                      },
                                     ),
-                                    onPressed: (){
-                                      func((){});
-                                      Get.back();
-                                    }, child: const Text('Review')))
-                          ],
-                        ),
-                      );
-                    },),
+                                    Text(rating1.toString()),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 6.h,
+                              ),
+                              Center(
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          foregroundColor: kWhiteColor),
+                                      onPressed: () {
+                                        func(() {});
+                                        Get.back();
+                                      },
+                                      child: const Text('Review')))
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 );
-              }, child: Text('Write a Reviews',style: Theme.of(context).textTheme.subtitle1!.copyWith(color: kWhiteColor),))
+              },
+              child: Text(
+                'Write a Reviews',
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1!
+                    .copyWith(color: kWhiteColor),
+              ))
         ],
       ),
     );
@@ -218,11 +226,11 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
                           children: [
                             ...List.generate(
                                 5,
-                                    (index) => Icon(
-                                  Icons.star,
-                                  color: kPreviewsColors,
-                                  size: 13.r,
-                                )),
+                                (index) => Icon(
+                                      Icons.star,
+                                      color: kPreviewsColors,
+                                      size: 13.r,
+                                    )),
                             SizedBox(
                               width: 3.w,
                             ),
@@ -262,8 +270,11 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(child: Text(title,style: Theme.of(context).textTheme.bodySmall,)),
-
+          Expanded(
+              child: Text(
+            title,
+            style: Theme.of(context).textTheme.bodySmall,
+          )),
           Expanded(
             flex: 2,
             child: Container(

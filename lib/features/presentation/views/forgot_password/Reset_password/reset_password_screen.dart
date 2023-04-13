@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:online_course/components/cutom_appbar.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/components/custom_textfeild.dart';
+import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 
-import '../../../Theme/styles/colors.dart';
-import '../../../components/custom_textfeild.dart';
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);
 
@@ -18,17 +18,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: MyAppBar(title: "Reset Password",),
+      appBar: MyAppBar(
+        title: "Reset Password",
+      ),
       body: Padding(
-        padding:   EdgeInsets.symmetric(horizontal: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: Get.height * 0.04),
-
-
               const Text(
                 "Enter a new password",
                 textAlign: TextAlign.center,
@@ -38,26 +37,27 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-
-
-
-                    TextFieldWidget(hint: 'New Password',isHidden: true,inkell: const Icon(Icons.remove_red_eye),),
-                    TextFieldWidget(hint: 'Confirm Password',isHidden: true,inkell: const Icon(Icons.remove_red_eye),),
-
-
-
+                    TextFieldWidget(
+                      hint: 'New Password',
+                      isHidden: true,
+                      inkell: const Icon(Icons.remove_red_eye),
+                    ),
+                    TextFieldWidget(
+                      hint: 'Confirm Password',
+                      isHidden: true,
+                      inkell: const Icon(Icons.remove_red_eye),
+                    ),
                     SizedBox(height: 30.h),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size(1.sw,50),
-                            maximumSize: Size(1.sw,50),
-                            foregroundColor: kWhiteColor
-                        ),
-                        onPressed: (){}, child: const Text('Sign In')),
+                            minimumSize: Size(1.sw, 50),
+                            maximumSize: Size(1.sw, 50),
+                            foregroundColor: kWhiteColor),
+                        onPressed: () {},
+                        child: const Text('Sign In')),
                   ],
                 ),
               ),
-
             ],
           ),
         ),

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'Theme/styles/colors.dart';
-
+import 'package:online_course/core/Theme/styles/colors.dart';
 
 const kAnimationDuration = Duration(milliseconds: 200);
-
-
 
 const defaultDuration = Duration(milliseconds: 250);
 
@@ -22,17 +18,16 @@ const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
 
-InputDecoration otpInputDecoration ({double circle=15,bool? filled,Color? fillColor})=> InputDecoration(
-  filled: filled,
-fillColor: fillColor??kLightBgColor.withOpacity(.8),
-  contentPadding:
-      EdgeInsets.symmetric(vertical:15.h),
-  border: outlineInputBorder(circle:circle ),
-  focusedBorder: outlineInputBorder(circle:circle ),
-  enabledBorder: outlineInputBorder(
-    circle: circle
-  ),
-);
+InputDecoration otpInputDecoration(
+        {double circle = 15, bool? filled, Color? fillColor}) =>
+    InputDecoration(
+      filled: filled,
+      fillColor: fillColor ?? kLightBgColor.withOpacity(.8),
+      contentPadding: EdgeInsets.symmetric(vertical: 15.h),
+      border: outlineInputBorder(circle: circle),
+      focusedBorder: outlineInputBorder(circle: circle),
+      enabledBorder: outlineInputBorder(circle: circle),
+    );
 
 OutlineInputBorder outlineInputBorder({required double circle}) {
   return OutlineInputBorder(

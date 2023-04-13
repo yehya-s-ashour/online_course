@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'package:online_course/screens/otp/otp_screen.dart';
-
-
-import '../../../Theme/styles/colors.dart';
-import '../../../components/custom_textfeild.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/components/custom_textfeild.dart';
+import 'package:online_course/features/presentation/views/otp/otp_screen.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -17,13 +14,10 @@ class Body extends StatelessWidget {
       width: double.infinity,
       child: SingleChildScrollView(
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: 20.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             children: [
               SizedBox(height: Get.height * 0.04),
-
-
               const Text(
                 "We need your registration email to send you password reset code!",
                 textAlign: TextAlign.center,
@@ -55,24 +49,19 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
       key: _formKey,
       child: Column(
         children: [
-          TextFieldWidget(text: 'Email',),
-
-
-
-
-
-
-
+          TextFieldWidget(
+            text: 'Email',
+          ),
           SizedBox(height: 20.h),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  minimumSize: Size(1.sw,50),
-                  maximumSize: Size(1.sw,50),
-                  foregroundColor: kWhiteColor
-              ),
-              onPressed: (){
-                Get.to(()=>const OtpScreen());
-              }, child: const Text('Send Code')),
+                  minimumSize: Size(1.sw, 50),
+                  maximumSize: Size(1.sw, 50),
+                  foregroundColor: kWhiteColor),
+              onPressed: () {
+                Get.to(() => const OtpScreen());
+              },
+              child: const Text('Send Code')),
         ],
       ),
     );

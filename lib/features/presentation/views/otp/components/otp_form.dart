@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'package:online_course/screens/forgot_password/Reset_password/reset_password_screen.dart';
-
-
-import '../../../Theme/styles/colors.dart';
-import '../../../components/no_account_text.dart';
-import '../../../constants.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/components/no_account_text.dart';
+import 'package:online_course/features/presentation/views/constants.dart';
+import 'package:online_course/features/presentation/views/forgot_password/Reset_password/reset_password_screen.dart';
 
 class OtpForm extends StatefulWidget {
   const OtpForm({
@@ -66,7 +63,7 @@ class _OtpFormState extends State<OtpForm> {
                   style: const TextStyle(fontSize: 24),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  decoration: otpInputDecoration(circle: 5,filled: true),
+                  decoration: otpInputDecoration(circle: 5, filled: true),
                   onChanged: (value) {
                     nextField(value, pin2FocusNode);
                   },
@@ -81,7 +78,7 @@ class _OtpFormState extends State<OtpForm> {
                   style: const TextStyle(fontSize: 24),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  decoration: otpInputDecoration(circle: 5,filled: true),
+                  decoration: otpInputDecoration(circle: 5, filled: true),
                   onChanged: (value) => nextField(value, pin3FocusNode),
                 ),
               ),
@@ -94,7 +91,7 @@ class _OtpFormState extends State<OtpForm> {
                   style: const TextStyle(fontSize: 24),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  decoration: otpInputDecoration(circle: 5,filled: true),
+                  decoration: otpInputDecoration(circle: 5, filled: true),
                   onChanged: (value) => nextField(value, pin4FocusNode),
                 ),
               ),
@@ -107,7 +104,10 @@ class _OtpFormState extends State<OtpForm> {
                   style: const TextStyle(fontSize: 24),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  decoration: otpInputDecoration(circle: 5,filled: true,),
+                  decoration: otpInputDecoration(
+                    circle: 5,
+                    filled: true,
+                  ),
                   onChanged: (value) => nextField(value, pin5FocusNode),
                 ),
               ),
@@ -120,7 +120,10 @@ class _OtpFormState extends State<OtpForm> {
                   style: const TextStyle(fontSize: 24),
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  decoration: otpInputDecoration(circle: 5,filled: true,),
+                  decoration: otpInputDecoration(
+                    circle: 5,
+                    filled: true,
+                  ),
                   onChanged: (value) {
                     if (value.length == 1) {
                       pin4FocusNode!.unfocus();
@@ -135,19 +138,20 @@ class _OtpFormState extends State<OtpForm> {
           Row(
             children: const [
               Spacer(),
-              NoAccountText(text: "Did't receive a code?", goTitle: "Resent code"),
+              NoAccountText(
+                  text: "Did't receive a code?", goTitle: "Resent code"),
             ],
           ),
-          SizedBox(height: Get.height* 0.12),
+          SizedBox(height: Get.height * 0.12),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  minimumSize: Size(1.sw,50),
-                  maximumSize: Size(1.sw,50),
-                  foregroundColor: kWhiteColor
-              ),
-              onPressed: (){
-                Get.to(()=>const ResetPasswordScreen());
-              }, child: const Text('Confirm'))
+                  minimumSize: Size(1.sw, 50),
+                  maximumSize: Size(1.sw, 50),
+                  foregroundColor: kWhiteColor),
+              onPressed: () {
+                Get.to(() => const ResetPasswordScreen());
+              },
+              child: const Text('Confirm'))
         ],
       ),
     );

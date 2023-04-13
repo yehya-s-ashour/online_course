@@ -1,5 +1,4 @@
-import 'package:online_course/generated/assets.dart';
-
+import 'package:online_course/core/generated/assets.dart';
 
 class Department1 {
   final String name;
@@ -19,7 +18,7 @@ class Department1 {
       courses: [
         Course1(
           name: 'HTML',
-          image:Assets.imagesHtml,
+          image: Assets.imagesHtml,
           description: 'Learn the basics of HTML',
         ),
         Course1(
@@ -137,28 +136,21 @@ class Department1 {
         ),
       ],
     ),
-
   ];
-
 }
-class Course1{
 
+class Course1 {
   final String name;
   final String image;
 
   final String description;
 
   Course1({
-
     required this.name,
     required this.image,
-
     required this.description,
   });
 }
-
-
-
 
 List<Course1> recommends = [
   Course1(
@@ -181,14 +173,4 @@ List<Course1> recommends = [
     image: Assets.imagesDjango,
     description: 'Learn the basics of Django',
   ),
-
-
 ];
-
-
-
-
-
-
-
-

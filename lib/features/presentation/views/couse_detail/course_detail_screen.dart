@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:online_course/utils/data.dart';
+import 'package:online_course/core/utils/data.dart';
 
 import '../../components/custom_image.dart';
 
-
 class CourseDetailScreen extends StatelessWidget {
   const CourseDetailScreen({super.key, required this.course});
-final Course1 course;
+  final Course1 course;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +44,18 @@ final Course1 course;
               ),
             ],
           ),
-           SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: Column(
                 children: [
-                  CustomImage(course.image,isNetwork: false,width: 1.sw,fit: BoxFit.fill,height: 200,),
+                  CustomImage(
+                    course.image,
+                    isNetwork: false,
+                    width: 1.sw,
+                    fit: BoxFit.fill,
+                    height: 200,
+                  ),
                   const SizedBox(height: 8),
                   Text(
                     course.name,
@@ -62,12 +66,10 @@ final Course1 course;
                     course.description,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-
                 ],
               ),
             ),
           ),
-
         ],
       ),
     );

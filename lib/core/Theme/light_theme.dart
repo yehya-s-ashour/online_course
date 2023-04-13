@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:online_course/Theme/styles/colors.dart';
-
+import 'package:online_course/core/Theme/styles/colors.dart';
 
 //main color
 final Color _lightPrimaryColor = kPrimaryColor.withOpacity(0.1);
@@ -56,14 +54,11 @@ TextTheme lightTextTheme(BuildContext context) {
 }
 
 ThemeData lightTheme = ThemeData.light().copyWith(
-
   scaffoldBackgroundColor: kLightBgColor,
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: _lightPrimaryColor,
   ),
-  appBarTheme: const AppBarTheme(
-    color: kAppBarColorLight
-  ),
+  appBarTheme: const AppBarTheme(color: kAppBarColorLight),
   cardTheme: CardTheme(color: kLightCardBgColor, elevation: 0),
   colorScheme: ColorScheme.light(
     primary: _lightPrimaryColor,

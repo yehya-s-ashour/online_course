@@ -3,16 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/components/cutom_appbar.dart';
+import 'package:online_course/features/presentation/views/LogoScreen/Logo_Screen.dart';
+import 'package:online_course/features/presentation/views/constants.dart';
 
-
-import '../../Theme/styles/colors.dart';
-import '../../components/cutom_appbar.dart';
-import '../../constants.dart';
-
-
-import '../LogoScreen/Logo_Screen.dart';
 import 'components/splash_content.dart';
-
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -26,93 +22,100 @@ class _IntroScreenState extends State<IntroScreen> {
   List<Map<String, String>> splashData = [
     {
       "title": "Teaching",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "text":
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "image": "assets/images/baorder3.png"
     },
     {
       "title": "Learning",
       "text":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "image": "assets/images/baorder2.png"
     },
     {
       "title": "Examination",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "text":
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "image": "assets/images/baorder1.png"
     },
   ];
   double _progress = 0.33;
   void _incrementProgress() {
     setState(() {
-      currentPage +=1;
+      currentPage += 1;
       _progress += 0.33;
       if (_progress >= 1.0) {
-        Get.to(()=>const LogoScreen());
+        Get.to(() => const LogoScreen());
         _progress = 0.3;
-        currentPage =0;
+        currentPage = 0;
       }
     });
   }
+
   void _decrementProgress() {
     setState(() {
-
       if (_progress >= 0.33) {
-        currentPage -=1;
+        currentPage -= 1;
         _progress -= 0.33;
       }
-
     });
   }
+
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: MyAppBar(
         isleading: true,
-        leading:Padding(
+        leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child:   InkWell(
-            onTap:currentPage>=1?_decrementProgress: (){
-              Get.back();
-            },
+          child: InkWell(
+            onTap: currentPage >= 1
+                ? _decrementProgress
+                : () {
+                    Get.back();
+                  },
             child: Container(
               padding: EdgeInsets.all(3.r),
-
               decoration: BoxDecoration(
                 color: kLightColor.withOpacity(0.3),
-
                 shape: BoxShape.circle,
-
               ),
-              child: const Icon(Icons.arrow_back,size: 24,),
+              child: const Icon(
+                Icons.arrow_back,
+                size: 24,
+              ),
             ),
           ),
-        ) ,
-        action: [Padding(
-
-          padding: const EdgeInsets.all(8.0),
-          child: InkWell(
-              onTap:currentPage>=2? (){
-                Get.to(()=>const LogoScreen());
-              }:(){
-                currentPage =2;
-                _progress = 1;
-                setState(() {
-
-                });
-              },
-              child: Padding(
-                padding:  EdgeInsets.only(top: 6.h),
-                child: Center(child: Text(currentPage>=2?'Get start':'skip',style: Theme.of(context).textTheme.bodyText2,)),
-              )),
-        )],),
+        ),
+        action: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+                onTap: currentPage >= 2
+                    ? () {
+                        Get.to(() => const LogoScreen());
+                      }
+                    : () {
+                        currentPage = 2;
+                        _progress = 1;
+                        setState(() {});
+                      },
+                child: Padding(
+                  padding: EdgeInsets.only(top: 6.h),
+                  child: Center(
+                      child: Text(
+                    currentPage >= 2 ? 'Get start' : 'skip',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  )),
+                )),
+          )
+        ],
+      ),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
           child: Column(
             children: <Widget>[
-
               Expanded(
                 flex: 4,
                 child: PageView.builder(
@@ -121,16 +124,12 @@ class _IntroScreenState extends State<IntroScreen> {
                   onPageChanged: (value) {
                     setState(() {
                       currentPage = value;
-                      if(value==1){
-                        _progress=0.66;
-
-                      }
-                      else if(value==2){
-                        _progress=1;
-
-                      }
-                      else{
-                        _progress-=0.33;
+                      if (value == 1) {
+                        _progress = 0.66;
+                      } else if (value == 2) {
+                        _progress = 1;
+                      } else {
+                        _progress -= 0.33;
                       }
                     });
                   },
@@ -145,8 +144,7 @@ class _IntroScreenState extends State<IntroScreen> {
               Expanded(
                 // flex: 2,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.w),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Column(
                     children: <Widget>[
                       const Spacer(),
@@ -154,7 +152,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
                           splashData.length,
-                              (index) => buildDot(index: index),
+                          (index) => buildDot(index: index),
                         ),
                       ),
                       const Spacer(flex: 3),
@@ -179,7 +177,11 @@ class _IntroScreenState extends State<IntroScreen> {
                                   color: kPrimaryColor,
                                   shape: BoxShape.circle,
                                 ),
-                                child: const Center(child: Icon(Icons.arrow_right_alt_sharp,color: Colors.white,)),
+                                child: const Center(
+                                    child: Icon(
+                                  Icons.arrow_right_alt_sharp,
+                                  color: Colors.white,
+                                )),
                               ),
                             ),
                             CustomPaint(
@@ -193,7 +195,6 @@ class _IntroScreenState extends State<IntroScreen> {
                           ],
                         ),
                       ),
-
                       const Spacer(),
                     ],
                   ),

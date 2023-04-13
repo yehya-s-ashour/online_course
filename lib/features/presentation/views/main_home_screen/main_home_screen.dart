@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import 'package:online_course/screens/profile/profile_screen.dart';
-
-import '../../Theme/styles/colors.dart';
-
-import '../depart_screen/depart_screen.dart';
-import '../privew_screen/priviews_screen.dart';
-import '../profile/components/setting_profile.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/views/depart_screen/depart_screen.dart';
+import 'package:online_course/features/presentation/views/privew_screen/priviews_screen.dart';
+import 'package:online_course/features/presentation/views/profile/components/setting_profile.dart';
+import 'package:online_course/features/presentation/views/profile/profile_screen.dart';
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({Key? key}) : super(key: key);

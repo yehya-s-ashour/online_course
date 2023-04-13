@@ -1,14 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_course/utils/data.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/utils/data.dart';
 
-import '../Theme/styles/colors.dart';
 import 'custom_image.dart';
 
-
 class RecommendItem extends StatelessWidget {
-  RecommendItem({ Key? key, required this.data, this.onTap}) : super(key: key);
+  RecommendItem({Key? key, required this.data, this.onTap}) : super(key: key);
   final Course1 data;
   final GestureTapCallback? onTap;
 
@@ -19,7 +17,7 @@ class RecommendItem extends StatelessWidget {
       child: Container(
           margin: const EdgeInsets.only(right: 10),
           padding: const EdgeInsets.all(10),
-          width:1.sw,
+          width: 1.sw,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
@@ -34,20 +32,28 @@ class RecommendItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              CustomImage(data.image,
-              isNetwork: false,
+              CustomImage(
+                data.image,
+                isNetwork: false,
                 radius: 15,
                 height: 80,
               ),
-              const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
               Expanded(
-                child: Text(data.name, maxLines: 1, overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w600),
+                child: Text(
+                  data.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      color: textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
                 ),
               )
             ],
-          )
-        ),
+          )),
     );
   }
 }
