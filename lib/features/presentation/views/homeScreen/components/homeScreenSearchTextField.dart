@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:online_course/features/presentation/views/serachScreen/searchScreen.dart';
 
 class homeScreenSearchTextField extends StatelessWidget {
   const homeScreenSearchTextField({
@@ -9,6 +12,11 @@ class homeScreenSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: () {
+        Get.to(searchScreen());
+      },
+      showCursor: true,
+      readOnly: true,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),

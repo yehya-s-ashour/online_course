@@ -41,7 +41,7 @@ class _SignFormState extends State<SignForm> {
           builder: (context, state) {
             return SizedBox(
               width: 1.sw,
-              height: 1.sh*0.5,
+              height: 1.sh * 0.5,
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -83,7 +83,9 @@ class _SignFormState extends State<SignForm> {
                             maximumSize: Size(1.sw, 50),
                             foregroundColor: kWhiteColor),
                         onPressed: () {
-                          Get.to(()=>const MainHomeScreen());
+                          Get.off(
+                            MainHomeScreen(),
+                          );
                           // LoginCubit.get(context)
                           //     .userLogin(email: email!, password: password!);
                         },
@@ -96,7 +98,9 @@ class _SignFormState extends State<SignForm> {
                         Get.to(() => const SignUpScreen());
                       },
                     ),
-                    const Spacer(flex: 1,),
+                    const Spacer(
+                      flex: 1,
+                    ),
                   ],
                 ),
               ),

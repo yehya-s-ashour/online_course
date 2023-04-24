@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'components/homeAppBar.dart';
-import 'components/onGoingCourses.dart';
+import 'components/onGoingCourse/onGoingCourses.dart';
 import 'components/recommendedCourses.dart';
 
 class homeScreen extends StatelessWidget {
@@ -13,7 +13,11 @@ class homeScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Column(
-          children: [homeAppBar(), onGoingCourses(), recommendedCourses()],
+          children: [
+            homeAppBar(),
+            onGoingCourses(),
+            recommendedCourses(),
+          ],
         ),
       ),
     );

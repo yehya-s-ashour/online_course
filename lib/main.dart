@@ -26,9 +26,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         home: child,
-        theme: AppTheme.light(context),
       ),
-
       child: const SplashScreen(),
     );
   }

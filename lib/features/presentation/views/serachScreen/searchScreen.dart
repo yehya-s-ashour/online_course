@@ -12,12 +12,15 @@ class searchScreen extends StatelessWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
-        body: Column(
-          children: [
-            searchScreenAppBar(),
-            SizedBox(width: 320.w, child: const searchScreenSearchTextField()),
-            recentSearchListView()
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              searchScreenAppBar(),
+              SizedBox(
+                  width: 320.w, child: const searchScreenSearchTextField()),
+              recentSearchListView()
+            ],
+          ),
         ),
       ),
     );

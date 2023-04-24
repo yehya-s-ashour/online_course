@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String assetsImagesFrontend = 'assets/images/frontend.png';
+  static const String assetsImagesGroup = 'assets/images/user3.png';
   static const String assetsSplash1 = 'assets/splash1.png';
   static const String iconsApple = 'assets/icons/apple.svg';
   static const String iconsArrowRight = 'assets/icons/arrow_right.svg';

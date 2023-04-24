@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:online_course/features/presentation/views/noticctionsScreen/notificationsScreen.dart';
 
 import 'homeScreenSearchTextField.dart';
 
@@ -8,7 +10,7 @@ Widget homeAppBar() {
     padding: EdgeInsetsDirectional.only(
       top: 50.h,
     ),
-    height: 235.h,
+    height: 220.h,
     width: double.infinity,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.only(
@@ -58,7 +60,9 @@ Widget homeAppBar() {
                   color: Colors.white,
                   size: 30.spMax,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  Get.to(notificationsScreen());
+                }),
           ],
         ),
         SizedBox(

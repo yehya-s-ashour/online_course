@@ -82,4 +82,14 @@ class RegisterCubit extends Cubit<RegisterState> {
     isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(RegisterChangePasswordVisibilityState());
   }
+  void getjjjd(){
+    FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('1')
+        .collection('Creativity')
+        .doc('1')
+        .collection('Communications')
+        .get();
+  }
 }
+

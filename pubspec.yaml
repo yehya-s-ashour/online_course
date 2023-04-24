@@ -35,7 +35,7 @@ dependencies:
   flutter_svg: ^2.0.4
   flutter_screenutil: ^5.7.0
   hexcolor: ^3.0.1
-  get: ^5.0.0-release-candidate-4
+  get: ^4.6.5  
   google_fonts: ^4.0.3
   modal_bottom_sheet: ^3.0.0-pre
   flutter_rating_bar: ^4.0.1
@@ -48,6 +48,9 @@ dependencies:
   uuid: ^3.0.7
   flutter_bloc: ^8.1.2
   firebase_auth: ^4.4.0
+  equatable: ^2.0.5
+  http: ^0.13.5
+  flutter_storage_path: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -76,7 +79,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
-
+    - assets/icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

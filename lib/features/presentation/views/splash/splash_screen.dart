@@ -102,13 +102,14 @@ class _IntroScreenState extends State<IntroScreen> {
                         setState(() {});
                       },
                 child: Padding(
-                  padding: EdgeInsets.only(top: 6.h),
+                  padding: EdgeInsets.only(top: 6.h, right: 5.w),
                   child: Center(
                       child: Text(
                     currentPage >= 2 ? 'Get started' : 'Skip',
                     style: GoogleFonts.cairo(
-                        fontSize: 18.sp, fontWeight: FontWeight.w600,color: Color(
-                        0xF90E0E0E)),
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xF90E0E0E)),
                   )),
                 )),
           )
@@ -124,7 +125,6 @@ class _IntroScreenState extends State<IntroScreen> {
                 Expanded(
                   flex: 4,
                   child: PageView.builder(
-
                     physics: const BouncingScrollPhysics(),
                     pageSnapping: false,
                     onPageChanged: (value) {

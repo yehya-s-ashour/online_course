@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
-import 'package:online_course/features/presentation/views/homeScreen/components/onGoingCourseCard.dart';
+import 'package:online_course/features/presentation/views/homeScreen/components/onGoingCourse/components/onGoingCourseCard.dart';
 import 'package:online_course/features/presentation/views/serachScreen/components/recentSearchCard.dart';
 
 class recentSearchListView extends StatelessWidget {

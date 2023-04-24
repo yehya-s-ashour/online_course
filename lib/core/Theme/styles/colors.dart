@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-
-
+Color? mixedColor = Color.lerp(Color(0xFF463bce), Color(0xff5d54dd), 0.5);
 
 const kPrimaryColor = Color(0xFF463bce);
 const kPrimaryLightColor = Color(0xff5d54dd);
@@ -19,7 +18,6 @@ const kAppBarColorDark = Color(0xff16acd9);
 const kTextColor = Color(0xFF202244);
 const kSecondaryColor = Color(0xFF979797);
 
-
 //Light Background Colors - Scaffold BG Color
 const kLightBgColor = Color(0xffe2e2e2);
 
@@ -33,7 +31,6 @@ const kFadeColor = Color(0xFFB0B0B0);
 const kBottomBarUnselectedColor = Color(0xFFF3EBEB);
 
 //Other Colors
-
 
 //Primary Text Colors
 const kPrimaryLightTextColor = Colors.white;
@@ -64,10 +61,8 @@ const blue = Color(0xFF509BE4);
 //Price Text Colors
 const kRedColor = Color(0xFFB12704);
 
-
 //Change these values to your own app needs
 //Gradient Color For Product Offer and Coupons
-
 
 //No Need to change
 

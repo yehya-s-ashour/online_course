@@ -52,7 +52,8 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsetsDirectional.only(start: 20.w, end: 20.w, top: 12.h),
+          padding:
+              EdgeInsetsDirectional.only(start: 20.w, end: 20.w, top: 12.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -96,104 +97,107 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
               Card(
                 color: Colors.white,
                 child: Container(
-                  height: 20.h+(4*85.h),
+                    height: 20.h + (3 * 85.h),
                     child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
+                        physics: BouncingScrollPhysics(),
                         itemBuilder: (context, index) => buildColumn(context),
                         itemCount: 10)),
               ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(1.sw / 1.2, 44.h),
-                    maximumSize: Size(1.sw / 1.2, 44.h),
-                  ),
-                  onPressed: () {
-                    showMaterialModalBottomSheet(
-                      context: context,
-                      builder: (context) => SingleChildScrollView(
-                        controller: ModalScrollController.of(context),
-                        child: StatefulBuilder(
-                          builder: (BuildContext context, StateSetter func) {
-                            double rating1 = 3.0;
-                            return Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 12.w, vertical: 10.h),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'write review ',
-                                    style:
-                                        Theme.of(context).textTheme.headlineSmall,
-                                  ),
-                                  TextFieldWidget(
-                                    hint: "write review ",
-                                    maxLine: 3,
-                                  ),
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                  SizedBox(
-                                    width: 1.sw,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        RatingBar.builder(
-                                          initialRating: rating1,
-                                          minRating: 1,
-                                          direction: Axis.horizontal,
-                                          allowHalfRating: true,
-                                          itemCount: 5,
-                                          itemSize: 25.r,
-                                          itemPadding: const EdgeInsets.symmetric(
-                                              horizontal: 4.0),
-                                          itemBuilder: (context, _) => const Icon(
-                                            Icons.star,
-                                            color: Colors.amber,
-                                          ),
-                                          onRatingUpdate: (rating) {
-                                            rating1 = rating;
-                                            setState(() {
-                                              func(() {});
-                                            });
-                                            func(() {});
-                                          },
-                                        ),
-                                        Text(rating1.toString()),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 6.h,
-                                  ),
-                                  Center(
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              foregroundColor: kWhiteColor),
-                                          onPressed: () {
-                                            func(() {});
-                                            Get.back();
-                                          },
-                                          child: const Text('Review')))
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Write a Reviews',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: kWhiteColor),
-                  )),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: Align(
+        alignment: AlignmentDirectional.bottomCenter,
+        child: Container(
+          margin: EdgeInsetsDirectional.only(start: 35.w),
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(250.w, 44.h),
+                maximumSize: Size(250.w, 44.h),
+              ),
+              onPressed: () {
+                showMaterialModalBottomSheet(
+                  context: context,
+                  builder: (context) => SingleChildScrollView(
+                    controller: ModalScrollController.of(context),
+                    child: StatefulBuilder(
+                      builder: (BuildContext context, StateSetter func) {
+                        double rating1 = 3.0;
+                        return Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 10.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'write review ',
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall,
+                              ),
+                              TextFieldWidget(
+                                hint: "write review ",
+                                maxLine: 3,
+                              ),
+                              SizedBox(
+                                height: 8.h,
+                              ),
+                              SizedBox(
+                                width: 1.sw,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    RatingBar.builder(
+                                      initialRating: rating1,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 25.r,
+                                      itemPadding: const EdgeInsets.symmetric(
+                                          horizontal: 4.0),
+                                      itemBuilder: (context, _) => const Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        rating1 = rating;
+                                        setState(() {
+                                          func(() {});
+                                        });
+                                        func(() {});
+                                      },
+                                    ),
+                                    Text(rating1.toString()),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 6.h,
+                              ),
+                              Center(
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          foregroundColor: kWhiteColor),
+                                      onPressed: () {
+                                        func(() {});
+                                        Get.back();
+                                      },
+                                      child: const Text('Review')))
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              },
+              child: Text('Write a Review',
+                  style: GoogleFonts.cairo(
+                      fontSize: 20.spMin,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600))),
         ),
       ),
     );
@@ -348,7 +352,7 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
               children: [
                 Row(
                   children: [
-                     CircleAvatar(
+                    CircleAvatar(
                       backgroundImage: AssetImage(Assets.assetsImagesFrontend),
                       radius: 22,
                     ),
@@ -358,15 +362,15 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Kawsar Ahamed',style: GoogleFonts.cairo()),
+                        Text('Kawsar Ahamed', style: GoogleFonts.cairo()),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ...List.generate(
                                 5,
                                 (index) => Padding(
-                                      padding:
-                                          EdgeInsetsDirectional.only(start: 3.w),
+                                      padding: EdgeInsetsDirectional.only(
+                                          start: 3.w),
                                       child: Icon(
                                         Icons.star,
                                         color: kPreviewsColors,
@@ -393,12 +397,17 @@ class _PrviewsScreenState extends State<PrviewsScreen> {
               ],
             ),
           ),
-          SizedBox(height: 5.h,),
+          SizedBox(
+            height: 5.h,
+          ),
           Text(
             ''' It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
                     ''',
             maxLines: 3,
-            style: GoogleFonts.cairo(color: Colors.grey[500],fontSize: 14.spMin,fontWeight: FontWeight.w500),
+            style: GoogleFonts.cairo(
+                color: Colors.grey[500],
+                fontSize: 14.spMin,
+                fontWeight: FontWeight.w500),
             overflow: TextOverflow.ellipsis,
           ),
         ],

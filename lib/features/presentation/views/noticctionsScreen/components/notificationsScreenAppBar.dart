@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
 Widget notificationsScreenAppBar() {
   return Column(
@@ -18,7 +20,9 @@ Widget notificationsScreenAppBar() {
                     color: Colors.black,
                     size: 30.spMax,
                   ),
-                  onPressed: () {}),
+                  onPressed: () {
+                    Get.to(MainHomeScreen());
+                  }),
               SizedBox(
                 width: 82.w,
               ),

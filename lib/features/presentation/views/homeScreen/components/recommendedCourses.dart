@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
 
 import 'CourseCard.dart';
-import 'onGoingCourseCard.dart';
+import 'onGoingCourse/components/onGoingCourseCard.dart';
 
 class recommendedCourses extends StatelessWidget {
   const recommendedCourses({Key? key}) : super(key: key);
@@ -38,7 +38,7 @@ class recommendedCourses extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 226.h,
+          height: 186.h,
           child: GridView.builder(
             padding: EdgeInsets.symmetric(
               horizontal: 15.w,
