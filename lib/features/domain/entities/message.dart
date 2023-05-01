@@ -6,7 +6,7 @@ class Message extends Equatable {
   final String senderPic;
   final String text;
   final String messageId;
-  final String timeSent;
+  final int timeSent;
   final List<String> isSeen;
   final MessageType messageType;
   //replay message

@@ -8,7 +8,7 @@ class UserEntity extends Equatable {
   final String phoneNumber;
   final bool isOnline;
   List<String> groupId;
-  final String lastSeen;
+  final int lastSeen;
   Map<String,dynamic>? whoCanSee;
   bool archivedChats;
   bool isEnter;

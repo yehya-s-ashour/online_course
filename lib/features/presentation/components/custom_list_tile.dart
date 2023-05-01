@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
-import 'package:online_course/core/generated/assets.dart';
+
+import '/core/extensions/extensions.dart';
+import '../../../core/utils/constants/assets_manager.dart';
+
 class CustomListTile extends StatelessWidget {
   final Widget? leading;
   final String title;
@@ -12,7 +14,7 @@ class CustomListTile extends StatelessWidget {
   final int numOfMessageNotSeen;
   final VoidCallback onTap;
   final VoidCallback? onLeadingTap;
-  bool muteNotification;
+  bool muteNotification ;
 
   CustomListTile({
     super.key,
@@ -37,7 +39,7 @@ class CustomListTile extends StatelessWidget {
             child: CircleAvatar(
               radius: 20,
               backgroundColor: Colors.white,
-              child: Image.asset(Assets.assetsSplash1),
+              child: Image.asset(AppImage.genericProfileImage),
             ),
           ),
       title: Row(
@@ -46,7 +48,7 @@ class CustomListTile extends StatelessWidget {
             child: Text(
               title,
               //style: context.headlineSmall,
-              style: GoogleFonts.cairo(fontWeight: FontWeight.w500),
+              style: context.headlineSmall,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
@@ -55,8 +57,8 @@ class CustomListTile extends StatelessWidget {
             Text(
               time!,
               style: numOfMessageNotSeen>0
-                  ? GoogleFonts.cairo(color: mixedColor!,fontSize: 16)
-                  : GoogleFonts.cairo(color: mixedColor!,fontSize: 16),
+                  ? context.labelLarge!.copyWith(color: context.colorScheme.onPrimaryContainer)
+                  : context.bodyMedium,
             ),
           if (titleButton != null)
             SizedBox(
@@ -74,7 +76,7 @@ class CustomListTile extends StatelessWidget {
                   Expanded(
                     child: Text(
                       subTitle!,
-                      style: GoogleFonts.cairo(),
+                      style: context.bodyMedium,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
@@ -88,15 +90,27 @@ class CustomListTile extends StatelessWidget {
                   SizedBox(
                     width: 10.w,
                   ),
-                  if (numOfMessageNotSeen > 0)
+                  if (numOfMessageNotSeen > 0&&numOfMessageNotSeen<100)
                     CircleAvatar(
                       minRadius: 12,
-                      // backgroundColor: context.colorScheme.onPrimaryContainer,
+                      backgroundColor: mixedColor,
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Text(
                           numOfMessageNotSeen.toString(),
-                          style: GoogleFonts.cairo(),
+                          style: context.labelLarge!.copyWith(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  if (numOfMessageNotSeen > 0&&numOfMessageNotSeen==100)
+                    CircleAvatar(
+                      minRadius: 14,
+                      backgroundColor: mixedColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Text(
+                          '+99',
+                          style: context.labelLarge,
                         ),
                       ),
                     ),

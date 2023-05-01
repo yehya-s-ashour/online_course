@@ -1,14 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:online_course/core/generated/assets.dart';
-import 'package:online_course/features/presentation/components/show_full_screen_image.dart';
+import 'package:online_course/core/extensions/extensions.dart';
+import 'package:online_course/core/utils/constants/assets_manager.dart';
+import 'package:online_course/features/presentation/views/chat/chat_screen.dart';
+import '../views/chat/components/image/show_full_screen_image.dart';
 
 Future<void> showContactProfilePicDialog(
   BuildContext context, {
   required String name,
   required String contactId,
   required String profilePic,
+  required bool isGroup,
 }) {
   return showDialog(
     context: context,
@@ -19,6 +24,7 @@ Future<void> showContactProfilePicDialog(
         alignment: Alignment.topCenter,
         backgroundColor:
             Colors.white,
+            // serEntity!.theme == 'Light' ? Colors.white : Color(0xFF233138),
         content: InkWell(
           onTap: () {
             Get.to(ShowFullScreenImage(
@@ -36,7 +42,8 @@ Future<void> showContactProfilePicDialog(
                   imageUrl: profilePic,
                   placeholder: (context, url) => Stack(
                     children: [
-                      Image.asset(Assets.assetsSplash1),
+                      if (isGroup) Image.asset(AppImage.photoGroup),
+                      if (!isGroup) Image.asset(AppImage.genericProfileImage),
                       const Align(
                         alignment: Alignment.center,
                         child: CircularProgressIndicator(),
@@ -44,7 +51,11 @@ Future<void> showContactProfilePicDialog(
                     ],
                   ),
                   errorWidget: (context, url, error) {
-                      return Image.asset(Assets.assetsSplash1);
+                    if (isGroup) {
+                      return Image.asset(AppImage.photoGroup);
+                    } else {
+                      return Image.asset(AppImage.genericProfileImage);
+                    }
                   },
                   //height: 180.0,
                   fit: BoxFit.cover,
@@ -75,21 +86,24 @@ Future<void> showContactProfilePicDialog(
         actionsAlignment: MainAxisAlignment.spaceBetween,
         actionsPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         actions: [
+          if(isGroup)
+            SizedBox(width: 30.w,),
           IconButton(
             onPressed: () {
-              // Get.to(ChatScreen(
-              //   name: name,
-              //   uId: contactId,
-              //   receiverPic: profilePic,
-              //   isGroup: isGroup,
-              // ));
+              Get.to(ChatScreen(
+                name: name,
+                uId: contactId,
+                receiverPic: profilePic,
+                isGroup: isGroup,
+              ));
             },
             icon: Icon(
               Icons.message,
-              color: Color(0xFF176b5b),
+              color: context.colorScheme.secondaryContainer,
               size: 25,
             ),
           ),
+          if(!isGroup)
           IconButton(
             onPressed: () {
               // CallCubit.get(context).makeCall(
@@ -101,10 +115,11 @@ Future<void> showContactProfilePicDialog(
             },
             icon: Icon(
               Icons.call,
-              color: Color(0xFF176b5b),
+              color: context.colorScheme.secondaryContainer,
               size: 25,
             ),
           ),
+          if(!isGroup)
           IconButton(
             onPressed: () {
               // CallCubit.get(context).makeCall(
@@ -116,7 +131,7 @@ Future<void> showContactProfilePicDialog(
             },
             icon: Icon(
               Icons.videocam,
-              color: Color(0xFF176b5b),
+              color: context.colorScheme.secondaryContainer,
               size: 25,
             ),
           ),
@@ -128,10 +143,12 @@ Future<void> showContactProfilePicDialog(
             },
             icon: Icon(
               Icons.info_outline_rounded,
-              color: Color(0xFF176b5b),
+              color: context.colorScheme.secondaryContainer,
               size: 25,
             ),
           ),
+          if(isGroup)
+            SizedBox(width: 30.w,),
         ],
       );
     },
