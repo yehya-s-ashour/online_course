@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/components/allCoursesRecomenedCoursesScreenCourseCard.dart';
-import 'package:online_course/features/presentation/views/homeScreen/components/CourseCard.dart';
 import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
 Widget allCoursesRecomenedCoursesScreenListView() {
@@ -26,7 +25,7 @@ Widget allCoursesRecomenedCoursesScreenListView() {
           onTap: (){
             Get.to(LessonScreen());
           },
-          child: allCoursesRecomenedCoursesScreenCourseCard(
+          child: AllCoursesRecomenedCoursesScreenCourseCard(
             category: categoryList[index],
           ),
         );

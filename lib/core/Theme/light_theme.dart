@@ -8,51 +8,6 @@ final Color _lightPrimaryColor = kPrimaryColor.withOpacity(0.1);
 //Background Colors
 Color _lightBackgroundAppBarColor = _lightPrimaryColor;
 
-TextStyle _textStyle(BuildContext context, double size, Color color) =>
-    GoogleFonts.poppins(
-      textStyle: TextStyle(
-        fontSize: size,
-        color: color,
-        letterSpacing: 0,
-      ),
-    );
-
-TextTheme lightTextTheme(BuildContext context) {
-  return GoogleFonts.poppinsTextTheme(
-    Theme.of(context).textTheme,
-  ).copyWith(
-    //bodyText1: TextStyle(fontSize: 18, color: kSecondaryDarkTextColor),
-    bodyText1: _textStyle(context, 14, kPrimaryDarkTextColor),
-    //bodyText2: TextStyle(fontSize: 16, color: kSecondaryDarkTextColor),
-    bodyText2: _textStyle(context, 16, kPrimaryDarkTextColor),
-
-    button: _textStyle(context, 16, kPrimaryLightTextColor),
-
-    // headline6: TextStyle(fontSize: 18, color: kPrimaryDarkTextColor),
-    headline6: _textStyle(context, 18, kPrimaryDarkTextColor),
-    //headline5: TextStyle(fontSize: 24, color: kPrimaryDarkTextColor),
-    headline5: _textStyle(context, 20, kPrimaryDarkTextColor),
-    //headline4: TextStyle(fontSize: 34, color: kPrimaryDarkTextColor),
-    headline4: _textStyle(context, 22, kPrimaryDarkTextColor),
-    //headline3: TextStyle(fontSize: 44, color: kPrimaryDarkTextColor),
-    headline3: _textStyle(context, 24, kPrimaryDarkTextColor),
-    //headline2: TextStyle(fontSize: 54, color: kPrimaryDarkTextColor),
-    headline2: _textStyle(context, 26, kPrimaryDarkTextColor),
-    //headline1: TextStyle(fontSize: 64, color: kPrimaryDarkTextColor),
-    headline1: _textStyle(context, 28, kPrimaryDarkTextColor),
-    //subtitle1: TextStyle(fontSize: 16, color: kSecondaryDarkTextColor),
-    subtitle1: _textStyle(context, 16, kPrimaryDarkTextColor),
-    // subtitle2: TextStyle(fontSize: 14.0, color: kSecondaryDarkTextColor),
-    subtitle2: _textStyle(context, 14.0, kPrimaryDarkTextColor),
-    //caption: TextStyle(fontSize: 12.0, color: kSecondaryDarkTextColor),
-    caption: _textStyle(context, 12.0, kPrimaryDarkTextColor),
-
-    // overline: TextStyle(
-    //     fontSize: 10.0, color: kSecondaryDarkTextColor, letterSpacing: 0),
-    overline: _textStyle(context, 10.0, kPrimaryDarkTextColor),
-  );
-}
-
 ThemeData lightTheme = ThemeData.light().copyWith(
   scaffoldBackgroundColor: kLightBgColor,
   floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -74,7 +29,7 @@ ThemeData lightTheme = ThemeData.light().copyWith(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-    backgroundColor: kPrimaryColor,
+    backgroundColor: mixedColor,
     foregroundColor: kLightColor,
     textStyle: const TextStyle(
       fontWeight: FontWeight.bold,
@@ -86,7 +41,6 @@ ThemeData lightTheme = ThemeData.light().copyWith(
   )),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      backgroundColor: kPrimaryColor,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -98,7 +52,6 @@ ThemeData lightTheme = ThemeData.light().copyWith(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      buttonColor: _lightPrimaryColor,
       textTheme: ButtonTextTheme.primary),
   unselectedWidgetColor: _lightPrimaryColor,
   timePickerTheme: TimePickerThemeData(

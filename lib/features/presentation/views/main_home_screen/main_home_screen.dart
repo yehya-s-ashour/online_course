@@ -4,10 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/contacts_chat/contacts_chat_page.dart';
+import 'package:online_course/features/presentation/views/depart_screen/depart_screen.dart';
 import 'package:online_course/features/presentation/views/homeScreen/homeScreen.dart';
-import 'package:online_course/features/presentation/views/privew_screen/priviews_screen.dart';
-import 'package:online_course/features/presentation/views/profile/components/setting_profile.dart';
 import 'package:online_course/features/presentation/views/profile/profile_screen.dart';
+import 'package:online_course/features/presentation/views/review_screen/review_screen.dart';
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({Key? key}) : super(key: key);
@@ -22,13 +22,15 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   final List<String> listIcon = [
     "assets/icons/Shop_Icon.svg",
     "assets/icons/play_icon.svg",
+    "assets/icons/Location_point.svg",
     "assets/icons/ChatbubbleIcon.svg",
     "assets/icons/User_Icon.svg",
   ];
 
   final List<Widget> _body = [
     homeScreen(),
-     AllCoursesRecomenedCoursesScreen(),
+    ReviewScreen(),
+    const DepartmentScreen(),
     const ContactsChatPage(),
     const ProfileScreen(),
   ];

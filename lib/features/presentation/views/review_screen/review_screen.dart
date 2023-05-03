@@ -9,14 +9,14 @@ import 'package:online_course/features/presentation/components/custom_textfeild.
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 import 'package:online_course/generated/assets.dart';
 
-class PrviewsScreen extends StatefulWidget {
-  const PrviewsScreen({Key? key}) : super(key: key);
+class ReviewScreen extends StatefulWidget {
+  const ReviewScreen({Key? key}) : super(key: key);
 
   @override
-  State<PrviewsScreen> createState() => _PrviewsScreenState();
+  State<ReviewScreen> createState() => _ReviewScreenState();
 }
 
-class _PrviewsScreenState extends State<PrviewsScreen> {
+class _ReviewScreenState extends State<ReviewScreen> {
   double lenghtSlider = 225.0;
   List<Map<String, dynamic>> listSlider = [
     {

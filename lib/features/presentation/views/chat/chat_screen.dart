@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/core/functions/navigator.dart';
-import '../../../../core/utils/constants/assets_manager.dart';
-import '../../controllers/bottom_chat_cubit/bottom_chat_cubit.dart';
 import 'components/bottom_field/bottom_chat_with_icon.dart';
 import 'components/chat_appbar.dart';
 import 'components/message/messages_list.dart';

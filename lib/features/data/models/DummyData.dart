@@ -118,6 +118,54 @@ List<Category> categoryList = [
     name: 'Development',
     noOfCourses: 55,
     thumbnail: 'assets/images/image.jpg',
+  ),  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
   ),
 ];
 

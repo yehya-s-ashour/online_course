@@ -103,9 +103,7 @@ class recentSearchCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              width: 33.w,
-            ),
+            Spacer(),
             IconButton(
                 icon: Icon(
                   Icons.arrow_forward_ios_rounded,

@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
 Widget courseBrforeEnrollingScreenAppBar() {
@@ -11,21 +11,29 @@ Widget courseBrforeEnrollingScreenAppBar() {
       Column(
         children: [
           SizedBox(
-            height: 25.h,
+            height: 50.h,
           ),
           Row(
             children: [
-              IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.black,
-                    size: 30.spMax,
+              SizedBox(width: 10.w,),
+              InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  padding: EdgeInsets.all(3.r),
+                  decoration: BoxDecoration(
+                    color: kLightColor.withOpacity(0.3),
+                    shape: BoxShape.circle,
                   ),
-                  onPressed: () {
-                    Get.to(MainHomeScreen());
-                  }),
+                  child: const Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                  ),
+                ),
+              ),
               SizedBox(
-                width: 82.w,
+                width: 65.w,
               ),
               Text(
                 "Course Name",

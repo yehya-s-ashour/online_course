@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/cours_berfore_enrolling/courseBrforeEnrolling.dart';
 import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
 import 'CourseCard.dart';
-import 'onGoingCourse/components/onGoingCourseCard.dart';
 
 class recommendedCourses extends StatelessWidget {
   const recommendedCourses({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class recommendedCourses extends StatelessWidget {
                   "View All",
                   style: TextStyle(
                     fontSize: 17.spMin,
-                    color: Color(0xFF463bce),
+                    color: mixedColor,
                   ),
                 ),
               )
@@ -44,7 +44,7 @@ class recommendedCourses extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 186.h,
+          height: 180.h,
           child: GridView.builder(
             padding: EdgeInsets.symmetric(
               horizontal: 15.w,

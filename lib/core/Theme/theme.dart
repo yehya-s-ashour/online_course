@@ -5,13 +5,13 @@ import 'package:online_course/core/Theme/styles/colors.dart';
 
 import 'light_theme.dart';
 
+
 class AppTheme {
   AppTheme._();
 
   static light(BuildContext context) {
     return lightTheme.copyWith(
       scaffoldBackgroundColor: kWhiteColor,
-      textTheme: lightTextTheme(context),
       appBarTheme: const AppBarTheme().copyWith(
         color: kPrimaryColor,
         iconTheme: const IconThemeData(color: kLightColor),
@@ -34,4 +34,5 @@ class AppTheme {
       ),
     );
   }
+
 }

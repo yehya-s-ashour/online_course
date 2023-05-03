@@ -43,6 +43,8 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         designSize: const Size(360, 690),
         builder: (_, child) => GetMaterialApp(
+          theme:AppTheme.light(context),
+          themeMode: ThemeMode.light,
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           home: child,

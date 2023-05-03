@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         width: double.maxFinite,
         child: Column(
           children: [
-            const HearderProfile(
+            HearderProfile(
               bioOrEnail:
                   "During a typical development cycle, you test an app using flutter run ",
             ),
@@ -136,7 +136,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 class HearderProfile extends StatelessWidget {
   final String? bioOrEnail;
-  const HearderProfile({Key? key, this.bioOrEnail}) : super(key: key);
+  bool? isSettingProfile=false;
+  HearderProfile({Key? key, this.bioOrEnail, this.isSettingProfile}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +192,7 @@ class HearderProfile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Profile',
+                        isSettingProfile!=null?'Setting':'Profile',
                         textAlign: TextAlign.center,
                           style: GoogleFonts.cairo(color: Colors.white,fontSize: 18.spMin)
                       ),

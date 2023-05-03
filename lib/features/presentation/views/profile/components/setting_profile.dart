@@ -1,7 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/views/profile/components/change_language.dart';
+import 'package:online_course/features/presentation/views/profile/components/change_password.dart';
+import 'package:online_course/features/presentation/views/profile/components/credentail_screen.dart';
+import 'package:online_course/features/presentation/views/profile/components/edite_profile.dart';
+import 'package:online_course/features/presentation/views/profile/components/faq_screen.dart';
+import 'package:online_course/features/presentation/views/profile/components/notification_screen.dart';
+import 'package:online_course/features/presentation/views/profile/components/support_screen.dart';
 import 'package:online_course/features/presentation/views/profile/profile_screen.dart';
 
 class SettingProfile extends StatefulWidget {
@@ -14,15 +21,16 @@ class SettingProfile extends StatefulWidget {
 class _SettingProfileState extends State<SettingProfile> {
   List<String> listItems = [
     'Dark Mode',
-    'Edite Name',
+    'Edite Profile',
     'Change your password',
     'Notification Setting',
-    'Change Credtails',
+    'Change Credentials',
     'Change Language',
     'Support',
     'FAQ',
   ];
   bool dark = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +41,7 @@ class _SettingProfileState extends State<SettingProfile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HearderProfile(),
+              HearderProfile(isSettingProfile: true),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Column(
@@ -46,7 +54,24 @@ class _SettingProfileState extends State<SettingProfile> {
                         listItems.length,
                         (index) => ItemsSetting(
                               text: listItems[index],
-                              onTap: () {},
+                              onTap: () {
+                                if (index == 1) {
+                                  Get.to(EditProfile());
+                                } else if (index == 2) {
+                                  Get.to(ChangeYourPassword());
+                                } else if (index == 3) {
+                                  Get.to(NotificationScreen());
+                                } else if (index == 4) {
+                                  Get.to(ChooseCredentials());
+                                } else if (index == 5) {
+                                  Get.to(ChooseLanguage());
+                                } else if (index == 6) {
+                                  Get.to(SupportScreen());
+                                } else {
+                                  Get.to(FaqScreen());
+
+                                }
+                              },
                               traiding: index == 0
                                   ? Switch(
                                       value: dark,
@@ -110,7 +135,7 @@ class SettingProfileTeach extends StatefulWidget {
 class _SettingProfileTeachState extends State<SettingProfileTeach> {
   List<String> listItems = [
     'Dark Mode',
-    'Edite Name',
+    'Edite Profile',
     'Change your password',
     'Notification Setting',
     'Change Credtails',
@@ -118,6 +143,7 @@ class _SettingProfileTeachState extends State<SettingProfileTeach> {
     'Support',
   ];
   bool dark = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,7 +154,7 @@ class _SettingProfileTeachState extends State<SettingProfileTeach> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HearderProfile(),
+              HearderProfile(isSettingProfile: true),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Column(
@@ -141,7 +167,21 @@ class _SettingProfileTeachState extends State<SettingProfileTeach> {
                         listItems.length,
                         (index) => ItemsSetting(
                               text: listItems[index],
-                              onTap: () {},
+                              onTap: () {
+                                if (index == 1) {
+                                  Get.to(EditProfile());
+                                } else if (index == 2) {
+                                  Get.to(ChangeYourPassword());
+                                } else if (index == 3) {
+                                  Get.to(NotificationScreen());
+                                } else if (index == 4) {
+                                  Get.to(ChooseCredentials());
+                                } else if (index == 5) {
+                                  Get.to(ChooseLanguage());
+                                } else if (index == 6) {
+                                  Get.to(SupportScreen());
+                                }
+                              },
                               traiding: index == 0
                                   ? Switch(
                                       value: dark,

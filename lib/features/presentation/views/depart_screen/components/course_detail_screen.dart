@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/core/utils/data.dart';
 
-import '../../components/custom_image.dart';
+import '../../../components/custom_image.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   const CourseDetailScreen({super.key, required this.course});
@@ -28,20 +28,20 @@ class CourseDetailScreen extends StatelessWidget {
             elevation: 0,
             systemOverlayStyle: SystemUiOverlayStyle.dark,
             actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.help_outline_rounded,
-                  color: Colors.black,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert,
-                  color: Colors.black,
-                ),
-              ),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(
+              //     Icons.help_outline_rounded,
+              //     color: Colors.black,
+              //   ),
+              // ),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(
+              //     Icons.more_vert,
+              //     color: Colors.black,
+              //   ),
+              // ),
             ],
           ),
           SliverToBoxAdapter(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/views/sign_in/sign_in_screen.dart';
 import 'package:online_course/features/presentation/views/sign_up/sign_up_screen.dart';
@@ -27,10 +28,12 @@ class SingScreen extends StatelessWidget {
                 ),
                 Text(
                   "KR LEARNING",
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayMedium!
-                      .copyWith(color: kPrimaryColor),
+                  style:GoogleFonts.poppins(
+                    textStyle: Theme.of(context).textTheme.headline6,
+                    color: mixedColor,
+                    fontSize: 28.spMin,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Text(
                   "APP BY KAWSER AHMED ",
@@ -52,6 +55,7 @@ class SingScreen extends StatelessWidget {
                       minimumSize: Size(1.sw, 50),
                       maximumSize: Size(1.sw, 50),
                       foregroundColor: kLightBgColor,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r),),
                     ),
                     onPressed: () {
                       Get.to(() => const SignInScreen());
@@ -64,6 +68,8 @@ class SingScreen extends StatelessWidget {
                       maximumSize: Size(1.sw, 50),
                       backgroundColor: kPrimaryFadeTextColor.withOpacity(0.3),
                       foregroundColor: kDBackGColorLight,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r),),
+
                     ),
                     onPressed: () {
                       Get.to(() => const SignUpScreen());

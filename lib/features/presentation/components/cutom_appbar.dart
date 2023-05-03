@@ -7,7 +7,7 @@ import '../../../core/Theme/styles/colors.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
-  final Color? color;
+  final Color? color,backgroundColor,titleColor;
   final bool isleading;
   final Widget? leading;
 
@@ -17,47 +17,50 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Size preferredSize;
   MyAppBar(
       {Key? key,
-      this.title,
-      this.action,
-      this.color,
-      this.isleading = false,
-      this.leading})
+        this.title,
+        this.action,
+        this.color,
+        this.isleading = false,
+        this.leading, this.backgroundColor, this.titleColor})
       : preferredSize = const Size.fromHeight(60.0),
         super(key: key);
   @override
   Widget build(BuildContext context) {
     return AppBar(
       iconTheme: IconThemeData(color: color ?? kDBackGColor),
+
       leading: isleading
           ? leading
           : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: InkWell(
-                onTap: () {
-                  Get.back();
-                },
-                child: Container(
-                  padding: EdgeInsets.all(3.r),
-                  decoration: BoxDecoration(
-                    color: kLightColor.withOpacity(0.3),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back,
-                    size: 24,
-                  ),
-                ),
-              ),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            padding: EdgeInsets.all(3.r),
+            decoration: BoxDecoration(
+              color: kLightColor.withOpacity(0.3),
+              shape: BoxShape.circle,
             ),
-      backgroundColor: color ?? Colors.transparent,
+            child: const Icon(
+              Icons.arrow_back,
+              size: 24,
+            ),
+          ),
+        ),
+      ),
+      backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
       title: title == null
           ? null
           : Text(
-              title!,
-              style: GoogleFonts.cairo(
-                  fontSize: 20.sp, fontWeight: FontWeight.w400,color: Colors.black87),
-            ),
+        title!,
+        style: Theme.of(context)
+            .textTheme
+            .displayLarge!
+            .copyWith(color:titleColor?? kDBackGColor, fontSize: 20),
+      ),
       centerTitle: true,
       actions: action,
     );

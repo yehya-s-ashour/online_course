@@ -11,7 +11,7 @@ Widget courseDescriptionCard() {
       children: [
         SizedBox(height: 20.h),
         Text(
-          "Course Name:",
+          "Description",
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
@@ -19,25 +19,27 @@ Widget courseDescriptionCard() {
               fontWeight: FontWeight.w500,
               color: Colors.black),
         ),
+        SizedBox(height: 5.h,),
         Row(
           children: [
-            SizedBox(
-              width: 10.w,
-            ),
+            // SizedBox(
+            //   width: 10.w,
+            // ),
             Expanded(
               child: Text(
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-                maxLines: 5,
+                maxLines: 7,
                 overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
+                // textAlign: TextAlign.justify,
                 style: TextStyle(
-                    fontSize: 21.spMin,
+                    fontSize: 16.spMin,
+                    height: 1.3,
                     fontWeight: FontWeight.w500,
                     color: Colors.black.withOpacity(0.6)),
               ),
             ),
             SizedBox(
-              width: 18.w,
+              width: 8.w,
             ),
           ],
         ),
@@ -46,9 +48,10 @@ Widget courseDescriptionCard() {
         ),
         Row(
           children: [
+            SizedBox(width: 7.w,),
             Container(
-              width: 50.0,
-              height: 50.0,
+              width: 55.0,
+              height: 55.0,
               decoration: BoxDecoration(
                 color: mixedColor,
                 borderRadius: BorderRadius.circular(40.0),
@@ -80,7 +83,7 @@ Widget courseDescriptionCard() {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 20.spMin,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                         color: Colors.black),
                   ),
                   Row(
@@ -148,7 +151,7 @@ Widget courseDescriptionCard() {
               ),
             )
           ],
-        )
+        ),
       ],
     ),
   );
