@@ -51,9 +51,7 @@ Widget homeAppBar() {
                 ),
               ],
             ),
-            SizedBox(
-              width: 113.w,
-            ),
+            Spacer(),
             IconButton(
                 icon: Icon(
                   Icons.notifications,

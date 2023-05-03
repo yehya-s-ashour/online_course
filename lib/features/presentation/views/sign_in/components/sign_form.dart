@@ -83,7 +83,7 @@ class _SignFormState extends State<SignForm> {
                             maximumSize: Size(1.sw, 50),
                             foregroundColor: kWhiteColor),
                         onPressed: () {
-                          Get.off(
+                          Get.to(
                             MainHomeScreen(),
                           );
                           // LoginCubit.get(context)

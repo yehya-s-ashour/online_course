@@ -46,13 +46,6 @@ class _SplashScreenState extends State<SplashScreen> {
                   .bodyMedium!
                   .copyWith(color: kWhiteColor),
             ),
-            Text(
-              'APP BY KAWSER AHMED',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .copyWith(color: kWhiteColor),
-            )
           ],
         ),
       ),

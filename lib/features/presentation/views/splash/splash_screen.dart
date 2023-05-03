@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
-import 'package:online_course/features/presentation/views/LogoScreen/Logo_Screen.dart';
 import 'package:online_course/features/presentation/views/constants.dart';
+import 'package:online_course/features/presentation/views/sign/sign_screen.dart';
 
 import 'components/splash_content.dart';
 
@@ -46,7 +46,7 @@ class _IntroScreenState extends State<IntroScreen> {
       currentPage += 1;
       _progress += 0.33;
       if (_progress >= 1.0) {
-        Get.to(() => const LogoScreen());
+        Get.to(() => const SingScreen());
         _progress = 0.3;
         currentPage = 0;
       }
@@ -94,7 +94,7 @@ class _IntroScreenState extends State<IntroScreen> {
             child: InkWell(
                 onTap: currentPage >= 2
                     ? () {
-                        Get.to(() => const LogoScreen());
+                        Get.to(() => const SingScreen());
                       }
                     : () {
                         currentPage = 2;

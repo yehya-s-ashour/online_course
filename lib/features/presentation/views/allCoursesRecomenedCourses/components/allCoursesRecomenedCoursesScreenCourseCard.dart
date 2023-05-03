@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
 import 'package:online_course/features/presentation/views/homeScreen/components/starsRating.dart';
 
-class courseCard extends StatelessWidget {
+class allCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
   final Category category;
-  const courseCard({
+  const allCoursesRecomenedCoursesScreenCourseCard({
     Key? key,
     required this.category,
   }) : super(key: key);
@@ -48,11 +48,13 @@ class courseCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    fontSize: 13.5.spMin,
+                    fontSize: 15.5.spMin,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
-              Spacer(),
+              SizedBox(
+                width: 7.w,
+              ),
               starsRating(),
             ],
           ),
@@ -71,7 +73,9 @@ class courseCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 153, 151, 151)),
               ),
-              Spacer(),
+              SizedBox(
+                width: 50.w,
+              ),
               Text(
                 "+40 Exercise",
                 style: TextStyle(

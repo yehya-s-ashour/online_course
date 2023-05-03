@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
+import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
+import 'package:online_course/features/presentation/views/cours_berfore_enrolling/courseBrforeEnrolling.dart';
+import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
 import 'CourseCard.dart';
 import 'onGoingCourse/components/onGoingCourseCard.dart';
@@ -23,9 +27,11 @@ class recommendedCourses extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: Colors.black),
               ),
-              SizedBox(width: 79.h),
+              Spacer(),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(AllCoursesRecomenedCoursesScreen());
+                },
                 child: Text(
                   "View All",
                   style: TextStyle(
@@ -46,13 +52,18 @@ class recommendedCourses extends StatelessWidget {
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.935.h,
+              childAspectRatio: 0.83.h,
               crossAxisSpacing: 13.w,
               mainAxisSpacing: 15.h,
             ),
             itemBuilder: (context, index) {
-              return courseCard(
-                category: categoryList[index],
+              return InkWell(
+                onTap: () {
+                  Get.to(courseBrforeEnrollingScreen());
+                },
+                child: courseCard(
+                  category: categoryList[index],
+                ),
               );
             },
             itemCount: categoryList.length,

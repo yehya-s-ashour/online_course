@@ -5,8 +5,8 @@ import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/views/sign_in/sign_in_screen.dart';
 import 'package:online_course/features/presentation/views/sign_up/sign_up_screen.dart';
 
-class LogoScreen extends StatelessWidget {
-  const LogoScreen({Key? key}) : super(key: key);
+class SingScreen extends StatelessWidget {
+  const SingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

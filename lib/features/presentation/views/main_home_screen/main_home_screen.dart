@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/contacts_chat/contacts_chat_page.dart';
 import 'package:online_course/features/presentation/views/homeScreen/homeScreen.dart';
 import 'package:online_course/features/presentation/views/privew_screen/priviews_screen.dart';
@@ -27,7 +28,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
 
   final List<Widget> _body = [
     homeScreen(),
-    const PrviewsScreen(),
+     AllCoursesRecomenedCoursesScreen(),
     const ContactsChatPage(),
     const ProfileScreen(),
   ];
