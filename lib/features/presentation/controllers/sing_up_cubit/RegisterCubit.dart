@@ -1,9 +1,9 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/features/data/models/user_model.dart';
+import 'package:online_course/features/domain/entities/user.dart';
 
 import 'RegisterState.dart';
 
@@ -14,7 +14,6 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   void userRegister({
     required String name,
-    required String phone,
     required String email,
     required String password,
   }) {
@@ -29,15 +28,12 @@ class RegisterCubit extends Cubit<RegisterState> {
       print(value.user!.uid);
       userCreate(
         name: name,
-        phone: phone,
         email: email,
         password: password,
-
         uId: value.user!.uid,
       );
       emit(RegisterSuccessState(value.user!.uid));
     }).catchError((error) {
-      //print(uId);
       print('hhhhhhh');
       emit(RegisterErrorState(error.toString()));
     });
@@ -47,27 +43,27 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String password,
     required String name,
-    required String phone,
     required String uId,
   }) {
-    UserModel modle = UserModel(
+    UserEntity modle = UserEntity(
+      name: name,
+      bio: '',
       email: email,
       password: password,
-      phone: phone,
-      name: name,
       uId: uId,
-      image: 'https://img.freepik.com/free-vector/delivery-service-customer-door_107791-11385.jpg',//الافتراضي
+      theme: 'Light',
+      language: 'English',
+      profilePic: '',
+      token: '',
+      wallpaper: '',
     );
-
     FirebaseFirestore.instance
-        .collection('users') //لو ما لقه بروح يكريته ويشتغل عليه
+        .collection('users')
         .doc(uId)
         .set(modle.toMap())
         .then((value) {
-      //print('ااااااااااااااااااااااااااااا');
       emit(CreateUserSuccessState(modle.uId));
     }).catchError((error) {
-      print('aaaaaaaaaaaaaaaaaaaaaaaa');
       print(error.toString());
       emit(CreateUseErrorState(error.toString()));
     });
@@ -77,19 +73,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   bool isPassword = true;
 
   void changePasswordVisibility() {
+    emit(RegisterChangePasswordVisibilityLoadingState());
     isPassword = !isPassword;
     suffix =
-    isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(RegisterChangePasswordVisibilityState());
   }
-  void getjjjd(){
-    FirebaseFirestore.instance
-        .collection('Roadmap')
-        .doc('1')
-        .collection('Creativity')
-        .doc('1')
-        .collection('Communications')
-        .get();
-  }
 }
-

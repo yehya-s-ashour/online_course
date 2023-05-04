@@ -1,6 +1,6 @@
 import 'package:online_course/core/enums/messge_type.dart';
-import 'package:equatable/equatable.dart';
-class Message extends Equatable {
+
+class Message  {
   final String senderId;
   final String senderName;
   final String senderPic;

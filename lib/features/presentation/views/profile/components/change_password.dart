@@ -18,8 +18,13 @@ class _ChangeYourPasswordState extends State<ChangeYourPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: MyAppBar(title: "Create new Password"),
+        resizeToAvoidBottomInset: true,
+        appBar: MyAppBar(
+            title: "Create new Password",
+            backgroundColor: kPrimaryColor,
+            color: Colors.white,
+            titleColor: Colors.white,
+            ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(

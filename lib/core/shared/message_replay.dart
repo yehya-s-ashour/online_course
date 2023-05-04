@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
 import '/core/enums/messge_type.dart';
 
-class MessageReplay extends Equatable {
+class MessageReplay  {
   final String message;
   final bool isMe;
   final MessageType messageType;

@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/generated/assets.dart';
 import 'package:online_course/features/presentation/components/custom_textfeild.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
-import 'package:online_course/generated/assets.dart';
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({Key? key}) : super(key: key);

@@ -1,10 +1,7 @@
-import 'package:animated_emoji/animated_emoji.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:online_course/core/functions/time.dart';
 
 import '../../../../../../core/functions/navigator.dart';
@@ -221,9 +218,7 @@ class ChatTimeCard extends StatelessWidget {
         child: Text(
           dateTime.chatDayTime,
           style: TextStyle(
-              fontSize: userEntity.fontType == 'Small'
-                  ? 14.spMin
-                  : (userEntity.fontType == 'Medium' ? 18.spMin : 26.spMin)),
+              fontSize: 14.spMin),
         ),
       ),
     );

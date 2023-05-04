@@ -68,26 +68,14 @@ class TextFieldWidget extends StatelessWidget {
             elevation: mElev ?? 13,
             color: Colors.transparent,
             shadowColor: shadowColor ?? kWhiteColor.withOpacity(0.3),
-            child: TextFormField(
-              autovalidateMode: autovalidateMode,
+            child: TextField(
               maxLength: maxLength,
               readOnly: read,
-              initialValue: initialValue,
-
               controller: controller,
               style: Theme.of(context)
                   .textTheme
                   .titleSmall!
                   .copyWith(color: kDBackGColor),
-
-              validator: validator ??
-                  (value) {
-                    if (value!.isEmpty) {
-                      //print('error'+error);
-                      return _errorMessage(requirement!);
-                      // ignore: missing_return
-                    }
-                  },
               cursorColor: kPrimaryColor,
               obscureText: isHidden,
               textInputAction: inputAction,

@@ -30,7 +30,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
@@ -49,10 +48,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 children: [
                   TextFieldWidget(
                     text: 'Name',
-
-
                   ),
-                  
                   TextFieldWidget(
                     text: 'Email',
                   ),
@@ -70,7 +66,6 @@ class _SignUpFormState extends State<SignUpForm> {
                       onPressed: () {
                         RegisterCubit.get(context).userRegister(
                             name: 'Ahmed',
-                            phone: '0598376479',
                             email: email!,
                             password: password!);
                       },

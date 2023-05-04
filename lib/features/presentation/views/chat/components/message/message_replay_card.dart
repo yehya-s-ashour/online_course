@@ -82,9 +82,7 @@ class ReplayMessageCard extends StatelessWidget {
                               : isGroup
                                   ? Color(colors)
                                   : Colors.deepPurple,
-                      fontSize: userEntity.fontType == 'Small'
-                          ? 14.sm
-                          : (userEntity.fontType == 'Medium' ? 18.sm : 26.sm),
+                      fontSize: 18.spMin,
                     ),
                   ),
                 ),
@@ -134,9 +132,7 @@ class ReplayMessageContent extends StatelessWidget {
           style: TextStyle(
               color:
                   userEntity.theme == 'Light' ? Colors.black38 : Colors.white,
-              fontSize: userEntity.fontType == 'Small'
-                  ? 14.sm
-                  : (userEntity.fontType == 'Medium' ? 18.sm : 26.sm)),
+              fontSize: 18.spMin),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
         );
@@ -222,9 +218,7 @@ class ReplayMessageContent extends StatelessWidget {
           style: TextStyle(
               color:
                   userEntity.theme == 'Light' ? Colors.black38 : Colors.white,
-              fontSize: userEntity.fontType == 'Small'
-                  ? 14.sm
-                  : (userEntity.fontType == 'Medium' ? 18.sm : 26.sm)),
+              fontSize: 18.spMin),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
         );

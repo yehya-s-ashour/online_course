@@ -1,7 +1,7 @@
-import 'package:equatable/equatable.dart';
+
 import 'package:flutter/animation.dart';
 
-class PopUpMenuItemModel extends Equatable{
+class PopUpMenuItemModel {
   final String name;
   final VoidCallback onTap;
 

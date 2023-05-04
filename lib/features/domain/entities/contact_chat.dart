@@ -1,6 +1,6 @@
-import 'package:equatable/equatable.dart';
 
-class ContactChat extends Equatable {
+
+class ContactChat  {
   final String name;
   final String profilePic;
   final String couserId;
