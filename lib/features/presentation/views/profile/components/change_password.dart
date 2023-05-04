@@ -43,7 +43,7 @@ class _ChangeYourPasswordState extends State<ChangeYourPassword> {
                     TextFieldWidget(
                       hint: 'New Password',
                       isHidden: true,
-                      inkell: const Icon(Icons.remove_red_eye),
+                      inkell: Icons.remove_red_eye,
                     ),
                     TextFieldWidget(
                       hint: 'Confirm Password',

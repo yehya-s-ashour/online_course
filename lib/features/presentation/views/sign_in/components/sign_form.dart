@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/core/network/cache_helper.dart';
 
 import '../../../components/custom_textfeild.dart';
 import '../../../components/no_account_text.dart';
@@ -22,20 +24,23 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? password;
-  bool? remember = false;
+  var email = TextEditingController();
+  var password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return BlocProvider(
         create: (context) => LoginCubit(),
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is LoginErrorState) {
+              showToast(text: state.error, state: ToastStates.ERROR);
             } else if (state is LoginSuccessState) {
-              Get.to(() => const MainHomeScreen());
+              CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+                navigateAndFinish(context, MainHomeScreen());
+              }).catchError((error) {
+                print(error.toString());
+              });
             }
           },
           builder: (context, state) {
@@ -48,11 +53,18 @@ class _SignFormState extends State<SignForm> {
                   children: [
                     TextFieldWidget(
                       text: 'Email',
+                      controller: email,
+                      validator: 'please enter your email address',
                     ),
                     TextFieldWidget(
                       hint: 'Password',
-                      isHidden: true,
-                      inkell: const Icon(Icons.remove_red_eye),
+                      validator: 'please enter your password',
+                      controller: password,
+                      isHidden: LoginCubit.get(context).isPassword,
+                      inkell: LoginCubit.get(context).suffix,
+                      onTap: () {
+                        LoginCubit.get(context).changePasswordVisibility();
+                      },
                     ),
                     SizedBox(height: 10.h),
                     SizedBox(
@@ -77,19 +89,25 @@ class _SignFormState extends State<SignForm> {
                     ),
                     SizedBox(height: 20.h),
                     const Spacer(),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: Size(1.sw, 50),
-                            maximumSize: Size(1.sw, 50),
-                            foregroundColor: kWhiteColor),
-                        onPressed: () {
-                          Get.to(
-                            MainHomeScreen(),
-                          );
-                          // LoginCubit.get(context)
-                          //     .userLogin(email: email!, password: password!);
-                        },
-                        child: const Text('Sign In')),
+                    if (state is! LoginLoadingState)
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: Size(1.sw, 50),
+                              maximumSize: Size(1.sw, 50),
+                              foregroundColor: kWhiteColor),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              LoginCubit.get(context).userLogin(
+                                  email: email.text, password: password.text,context: context );
+                            }
+                          },
+                          child: const Text('Sign In')),
+                    if (state is LoginLoadingState)
+                      Center(
+                        child: CircularProgressIndicator(
+                          color: mixedColor,
+                        ),
+                      ),
                     SizedBox(height: 20.h),
                     NoAccountText(
                       text: "Don’t have an account? ",

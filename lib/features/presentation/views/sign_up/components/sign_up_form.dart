@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/core/network/cache_helper.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
 import 'package:online_course/features/presentation/components/custom_textfeild.dart';
 
@@ -22,11 +24,9 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? password;
-  String? conform_password;
-  bool remember = false;
-  final List<String?> errors = [];
+  var email = TextEditingController();
+  var password = TextEditingController();
+  var name = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,14 @@ class _SignUpFormState extends State<SignUpForm> {
       child: BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) {
           if (state is CreateUserSuccessState) {
-            Get.to(() => const MainHomeScreen());
-          } else if (state is CreateUseErrorState) {}
+            CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+              navigateAndFinish(context, MainHomeScreen());
+            }).catchError((error) {
+              print(error.toString());
+            });
+          } else if (state is CreateUseErrorState) {
+            showToast(text: state.error, state: ToastStates.ERROR);
+          }
         },
         builder: (context, state) {
           return SizedBox(
@@ -48,28 +54,47 @@ class _SignUpFormState extends State<SignUpForm> {
                 children: [
                   TextFieldWidget(
                     text: 'Name',
+                    controller: name,
+                    validator: 'please enter your name',
                   ),
                   TextFieldWidget(
                     text: 'Email',
+                    controller: email,
+                    validator: 'please enter your email address',
                   ),
                   TextFieldWidget(
                     hint: 'Password',
-                    isHidden: true,
-                    inkell: const Icon(Icons.remove_red_eye),
+                    validator: 'please enter your password',
+                    controller: password,
+                    isHidden: RegisterCubit.get(context).isPassword,
+                    inkell: RegisterCubit.get(context).suffix,
+                    onTap: () {
+                      RegisterCubit.get(context).changePasswordVisibility();
+                    },
                   ),
                   const Spacer(),
+                  if (state is! RegisterLoadingState)
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(1.sw, 50),
                           maximumSize: Size(1.sw, 50),
                           foregroundColor: kWhiteColor),
                       onPressed: () {
-                        RegisterCubit.get(context).userRegister(
-                            name: 'Ahmed',
-                            email: email!,
-                            password: password!);
+
+                          if (_formKey.currentState!.validate()) {
+                            RegisterCubit.get(context).userRegister(
+                                name: name.text,
+                                email: email.text,
+                                password: password.text);
+                          }
                       },
                       child: const Text('Sign Up')),
+                  if (state is RegisterLoadingState)
+                    Center(
+                      child: CircularProgressIndicator(
+                        color: mixedColor,
+                      ),
+                    ),
                   SizedBox(height: 20.h),
                   NoAccountText(
                     text: 'Already have an account?',

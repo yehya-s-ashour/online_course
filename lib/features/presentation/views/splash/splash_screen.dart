@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 import 'package:online_course/features/presentation/views/constants.dart';
 import 'package:online_course/features/presentation/views/sign/sign_screen.dart';
@@ -41,12 +42,13 @@ class _IntroScreenState extends State<IntroScreen> {
     },
   ];
   double _progress = 0.33;
+
   void _incrementProgress() {
     setState(() {
       currentPage += 1;
       _progress += 0.33;
       if (_progress >= 1.0) {
-        Get.to(() => const SingScreen());
+        navigateAndFinish(context, SingScreen());
         _progress = 0.3;
         currentPage = 0;
       }
@@ -94,7 +96,7 @@ class _IntroScreenState extends State<IntroScreen> {
             child: InkWell(
                 onTap: currentPage >= 2
                     ? () {
-                        Get.to(() => const SingScreen());
+                        navigateAndFinish(context, SingScreen());
                       }
                     : () {
                         currentPage = 2;

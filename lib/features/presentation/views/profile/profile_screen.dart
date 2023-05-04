@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
 
 import 'components/profile_menu.dart';
 import 'components/profile_pic.dart';
@@ -47,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             HearderProfile(
               bioOrEnail:
-                  "During a typical development cycle, you test an app using flutter run ",
+                  userEntity.bio!=''?userEntity.bio:"During a typical development cycle, you test an app using flutter run ",
             ),
             SizedBox(height: 10.h,),
             Expanded(
@@ -215,7 +216,7 @@ class HearderProfile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-               Text('Kawser Ahmed',style: GoogleFonts.cairo(color: Colors.black87,fontSize: 18.spMin,fontWeight: FontWeight.w500)),
+               Text(userEntity.name,style: GoogleFonts.cairo(color: Colors.black87,fontSize: 18.spMin,fontWeight: FontWeight.w500)),
               SizedBox(
                   width: 1.sw / 1.3,
                   child: Text(

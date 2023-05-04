@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 
 import 'LoginState.dart';
 
@@ -12,14 +13,14 @@ class LoginCubit extends Cubit<LoginState> {
   void userLogin({
     required String email,
     required String password,
+    required BuildContext context,
   }) {
     emit(LoginLoadingState());
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      print(value.user.toString());
-      //uId = value.user!.uid;
-      emit(LoginSuccessState(value.user!.uid));
+      LayoutCubit.get(context).getUserData().then((val) => emit(LoginSuccessState(value.user!.uid)));
+
     }).catchError((error) {
       emit(LoginErrorState(error.toString()));
     });

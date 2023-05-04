@@ -1,27 +1,32 @@
-class UserModel {
-  dynamic email;
-  dynamic password;
-  dynamic name;
-  dynamic phone;
-  dynamic uId;
-  dynamic image;
+import 'package:online_course/features/domain/entities/user.dart';
 
+class UserModel extends UserEntity {
   UserModel({
-    this.email,
-    this.password,
-    this.name,
-    this.phone,
-    this.uId,
-    this.image,
+    required super.bio,
+    required super.profilePic,
+    required super.token,
+    required super.language,
+    required super.theme,
+    required super.wallpaper,
+    required super.name,
+    required super.uId,
+    required super.email,
+    required super.password,
   });
 
-  UserModel.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
-    password = json['password'];
-    name = json['name'];
-    phone = json['phone'];
-    uId = json['uId'];
-    image = json['image'];
+  factory UserModel.fromMap(Map<String, dynamic> json) {
+    return UserModel(
+      email: json['email'],
+      password: json['password'],
+      name: json['name'],
+      uId: json['uId'],
+      bio: json['bio'],
+      profilePic: json['profilePic'],
+      token: json['token'],
+      language: json['language'],
+      theme: json['theme'],
+      wallpaper: json['wallpaper'],
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -29,9 +34,13 @@ class UserModel {
       'email': email,
       'password': password,
       'name': name,
-      'phone': phone,
       'uId': uId,
-      'image': image,
+      'bio': bio,
+      'profilePic': profilePic,
+      'token': token,
+      'language': language,
+      'theme': theme,
+      'wallpaper': wallpaper,
     };
   }
 }

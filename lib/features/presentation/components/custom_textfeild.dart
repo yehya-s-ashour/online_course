@@ -11,9 +11,10 @@ class TextFieldWidget extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final TextInputAction? inputAction;
   final Function(String)? onChange;
+  final Function()? onTap;
   final String? initialValue;
   final bool? requirement;
-  final String? Function(String?)? validator;
+  final String? validator;
   final AutovalidateMode? autovalidateMode;
   final int maxLine;
   final int? maxLength;
@@ -21,16 +22,11 @@ class TextFieldWidget extends StatelessWidget {
   final double? mElev;
   final TextInputType? textInputType;
 
-  final Widget? inkell;
+  final IconData? inkell;
   final bool isHidden;
   final bool read;
   final Color? shadowColor;
-  String? _errorMessage(bool str) {
-    switch (str) {
-      case true:
-        return 'This filed requirement'.tr;
-    }
-  }
+
 
   TextFieldWidget({
     Key? key,
@@ -39,6 +35,8 @@ class TextFieldWidget extends StatelessWidget {
     this.iconData,
     this.text,
     this.inkell,
+    this.onTap,
+
     this.isHidden = false,
     this.initialValue,
     this.requirement,
@@ -68,14 +66,25 @@ class TextFieldWidget extends StatelessWidget {
             elevation: mElev ?? 13,
             color: Colors.transparent,
             shadowColor: shadowColor ?? kWhiteColor.withOpacity(0.3),
-            child: TextField(
+            child: TextFormField(
+              autovalidateMode: autovalidateMode,
               maxLength: maxLength,
               readOnly: read,
+              initialValue: initialValue,
+
               controller: controller,
               style: Theme.of(context)
                   .textTheme
                   .titleSmall!
                   .copyWith(color: kDBackGColor),
+
+              validator: (value) {
+                if (value!.isEmpty) {
+                  //print('error'+error);
+                  return validator;
+                  // ignore: missing_return
+                }
+              },
               cursorColor: kPrimaryColor,
               obscureText: isHidden,
               textInputAction: inputAction,
@@ -83,7 +92,8 @@ class TextFieldWidget extends StatelessWidget {
               keyboardType: textInputType ?? TextInputType.text,
               autocorrect: false,
               maxLines: maxLine,
-              minLines: minLine, onChanged: onChange,
+              minLines: minLine,
+              onChanged: onChange,
               decoration: InputDecoration(
                   hintText: hint,
                   filled: true,
@@ -135,7 +145,9 @@ class TextFieldWidget extends StatelessWidget {
                       borderSide: const BorderSide(color: Colors.transparent)),
 //                 suffixIcon: text=='Password'.tr?Icon(Icons.remove_red_eye_outlined,color:kColorsBackground,size: .03.sh,):SizedBox(),
 
-                  suffixIcon: inkell ?? const SizedBox(),
+                  suffixIcon: inkell != null
+                      ? IconButton(onPressed: onTap, icon: Icon(inkell))
+                      : SizedBox(),
                   prefixIcon: iconData == null
                       ? null
                       : Icon(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/views/noticctionsScreen/notificationsScreen.dart';
 
 import 'homeScreenSearchTextField.dart';
@@ -39,7 +40,7 @@ Widget homeAppBar() {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hey User,",
+                  "Hey ${userEntity.name.split(' ')[0]}",
                   style: TextStyle(
                       fontSize: 27.spMin,
                       fontWeight: FontWeight.bold,

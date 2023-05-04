@@ -35,14 +35,6 @@ class SingScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text(
-                  "APP BY KAWSER AHMED ",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: kPrimaryColor),
-                ),
                 const Spacer(flex: 2),
                 Image.asset(
                   "assets/images/boardermain.png",

@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/core/network/cache_helper.dart';
 import 'package:online_course/features/data/models/user_model.dart';
 import 'package:online_course/features/domain/entities/user.dart';
 
@@ -45,7 +47,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String name,
     required String uId,
   }) {
-    UserEntity modle = UserEntity(
+    userEntity = UserEntity(
       name: name,
       bio: '',
       email: email,
@@ -60,9 +62,10 @@ class RegisterCubit extends Cubit<RegisterState> {
     FirebaseFirestore.instance
         .collection('users')
         .doc(uId)
-        .set(modle.toMap())
+        .set(userEntity.toMap())
         .then((value) {
-      emit(CreateUserSuccessState(modle.uId));
+          CacheHelper.saveData(key: 'userEntity', value: '$uId,$name,$password,$email,${'English'},${'Light'},,,,');
+      emit(CreateUserSuccessState(userEntity.uId));
     }).catchError((error) {
       print(error.toString());
       emit(CreateUseErrorState(error.toString()));
