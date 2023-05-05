@@ -3,14 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/network/cache_helper.dart';
 import 'package:online_course/features/data/models/courses_model.dart';
+import 'package:online_course/features/data/models/lesson_model.dart';
+import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/data/models/user_model.dart';
+import 'package:online_course/features/domain/entities/roadmap.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutState.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {
   LayoutCubit() : super(InitialState());
 
   static LayoutCubit get(context) => BlocProvider.of(context);
-
 
   Future<void> getUserData() async {
     emit(GetUserLoadingState());
@@ -21,15 +23,18 @@ class LayoutCubit extends Cubit<LayoutState> {
         .then((value) {
       // print(value.data());
       userEntity = UserModel.fromMap(value.data()!);
-      CacheHelper.saveData(key: 'userEntity',
-          value: '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper}');
+      CacheHelper.saveData(
+          key: 'userEntity',
+          value:
+              '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper}');
       emit(GetUserSuccessState());
     }).catchError((error) {
       emit(GetUserErrorState(error.toString()));
     });
   }
 
-  List<CoursesModel> businessCourses=[];
+  List<CoursesModel> businessCourses = [];
+
   Future<void> getBusinessCourses() async {
     emit(GetBusinessCoursesLoadinState());
     await FirebaseFirestore.instance
@@ -66,7 +71,8 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  List<CoursesModel> developmentCourses=[];
+  List<CoursesModel> developmentCourses = [];
+
   Future<void> getDevelopmentCourses() async {
     emit(GetDevelopmentCoursesLoadinState());
     await FirebaseFirestore.instance
@@ -102,7 +108,8 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  List<CoursesModel> marketingCourses=[];
+  List<CoursesModel> marketingCourses = [];
+
   Future<void> getMarketingCourses() async {
     emit(GetMarketingCoursesLoadinState());
     await FirebaseFirestore.instance
@@ -138,7 +145,8 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  List<CoursesModel> personalDevelopmentCourses=[];
+  List<CoursesModel> personalDevelopmentCourses = [];
+
   Future<void> getPersonalDevelopmentCourses() async {
     emit(GetPersonalDevelopmentCoursesLoadinState());
     await FirebaseFirestore.instance
@@ -174,7 +182,8 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  List<CoursesModel> teachingAcademicsCourses=[];
+  List<CoursesModel> teachingAcademicsCourses = [];
+
   Future<void> getTeachingAcademicsCourses() async {
     emit(GetTeachingAcademicsCoursesLoadinState());
     await FirebaseFirestore.instance
@@ -209,10 +218,38 @@ class LayoutCubit extends Cubit<LayoutState> {
       emit(GetTeachingAcademicsCoursesErrorState(error.toString()));
     });
   }
-  int currentindex =0;
-  void changeIndex(int index){
+
+  List<LessonModel> lessonsCourses = [];
+
+  Future<void> getLessonsCourses(
+      {required String mainCategory,
+      required String courseId,
+      required String subCategory}) async {
+    emit(GetLessonCoursesLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Categories')
+        .doc('1')
+        .collection(mainCategory)
+        .doc('1')
+        .collection(subCategory)
+        .doc(courseId)
+        .collection('Lessons')
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        lessonsCourses.add(LessonModel.fromMap(element.data()));
+      });
+      emit(GetLessonCoursesSuccessState());
+    }).catchError((error) {
+      emit(GetLessonCoursesErrorState(error.toString()));
+    });
+  }
+
+  int currentindex = 0;
+
+  void changeIndex(int index) {
     emit(ChangeIndexLoadinState());
-    currentindex=index;
+    currentindex = index;
     emit(ChangeIndexSuccessState());
   }
 }

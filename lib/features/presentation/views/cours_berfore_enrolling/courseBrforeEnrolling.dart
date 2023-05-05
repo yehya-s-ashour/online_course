@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/views/cours_berfore_enrolling/components/courseBrforeEnrollingScreenAppBar.dart';
 
@@ -19,10 +20,14 @@ class courseBrforeEnrollingScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            courseBrforeEnrollingScreenAppBar(),
+            courseBrforeEnrollingScreenAppBar(courseModel.name),
             courseVideoCard(numberSt: courseModel.students.length,rate: rate,VideoPaht: courseModel.previewVideo),
-            courseDescriptionCard(courseModel.description),
-            enrollCard(),
+            courseDescriptionCard(courseModel,context),
+            Spacer(),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10.h),
+              child: enrollCard(),
+            ),
           ],
         ),
       ),

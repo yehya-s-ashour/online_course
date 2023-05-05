@@ -55,6 +55,23 @@ class GetTeachingAcademicsCoursesErrorState extends LayoutState {
   final String error;
 
   GetTeachingAcademicsCoursesErrorState(this.error);
+}class GetLessonCoursesLoadinState extends LayoutState {}
+
+class GetLessonCoursesSuccessState extends LayoutState {}
+
+class GetLessonCoursesErrorState extends LayoutState {
+  final String error;
+
+  GetLessonCoursesErrorState(this.error);
+}
+class RoadmapModelLoadinState extends LayoutState {}
+
+class RoadmapModelSuccessState extends LayoutState {}
+
+class RoadmapModelErrorState extends LayoutState {
+  final String error;
+
+  RoadmapModelErrorState(this.error);
 }
 class ChangeIndexLoadinState extends LayoutState {}
 

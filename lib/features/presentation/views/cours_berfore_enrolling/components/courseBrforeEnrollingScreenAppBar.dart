@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
-Widget courseBrforeEnrollingScreenAppBar() {
+Widget courseBrforeEnrollingScreenAppBar(String courseName) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
@@ -33,14 +33,19 @@ Widget courseBrforeEnrollingScreenAppBar() {
                 ),
               ),
               SizedBox(
-                width: 65.w,
+                width: 30.w,
               ),
-              Text(
-                "Course Name",
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 22.spMin,
-                    color: Colors.black),
+              SizedBox(
+                width: 260.w,
+                child: Text(
+                  courseName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20.spMin,
+                      color: Colors.black),
+                ),
               ),
             ],
           ),
