@@ -98,7 +98,7 @@ class recentSearchCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    starsRating()
+                    starsRating(rating: 3,)
                   ],
                 ),
               ],

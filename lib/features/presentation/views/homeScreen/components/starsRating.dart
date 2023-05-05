@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class starsRating extends StatelessWidget {
-  const starsRating({
-    Key? key,
-  }) : super(key: key);
+  final int rating;
+
+  const starsRating({super.key, required this.rating});
+
+
   @override
   Widget build(BuildContext context) {
-    int rating = 3;
     return SizedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

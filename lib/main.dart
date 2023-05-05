@@ -24,19 +24,19 @@ void main() async {
   await CacheHelper.init();
   uid = CacheHelper.getData(key: 'uId');
   if (uid != null) {
-
-
-    List<String> user = CacheHelper.getData(key: 'userEntity').split(',');
-    userEntity = UserEntity(name: user[1],
-        uId: user[0],
-        bio: user[7],
-        profilePic: user[6],
-        email: user[3],
-        password: user[2],
-        token: user[8],
-        language: user[4],
-        theme: user[5],
-        wallpaper: user[9]);
+    if(CacheHelper.getData(key: 'userEntity')!=null){
+      List<String> user = CacheHelper.getData(key: 'userEntity').split(',');
+      userEntity = UserEntity(name: user[1],
+          uId: user[0],
+          bio: user[7],
+          profilePic: user[6],
+          email: user[3],
+          password: user[2],
+          token: user[8],
+          language: user[4],
+          theme: user[5],
+          wallpaper: user[9]);
+    }
   }
   runApp(const MyApp());
 }
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) =>
         LayoutCubit()
-          ..getUserData()),
+          ..getUserData()..getBusinessCourses()..getDevelopmentCourses()..getMarketingCourses()..getPersonalDevelopmentCourses()..getTeachingAcademicsCourses()),
         BlocProvider(create: (context) => ChatCubit()),
         BlocProvider(create: (context) => BottomChatCubit()),
         BlocProvider(

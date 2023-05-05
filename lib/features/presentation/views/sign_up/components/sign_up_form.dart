@@ -30,50 +30,48 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RegisterCubit(),
-      child: BlocConsumer<RegisterCubit, RegisterState>(
-        listener: (context, state) {
-          if (state is CreateUserSuccessState) {
-            CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-              navigateAndFinish(context, MainHomeScreen());
-            }).catchError((error) {
-              print(error.toString());
-            });
-          } else if (state is CreateUseErrorState) {
-            showToast(text: state.error, state: ToastStates.ERROR);
-          }
-        },
-        builder: (context, state) {
-          return SizedBox(
-            width: 1.sw,
-            height: 1.sh*0.6,
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFieldWidget(
-                    text: 'Name',
-                    controller: name,
-                    validator: 'please enter your name',
-                  ),
-                  TextFieldWidget(
-                    text: 'Email',
-                    controller: email,
-                    validator: 'please enter your email address',
-                  ),
-                  TextFieldWidget(
-                    hint: 'Password',
-                    validator: 'please enter your password',
-                    controller: password,
-                    isHidden: RegisterCubit.get(context).isPassword,
-                    inkell: RegisterCubit.get(context).suffix,
-                    onTap: () {
-                      RegisterCubit.get(context).changePasswordVisibility();
-                    },
-                  ),
-                  const Spacer(),
-                  if (state is! RegisterLoadingState)
+    return BlocConsumer<RegisterCubit, RegisterState>(
+      listener: (context, state) {
+        if (state is CreateUserSuccessState) {
+          CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+            navigateAndFinish(context, MainHomeScreen());
+          }).catchError((error) {
+            print(error.toString());
+          });
+        } else if (state is CreateUseErrorState) {
+          showToast(text: state.error, state: ToastStates.ERROR);
+        }
+      },
+      builder: (context, state) {
+        return SizedBox(
+          width: 1.sw,
+          height: 1.sh*0.6,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFieldWidget(
+                  text: 'Name',
+                  controller: name,
+                  validator: 'please enter your name',
+                ),
+                TextFieldWidget(
+                  text: 'Email',
+                  controller: email,
+                  validator: 'please enter your email address',
+                ),
+                TextFieldWidget(
+                  hint: 'Password',
+                  validator: 'please enter your password',
+                  controller: password,
+                  isHidden: RegisterCubit.get(context).isPassword,
+                  inkell: RegisterCubit.get(context).suffix,
+                  onTap: () {
+                    RegisterCubit.get(context).changePasswordVisibility();
+                  },
+                ),
+                const Spacer(),
+                if (state is! RegisterLoadingState)
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(1.sw, 50),
@@ -81,35 +79,34 @@ class _SignUpFormState extends State<SignUpForm> {
                           foregroundColor: kWhiteColor),
                       onPressed: () {
 
-                          if (_formKey.currentState!.validate()) {
-                            RegisterCubit.get(context).userRegister(
-                                name: name.text,
-                                email: email.text,
-                                password: password.text);
-                          }
+                        if (_formKey.currentState!.validate()) {
+                          RegisterCubit.get(context).userRegister(
+                              name: name.text,
+                              email: email.text,
+                              password: password.text);
+                        }
                       },
                       child: const Text('Sign Up')),
-                  if (state is RegisterLoadingState)
-                    Center(
-                      child: CircularProgressIndicator(
-                        color: mixedColor,
-                      ),
+                if (state is RegisterLoadingState)
+                  Center(
+                    child: CircularProgressIndicator(
+                      color: mixedColor,
                     ),
-                  SizedBox(height: 20.h),
-                  NoAccountText(
-                    text: 'Already have an account?',
-                    goTitle: 'Sign In',
-                    onTapTitle: () {
-                      Get.to(() => const SignInScreen());
-                    },
                   ),
-                  const Spacer(),
-                ],
-              ),
+                SizedBox(height: 20.h),
+                NoAccountText(
+                  text: 'Already have an account?',
+                  goTitle: 'Sign In',
+                  onTapTitle: () {
+                    Get.to(() => const SignInScreen());
+                  },
+                ),
+                const Spacer(),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

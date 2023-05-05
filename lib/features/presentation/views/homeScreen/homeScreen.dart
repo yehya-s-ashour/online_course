@@ -12,12 +12,14 @@ class homeScreen extends StatelessWidget {
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Column(
-          children: [
-            homeAppBar(),
-            onGoingCourses(),
-            recommendedCourses(),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              homeAppBar(context),
+              onGoingCourses(),
+              recommendedCourses(),
+            ],
+          ),
         ),
       ),
     );

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/noticctionsScreen/notificationsScreen.dart';
 
 import 'homeScreenSearchTextField.dart';
 
-Widget homeAppBar() {
+Widget homeAppBar(BuildContext context) {
   return Container(
     padding: EdgeInsetsDirectional.only(
       top: 50.h,

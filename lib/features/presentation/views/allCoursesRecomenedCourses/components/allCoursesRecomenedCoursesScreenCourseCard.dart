@@ -53,7 +53,7 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
                     color: Colors.black),
               ),
               Spacer(),
-              starsRating(),
+              starsRating(rating: 3),
               SizedBox(width: 2.w,),
             ],
           ),

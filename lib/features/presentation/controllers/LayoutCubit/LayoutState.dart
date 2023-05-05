@@ -11,63 +11,51 @@ class GetUserErrorState extends LayoutState {
 
   GetUserErrorState(this.error);
 }
+class GetBusinessCoursesLoadinState extends LayoutState {}
 
-class ChangeBottomNavState extends LayoutState {}
+class GetBusinessCoursesSuccessState extends LayoutState {}
 
-class ChangeAddressState extends LayoutState {}
-
-class ChangeLanguageState extends LayoutState {}
-
-class ChangeNotificationSetting1State extends LayoutState {}
-
-class ChangeNotificationSetting2State extends LayoutState {}
-
-class GetProductsLoadingState extends LayoutState {}
-
-class GetProductsSuccessState extends LayoutState {}
-
-class GetProductsErrorState extends LayoutState {
+class GetBusinessCoursesErrorState extends LayoutState {
   final String error;
 
-  GetProductsErrorState(this.error);
+  GetBusinessCoursesErrorState(this.error);
 }
+class GetDevelopmentCoursesLoadinState extends LayoutState {}
 
-class GetFavouriteLoadingState extends LayoutState {}
+class GetDevelopmentCoursesSuccessState extends LayoutState {}
 
-class GetFavouriteSuccessState extends LayoutState {}
-
-class GetFavouriteErrorState extends LayoutState {
+class GetDevelopmentCoursesErrorState extends LayoutState {
   final String error;
 
-  GetFavouriteErrorState(this.error);
+  GetDevelopmentCoursesErrorState(this.error);
 }
+class GetMarketingCoursesLoadinState extends LayoutState {}
 
-class CheckFavouriteErrorState extends LayoutState {
+class GetMarketingCoursesSuccessState extends LayoutState {}
+
+class GetMarketingCoursesErrorState extends LayoutState {
   final String error;
 
-  CheckFavouriteErrorState(this.error);
+  GetMarketingCoursesErrorState(this.error);
 }
+class GetPersonalDevelopmentCoursesLoadinState extends LayoutState {}
 
-class SetFavouriteLoadingState extends LayoutState {}
+class GetPersonalDevelopmentCoursesSuccessState extends LayoutState {}
 
-class SetFavouriteSuccessState extends LayoutState {}
-
-class SetFavouriteErrorState extends LayoutState {
+class GetPersonalDevelopmentCoursesErrorState extends LayoutState {
   final String error;
 
-  SetFavouriteErrorState(this.error);
+  GetPersonalDevelopmentCoursesErrorState(this.error);
 }
+class GetTeachingAcademicsCoursesLoadinState extends LayoutState {}
 
-class DeleteFavouriteLoadingState extends LayoutState {}
+class GetTeachingAcademicsCoursesSuccessState extends LayoutState {}
 
-class DeleteFavouriteSuccessState extends LayoutState {}
-
-class DeleteFavouriteErrorState extends LayoutState {
+class GetTeachingAcademicsCoursesErrorState extends LayoutState {
   final String error;
 
-  DeleteFavouriteErrorState(this.error);
+  GetTeachingAcademicsCoursesErrorState(this.error);
 }
+class ChangeIndexLoadinState extends LayoutState {}
 
-class UoloadCoverSuccessState extends LayoutState {}
-
-class UoloadCoverErrorState extends LayoutState {}
+class ChangeIndexSuccessState extends LayoutState {}

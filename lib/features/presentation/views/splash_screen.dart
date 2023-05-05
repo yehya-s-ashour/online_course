@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
@@ -17,15 +18,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 2),
-            () {
-      if(uid!=null){
+    Timer(const Duration(seconds: 4), () {
+      if (uid != null) {
         navigateAndFinish(context, MainHomeScreen());
-      }else{
+      } else {
         navigateAndFinish(context, IntroScreen());
       }
-
-            });
+    });
     super.initState();
   }
 
@@ -39,21 +38,35 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 100,
-              width: 100,
+              height: 100.h,
+              width: 180.w,
               decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/logoW.png'),
-                    fit: BoxFit.cover,
-                  )),
+                image: DecorationImage(
+                  image: AssetImage('assets/images/logo1.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            Text(
-              'KR LEARNING',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: kWhiteColor),
+            SizedBox(
+              height: 7.h,
+            ),
+            Container(
+              width: 220,
+              height: 4,
+              color: Colors.white,
+            ),
+            SizedBox(
+              height: 3.h,
+            ),
+            Container(
+              height: 50.h,
+              width: 220.w,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/font1.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
           ],
         ),
