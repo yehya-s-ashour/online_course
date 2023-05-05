@@ -110,13 +110,8 @@ class recommendedCourses extends StatelessWidget {
                   mainAxisSpacing: 15.h,
                 ),
                 itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      Get.to(courseBrforeEnrollingScreen());
-                    },
-                    child: CourseCardd(
-                      courseModel: cubit.currentindex==0?cubit.businessCourses[index]:cubit.currentindex==1?cubit.developmentCourses[index]:cubit.currentindex==2?cubit.marketingCourses[index]:cubit.currentindex==3?cubit.personalDevelopmentCourses[index]:cubit.teachingAcademicsCourses[index],
-                    ),
+                  return CourseCardd(
+                    courseModel: cubit.currentindex==0?cubit.businessCourses[index]:cubit.currentindex==1?cubit.developmentCourses[index]:cubit.currentindex==2?cubit.marketingCourses[index]:cubit.currentindex==3?cubit.personalDevelopmentCourses[index]:cubit.teachingAcademicsCourses[index],
                   );
                 },
                 itemCount: cubit.currentindex==0?cubit.businessCourses.length:cubit.currentindex==1?cubit.developmentCourses.length:cubit.currentindex==2?cubit.marketingCourses.length:cubit.currentindex==3?cubit.personalDevelopmentCourses.length:cubit.teachingAcademicsCourses.length,
