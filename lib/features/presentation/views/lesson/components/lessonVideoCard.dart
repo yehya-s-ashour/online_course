@@ -4,6 +4,9 @@ import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:video_player/video_player.dart';
 
 class lessonVideoCard extends StatefulWidget {
+  final String video;
+
+  const lessonVideoCard({super.key, required this.video});
   @override
   State<lessonVideoCard> createState() => _lessonVideoCard();
 }

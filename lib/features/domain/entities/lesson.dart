@@ -4,8 +4,6 @@ class Lesson {
   String name;
   String description;
   String creationDate;
-  String mainCategory;
-  String subCategory;
   String lessonId;
   String courseId;
   String teacherName;
@@ -17,8 +15,6 @@ class Lesson {
     required this.video,
     required this.name,
     required this.description,
-    required this.mainCategory,
-    required this.subCategory,
     required this.creationDate,
     required this.lessonId,
     required this.courseId,

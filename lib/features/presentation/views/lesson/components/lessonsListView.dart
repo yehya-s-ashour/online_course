@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/lesson.dart';
+import 'package:online_course/features/data/models/lesson_model.dart';
 
 import 'lessonCard.dart';
 
-Widget lessonsListView() {
+Widget lessonsListView({required List<LessonModel> lessonModel}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +34,9 @@ Widget lessonsListView() {
         child: ListView.separated(
           padding: EdgeInsetsDirectional.zero,
           physics: BouncingScrollPhysics(),
-          itemCount: lessonList.length,
+          itemCount: lessonModel.length,
           itemBuilder: (context, index) => lessonCard(
-            lesson: lessonList[index],
+            lesson: lessonModel[index],
           ),
           separatorBuilder: (context, index) => SizedBox(
             height: 10.h,

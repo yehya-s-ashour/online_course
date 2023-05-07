@@ -6,8 +6,7 @@ class LessonModel extends Lesson {
     required super.video,
     required super.name,
     required super.description,
-    required super.mainCategory,
-    required super.subCategory,
+
     required super.creationDate,
     required super.lessonId,
     required super.courseId,
@@ -38,8 +37,6 @@ class LessonModel extends Lesson {
       description: map['description'],
       creationDate: map['creationDate'],
       courseId: map['courseId'],
-      mainCategory: map['mainCategory'],
-      subCategory: map['subCategory'],
       teacherName: map['teacherName'],
       teacherId: map['teacherId'],
       students: List<String>.from(map['students']),

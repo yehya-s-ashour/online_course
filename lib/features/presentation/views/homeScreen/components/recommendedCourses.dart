@@ -105,7 +105,7 @@ class recommendedCourses extends StatelessWidget {
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.92.h,
+                  childAspectRatio: 0.9.h,
                   crossAxisSpacing: 13.w,
                   mainAxisSpacing: 15.h,
                 ),

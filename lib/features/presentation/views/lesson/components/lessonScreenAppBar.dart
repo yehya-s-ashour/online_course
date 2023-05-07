@@ -1,37 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
-Widget lessonScreenAppBar() {
+Widget lessonScreenAppBar(String courseName) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       Column(
         children: [
           SizedBox(
-            height: 25.h,
+            height: 30.h,
           ),
           Row(
             children: [
-              IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.black,
-                    size: 30.spMax,
+              SizedBox(width: 10.w,),
+              InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  padding: EdgeInsets.all(3.r),
+                  decoration: BoxDecoration(
+                    color: kLightColor.withOpacity(0.3),
+                    shape: BoxShape.circle,
                   ),
-                  onPressed: () {
-                    Get.to(MainHomeScreen());
-                  }),
-              SizedBox(
-                width: 75.w,
+                  child: const Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                  ),
+                ),
               ),
-              Text(
-                "Course Name",
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 22.spMin,
-                    color: Colors.black),
+              SizedBox(
+                width: 30.w,
+              ),
+              SizedBox(
+                width: 260.w,
+                child: Text(
+                  courseName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20.spMin,
+                      color: Colors.black),
+                ),
               ),
             ],
           ),

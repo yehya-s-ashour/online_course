@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_course/features/data/models/lesson.dart';
+import 'package:online_course/features/data/models/lesson_model.dart';
 
 class lessonCard extends StatelessWidget {
-  final Lesson lesson;
+  final LessonModel lesson;
   const lessonCard({
     Key? key,
     required this.lesson,
@@ -12,7 +12,7 @@ class lessonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 75.h,
+      height: 83.h,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
         decoration: BoxDecoration(
@@ -40,7 +40,7 @@ class lessonCard extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50.r),
                       image: DecorationImage(
-                          image: AssetImage(lesson.image), fit: BoxFit.cover)),
+                          image: NetworkImage(lesson.image), fit: BoxFit.cover)),
                 ),
                 SizedBox(
                   width: 12.w,
@@ -53,7 +53,7 @@ class lessonCard extends StatelessWidget {
                       height: 8.w,
                     ),
                     SizedBox(
-                      width: 100.w,
+                      width: 150.w,
                       child: Text(
                         lesson.name,
                         maxLines: 2,

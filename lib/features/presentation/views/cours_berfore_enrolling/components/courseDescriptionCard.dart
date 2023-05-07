@@ -75,8 +75,7 @@ Widget courseDescriptionCard(CourseModel courseModel,BuildContext context) {
                   size: 36.0,
                 ),
                 onPressed: () {
-                  LayoutCubit.get(context).getLessonsCourses(mainCategory: courseModel.mainCategory, courseId: courseModel.courseId, subCategory: courseModel.subCategory);
-                  Get.to(LessonScreen());
+                  Get.to(LessonScreen(courseModel: courseModel,));
                 },
               ),
             ),

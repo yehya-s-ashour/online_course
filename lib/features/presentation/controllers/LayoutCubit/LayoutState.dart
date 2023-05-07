@@ -76,3 +76,13 @@ class RoadmapModelErrorState extends LayoutState {
 class ChangeIndexLoadinState extends LayoutState {}
 
 class ChangeIndexSuccessState extends LayoutState {}
+
+class GetRoadmapLoadinState extends LayoutState {}
+
+class GetRoadmapSuccessState extends LayoutState {}
+
+class GetRoadmapErrorState extends LayoutState {
+  final String error;
+
+  GetRoadmapErrorState(this.error);
+}
