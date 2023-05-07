@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/utils/data.dart';
+import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/depart_screen/components/course_screen.dart';
 import 'package:online_course/features/presentation/views/depart_screen/depart_screen.dart';
 
@@ -27,11 +29,11 @@ class _WishListScreenState extends State<WishListScreen> {
       body: Container(
         width: double.infinity,
         margin: EdgeInsets.symmetric(horizontal: 12.w,vertical: 20.h),
-        child: buildColumn(),
+        child: buildColumn(roadmapModel: LayoutCubit.get(context).roadmap.values.toList(),roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
       ),
     );
   }
-  Widget buildColumn() {
+  Widget buildColumn({required List<RoadmapModel> roadmapModel,required List<String> roadmapName}) {
     return Padding(
       padding: EdgeInsets.only(top: 12.h, left: 15.w, right: 15.w),
       child: ListView(
@@ -39,12 +41,13 @@ class _WishListScreenState extends State<WishListScreen> {
           ...List.generate(
               Department1.departments.length,
                   (index) => FeatureItem(
-                data: Department1.departments[index],
+                    image: roadmapModel[index].image1,
+                    name: roadmapName[index],
                 width: 1.sw,
                 height: 170,
                 onTap: () {
                   Get.to(() => CoursesScreen(
-                      department: Department1.departments[index]));
+                      index: index));
                 },
               )),
           const SizedBox(

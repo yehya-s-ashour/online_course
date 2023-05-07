@@ -143,12 +143,12 @@ class Course1 {
   final String name;
   final String image;
 
-  final String description;
+  final String? description;
 
   Course1({
     required this.name,
     required this.image,
-    required this.description,
+    this.description,
   });
 }
 

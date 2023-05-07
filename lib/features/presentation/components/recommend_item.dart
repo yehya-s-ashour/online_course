@@ -34,7 +34,7 @@ class RecommendItem extends StatelessWidget {
             children: [
               CustomImage(
                 data.image,
-                isNetwork: false,
+                isNetwork: true,
                 radius: 15,
                 height: 80,
               ),

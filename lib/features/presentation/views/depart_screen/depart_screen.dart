@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/utils/data.dart';
+import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/depart_screen/components/course_screen.dart';
 
 class DepartmentScreen extends StatelessWidget {
@@ -30,7 +32,7 @@ class DepartmentScreen extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => buildColumn(),
+              (context, index) => buildColumn(roadmapModel: LayoutCubit.get(context).roadmap.values.toList(),roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
               childCount: 1,
             ),
           )
@@ -39,20 +41,21 @@ class DepartmentScreen extends StatelessWidget {
     );
   }
 
-  Widget buildColumn() {
+  Widget buildColumn({required List<RoadmapModel> roadmapModel,required List<String> roadmapName}) {
     return Padding(
       padding: EdgeInsets.only(top: 12.h, left: 15.w, right: 15.w),
       child: Column(
         children: [
           ...List.generate(
-              Department1.departments.length,
+              roadmapModel.length,
               (index) => FeatureItem(
-                    data: Department1.departments[index],
+                    image: roadmapModel[index].image1,
+                  name: roadmapName[index],
                     width: 1.sw,
                     height: 170,
                     onTap: () {
                       Get.to(() => CoursesScreen(
-                          department: Department1.departments[index]));
+                          index: index));
                     },
                   )),
           const SizedBox(
@@ -67,12 +70,14 @@ class DepartmentScreen extends StatelessWidget {
 class FeatureItem extends StatelessWidget {
   FeatureItem(
       {Key? key,
-      required this.data,
+      required this.name,
+      required this.image,
       this.width = 280,
       this.height = 290,
       this.onTap})
       : super(key: key);
-  final Department1 data;
+  final String name;
+  final String image;
   final double width;
   final double height;
   final GestureTapCallback? onTap;
@@ -101,8 +106,8 @@ class FeatureItem extends StatelessWidget {
         child: Column(
           children: [
             CustomImage(
-              data.image,
-              isNetwork: false,
+              image,
+              isNetwork: true,
               width: double.infinity,
               height: 130,
               radius: 12,
@@ -111,7 +116,7 @@ class FeatureItem extends StatelessWidget {
               width: width - 20,
               padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
               child: Text(
-                data.name,
+                name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(

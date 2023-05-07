@@ -16,7 +16,7 @@ Widget allCoursesRecomenedCoursesScreenListView() {
       ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 0.935.h,
+        childAspectRatio: 0.9.h,
         crossAxisSpacing: 13.w,
         mainAxisSpacing: 15.h,
       ),

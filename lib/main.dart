@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) =>
         LayoutCubit()
-          ..getUserData()..getBusinessCourses()..getDevelopmentCourses()..getMarketingCourses()..getPersonalDevelopmentCourses()..getTeachingAcademicsCourses()),
+          ..getUserData()..getBusinessCourses()..getDevelopmentCourses()..getMarketingCourses()..getPersonalDevelopmentCourses()..getTeachingAcademicsCourses()..getRoadmap()),
         BlocProvider(create: (context) => ChatCubit()),
         BlocProvider(create: (context) => BottomChatCubit()),
         BlocProvider(

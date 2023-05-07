@@ -51,7 +51,7 @@ class CourseDetailScreen extends StatelessWidget {
                 children: [
                   CustomImage(
                     course.image,
-                    isNetwork: false,
+                    isNetwork: true,
                     width: 1.sw,
                     fit: BoxFit.fill,
                     height: 200,
@@ -61,11 +61,11 @@ class CourseDetailScreen extends StatelessWidget {
                     course.name,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    course.description,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                  // const SizedBox(height: 8),
+                  // Text(
+                  //   course.description,
+                  //   style: Theme.of(context).textTheme.bodyMedium,
+                  // ),
                 ],
               ),
             ),

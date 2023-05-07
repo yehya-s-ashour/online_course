@@ -3,13 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/utils/data.dart';
+import 'package:online_course/features/data/models/roadmap_model.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/depart_screen/components/course_detail_screen.dart';
 
 import '../../../components/custom_image.dart';
 
 class CoursesScreen extends StatelessWidget {
-  const CoursesScreen({Key? key, required this.department}) : super(key: key);
-  final Department1 department;
+  const CoursesScreen({Key? key, required this.index}) : super(key: key);
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +25,7 @@ class CoursesScreen extends StatelessWidget {
             centerTitle: true,
             actions: [],
             title: Text(
-              department.name,
+              LayoutCubit.get(context).roadmap.keys.toList()[index],
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
@@ -32,7 +34,7 @@ class CoursesScreen extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) => buildColumn(),
+                  (context, index) => buildColumn(roadmapModel: LayoutCubit.get(context).roadmap.values.toList()[index]),
               childCount: 1,
             ),
           )
@@ -41,22 +43,70 @@ class CoursesScreen extends StatelessWidget {
     );
   }
 
-  Widget buildColumn() {
+  Widget buildColumn({required RoadmapModel roadmapModel}) {
     return Padding(
       padding: EdgeInsets.only(top: 12.h, left: 15.w, right: 15.w),
       child: Column(
         children: [
           ...List.generate(
-              department.courses.length,
-                  (index) => CoursesItem(
-                data: department.courses[index],
-                width: 1.sw,
-                height: 170,
-                onTap: () {
-                  Get.to(() => CourseDetailScreen(
-                      course: department.courses[index]));
-                },
-              )),
+              5,
+                  (index) {
+                if(index==0){
+                  return CoursesItem(
+                    data: Course1(name: roadmapModel.name1, image: roadmapModel.image1,),
+                    width: 1.sw,
+                    height: 170,
+                    onTap: () {
+                      // Get.to(() => CourseDetailScreen(
+                      //     course: department.courses[index]));
+                    },
+                  );
+                }
+                else if(index==1){
+                  return CoursesItem(
+                    data: Course1(name: roadmapModel.name2, image: roadmapModel.image2,),
+                    width: 1.sw,
+                    height: 170,
+                    onTap: () {
+                      // Get.to(() => CourseDetailScreen(
+                      //     course: department.courses[index]));
+                    },
+                  );
+                }
+                else if(index==2){
+                  return CoursesItem(
+                    data: Course1(name: roadmapModel.name3, image: roadmapModel.image3,),
+                    width: 1.sw,
+                    height: 170,
+                    onTap: () {
+                      // Get.to(() => CourseDetailScreen(
+                      //     course: department.courses[index]));
+                    },
+                  );
+                }
+                else if(index==3){
+                  return CoursesItem(
+                    data: Course1(name: roadmapModel.name4, image: roadmapModel.image4,),
+                    width: 1.sw,
+                    height: 170,
+                    onTap: () {
+                      // Get.to(() => CourseDetailScreen(
+                      //     course: department.courses[index]));
+                    },
+                  );
+                }
+                else{
+                  return CoursesItem(
+                    data: Course1(name: roadmapModel.name5, image: roadmapModel.image5,),
+                    width: 1.sw,
+                    height: 170,
+                    onTap: () {
+                      // Get.to(() => CourseDetailScreen(
+                      //     course: department.courses[index]));
+                    },
+                  );
+                }
+                  }),
           const SizedBox(
             height: 15,
           ),
@@ -103,7 +153,7 @@ class CoursesItem extends StatelessWidget {
           children: [
             CustomImage(
               data.image,
-              isNetwork: false,
+              isNetwork: true,
               width: double.infinity,
               height: 130,
               radius: 12,

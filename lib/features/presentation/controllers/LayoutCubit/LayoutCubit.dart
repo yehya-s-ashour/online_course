@@ -26,7 +26,7 @@ class LayoutCubit extends Cubit<LayoutState> {
       CacheHelper.saveData(
           key: 'userEntity',
           value:
-              '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper}');
+          '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper}');
       emit(GetUserSuccessState());
     }).catchError((error) {
       emit(GetUserErrorState(error.toString()));
@@ -219,30 +219,130 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  List<LessonModel> lessonsCourses = [];
-
-  Future<void> getLessonsCourses(
+  Stream<List<LessonModel>> getLessonsCourses(
       {required String mainCategory,
-      required String courseId,
-      required String subCategory}) async {
+        required String courseId,
+        required String subCategory})  {
+    List<LessonModel> lessonsCourses = [];
     emit(GetLessonCoursesLoadinState());
-    await FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection('Categories')
         .doc('1')
         .collection(mainCategory)
         .doc('1')
         .collection(subCategory)
         .doc(courseId)
-        .collection('Lessons')
-        .get()
-        .then((value) {
+        .collection('Lessons').orderBy('creationDate')
+        .snapshots()
+        .map((value) {
       value.docs.forEach((element) {
+        print('aaaaaaaaa${element.data()}');
         lessonsCourses.add(LessonModel.fromMap(element.data()));
       });
-      emit(GetLessonCoursesSuccessState());
-    }).catchError((error) {
-      emit(GetLessonCoursesErrorState(error.toString()));
+      return lessonsCourses;
     });
+  }
+  Map<String,RoadmapModel> roadmap= {};
+  Future<void> getRoadmap() async {
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Communication')
+        .get().then((value) {
+      roadmap.addAll({'Communication':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Creativity')
+        .get().then((value) {
+      roadmap.addAll({'Creativity':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Data science')
+        .get().then((value) {
+      roadmap.addAll({'Data science':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Digital Marking')
+        .get().then((value) {
+      roadmap.addAll({'Digital Marking':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Leader Ship')
+        .get().then((value) {
+      roadmap.addAll({'Leader Ship':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Paid Advertising')
+        .get().then((value) {
+      roadmap.addAll({'Paid Advertising':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Photography & Video')
+        .get().then((value) {
+      roadmap.addAll({'Photography & Video':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Saels')
+        .get().then((value) {
+      roadmap.addAll({'Saels':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+
+    emit(GetRoadmapLoadinState());
+    await FirebaseFirestore.instance
+        .collection('Roadmap')
+        .doc('Web Devlopment')
+        .get().then((value) {
+      roadmap.addAll({'Web Devlopment':RoadmapModel.fromMap(value.data()!)});
+      emit(GetRoadmapSuccessState());
+    }).catchError((error){
+      emit(GetRoadmapErrorState(error));
+    });
+    print('wwwwwwwwwwwwwwwwwwwwww${roadmap.length}');
   }
 
   int currentindex = 0;
@@ -251,5 +351,5 @@ class LayoutCubit extends Cubit<LayoutState> {
     emit(ChangeIndexLoadinState());
     currentindex = index;
     emit(ChangeIndexSuccessState());
-  }
+    }
 }

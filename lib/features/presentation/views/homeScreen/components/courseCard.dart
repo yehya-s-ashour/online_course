@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
+import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/views/cours_berfore_enrolling/courseBrforeEnrolling.dart';
 import 'package:online_course/features/presentation/views/homeScreen/components/starsRating.dart';
 
@@ -45,15 +46,22 @@ class CourseCardd extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Container(
-              height: 100.h,
+            CustomImage(
+              courseModel.image,
+              isNetwork: true,
               width: 200.w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
-                  image: DecorationImage(
-                      image: NetworkImage(courseModel.image),
-                      fit: BoxFit.cover)),
+              height: 100.h,
+              radius: 12.r,
             ),
+            // Container(
+            //   height: 100.h,
+            //   width: 200.w,
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(12.r),
+            //       image: DecorationImage(
+            //           image: NetworkImage(courseModel.image),
+            //           fit: BoxFit.cover)),
+            // ),
             SizedBox(
               height: 8.h,
             ),

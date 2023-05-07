@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/lesson_model.dart';
+import 'package:online_course/features/presentation/components/custom_image.dart';
 
 class lessonCard extends StatelessWidget {
   final LessonModel lesson;
@@ -34,14 +35,21 @@ class lessonCard extends StatelessWidget {
                 SizedBox(
                   width: 6.w,
                 ),
-                Container(
-                  height: 53.h,
+                CustomImage(
+                  lesson.image,
+                  isNetwork: true,
                   width: 55.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.r),
-                      image: DecorationImage(
-                          image: NetworkImage(lesson.image), fit: BoxFit.cover)),
+                  height: 53.h,
+                  radius: 50.r,
                 ),
+                // Container(
+                //   height: 53.h,
+                //   width: 55.w,
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(50.r),
+                //       image: DecorationImage(
+                //           image: NetworkImage(lesson.image), fit: BoxFit.cover)),
+                // ),
                 SizedBox(
                   width: 12.w,
                 ),
