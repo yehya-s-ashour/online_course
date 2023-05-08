@@ -86,3 +86,6 @@ class GetRoadmapErrorState extends LayoutState {
 
   GetRoadmapErrorState(this.error);
 }
+class GetAllCoursesLoadinState extends LayoutState {}
+
+class GetAllCoursesSuccessState extends LayoutState {}

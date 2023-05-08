@@ -20,7 +20,6 @@ class WishListScreen extends StatefulWidget {
 }
 
 class _WishListScreenState extends State<WishListScreen> {
-  String langValue = 'Front End';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +38,7 @@ class _WishListScreenState extends State<WishListScreen> {
       child: ListView(
         children: [
           ...List.generate(
-              Department1.departments.length,
+              roadmapModel.length,
                   (index) => FeatureItem(
                     image: roadmapModel[index].image1,
                     name: roadmapName[index],

@@ -18,36 +18,44 @@ class AchievementScreen extends StatefulWidget {
 }
 
 class _AchievementScreenState extends State<AchievementScreen> {
-  String langValue = 'Front End';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: MyAppBar(title: "Language"),
-      appBar: MyAppBar(title: "Achievement",backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
+      appBar: MyAppBar(
+        title: "Achievement",
+        backgroundColor: kPrimaryColor,
+        color: Colors.white,
+        titleColor: Colors.white,
+      ),
       body: Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 12.w,vertical: 20.h),
-        child: buildColumn(roadmapModel: LayoutCubit.get(context).roadmap.values.toList(),roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
+        margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 20.h),
+        child: buildColumn(
+            roadmapModel: LayoutCubit.get(context).roadmap.values.toList(),
+            roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
       ),
     );
   }
-  Widget buildColumn({required List<RoadmapModel> roadmapModel,required List<String> roadmapName}) {
+
+  Widget buildColumn(
+      {required List<RoadmapModel> roadmapModel,
+      required List<String> roadmapName}) {
     return Padding(
       padding: EdgeInsets.only(top: 12.h, left: 15.w, right: 15.w),
       child: ListView(
         children: [
           ...List.generate(
-              Department1.departments.length,
-                  (index) => FeatureItem(
+              roadmapModel.length,
+              (index) => FeatureItem(
                     image: roadmapModel[index].image1,
                     name: roadmapName[index],
-                width: 1.sw,
-                height: 170,
-                onTap: () {
-                  Get.to(() => CoursesScreen(
-                      index: index));
-                },
-              )),
+                    width: 1.sw,
+                    height: 170,
+                    onTap: () {
+                      Get.to(() => CoursesScreen(index: index));
+                    },
+                  )),
           const SizedBox(
             height: 15,
           ),

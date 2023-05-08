@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/components/allCoursesRecomenedCoursesScreenCourseCard.dart';
 import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
-Widget allCoursesRecomenedCoursesScreenListView() {
+Widget allCoursesRecomenedCoursesScreenListView({required BuildContext context}) {
   return Container(
     height: 620.h,
     child: GridView.builder(
@@ -23,14 +24,14 @@ Widget allCoursesRecomenedCoursesScreenListView() {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: (){
-            Get.to(LessonScreen());
+            Get.to(LessonScreen(courseModel: LayoutCubit.get(context).allCourses[index]));
           },
           child: AllCoursesRecomenedCoursesScreenCourseCard(
-            category: categoryList[index],
+            courseModel:LayoutCubit.get(context).allCourses[index],
           ),
         );
       },
-      itemCount: categoryList.length,
+      itemCount: LayoutCubit.get(context).allCourses.length,
     ),
   );
 }

@@ -6,7 +6,6 @@ import 'package:online_course/features/data/models/courses_model.dart';
 import 'package:online_course/features/data/models/lesson_model.dart';
 import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/data/models/user_model.dart';
-import 'package:online_course/features/domain/entities/roadmap.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutState.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {
@@ -242,7 +241,9 @@ class LayoutCubit extends Cubit<LayoutState> {
       return lessonsCourses;
     });
   }
+
   Map<String,RoadmapModel> roadmap= {};
+
   Future<void> getRoadmap() async {
     emit(GetRoadmapLoadinState());
     await FirebaseFirestore.instance
@@ -345,6 +346,17 @@ class LayoutCubit extends Cubit<LayoutState> {
     print('wwwwwwwwwwwwwwwwwwwwww${roadmap.length}');
   }
 
+  List<CoursesModel> allCourses=[];
+  void getAllCourses(){
+    allCourses=[];
+  emit(GetAllCoursesLoadinState());
+    allCourses.addAll(businessCourses);
+    allCourses.addAll(developmentCourses);
+    allCourses.addAll(marketingCourses);
+    allCourses.addAll(personalDevelopmentCourses);
+    allCourses.addAll(teachingAcademicsCourses);
+    emit(GetAllCoursesSuccessState());
+  }
   int currentindex = 0;
 
   void changeIndex(int index) {

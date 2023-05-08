@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
+import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/views/homeScreen/components/starsRating.dart';
 
 class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
-  final Category category;
+  final CourseModel courseModel;
   const AllCoursesRecomenedCoursesScreenCourseCard({
     Key? key,
-    required this.category,
+    required this.courseModel,
   }) : super(key: key);
 
   @override
@@ -29,8 +30,8 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
       child: Column(
         children: [
           CustomImage(
-            category.thumbnail,
-            isNetwork: false,
+            courseModel.image,
+            isNetwork: true,
             width: 200.w,
             height: 100.h,
             radius: 12,
@@ -51,16 +52,18 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
               SizedBox(
                 width: 7.w,
               ),
-              Text(
-                category.name,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 14.5.spMin,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
+              SizedBox(
+                width: 85.w,
+                child: Text(
+                  courseModel.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontSize: 14.5.spMin,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
               ),
-              Spacer(),
               starsRating(rating: 3),
               SizedBox(width: 2.w,),
             ],
@@ -74,7 +77,7 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
                 width: 10.w,
               ),
               Text(
-                "64 Lessons",
+                "${courseModel.numberOfLessons} Lessons",
                 style: TextStyle(
                     fontSize: 9.spMin,
                     fontWeight: FontWeight.bold,
