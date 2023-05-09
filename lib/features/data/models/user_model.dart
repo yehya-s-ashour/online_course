@@ -11,6 +11,7 @@ class UserModel extends UserEntity {
     required super.name,
     required super.uId,
     required super.email,
+    required super.courseEnroll,
     required super.password,
   });
 
@@ -25,6 +26,7 @@ class UserModel extends UserEntity {
       token: json['token'],
       language: json['language'],
       theme: json['theme'],
+      courseEnroll: List<String>.from(json['courseEnroll']),
       wallpaper: json['wallpaper'],
     );
   }
@@ -38,6 +40,7 @@ class UserModel extends UserEntity {
       'bio': bio,
       'profilePic': profilePic,
       'token': token,
+      'courseEnroll': courseEnroll,
       'language': language,
       'theme': theme,
       'wallpaper': wallpaper,

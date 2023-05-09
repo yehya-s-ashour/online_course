@@ -89,3 +89,23 @@ class GetRoadmapErrorState extends LayoutState {
 class GetAllCoursesLoadinState extends LayoutState {}
 
 class GetAllCoursesSuccessState extends LayoutState {}
+
+class SetCourseEnrollLoadinState extends LayoutState {}
+
+class SetCourseEnrollSuccessState extends LayoutState {}
+
+class SetCourseEnrollErrorState extends LayoutState {
+  final String error;
+
+  SetCourseEnrollErrorState(this.error);
+}
+
+class GetCourseEnrollLoadinState extends LayoutState {}
+
+class GetCourseEnrollSuccessState extends LayoutState {}
+
+class GetCourseEnrollErrorState extends LayoutState {
+  final String error;
+
+  GetCourseEnrollErrorState(this.error);
+}

@@ -9,7 +9,7 @@ import 'package:online_course/features/presentation/views/lesson/components/less
 import 'package:online_course/features/presentation/views/lesson/components/lessonsListView.dart';
 
 class LessonScreen extends StatelessWidget {
-  final CourseModel? courseModel;
+  final Course? courseModel;
 
   const LessonScreen({super.key, this.courseModel});
 

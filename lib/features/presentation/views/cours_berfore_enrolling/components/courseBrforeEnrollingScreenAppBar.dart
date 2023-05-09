@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:online_course/core/Theme/styles/colors.dart';
-import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
 Widget courseBrforeEnrollingScreenAppBar(String courseName) {
   return Column(
@@ -20,20 +18,13 @@ Widget courseBrforeEnrollingScreenAppBar(String courseName) {
                 onTap: () {
                   Get.back();
                 },
-                child: Container(
-                  padding: EdgeInsets.all(3.r),
-                  decoration: BoxDecoration(
-                    color: kLightColor.withOpacity(0.3),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back,
-                    size: 30,
-                  ),
+                child: Icon(
+                  Icons.arrow_back,
+                  size: 30,
                 ),
               ),
               SizedBox(
-                width: 30.w,
+                width: 12.w,
               ),
               SizedBox(
                 width: 260.w,
@@ -45,6 +36,16 @@ Widget courseBrforeEnrollingScreenAppBar(String courseName) {
                       fontWeight: FontWeight.w500,
                       fontSize: 20.spMin,
                       color: Colors.black),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: Icon(
+                  Icons.favorite_sharp,
+                  color: Colors.red,
+                  size: 30.spMin,
                 ),
               ),
             ],

@@ -110,7 +110,7 @@ List<String> newSeenMessage = [];
 
 List<String> seenMessageNumber = [];
 UserEntity userEntity = UserEntity(
-  name: 'Ahmed',
+  name: 'UserName',
   uId: '',
   bio: '',
   profilePic: '',
@@ -120,5 +120,6 @@ UserEntity userEntity = UserEntity(
   token: '',
   email: '',
   password: '',
+  courseEnroll: []
 );
 List<int> sub = [0, 0];

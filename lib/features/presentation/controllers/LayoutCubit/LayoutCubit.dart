@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/network/cache_helper.dart';
+import 'package:online_course/features/data/models/courseEnroll_model.dart';
 import 'package:online_course/features/data/models/courses_model.dart';
 import 'package:online_course/features/data/models/lesson_model.dart';
 import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/data/models/user_model.dart';
+import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutState.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {
@@ -14,20 +16,24 @@ class LayoutCubit extends Cubit<LayoutState> {
   static LayoutCubit get(context) => BlocProvider.of(context);
 
   Future<void> getUserData() async {
+    print('Ahmeddddddddddddddddddddd');
     emit(GetUserLoadingState());
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
         .get()
         .then((value) {
-      // print(value.data());
+      print('Ahmsssssssssssssssss');
       userEntity = UserModel.fromMap(value.data()!);
+      print('AhmKKKKKKKKKKKKKKKK');
+      CacheHelper.saveData(key: 'courseEnroll', value: userEntity.courseEnroll);
       CacheHelper.saveData(
           key: 'userEntity',
           value:
-          '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper}');
+              '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper},${userEntity.courseEnroll}');
       emit(GetUserSuccessState());
     }).catchError((error) {
+      print('Ahmwwwwwwwwwwwwwwwwwwwwwww');
       emit(GetUserErrorState(error.toString()));
     });
   }
@@ -220,8 +226,8 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   Stream<List<LessonModel>> getLessonsCourses(
       {required String mainCategory,
-        required String courseId,
-        required String subCategory})  {
+      required String courseId,
+      required String subCategory}) {
     List<LessonModel> lessonsCourses = [];
     emit(GetLessonCoursesLoadinState());
     return FirebaseFirestore.instance
@@ -231,7 +237,8 @@ class LayoutCubit extends Cubit<LayoutState> {
         .doc('1')
         .collection(subCategory)
         .doc(courseId)
-        .collection('Lessons').orderBy('creationDate')
+        .collection('Lessons')
+        .orderBy('creationDate')
         .snapshots()
         .map((value) {
       value.docs.forEach((element) {
@@ -242,17 +249,18 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  Map<String,RoadmapModel> roadmap= {};
+  Map<String, RoadmapModel> roadmap = {};
 
   Future<void> getRoadmap() async {
     emit(GetRoadmapLoadinState());
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Communication')
-        .get().then((value) {
-      roadmap.addAll({'Communication':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap.addAll({'Communication': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
 
@@ -260,10 +268,11 @@ class LayoutCubit extends Cubit<LayoutState> {
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Creativity')
-        .get().then((value) {
-      roadmap.addAll({'Creativity':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap.addAll({'Creativity': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
 
@@ -271,10 +280,11 @@ class LayoutCubit extends Cubit<LayoutState> {
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Data science')
-        .get().then((value) {
-      roadmap.addAll({'Data science':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap.addAll({'Data science': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
 
@@ -282,10 +292,11 @@ class LayoutCubit extends Cubit<LayoutState> {
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Digital Marking')
-        .get().then((value) {
-      roadmap.addAll({'Digital Marking':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap.addAll({'Digital Marking': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
 
@@ -293,10 +304,11 @@ class LayoutCubit extends Cubit<LayoutState> {
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Leader Ship')
-        .get().then((value) {
-      roadmap.addAll({'Leader Ship':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap.addAll({'Leader Ship': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
 
@@ -304,10 +316,11 @@ class LayoutCubit extends Cubit<LayoutState> {
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Paid Advertising')
-        .get().then((value) {
-      roadmap.addAll({'Paid Advertising':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap.addAll({'Paid Advertising': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
 
@@ -315,10 +328,12 @@ class LayoutCubit extends Cubit<LayoutState> {
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Photography & Video')
-        .get().then((value) {
-      roadmap.addAll({'Photography & Video':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap
+          .addAll({'Photography & Video': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
 
@@ -326,10 +341,11 @@ class LayoutCubit extends Cubit<LayoutState> {
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Saels')
-        .get().then((value) {
-      roadmap.addAll({'Saels':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap.addAll({'Saels': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
 
@@ -337,19 +353,21 @@ class LayoutCubit extends Cubit<LayoutState> {
     await FirebaseFirestore.instance
         .collection('Roadmap')
         .doc('Web Devlopment')
-        .get().then((value) {
-      roadmap.addAll({'Web Devlopment':RoadmapModel.fromMap(value.data()!)});
+        .get()
+        .then((value) {
+      roadmap.addAll({'Web Devlopment': RoadmapModel.fromMap(value.data()!)});
       emit(GetRoadmapSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
     print('wwwwwwwwwwwwwwwwwwwwww${roadmap.length}');
   }
 
-  List<CoursesModel> allCourses=[];
-  void getAllCourses(){
-    allCourses=[];
-  emit(GetAllCoursesLoadinState());
+  List<CoursesModel> allCourses = [];
+
+  void getAllCourses() {
+    allCourses = [];
+    emit(GetAllCoursesLoadinState());
     allCourses.addAll(businessCourses);
     allCourses.addAll(developmentCourses);
     allCourses.addAll(marketingCourses);
@@ -357,11 +375,71 @@ class LayoutCubit extends Cubit<LayoutState> {
     allCourses.addAll(teachingAcademicsCourses);
     emit(GetAllCoursesSuccessState());
   }
+
   int currentindex = 0;
 
   void changeIndex(int index) {
     emit(ChangeIndexLoadinState());
     currentindex = index;
     emit(ChangeIndexSuccessState());
-    }
+  }
+
+  Future<void> setCoursesEnroll({required Course coursesModel}) async {
+    emit(SetCourseEnrollLoadinState());
+    CourseEnrollModel courseEnrollModel = CourseEnrollModel(
+        image: coursesModel.image,
+        name: coursesModel.name,
+        description: 0,
+        numberOfLessons: coursesModel.numberOfLessons,
+        creationDate: coursesModel.creationDate,
+        courseId: coursesModel.courseId,
+        mainCategory: coursesModel.mainCategory,
+        subCategory: coursesModel.subCategory,
+        lessonsSeen: []);
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEntity.uId)
+        .collection('CoursesEnroll')
+        .doc(coursesModel.courseId)
+        .set(courseEnrollModel.toMap())
+        .then((value) {
+      userEntity.courseEnroll.add(coursesModel.courseId);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(userEntity.uId)
+          .update({'courseEnroll': userEntity.courseEnroll});
+      emit(SetCourseEnrollSuccessState());
+    }).catchError((error) {
+      emit(SetCourseEnrollErrorState(error));
+    });
+  }
+
+  Stream<List<CourseEnrollModel>> getCoursesEnroll(){
+    List<CourseEnrollModel> courseEnrollModel =[];
+    emit(GetCourseEnrollLoadinState());
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEntity.uId)
+        .collection('CoursesEnroll')
+        .limit(10)
+        .orderBy('creationDate')
+        .snapshots().map((event) {
+      event.docs.forEach((element) {
+        print('Ahmessasedkasd');
+        courseEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
+        print('sssssssssssssssssssd');
+      });
+      emit(GetCourseEnrollSuccessState());
+      return courseEnrollModel;
+    });
+    //     .then((value) {
+    //   value.docs.forEach((element) {
+    //     print('Ahmessasedkasd');
+    //     courseEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
+    //   });
+    //
+    // }).catchError((error) {
+    //   emit(GetCourseEnrollErrorState(error.toString()));
+    // });
+  }
 }

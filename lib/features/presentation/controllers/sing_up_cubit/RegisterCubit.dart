@@ -58,6 +58,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       profilePic: '',
       token: '',
       wallpaper: '',
+      courseEnroll: []
     );
     FirebaseFirestore.instance
         .collection('users')
@@ -65,6 +66,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         .set(userEntity.toMap())
         .then((value) {
           CacheHelper.saveData(key: 'userEntity', value: '$uId,$name,$password,$email,${'English'},${'Light'},,,,');
+          CacheHelper.saveData(key: 'courseEnroll',value: []);
       emit(CreateUserSuccessState(userEntity.uId));
     }).catchError((error) {
       print(error.toString());

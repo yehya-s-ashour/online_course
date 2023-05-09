@@ -3,12 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
+import 'package:online_course/features/data/models/courseEnroll_model.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
 import 'components/onGoingCourseCard.dart';
 
 class onGoingCourses extends StatelessWidget {
+  final List<CourseEnrollModel> courseEnrollModel;
+
+  const onGoingCourses({super.key, required this.courseEnrollModel});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,7 +51,7 @@ class onGoingCourses extends StatelessWidget {
           height: 138.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: coursesList.length,
+            itemCount: courseEnrollModel.length,
             itemBuilder: (context, index) => InkWell(
               onTap: () {
                 Get.to(LessonScreen());

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/features/domain/entities/courses.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 
-Widget enrollCard() {
+Widget enrollCard({required Course courseModel,required BuildContext context}) {
   return Padding(
     padding: EdgeInsetsDirectional.only(top: 20.h, start: 20.w, end: 20.w),
     child: Stack(
@@ -18,6 +21,7 @@ Widget enrollCard() {
             ),
           ],
         ),
+        if(userEntity.courseEnroll.contains(courseModel.courseId))
         Positioned(
           left: 10.w,
           child: Container(
@@ -45,11 +49,14 @@ Widget enrollCard() {
             ),
           ),
         ),
+        if(!userEntity.courseEnroll.contains(courseModel.courseId))
         Positioned(
           left: 212.w,
           top: 23.h,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              LayoutCubit.get(context).setCoursesEnroll(coursesModel: courseModel);
+            },
             child: Container(
               width: 100.0,
               height: 55.0,

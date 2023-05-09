@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/contacts_chat/contacts_chat_page.dart';
 import 'package:online_course/features/presentation/views/depart_screen/depart_screen.dart';
@@ -26,7 +27,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     "assets/icons/ChatbubbleIcon.svg",
     "assets/icons/User_Icon.svg",
   ];
-
+  @override
+  void initState() {
+    super.initState();
+  }
   final List<Widget> _body = [
     homeScreen(),
     ReviewScreen(),

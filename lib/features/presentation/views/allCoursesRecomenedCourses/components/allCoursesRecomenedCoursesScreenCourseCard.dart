@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_course/features/data/models/DummyData.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/views/homeScreen/components/starsRating.dart';
 
 class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
-  final CourseModel courseModel;
+  final Course courseModel;
   const AllCoursesRecomenedCoursesScreenCourseCard({
     Key? key,
     required this.courseModel,
@@ -36,14 +35,6 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
             height: 100.h,
             radius: 12,
           ),
-          // Container(
-          //   height: 100.h,
-          //   width: 200.w,
-          //   decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(12.r),
-          //       image: DecorationImage(
-          //           image: AssetImage(category.thumbnail), fit: BoxFit.cover)),
-          // ),
           SizedBox(
             height: 8.h,
           ),

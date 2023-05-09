@@ -24,18 +24,22 @@ void main() async {
   await CacheHelper.init();
   uid = CacheHelper.getData(key: 'uId');
   if (uid != null) {
-    if(CacheHelper.getData(key: 'userEntity')!=null){
+    if (CacheHelper.getData(key: 'userEntity') != null) {
       List<String> user = CacheHelper.getData(key: 'userEntity').split(',');
-      userEntity = UserEntity(name: user[1],
-          uId: user[0],
-          bio: user[7],
-          profilePic: user[6],
-          email: user[3],
-          password: user[2],
-          token: user[8],
-          language: user[4],
-          theme: user[5],
-          wallpaper: user[9]);
+      List<String> courseEnroll = CacheHelper.getDatas(key: 'courseEnroll') ?? [];
+      userEntity = UserEntity(
+        name: user[1],
+        uId: user[0],
+        bio: user[7],
+        profilePic: user[6],
+        email: user[3],
+        password: user[2],
+        token: user[8],
+        language: user[4],
+        theme: user[5],
+        wallpaper: user[9],
+        courseEnroll: courseEnroll,
+      );
     }
   }
   runApp(const MyApp());
@@ -49,9 +53,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) =>
-        LayoutCubit()
-          ..getUserData()..getBusinessCourses()..getDevelopmentCourses()..getMarketingCourses()..getPersonalDevelopmentCourses()..getTeachingAcademicsCourses()..getRoadmap()),
+        BlocProvider(
+            create: (context) => LayoutCubit()
+              ..getUserData()
+              ..getBusinessCourses()
+              ..getDevelopmentCourses()
+              ..getMarketingCourses()
+              ..getPersonalDevelopmentCourses()
+              ..getTeachingAcademicsCourses()
+              ..getRoadmap()),
         BlocProvider(create: (context) => ChatCubit()),
         BlocProvider(create: (context) => BottomChatCubit()),
         BlocProvider(
@@ -68,14 +78,13 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         designSize: const Size(360, 690),
-        builder: (_, child) =>
-            GetMaterialApp(
-              theme: AppTheme.light(context),
-              themeMode: ThemeMode.light,
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              home: child,
-            ),
+        builder: (_, child) => GetMaterialApp(
+          theme: AppTheme.light(context),
+          themeMode: ThemeMode.light,
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          home: child,
+        ),
         child: const SplashScreen(),
       ),
     );

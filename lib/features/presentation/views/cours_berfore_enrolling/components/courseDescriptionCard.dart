@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
-import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
-Widget courseDescriptionCard(CourseModel courseModel,BuildContext context) {
+Widget courseDescriptionCard(Course courseModel,BuildContext context) {
   return Container(
     padding: EdgeInsetsDirectional.only(start: 20.w),
     child: Column(
@@ -50,6 +50,7 @@ Widget courseDescriptionCard(CourseModel courseModel,BuildContext context) {
         SizedBox(
           height: 10.h,
         ),
+        if(userEntity.courseEnroll.contains(courseModel.courseId))
         Row(
           children: [
             SizedBox(width: 7.w,),
@@ -75,6 +76,7 @@ Widget courseDescriptionCard(CourseModel courseModel,BuildContext context) {
                   size: 36.0,
                 ),
                 onPressed: () {
+
                   Get.to(LessonScreen(courseModel: courseModel,));
                 },
               ),

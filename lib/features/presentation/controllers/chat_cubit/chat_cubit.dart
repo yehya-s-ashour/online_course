@@ -1,15 +1,9 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/features/data/models/message_group_model.dart';
-
 import '../../../../core/enums/messge_type.dart';
 import '../../../../core/shared/message_replay.dart';
 import '../../../domain/entities/contact_chat.dart';
-import '../../../domain/entities/message.dart';
 
 
 part 'chat_state.dart';

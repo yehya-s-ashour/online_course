@@ -7,7 +7,7 @@ import 'package:online_course/features/presentation/views/cours_berfore_enrollin
 import 'package:online_course/features/presentation/views/homeScreen/components/starsRating.dart';
 
 class CourseCardd extends StatelessWidget {
-  final CourseModel courseModel;
+  final Course courseModel;
 
   CourseCardd({
     Key? key,

@@ -1,6 +1,7 @@
+
 import 'package:online_course/features/domain/entities/courses.dart';
 
-class CoursesModel extends CourseModel {
+class CoursesModel extends Course {
   CoursesModel({
     required super.image,
     required super.previewVideo,
@@ -39,20 +40,20 @@ class CoursesModel extends CourseModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'image': 'image',
-      'previewVideo': 'previewVideo',
-      'name': 'name',
-      'description': 'description',
-      'numberOfLessons': 'numberOfLessons',
-      'rate': 'rate',
-      'creationDate': 'creationDate',
-      'courseId': 'courseId',
-      'mainCategory': 'mainCategory',
-      'subCategory': 'subCategory',
-      'teacherName': 'teacherName',
-      'teacherId': 'teacherId',
-      'lastLesson': 'lastLesson',
-      'students': 'students',
+      'image': image,
+      'previewVideo': previewVideo,
+      'name': name,
+      'description': description,
+      'numberOfLessons': numberOfLessons,
+      'rate':rate,
+      'creationDate': creationDate,
+      'courseId': courseId,
+      'mainCategory': mainCategory,
+      'subCategory': subCategory,
+      'teacherName': teacherName,
+      'teacherId': teacherId,
+      'lastLesson': lastLesson,
+      'students': students,
     };
   }
 }

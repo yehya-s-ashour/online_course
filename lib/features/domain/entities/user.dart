@@ -9,6 +9,7 @@ class UserEntity {
   late String language;
   late String theme;
   late String wallpaper;
+  late List<String> courseEnroll;
 
   UserEntity(
       {required this.name,
@@ -20,6 +21,7 @@ class UserEntity {
         required this.token,
         required this.language,
         required this.theme,
+        required this.courseEnroll,
         required this.wallpaper,});
 
   @override
@@ -32,6 +34,7 @@ class UserEntity {
     token,
     email,
     theme,
+    courseEnroll,
     wallpaper,
     language,
   ];
@@ -45,6 +48,7 @@ class UserEntity {
     profilePic = json['profilePic'];
     token = json['token'];
     language = json['language'];
+    courseEnroll =  List<String>.from(json['courseEnroll'])??[];
     theme = json['theme'];
     wallpaper = json['wallpaper'];
   }
@@ -56,6 +60,7 @@ class UserEntity {
       'name': name,
       'uId': uId,
       'bio': bio,
+      'courseEnroll': courseEnroll,
       'profilePic': profilePic,
       'token': token,
       'language': language,
