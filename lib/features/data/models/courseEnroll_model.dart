@@ -6,6 +6,7 @@ class CourseEnrollModel extends CourseEnroll {
   CourseEnrollModel({
     required super.image,
     required super.name,
+    required super.previewVideo,
     required super.description,
     required super.numberOfLessons,
     required super.creationDate,
@@ -18,6 +19,7 @@ class CourseEnrollModel extends CourseEnroll {
   factory CourseEnrollModel.fromMap(Map<String, dynamic> map) {
     return CourseEnrollModel(
       image: map['image'],
+      previewVideo: map['previewVideo'],
       name: map['name'],
       description: map['description'],
       numberOfLessons: map['numberOfLessons'],
@@ -25,7 +27,7 @@ class CourseEnrollModel extends CourseEnroll {
       courseId: map['courseId'],
       mainCategory: map['mainCategory'],
       subCategory: map['subCategory'],
-      lessonsSeen: List<String>.from(map['lessonsSeen'])??[],
+      lessonsSeen: List<String>.from(map['lessonsSeen']),
     );
   }
 
@@ -33,6 +35,7 @@ class CourseEnrollModel extends CourseEnroll {
     return {
       'image': image,
       'name': name,
+      'previewVideo': previewVideo,
       'description': description,
       'numberOfLessons': numberOfLessons,
       'creationDate': getGlobalTimeLocal(),

@@ -16,24 +16,23 @@ class LayoutCubit extends Cubit<LayoutState> {
   static LayoutCubit get(context) => BlocProvider.of(context);
 
   Future<void> getUserData() async {
-    print('Ahmeddddddddddddddddddddd');
     emit(GetUserLoadingState());
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
         .get()
         .then((value) {
-      print('Ahmsssssssssssssssss');
       userEntity = UserModel.fromMap(value.data()!);
-      print('AhmKKKKKKKKKKKKKKKK');
       CacheHelper.saveData(key: 'courseEnroll', value: userEntity.courseEnroll);
       CacheHelper.saveData(
           key: 'userEntity',
           value:
-              '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper},${userEntity.courseEnroll}');
+          '${userEntity.uId},${userEntity.name},${userEntity
+              .password},${userEntity.email},${userEntity.language},${userEntity
+              .theme},${userEntity.profilePic},${userEntity.bio},${userEntity
+              .token},${userEntity.wallpaper},${userEntity.courseEnroll}');
       emit(GetUserSuccessState());
     }).catchError((error) {
-      print('Ahmwwwwwwwwwwwwwwwwwwwwwww');
       emit(GetUserErrorState(error.toString()));
     });
   }
@@ -47,7 +46,7 @@ class LayoutCubit extends Cubit<LayoutState> {
         .doc('1')
         .collection('Business')
         .doc('1')
-        .collection('Communications')
+        .collection('Communication')
         .get()
         .then((value) {
       value.docs.forEach((element) {
@@ -55,7 +54,6 @@ class LayoutCubit extends Cubit<LayoutState> {
       });
       emit(GetBusinessCoursesSuccessState());
     }).catchError((error) {
-      print(error.toString());
       emit(GetBusinessCoursesErrorState(error.toString()));
     });
     emit(GetBusinessCoursesLoadinState());
@@ -224,10 +222,9 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  Stream<List<LessonModel>> getLessonsCourses(
-      {required String mainCategory,
-      required String courseId,
-      required String subCategory}) {
+  Stream<List<LessonModel>> getLessonsCourses({required String mainCategory,
+    required String courseId,
+    required String subCategory}) {
     List<LessonModel> lessonsCourses = [];
     emit(GetLessonCoursesLoadinState());
     return FirebaseFirestore.instance
@@ -242,7 +239,6 @@ class LayoutCubit extends Cubit<LayoutState> {
         .snapshots()
         .map((value) {
       value.docs.forEach((element) {
-        print('aaaaaaaaa${element.data()}');
         lessonsCourses.add(LessonModel.fromMap(element.data()));
       });
       return lessonsCourses;
@@ -389,9 +385,10 @@ class LayoutCubit extends Cubit<LayoutState> {
     CourseEnrollModel courseEnrollModel = CourseEnrollModel(
         image: coursesModel.image,
         name: coursesModel.name,
-        description: 0,
+        previewVideo: coursesModel.previewVideo,
+        description: coursesModel.description,
         numberOfLessons: coursesModel.numberOfLessons,
-        creationDate: coursesModel.creationDate,
+        creationDate: 0,
         courseId: coursesModel.courseId,
         mainCategory: coursesModel.mainCategory,
         subCategory: coursesModel.subCategory,
@@ -414,8 +411,8 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  Stream<List<CourseEnrollModel>> getCoursesEnroll(){
-    List<CourseEnrollModel> courseEnrollModel =[];
+  Stream<List<CourseEnrollModel>> getCoursesEnroll() {
+    List<CourseEnrollModel> courseEnrollModel = [];
     emit(GetCourseEnrollLoadinState());
     return FirebaseFirestore.instance
         .collection('users')
@@ -424,22 +421,13 @@ class LayoutCubit extends Cubit<LayoutState> {
         .limit(10)
         .orderBy('creationDate')
         .snapshots().map((event) {
+      courseEnrollModel = [];
       event.docs.forEach((element) {
         print('Ahmessasedkasd');
         courseEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
-        print('sssssssssssssssssssd');
       });
       emit(GetCourseEnrollSuccessState());
       return courseEnrollModel;
     });
-    //     .then((value) {
-    //   value.docs.forEach((element) {
-    //     print('Ahmessasedkasd');
-    //     courseEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
-    //   });
-    //
-    // }).catchError((error) {
-    //   emit(GetCourseEnrollErrorState(error.toString()));
-    // });
   }
 }

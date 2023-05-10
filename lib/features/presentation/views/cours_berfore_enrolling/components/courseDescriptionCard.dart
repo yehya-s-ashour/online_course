@@ -77,7 +77,8 @@ Widget courseDescriptionCard(Course courseModel,BuildContext context) {
                 ),
                 onPressed: () {
 
-                  Get.to(LessonScreen(courseModel: courseModel,));
+                  Get.to(LessonScreen(courseId: courseModel.courseId,mainCategory: courseModel.mainCategory,name: courseModel.name,previewVideo: courseModel.previewVideo,subCategory: courseModel.subCategory,));
+
                 },
               ),
             ),

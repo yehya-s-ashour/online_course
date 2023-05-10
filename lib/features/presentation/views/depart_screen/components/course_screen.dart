@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/utils/data.dart';
 import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
-import 'package:online_course/features/presentation/views/depart_screen/components/course_detail_screen.dart';
-
 import '../../../components/custom_image.dart';
 
 class CoursesScreen extends StatelessWidget {
@@ -34,7 +31,7 @@ class CoursesScreen extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) => buildColumn(roadmapModel: LayoutCubit.get(context).roadmap.values.toList()[index]),
+                  (context, index) => buildColumn(roadmapModel: LayoutCubit.get(context).roadmap.values.toList()[this.index]),
               childCount: 1,
             ),
           )

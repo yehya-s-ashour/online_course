@@ -9,6 +9,11 @@ class Roadmap {
   late String image3;
   late String image4;
   late String image5;
+  late String description1;
+  late String description2;
+  late String description3;
+  late String description4;
+  late String description5;
 
   Roadmap(
       {required this.name1,
@@ -20,7 +25,13 @@ class Roadmap {
         required this.image2,
         required this.image3,
         required this.image4,
-        required this.image5,});
+        required this.image5,
+        required this.description1,
+        required this.description2,
+        required this.description3,
+        required this.description4,
+        required this.description5,
+      });
 
   @override
   List<Object?> get props => [
@@ -34,5 +45,10 @@ class Roadmap {
     image3,
     image4,
     image5,
+    description1,
+    description2,
+    description3,
+    description4,
+    description5,
   ];
 }

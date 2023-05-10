@@ -13,6 +13,7 @@ import 'components/recommendedCourses.dart';
 class homeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print('AaAAAAAAAAAAAAAAAAA');
     return StreamBuilder<List<CourseEnrollModel>>(
       stream: LayoutCubit.get(context).getCoursesEnroll(),
       builder: (context, snapshot) {

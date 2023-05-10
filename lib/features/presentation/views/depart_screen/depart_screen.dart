@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
-import 'package:online_course/core/utils/data.dart';
 import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
@@ -54,6 +53,7 @@ class DepartmentScreen extends StatelessWidget {
                     width: 1.sw,
                     height: 170,
                     onTap: () {
+                      print(index);
                       Get.to(() => CoursesScreen(
                           index: index));
                     },

@@ -1,10 +1,11 @@
 class CourseEnroll {
   String image;
   String name;
-  int description;
+  String description;
   int numberOfLessons;
-  String creationDate;
+  int creationDate;
   String courseId;
+  String previewVideo;
   String mainCategory;
   String subCategory;
   List<String> lessonsSeen;
@@ -16,6 +17,7 @@ class CourseEnroll {
     required this.numberOfLessons,
     required this.creationDate,
     required this.courseId,
+    required this.previewVideo,
     required this.mainCategory,
     required this.subCategory,
     required this.lessonsSeen,

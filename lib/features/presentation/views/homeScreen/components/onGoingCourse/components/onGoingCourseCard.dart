@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/features/data/models/DummyData.dart';
+import 'package:online_course/features/data/models/courseEnroll_model.dart';
+import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class onGoingCourseCard extends StatelessWidget {
-  final Course course;
+  final CourseEnrollModel course;
   const onGoingCourseCard({
     Key? key,
     required this.course,
@@ -37,13 +39,12 @@ class onGoingCourseCard extends StatelessWidget {
                 SizedBox(
                   width: 6.w,
                 ),
-                Container(
-                  height: 55.h,
+                CustomImage(
+                  course.image,
+                  isNetwork: true,
                   width: 55.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.r),
-                      image: DecorationImage(
-                          image: AssetImage(course.image), fit: BoxFit.cover)),
+                  height: 55.h,
+                  radius: 12.r,
                 ),
                 SizedBox(
                   width: 17.w,
@@ -83,7 +84,7 @@ class onGoingCourseCard extends StatelessWidget {
                   width: 12.w,
                 ),
                 Text(
-                  "43 Lessons",
+                  "${course.lessonsSeen.length} Lessons",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
@@ -94,7 +95,7 @@ class onGoingCourseCard extends StatelessWidget {
                   width: 110.w,
                 ),
                 Text(
-                  "63 Lessons",
+                  "${course.numberOfLessons} Lessons",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontWeight: FontWeight.w500,

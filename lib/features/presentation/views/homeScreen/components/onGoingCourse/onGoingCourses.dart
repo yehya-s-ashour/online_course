@@ -54,10 +54,10 @@ class onGoingCourses extends StatelessWidget {
             itemCount: courseEnrollModel.length,
             itemBuilder: (context, index) => InkWell(
               onTap: () {
-                Get.to(LessonScreen());
+                Get.to(LessonScreen(courseId: courseEnrollModel[index].courseId,mainCategory: courseEnrollModel[index].mainCategory,name: courseEnrollModel[index].name,previewVideo: courseEnrollModel[index].previewVideo,subCategory: courseEnrollModel[index].subCategory,));
               },
               child: onGoingCourseCard(
-                course: coursesList[index],
+                course: courseEnrollModel[index],
               ),
             ),
             separatorBuilder: (context, index) => SizedBox(

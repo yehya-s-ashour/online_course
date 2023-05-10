@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/core/utils/data.dart';
-
 import '../../../components/custom_image.dart';
 
 class CourseDetailScreen extends StatelessWidget {
