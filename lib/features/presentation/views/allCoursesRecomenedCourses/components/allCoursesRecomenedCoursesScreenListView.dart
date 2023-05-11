@@ -23,6 +23,7 @@ Widget allCoursesRecomenedCoursesScreenListView({required BuildContext context})
       itemBuilder: (context, index) {
         return InkWell(
           onTap: (){
+            LayoutCubit.get(context).changeIndexVideoLesson(-1);
             Get.to(LessonScreen(courseId: LayoutCubit.get(context).allCourses[index].courseId,mainCategory: LayoutCubit.get(context).allCourses[index].mainCategory,name: LayoutCubit.get(context).allCourses[index].name,previewVideo: LayoutCubit.get(context).allCourses[index].previewVideo,subCategory: LayoutCubit.get(context).allCourses[index].subCategory,));
           },
           child: AllCoursesRecomenedCoursesScreenCourseCard(

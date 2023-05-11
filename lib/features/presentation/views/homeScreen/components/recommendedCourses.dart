@@ -7,7 +7,6 @@ import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutState.dart';
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
-import 'package:online_course/features/presentation/views/cours_berfore_enrolling/courseBrforeEnrolling.dart';
 import 'package:online_course/features/presentation/views/homeScreen/components/courseCard.dart';
 
 

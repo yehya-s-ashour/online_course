@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_course/features/data/models/lesson.dart';
 import 'package:online_course/features/data/models/lesson_model.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 
 import 'lessonCard.dart';
 
-Widget lessonsListView({required List<LessonModel> lessonModel}) {
+Widget lessonsListView(
+    {required List<LessonModel> lessonModel,
+    required String subCategory,
+    required String mainCategory}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,14 +32,24 @@ Widget lessonsListView({required List<LessonModel> lessonModel}) {
       ),
       Container(
         margin: EdgeInsetsDirectional.only(start: 22.w, end: 22.w, top: 10.h),
-        height: 320.h,
+        height: 330.h,
         width: 330.w,
         child: ListView.separated(
           padding: EdgeInsetsDirectional.zero,
           physics: BouncingScrollPhysics(),
           itemCount: lessonModel.length,
-          itemBuilder: (context, index) => lessonCard(
-            lesson: lessonModel[index],
+          itemBuilder: (context, index) => InkWell(
+            onTap: () {
+              LayoutCubit.get(context).changeIndexVideoLesson(index);
+              LayoutCubit.get(context).setSeenLesson(
+                  mainCategory: mainCategory,
+                  courseId: lessonModel[index].courseId,
+                  lessonId: lessonModel[index].lessonId,
+                  subCategory: subCategory);
+            },
+            child: lessonCard(
+              lesson: lessonModel[index],
+            ),
           ),
           separatorBuilder: (context, index) => SizedBox(
             height: 10.h,
@@ -46,95 +59,3 @@ Widget lessonsListView({required List<LessonModel> lessonModel}) {
     ],
   );
 }
-List<Lesson> lessonList = [
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-    name: "Lesson#1",
-    description:
-    'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Lesson(
-      name: "Lesson#1",
-      description:
-      'test notification test notification test notification test notification test notification test notification test notification',
-      image: 'assets/images/image.jpg',
-      ),
-];

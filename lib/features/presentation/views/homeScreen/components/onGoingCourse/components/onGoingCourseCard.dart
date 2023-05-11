@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_course/features/data/models/DummyData.dart';
 import 'package:online_course/features/data/models/courseEnroll_model.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -69,7 +68,7 @@ class onGoingCourseCard extends StatelessWidget {
             LinearPercentIndicator(
               width: 228.0.w,
               lineHeight: 10.0.h,
-              percent: 0.4,
+              percent: course.lessonsSeen.length/course.numberOfLessons,
               barRadius: Radius.circular(5.r),
               backgroundColor:
                   Color.fromARGB(255, 246, 244, 244).withOpacity(0.2),
@@ -113,7 +112,7 @@ class onGoingCourseCard extends StatelessWidget {
                   width: 78.w,
                 ),
                 Text(
-                  "64 Video",
+                  "${course.numberOfLessons+1} Video",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontWeight: FontWeight.w500,

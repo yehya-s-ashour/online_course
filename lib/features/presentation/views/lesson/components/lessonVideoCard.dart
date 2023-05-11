@@ -16,16 +16,9 @@ class _lessonVideoCard extends State<lessonVideoCard> {
   @override
   void initState() {
     super.initState();
-
-    videoPlayerController =
-        VideoPlayerController.asset("assets/images/video.mp4")
-          ..addListener(() => setState(() {}))
-          ..setLooping(true)
-          ..initialize().then((_) => videoPlayerController.play());
   }
 
   void dispose() {
-    videoPlayerController.dispose();
     super.dispose();
   }
 
@@ -45,19 +38,11 @@ class _lessonVideoCard extends State<lessonVideoCard> {
         ],
         borderRadius: BorderRadius.circular(20.r),
       ),
-      child: Column(
-        children: [
-          Container(
-            height: 180.h,
-            width: 310.w,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                image: DecorationImage(
-                    image: AssetImage("assets/images/image.jpg"),
-                    fit: BoxFit.cover)),
-          ),
-        ],
-      ),
+      // child: Column(
+      //   children: [
+      //     courseVideoCard
+      //   ],
+      // ),
     );
   }
 }

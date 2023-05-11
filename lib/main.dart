@@ -26,7 +26,8 @@ void main() async {
   if (uid != null) {
     if (CacheHelper.getData(key: 'userEntity') != null) {
       List<String> user = CacheHelper.getData(key: 'userEntity').split(',');
-      List<String> courseEnroll = CacheHelper.getDatas(key: 'courseEnroll') ?? [];
+      List<String> courseEnroll =
+          CacheHelper.getDatas(key: 'courseEnroll') ?? [];
       userEntity = UserEntity(
         name: user[1],
         uId: user[0],

@@ -25,7 +25,7 @@ class courseBrforeEnrollingScreen extends StatelessWidget {
           body: Column(
             children: [
               courseBrforeEnrollingScreenAppBar(courseModel.name),
-              courseVideoCard(numberSt: courseModel.students.length,rate: rate,VideoPaht: courseModel.previewVideo),
+              courseVideoCard(numberSt: courseModel.students.length,rate: rate,VideoPaht: courseModel.previewVideo,isLesson: false,courseId: courseModel.courseId),
               courseDescriptionCard(courseModel,context),
               Spacer(),
               Padding(

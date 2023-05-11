@@ -109,3 +109,7 @@ class GetCourseEnrollErrorState extends LayoutState {
 
   GetCourseEnrollErrorState(this.error);
 }
+
+class ChangeIndexVideoLessonLoadinState extends LayoutState {}
+
+class ChangeIndexVideoLessonSuccessState extends LayoutState {}

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
+import 'package:online_course/features/presentation/views/review_screen/review_screen.dart';
 
 Widget enrollCard({required Course courseModel,required BuildContext context}) {
   return Padding(
@@ -21,7 +23,7 @@ Widget enrollCard({required Course courseModel,required BuildContext context}) {
             ),
           ],
         ),
-        if(userEntity.courseEnroll.contains(courseModel.courseId))
+        // if(userEntity.courseEnroll.contains(courseModel.courseId))
         Positioned(
           left: 10.w,
           child: Container(
@@ -45,7 +47,9 @@ Widget enrollCard({required Course courseModel,required BuildContext context}) {
                 color: Colors.white,
                 size: 25.0,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.to(ReviewScreen());
+              },
             ),
           ),
         ),

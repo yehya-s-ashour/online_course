@@ -53,15 +53,6 @@ class CourseCardd extends StatelessWidget {
               height: 100.h,
               radius: 12.r,
             ),
-            // Container(
-            //   height: 100.h,
-            //   width: 200.w,
-            //   decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.circular(12.r),
-            //       image: DecorationImage(
-            //           image: NetworkImage(courseModel.image),
-            //           fit: BoxFit.cover)),
-            // ),
             SizedBox(
               height: 8.h,
             ),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
 Widget courseDescriptionCard(Course courseModel,BuildContext context) {
@@ -50,7 +51,7 @@ Widget courseDescriptionCard(Course courseModel,BuildContext context) {
         SizedBox(
           height: 10.h,
         ),
-        if(userEntity.courseEnroll.contains(courseModel.courseId))
+
         Row(
           children: [
             SizedBox(width: 7.w,),
@@ -76,7 +77,7 @@ Widget courseDescriptionCard(Course courseModel,BuildContext context) {
                   size: 36.0,
                 ),
                 onPressed: () {
-
+                  LayoutCubit.get(context).changeIndexVideoLesson(-1);
                   Get.to(LessonScreen(courseId: courseModel.courseId,mainCategory: courseModel.mainCategory,name: courseModel.name,previewVideo: courseModel.previewVideo,subCategory: courseModel.subCategory,));
 
                 },

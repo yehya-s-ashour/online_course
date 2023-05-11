@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/core/functions/time.dart';
 import 'package:online_course/core/network/cache_helper.dart';
 import 'package:online_course/features/data/models/courseEnroll_model.dart';
 import 'package:online_course/features/data/models/courses_model.dart';
@@ -27,10 +28,7 @@ class LayoutCubit extends Cubit<LayoutState> {
       CacheHelper.saveData(
           key: 'userEntity',
           value:
-          '${userEntity.uId},${userEntity.name},${userEntity
-              .password},${userEntity.email},${userEntity.language},${userEntity
-              .theme},${userEntity.profilePic},${userEntity.bio},${userEntity
-              .token},${userEntity.wallpaper},${userEntity.courseEnroll}');
+              '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper},${userEntity.courseEnroll}');
       emit(GetUserSuccessState());
     }).catchError((error) {
       emit(GetUserErrorState(error.toString()));
@@ -222,9 +220,10 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  Stream<List<LessonModel>> getLessonsCourses({required String mainCategory,
-    required String courseId,
-    required String subCategory}) {
+  Stream<List<LessonModel>> getLessonsCourses(
+      {required String mainCategory,
+      required String courseId,
+      required String subCategory}) {
     List<LessonModel> lessonsCourses = [];
     emit(GetLessonCoursesLoadinState());
     return FirebaseFirestore.instance
@@ -242,6 +241,44 @@ class LayoutCubit extends Cubit<LayoutState> {
         lessonsCourses.add(LessonModel.fromMap(element.data()));
       });
       return lessonsCourses;
+    });
+  }
+
+  void setSeenLesson(
+      {required String mainCategory,
+      required String courseId,
+      required String lessonId,
+      required String subCategory}) {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEntity.uId)
+        .collection('CoursesEnroll')
+        .doc(courseId)
+        .get()
+        .then((value) {
+      List<String> lessonsSeen =
+          List<String>.from(value.data()!['lessonsSeen']);
+      if (!lessonsSeen.contains(lessonId)) {
+        lessonsSeen.add(lessonId);
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(userEntity.uId)
+            .collection('CoursesEnroll')
+            .doc(courseId)
+            .update({
+          'lessonsSeen': lessonsSeen,
+          'creationDate': getGlobalTimeLocal()
+        });
+      }else{
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(userEntity.uId)
+            .collection('CoursesEnroll')
+            .doc(courseId)
+            .update({
+          'creationDate': getGlobalTimeLocal()
+        });
+      }
     });
   }
 
@@ -356,7 +393,6 @@ class LayoutCubit extends Cubit<LayoutState> {
     }).catchError((error) {
       emit(GetRoadmapErrorState(error));
     });
-    print('wwwwwwwwwwwwwwwwwwwwww${roadmap.length}');
   }
 
   List<CoursesModel> allCourses = [];
@@ -419,15 +455,23 @@ class LayoutCubit extends Cubit<LayoutState> {
         .doc(userEntity.uId)
         .collection('CoursesEnroll')
         .limit(10)
-        .orderBy('creationDate')
-        .snapshots().map((event) {
+        .orderBy('creationDate',descending: true)
+        .snapshots()
+        .map((event) {
       courseEnrollModel = [];
       event.docs.forEach((element) {
-        print('Ahmessasedkasd');
         courseEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
       });
       emit(GetCourseEnrollSuccessState());
       return courseEnrollModel;
     });
+  }
+
+  int indexVideoLesson = -1;
+
+  void changeIndexVideoLesson(int index) {
+    emit(ChangeIndexVideoLessonLoadinState());
+    indexVideoLesson = index;
+    emit(ChangeIndexVideoLessonSuccessState());
   }
 }

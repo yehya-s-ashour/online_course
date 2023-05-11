@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/utils/data.dart';
 import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
+import 'package:online_course/features/presentation/views/depart_screen/components/course_detail_screen.dart';
 import '../../../components/custom_image.dart';
 
 class CoursesScreen extends StatelessWidget {
@@ -54,8 +56,8 @@ class CoursesScreen extends StatelessWidget {
                     width: 1.sw,
                     height: 170,
                     onTap: () {
-                      // Get.to(() => CourseDetailScreen(
-                      //     course: department.courses[index]));
+                      Get.to(() => CourseDetailScreen(
+                          image: roadmapModel.image1,name: roadmapModel.name1,description: roadmapModel.description1,));
                     },
                   );
                 }
@@ -65,8 +67,8 @@ class CoursesScreen extends StatelessWidget {
                     width: 1.sw,
                     height: 170,
                     onTap: () {
-                      // Get.to(() => CourseDetailScreen(
-                      //     course: department.courses[index]));
+                      Get.to(() => CourseDetailScreen(
+                          image: roadmapModel.image2,name: roadmapModel.name2,description: roadmapModel.description2));
                     },
                   );
                 }
@@ -76,8 +78,8 @@ class CoursesScreen extends StatelessWidget {
                     width: 1.sw,
                     height: 170,
                     onTap: () {
-                      // Get.to(() => CourseDetailScreen(
-                      //     course: department.courses[index]));
+                      Get.to(() => CourseDetailScreen(
+                          image: roadmapModel.image3,name: roadmapModel.name3,description: roadmapModel.description3));
                     },
                   );
                 }
@@ -87,8 +89,8 @@ class CoursesScreen extends StatelessWidget {
                     width: 1.sw,
                     height: 170,
                     onTap: () {
-                      // Get.to(() => CourseDetailScreen(
-                      //     course: department.courses[index]));
+                      Get.to(() => CourseDetailScreen(
+                          image: roadmapModel.image4,name: roadmapModel.name4,description: roadmapModel.description4));
                     },
                   );
                 }
@@ -98,8 +100,8 @@ class CoursesScreen extends StatelessWidget {
                     width: 1.sw,
                     height: 170,
                     onTap: () {
-                      // Get.to(() => CourseDetailScreen(
-                      //     course: department.courses[index]));
+                      Get.to(() => CourseDetailScreen(
+                          image: roadmapModel.image5,name: roadmapModel.name5,description: roadmapModel.description5));
                     },
                   );
                 }

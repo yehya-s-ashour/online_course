@@ -54,6 +54,7 @@ class onGoingCourses extends StatelessWidget {
             itemCount: courseEnrollModel.length,
             itemBuilder: (context, index) => InkWell(
               onTap: () {
+                LayoutCubit.get(context).changeIndexVideoLesson(-1);
                 Get.to(LessonScreen(courseId: courseEnrollModel[index].courseId,mainCategory: courseEnrollModel[index].mainCategory,name: courseEnrollModel[index].name,previewVideo: courseEnrollModel[index].previewVideo,subCategory: courseEnrollModel[index].subCategory,));
               },
               child: onGoingCourseCard(
