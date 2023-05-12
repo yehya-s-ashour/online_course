@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
+import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 import 'package:online_course/features/presentation/views/review_screen/review_screen.dart';
 
-Widget enrollCard({required Course courseModel,required BuildContext context}) {
+Widget enrollCard(
+    {required Course courseModel, required BuildContext context}) {
   return Padding(
     padding: EdgeInsetsDirectional.only(top: 20.h, start: 20.w, end: 20.w),
     child: Stack(
@@ -53,42 +56,43 @@ Widget enrollCard({required Course courseModel,required BuildContext context}) {
             ),
           ),
         ),
-        if(!userEntity.courseEnroll.contains(courseModel.courseId))
-        Positioned(
-          left: 212.w,
-          top: 23.h,
-          child: InkWell(
-            onTap: () {
-              LayoutCubit.get(context).setCoursesEnroll(coursesModel: courseModel);
-            },
-            child: Container(
-              width: 100.0,
-              height: 55.0,
-              decoration: BoxDecoration(
-                color: Colors.white24,
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: mixedColor!.withOpacity(0.25),
-                    blurRadius: 7.0,
-                    spreadRadius: 1.5,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  "Enroll Now",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.5.spMin,
+        if (!userEntity.courseEnroll.contains(courseModel.courseId))
+          Positioned(
+            left: 212.w,
+            top: 23.h,
+            child: InkWell(
+              onTap: () {
+                LayoutCubit.get(context)
+                    .setCoursesEnroll(coursesModel: courseModel);
+              },
+              child: Container(
+                width: 100.0,
+                height: 55.0,
+                decoration: BoxDecoration(
+                  color: Colors.white24,
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: mixedColor!.withOpacity(0.25),
+                      blurRadius: 7.0,
+                      spreadRadius: 1.5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Text(
+                    "Enroll Now",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.5.spMin,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
         Positioned(
           left: 85.w,
           top: 27.h,

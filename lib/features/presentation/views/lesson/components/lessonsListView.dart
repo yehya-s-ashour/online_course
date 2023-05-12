@@ -32,7 +32,7 @@ Widget lessonsListView(
       ),
       Container(
         margin: EdgeInsetsDirectional.only(start: 22.w, end: 22.w, top: 10.h),
-        height: 330.h,
+        height: 300.h,
         width: 330.w,
         child: ListView.separated(
           padding: EdgeInsetsDirectional.zero,

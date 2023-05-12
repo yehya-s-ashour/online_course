@@ -9,7 +9,6 @@ import 'package:online_course/features/presentation/controllers/LayoutCubit/Layo
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/homeScreen/components/courseCard.dart';
 
-
 class recommendedCourses extends StatelessWidget {
   recommendedCourses({Key? key}) : super(key: key);
 
@@ -17,7 +16,7 @@ class recommendedCourses extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LayoutCubit, LayoutState>(
       builder: (context, state) {
-        var cubit =LayoutCubit.get(context);
+        var cubit = LayoutCubit.get(context);
         return Column(
           children: [
             SizedBox(height: 3.h),
@@ -62,10 +61,9 @@ class recommendedCourses extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 5.h),
                           decoration: BoxDecoration(
-                            color:
-                                index != cubit.currentindex
-                                    ? Colors.black.withOpacity(.1)
-                                    : mixedColor,
+                            color: index != cubit.currentindex
+                                ? Colors.black.withOpacity(.1)
+                                : mixedColor,
                             borderRadius: BorderRadius.circular(10.r),
                           ),
                           child: Center(
@@ -104,16 +102,32 @@ class recommendedCourses extends StatelessWidget {
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.9.h,
                   crossAxisSpacing: 13.w,
                   mainAxisSpacing: 15.h,
+                  childAspectRatio: 0.9
                 ),
                 itemBuilder: (context, index) {
                   return CourseCardd(
-                    courseModel: cubit.currentindex==0?cubit.businessCourses[index]:cubit.currentindex==1?cubit.developmentCourses[index]:cubit.currentindex==2?cubit.marketingCourses[index]:cubit.currentindex==3?cubit.personalDevelopmentCourses[index]:cubit.teachingAcademicsCourses[index],
+                    courseModel: cubit.currentindex == 0
+                        ? cubit.businessCourses[index]
+                        : cubit.currentindex == 1
+                            ? cubit.developmentCourses[index]
+                            : cubit.currentindex == 2
+                                ? cubit.marketingCourses[index]
+                                : cubit.currentindex == 3
+                                    ? cubit.personalDevelopmentCourses[index]
+                                    : cubit.teachingAcademicsCourses[index],
                   );
                 },
-                itemCount: cubit.currentindex==0?cubit.businessCourses.length:cubit.currentindex==1?cubit.developmentCourses.length:cubit.currentindex==2?cubit.marketingCourses.length:cubit.currentindex==3?cubit.personalDevelopmentCourses.length:cubit.teachingAcademicsCourses.length,
+                itemCount: cubit.currentindex == 0
+                    ? cubit.businessCourses.length
+                    : cubit.currentindex == 1
+                        ? cubit.developmentCourses.length
+                        : cubit.currentindex == 2
+                            ? cubit.marketingCourses.length
+                            : cubit.currentindex == 3
+                                ? cubit.personalDevelopmentCourses.length
+                                : cubit.teachingAcademicsCourses.length,
               ),
             ),
           ],

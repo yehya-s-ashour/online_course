@@ -2,34 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
-import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
-Widget courseDescriptionCard(Course courseModel,BuildContext context) {
+Widget courseDescriptionCard(Course courseModel, BuildContext context) {
   return Container(
     padding: EdgeInsetsDirectional.only(start: 20.w),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 20.h),
+        SizedBox(height: 15.h),
         Text(
           "Description",
-          maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
               fontSize: 24.spMin,
               fontWeight: FontWeight.w500,
               color: Colors.black),
         ),
-        SizedBox(height: 5.h,),
+        SizedBox(
+          height: 5.h,
+        ),
         Row(
           children: [
-            // SizedBox(
-            //   width: 10.w,
-            // ),
+            SizedBox(
+              width: 10.w,
+            ),
             Expanded(
               child: Text(
                 courseModel.description,
@@ -37,10 +37,10 @@ Widget courseDescriptionCard(Course courseModel,BuildContext context) {
                 overflow: TextOverflow.ellipsis,
                 // textAlign: TextAlign.justify,
                 style: TextStyle(
-                    fontSize: 16.spMin,
+                    fontSize: 18.spMin,
                     height: 1.3,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black.withOpacity(0.6)),
+                    color: Colors.black.withOpacity(0.65)),
               ),
             ),
             SizedBox(
@@ -49,12 +49,13 @@ Widget courseDescriptionCard(Course courseModel,BuildContext context) {
           ],
         ),
         SizedBox(
-          height: 10.h,
+          height: 12.h,
         ),
-
         Row(
           children: [
-            SizedBox(width: 7.w,),
+            SizedBox(
+              width: 7.w,
+            ),
             Container(
               width: 55.0,
               height: 55.0,
@@ -78,8 +79,13 @@ Widget courseDescriptionCard(Course courseModel,BuildContext context) {
                 ),
                 onPressed: () {
                   LayoutCubit.get(context).changeIndexVideoLesson(-1);
-                  Get.to(LessonScreen(courseId: courseModel.courseId,mainCategory: courseModel.mainCategory,name: courseModel.name,previewVideo: courseModel.previewVideo,subCategory: courseModel.subCategory,));
-
+                  Get.to(LessonScreen(
+                    courseId: courseModel.courseId,
+                    mainCategory: courseModel.mainCategory,
+                    name: courseModel.name,
+                    previewVideo: courseModel.previewVideo,
+                    subCategory: courseModel.subCategory,
+                  ));
                 },
               ),
             ),
@@ -96,16 +102,14 @@ Widget courseDescriptionCard(Course courseModel,BuildContext context) {
                         fontWeight: FontWeight.w500,
                         color: Colors.black),
                   ),
-                  Row(
-                    children: [Text(
-                      "27 Quiz",
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 10.spMin,
-                          color: Colors.black.withOpacity(0.6)),
-                    ),],
+                  Text(
+                    "27 Quiz",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10.spMin,
+                        color: Colors.black.withOpacity(0.6)),
                   )
                 ],
               ),

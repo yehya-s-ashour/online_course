@@ -32,7 +32,6 @@ class CourseCardd extends StatelessWidget {
         );
       },
       child: Container(
-        height: 5.h,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20.r),
@@ -50,8 +49,8 @@ class CourseCardd extends StatelessWidget {
               courseModel.image,
               isNetwork: true,
               width: 200.w,
-              height: 100.h,
-              radius: 12.r,
+              height: 105.h,
+              radius: 15.r,
             ),
             SizedBox(
               height: 8.h,
@@ -76,28 +75,27 @@ class CourseCardd extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 4.h,
+              height: 2.h,
             ),
             Row(
               children: [
                 SizedBox(
-                  width: 15.w,
+                  width: 22.w,
                 ),
                 Text(
                   "${courseModel.numberOfLessons} Lessons",
                   style: TextStyle(
-                      fontSize: 11.spMin,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 12.spMin,
+                      fontWeight: FontWeight.w500,
                       color: Color.fromARGB(255, 153, 151, 151)),
                 ),
-                Spacer(),
+                SizedBox(
+                  width: 10.h,
+                ),
                 starsRating(
                     rating: courseModel.rate.length == 0
                         ? 0
                         : (rate / courseModel.rate.length).round()),
-                SizedBox(
-                  width: 10.w,
-                )
               ],
             ),
           ],

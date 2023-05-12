@@ -35,9 +35,12 @@ class _courseVideoCardState extends State<courseVideoCard> {
   }
 
   Widget build(BuildContext context) {
+    print('${widget.VideoPaht}');
     return Container(
-      height:widget.isLesson &&
-          !userEntity.courseEnroll.contains(widget.courseId) ? 100.h : 240.h,
+      height:
+          widget.isLesson
+              ?userEntity.courseEnroll.contains(widget.courseId) ?190.h:100.h
+              : 240.h,
       width: 310.w,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -45,15 +48,21 @@ class _courseVideoCardState extends State<courseVideoCard> {
           BoxShadow(
             color: Colors.black.withOpacity(0.15),
             blurRadius: 4.0.r,
-            spreadRadius: .05.r,
-            offset: Offset(0, 4.0.r),
+            spreadRadius: 2.0.r,
+            offset: Offset(0, 0),
           ),
         ],
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
         children: [
-          if (widget.isLesson &&
+          if (!widget.isLesson)
+            Container(
+              height: 180.h,
+              width: 310.w,
+              child: VideoPlayerCourseItem(videoPath: widget.VideoPaht),
+            ),
+          if (widget.isLesson&&
               userEntity.courseEnroll.contains(widget.courseId))
             Container(
               height: 180.h,
@@ -64,7 +73,9 @@ class _courseVideoCardState extends State<courseVideoCard> {
               !userEntity.courseEnroll.contains(widget.courseId))
             Column(
               children: [
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Text(
                   'Couldn\'t open this lesson\nPlease enroll in the course',
                   style: GoogleFonts.cairo(

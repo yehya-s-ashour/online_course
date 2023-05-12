@@ -54,15 +54,19 @@ class LessonScreen extends StatelessWidget {
                           lessonScreenAppBar(LayoutCubit.get(context).indexVideoLesson==-1?'':snapshot
                               .data![LayoutCubit.get(context).indexVideoLesson]
                               .name,courseId,context),
-                          courseVideoCard(
-                          courseId: courseId,
-                              numberSt: 2,
-                              rate: 2,
-                              VideoPaht:LayoutCubit.get(context).indexVideoLesson==-1?previewVideo: snapshot
-                                  .data![
-                                      LayoutCubit.get(context).indexVideoLesson]
-                                  .video,
-                              isLesson: true),
+                          Builder(
+                            builder: (context) {
+                              return courseVideoCard(
+                              courseId: courseId,
+                                  numberSt: 2,
+                                  rate: 2,
+                                  VideoPaht:LayoutCubit.get(context).indexVideoLesson==-1?previewVideo: snapshot
+                                      .data![
+                                          LayoutCubit.get(context).indexVideoLesson]
+                                      .video,
+                                  isLesson: true);
+                            }
+                          ),
                         ],
                       );
                     },
