@@ -28,10 +28,7 @@ class LayoutCubit extends Cubit<LayoutState> {
       CacheHelper.saveData(
           key: 'userEntity',
           value:
-          '${userEntity.uId},${userEntity.name},${userEntity
-              .password},${userEntity.email},${userEntity.language},${userEntity
-              .theme},${userEntity.profilePic},${userEntity.bio},${userEntity
-              .token},${userEntity.wallpaper},${userEntity.courseEnroll}');
+              '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper},${userEntity.courseEnroll}');
       emit(GetUserSuccessState());
     }).catchError((error) {
       emit(GetUserErrorState(error.toString()));
@@ -223,9 +220,10 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  Stream<List<LessonModel>> getLessonsCourses({required String mainCategory,
-    required String courseId,
-    required String subCategory}) {
+  Stream<List<LessonModel>> getLessonsCourses(
+      {required String mainCategory,
+      required String courseId,
+      required String subCategory}) {
     List<LessonModel> lessonsCourses = [];
     emit(GetLessonCoursesLoadinState());
     return FirebaseFirestore.instance
@@ -246,10 +244,11 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
-  void setSeenLesson({required String mainCategory,
-    required String courseId,
-    required String lessonId,
-    required String subCategory}) {
+  void setSeenLesson(
+      {required String mainCategory,
+      required String courseId,
+      required String lessonId,
+      required String subCategory}) {
     FirebaseFirestore.instance
         .collection('users')
         .doc(userEntity.uId)
@@ -258,7 +257,7 @@ class LayoutCubit extends Cubit<LayoutState> {
         .get()
         .then((value) {
       List<String> lessonsSeen =
-      List<String>.from(value.data()!['lessonsSeen']);
+          List<String>.from(value.data()!['lessonsSeen']);
       if (!lessonsSeen.contains(lessonId)) {
         lessonsSeen.add(lessonId);
         FirebaseFirestore.instance
@@ -276,9 +275,7 @@ class LayoutCubit extends Cubit<LayoutState> {
             .doc(userEntity.uId)
             .collection('CoursesEnroll')
             .doc(courseId)
-            .update({
-          'creationDate': getGlobalTimeLocal()
-        });
+            .update({'creationDate': getGlobalTimeLocal()});
       }
     });
   }
@@ -416,6 +413,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     currentindex = index;
     emit(ChangeIndexSuccessState());
   }
+
   int currentindexEnrolled = 0;
 
   void changeIndexEnrolled(int index) {
@@ -459,7 +457,6 @@ class LayoutCubit extends Cubit<LayoutState> {
   List<CourseEnrollModel> completedEnrollModel = [];
 
   Stream<List<CourseEnrollModel>> getCoursesEnroll() {
-    int k=0;int s=0;
     List<CourseEnrollModel> courseEnrollModel = [];
     emit(GetCourseEnrollLoadinState());
     return FirebaseFirestore.instance
@@ -476,11 +473,9 @@ class LayoutCubit extends Cubit<LayoutState> {
         if (element.data()['numberOfLessons'] ==
             List<String>.from(element.data()['lessonsSeen']).length) {
           completedEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
-
         } else {
           onGoginEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
-
-              }
+        }
         courseEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
       });
       emit(GetCourseEnrollSuccessState());
