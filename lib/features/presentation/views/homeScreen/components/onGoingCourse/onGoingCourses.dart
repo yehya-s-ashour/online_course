@@ -17,33 +17,18 @@ class onGoingCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 3.h),
         Padding(
-          padding: EdgeInsetsDirectional.only(start: 16.w),
-          child: Row(
-            children: [
-              Text(
-                "Ongoing Courses",
-                style: TextStyle(
-                    fontSize: 20.spMin,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black),
-              ),
-              Spacer(),
-              TextButton(
-                onPressed: () {
-                  Get.to(AllCoursesRecomenedCoursesScreen());
-                },
-                child: Text(
-                  "View All",
-                  style: TextStyle(
-                    fontSize: 17.spMin,
-                    color: mixedColor,
-                  ),
-                ),
-              )
-            ],
+          padding:
+              EdgeInsetsDirectional.only(start: 16.w, bottom: 10.h, top: 10.h),
+          child: Text(
+            "Ongoing Courses",
+            style: TextStyle(
+                fontSize: 20.spMin,
+                fontWeight: FontWeight.w600,
+                color: Colors.black),
           ),
         ),
         Container(
@@ -55,7 +40,13 @@ class onGoingCourses extends StatelessWidget {
             itemBuilder: (context, index) => InkWell(
               onTap: () {
                 LayoutCubit.get(context).changeIndexVideoLesson(-1);
-                Get.to(LessonScreen(courseId: courseEnrollModel[index].courseId,mainCategory: courseEnrollModel[index].mainCategory,name: courseEnrollModel[index].name,previewVideo: courseEnrollModel[index].previewVideo,subCategory: courseEnrollModel[index].subCategory,));
+                Get.to(LessonScreen(
+                  courseId: courseEnrollModel[index].courseId,
+                  mainCategory: courseEnrollModel[index].mainCategory,
+                  name: courseEnrollModel[index].name,
+                  previewVideo: courseEnrollModel[index].previewVideo,
+                  subCategory: courseEnrollModel[index].subCategory,
+                ));
               },
               child: onGoingCourseCard(
                 course: courseEnrollModel[index],

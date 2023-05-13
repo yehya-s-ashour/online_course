@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/generated/assets.dart';
+import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/components/custom_textfeild.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 
@@ -20,23 +21,23 @@ class _ReviewScreenState extends State<ReviewScreen> {
   double lenghtSlider = 225.0;
   List<Map<String, dynamic>> listSlider = [
     {
-      "title": "Excellent",
+      "numOfStars": 5,
       "percen": 0.8,
     },
     {
-      "title": "Good",
+      "numOfStars": 4,
       "percen": 0.5,
     },
     {
-      "title": "Average",
+      "numOfStars": 3,
       "percen": 0.4,
     },
     {
-      "title": "Bellow Average",
+      "numOfStars": 2,
       "percen": 0.3,
     },
     {
-      "title": "poor",
+      "numOfStars": 1,
       "percen": 0.1,
     },
   ];
@@ -52,152 +53,190 @@ class _ReviewScreenState extends State<ReviewScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-              EdgeInsetsDirectional.only(start: 20.w, end: 20.w, top: 12.h),
+          padding: EdgeInsetsDirectional.only(
+            start: 10.w,
+          ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                4.8.toString(),
-                style: Theme.of(context).textTheme.displayMedium,
-              ),
-              SizedBox(
-                height: 7.h,
-              ),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...List.generate(
-                      5,
-                      (index) => Icon(
-                            Icons.star,
-                            color: kPreviewsColors,
-                            size: 14.r,
-                          ))
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        4.8.toString(),
+                        style: GoogleFonts.cairo(
+                            fontSize: 45.spMin,
+                            fontWeight: FontWeight.w800,
+                            color: mixedColor),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ...List.generate(
+                              5,
+                              (index) => Icon(
+                                    Icons.star,
+                                    color: kPreviewsColors,
+                                    size: 20.r,
+                                  ))
+                        ],
+                      ),
+                      Text(
+                        '${58} reviews',
+                        style: GoogleFonts.cairo(
+                            color: Colors.black.withOpacity(0.4),
+                            fontSize: 17.spMin),
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      )
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      ...listSlider
+                          .map((e) => buildRowSilder(
+                              numOfStars: e['numOfStars'], percen: e['percen']))
+                          .toList(),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                    ],
+                  )
                 ],
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              Text(
-                'Based on ${58} reviews',
-                style: GoogleFonts.cairo(color: Colors.grey[400]),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              ...listSlider
-                  .map((e) =>
-                      buildRowSilder(title: e['title'], percen: e['percen']))
-                  .toList(),
-              SizedBox(
-                height: 8.h,
               ),
               Card(
                 color: Colors.white,
                 child: Container(
-                    height: 20.h + (3 * 85.h),
+                    height: 485.h,
                     child: ListView.builder(
                         physics: BouncingScrollPhysics(),
                         itemBuilder: (context, index) => buildColumn(context),
-                        itemCount: 10)),
+                        itemCount: 5)),
               ),
             ],
           ),
         ),
       ),
       floatingActionButton: Align(
-        alignment: AlignmentDirectional.bottomCenter,
-        child: Container(
-          margin: EdgeInsetsDirectional.only(start: 35.w),
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(250.w, 44.h),
-                maximumSize: Size(250.w, 44.h),
-              ),
-              onPressed: () {
-                showMaterialModalBottomSheet(
-                  context: context,
-                  builder: (context) => SingleChildScrollView(
-                    controller: ModalScrollController.of(context),
-                    child: StatefulBuilder(
-                      builder: (BuildContext context, StateSetter func) {
-                        double rating1 = 3.0;
-                        return Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 10.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'write review ',
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall,
-                              ),
-                              TextFieldWidget(
-                                hint: "write review ",
+        alignment: AlignmentDirectional.bottomEnd,
+        child: InkWell(
+          onTap: () {
+            showMaterialModalBottomSheet(
+              context: context,
+              builder: (context) => SingleChildScrollView(
+                controller: ModalScrollController.of(context),
+                child: StatefulBuilder(
+                  builder: (BuildContext context, StateSetter func) {
+                    double rating1 = 3.0;
+                    return Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 12.w, vertical: 10.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(
+                                start: 12.w, top: 5.h),
+                            child: Text(
+                              'Write a review ',
+                              style: GoogleFonts.cairo(
+                                  fontSize: 21.spMin,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                            ),
+                          ),
+                          Center(
+                            child: Container(
+                              width: 270.w,
+                              child: TextFieldWidget(
+                                hint: "Write a review ",
                                 maxLine: 3,
                               ),
-                              SizedBox(
-                                height: 8.h,
-                              ),
-                              SizedBox(
-                                width: 1.sw,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    RatingBar.builder(
-                                      initialRating: rating1,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: true,
-                                      itemCount: 5,
-                                      itemSize: 25.r,
-                                      itemPadding: const EdgeInsets.symmetric(
-                                          horizontal: 4.0),
-                                      itemBuilder: (context, _) => const Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                      ),
-                                      onRatingUpdate: (rating) {
-                                        rating1 = rating;
-                                        setState(() {
-                                          func(() {});
-                                        });
-                                        func(() {});
-                                      },
-                                    ),
-                                    Text(rating1.toString()),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 6.h,
-                              ),
-                              Center(
-                                  child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          foregroundColor: kWhiteColor),
-                                      onPressed: () {
-                                        func(() {});
-                                        Get.back();
-                                      },
-                                      child: const Text('Review')))
-                            ],
+                            ),
                           ),
-                        );
-                      },
-                    ),
-                  ),
-                );
-              },
-              child: Text('Write a Review',
-                  style: GoogleFonts.cairo(
-                      fontSize: 20.spMin,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600))),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          SizedBox(
+                            width: 1.sw,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                RatingBar.builder(
+                                  initialRating: rating1,
+                                  minRating: 1,
+                                  direction: Axis.horizontal,
+                                  allowHalfRating: true,
+                                  itemCount: 5,
+                                  itemSize: 25.r,
+                                  itemPadding: const EdgeInsets.symmetric(
+                                      horizontal: 1.0),
+                                  itemBuilder: (context, _) => const Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  onRatingUpdate: (rating) {
+                                    rating1 = rating;
+                                    setState(() {
+                                      func(() {});
+                                    });
+                                    func(() {});
+                                  },
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsetsDirectional.only(start: 10.w),
+                                  child: Text(
+                                    rating1.toString(),
+                                    style: GoogleFonts.cairo(
+                                        fontSize: 18.spMin,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 6.h,
+                          ),
+                          Center(
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      foregroundColor: kWhiteColor),
+                                  onPressed: () {
+                                    func(() {});
+                                    Get.back();
+                                  },
+                                  child: const Text('Submit')))
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          },
+          child: Container(
+            height: 38.h,
+            width: 150.w,
+            decoration: BoxDecoration(
+              color: mixedColor,
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+            ),
+            child: Center(
+                child: Text('Write a Review',
+                    style: GoogleFonts.cairo(
+                        fontSize: 21.spMin,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600))),
+          ),
         ),
       ),
     );
@@ -235,8 +274,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
             height: 10.h,
           ),
           ...data
-              .map(
-                  (e) => buildRowSilder(title: e['title'], percen: e['percen']))
+              .map((e) => buildRowSilder(
+                  numOfStars: e['numOfStars'], percen: e['percen']))
               .toList(),
           SizedBox(
             height: 8.h,
@@ -266,12 +305,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'write review ',
+                                'Write a review',
                                 style:
                                     Theme.of(context).textTheme.headlineSmall,
                               ),
                               TextFieldWidget(
-                                hint: "write review ",
+                                hint: "Write a review",
                                 maxLine: 3,
                               ),
                               SizedBox(
@@ -342,7 +381,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
   Widget buildColumn(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.h),
+      padding: EdgeInsets.symmetric(vertical: 6.h),
       child: Column(
         children: [
           SizedBox(
@@ -352,9 +391,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage(Assets.assetsImagesFrontend),
-                      radius: 22,
+                    CustomImage(
+                      "https://yt3.googleusercontent.com/ytc/AGIKgqPvlFzjweg1_USan6Af1W7G_5lKjyLA0-4p_Oms=s900-c-k-c0x00ffffff-no-rj",
+                      isNetwork: true,
+                      width: 60.w,
+                      height: 55.h,
+                      radius: 100.r,
                     ),
                     SizedBox(
                       width: 6.w,
@@ -362,37 +404,47 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Kawsar Ahamed', style: GoogleFonts.cairo()),
+                        Text('Kawsar Ahamed',
+                            style: GoogleFonts.cairo(
+                              color: Colors.black,
+                              fontSize: 20.spMin,
+                              fontWeight: FontWeight.w600,
+                            )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ...List.generate(
                                 5,
-                                (index) => Padding(
-                                      padding: EdgeInsetsDirectional.only(
-                                          start: 3.w),
-                                      child: Icon(
-                                        Icons.star,
-                                        color: kPreviewsColors,
-                                        size: 14.r,
-                                      ),
+                                (index) => Icon(
+                                      Icons.star,
+                                      color: kPreviewsColors,
+                                      size: 14.r,
                                     )),
                             SizedBox(
                               width: 7.w,
                             ),
-                            const Text('3.5'),
+                            Text('3.5',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15.spMin,
+                                  fontWeight: FontWeight.w500,
+                                )),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ],
                 ),
-                Text(
-                  '1 Day ago',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: kPrimaryFadeTextColor),
+                Padding(
+                  padding: EdgeInsetsDirectional.only(end: 10.w),
+                  child: Text(
+                    '1 Day ago',
+                    style: GoogleFonts.cairo(
+                      color: Colors.black.withOpacity(0.4),
+                      fontSize: 17.spMin,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 )
               ],
             ),
@@ -415,32 +467,50 @@ class _ReviewScreenState extends State<ReviewScreen> {
     );
   }
 
-  Widget buildRowSilder({required String title, double percen = 0.8}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.h),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title,
-              style: GoogleFonts.cairo(
-                  color: Colors.grey[400], fontSize: 16.spMin)),
-          SizedBox(
-            width: 5.w,
-          ),
-          Container(
-            height: 5.h,
+  Widget buildRowSilder({required int numOfStars, double percen = 0.8}) {
+    return Row(
+      children: [
+        Row(
+          children: [
+            ...List.generate(
+                numOfStars,
+                (index) => Icon(
+                      Icons.star,
+                      color: kPreviewsColors,
+                      size: 15.r,
+                    ))
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+          child: Container(
+            height: 10.h,
             alignment: Alignment.centerLeft,
-            width: 200.w,
-            decoration: const BoxDecoration(color: kLightColor),
+            width: 130.w,
+            decoration: const BoxDecoration(
+                color: kLightColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
+                )),
             child: Container(
-              height: 4.h,
+              height: 9.h,
               width: lenghtSlider * percen,
-              decoration: const BoxDecoration(color: kPrimaryColor),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  color: mixedColor),
             ),
           ),
-        ],
-      ),
+        ),
+        Text(
+          "20",
+          style: GoogleFonts.cairo(
+              fontSize: 15.spMin,
+              color: Colors.black.withOpacity(0.4),
+              fontWeight: FontWeight.w700),
+        )
+      ],
     );
   }
 }

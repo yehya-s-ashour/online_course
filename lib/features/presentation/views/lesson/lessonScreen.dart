@@ -40,42 +40,47 @@ class LessonScreen extends StatelessWidget {
               ),
             );
           }
-          return AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: Scaffold(
-              body: Column(
-                children: [
-                  BlocConsumer<LayoutCubit, LayoutState>(
-                    builder: (context, state) {
-                      print(
-                          'Awsssss${LayoutCubit.get(context).indexVideoLesson}');
-                      return Column(
-                        children: [
-                          lessonScreenAppBar(LayoutCubit.get(context).indexVideoLesson==-1?'':snapshot
-                              .data![LayoutCubit.get(context).indexVideoLesson]
-                              .name,courseId,context),
-                          Builder(
-                            builder: (context) {
-                              return courseVideoCard(
-                              courseId: courseId,
-                                  numberSt: 2,
-                                  rate: 2,
-                                  VideoPaht:LayoutCubit.get(context).indexVideoLesson==-1?previewVideo: snapshot
-                                      .data![
-                                          LayoutCubit.get(context).indexVideoLesson]
-                                      .video,
-                                  isLesson: true);
-                            }
-                          ),
-                        ],
-                      );
-                    },
-                    listener: (context, state) {},
+          return BlocConsumer<LayoutCubit, LayoutState>(
+            builder: (context, state) {
+              print(
+                  'Awsssss${LayoutCubit.get(context).indexVideoLesson}');
+              return Scaffold(
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      lessonScreenAppBar(
+                          LayoutCubit.get(context).indexVideoLesson == -1
+                              ? ''
+                              : snapshot
+                              .data![LayoutCubit.get(context)
+                              .indexVideoLesson]
+                              .name,
+                          courseId,
+                          context),
+                      courseVideoCard(
+                          courseId: courseId,
+                          numberSt: 2,
+                          rate: 2,
+                          VideoPaht:
+                          LayoutCubit.get(context).indexVideoLesson ==
+                              -1
+                              ? previewVideo
+                              :
+                          snapshot
+                              .data![LayoutCubit.get(context)
+                              .indexVideoLesson]
+                              .video,
+                          isLesson: true),
+                      lessonsListView(
+                          lessonModel: snapshot.data!,
+                          mainCategory: mainCategory,
+                          subCategory: subCategory)
+                    ],
                   ),
-                  lessonsListView(lessonModel: snapshot.data!,mainCategory: mainCategory,subCategory: subCategory)
-                ],
-              ),
-            ),
+                ),
+              );
+            },
+            listener: (context, state) {},
           );
         });
   }

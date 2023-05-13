@@ -32,12 +32,13 @@ Widget lessonsListView(
       ),
       Container(
         margin: EdgeInsetsDirectional.only(start: 22.w, end: 22.w, top: 10.h),
-        height: 300.h,
+        height: 365.h,
         width: 330.w,
         child: ListView.separated(
           padding: EdgeInsetsDirectional.zero,
           physics: BouncingScrollPhysics(),
           itemCount: lessonModel.length,
+          clipBehavior: Clip.none,
           itemBuilder: (context, index) => InkWell(
             onTap: () {
               LayoutCubit.get(context).changeIndexVideoLesson(index);
@@ -47,6 +48,7 @@ Widget lessonsListView(
                   lessonId: lessonModel[index].lessonId,
                   subCategory: subCategory);
             },
+
             child: lessonCard(
               lesson: lessonModel[index],
             ),

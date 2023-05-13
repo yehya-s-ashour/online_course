@@ -7,6 +7,7 @@ import 'package:online_course/features/presentation/views/allCoursesRecomenedCou
 import 'package:online_course/features/presentation/views/contacts_chat/contacts_chat_page.dart';
 import 'package:online_course/features/presentation/views/depart_screen/depart_screen.dart';
 import 'package:online_course/features/presentation/views/homeScreen/homeScreen.dart';
+import 'package:online_course/features/presentation/views/my_courses/myCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/profile/profile_screen.dart';
 import 'package:online_course/features/presentation/views/review_screen/review_screen.dart';
 
@@ -33,7 +34,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   }
   final List<Widget> _body = [
     homeScreen(),
-    ReviewScreen(),
+    MyCoursesScreen(),
     const DepartmentScreen(),
     const ContactsChatPage(),
     const ProfileScreen(),

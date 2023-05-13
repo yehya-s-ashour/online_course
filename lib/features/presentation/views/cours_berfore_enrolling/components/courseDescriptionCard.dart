@@ -33,7 +33,7 @@ Widget courseDescriptionCard(Course courseModel, BuildContext context) {
             Expanded(
               child: Text(
                 courseModel.description,
-                maxLines: 6,
+                maxLines: 8,
                 overflow: TextOverflow.ellipsis,
                 // textAlign: TextAlign.justify,
                 style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 
 class TextFieldWidget extends StatelessWidget {
@@ -27,7 +28,6 @@ class TextFieldWidget extends StatelessWidget {
   final bool read;
   final Color? shadowColor;
 
-
   TextFieldWidget({
     Key? key,
     this.hint,
@@ -36,7 +36,6 @@ class TextFieldWidget extends StatelessWidget {
     this.text,
     this.inkell,
     this.onTap,
-
     this.isHidden = false,
     this.initialValue,
     this.requirement,
@@ -121,10 +120,10 @@ class TextFieldWidget extends StatelessWidget {
                     // text!,
                     // style: Theme.of(context).textTheme.headline4
                   ),
-                  hintStyle: Theme.of(context)
-                      .textTheme
-                      .headline5!
-                      .copyWith(color: Colors.grey),
+                  hintStyle: GoogleFonts.cairo(
+                      fontSize: 22.spMin,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black.withOpacity(0.6)),
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
                   border: OutlineInputBorder(

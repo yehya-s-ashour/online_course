@@ -35,12 +35,11 @@ class _courseVideoCardState extends State<courseVideoCard> {
   }
 
   Widget build(BuildContext context) {
-    print('${widget.VideoPaht}');
     return Container(
       height:
           widget.isLesson
-              ?userEntity.courseEnroll.contains(widget.courseId) ?190.h:100.h
-              : 240.h,
+              ?userEntity.courseEnroll.contains(widget.courseId) ?185.h:100.h
+              : 190.h,
       width: 310.w,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -58,13 +57,15 @@ class _courseVideoCardState extends State<courseVideoCard> {
         children: [
           if (!widget.isLesson)
             Container(
-              height: 180.h,
+              margin: EdgeInsetsDirectional.only(top: 1.h),
+              height: 150.h,
               width: 310.w,
               child: VideoPlayerCourseItem(videoPath: widget.VideoPaht),
             ),
           if (widget.isLesson&&
               userEntity.courseEnroll.contains(widget.courseId))
             Container(
+              margin: EdgeInsetsDirectional.only(top: 1.h),
               height: 180.h,
               width: 310.w,
               child: VideoPlayerCourseItem(videoPath: widget.VideoPaht),
@@ -85,16 +86,16 @@ class _courseVideoCardState extends State<courseVideoCard> {
             ),
           if (!widget.isLesson)
             SizedBox(
-              height: 10.h,
+              height: 5.h,
             ),
           if (!widget.isLesson)
             Row(
               children: [
                 if (widget.rate >= 4)
                   Container(
-                    width: 75.w,
-                    height: 30.h,
-                    margin: EdgeInsetsDirectional.only(start: 20.w),
+                    width: 80.w,
+                    height: 27.h,
+                    margin: EdgeInsetsDirectional.only(start: 55.w),
                     padding: EdgeInsetsDirectional.only(
                         start: 7.w, top: 8.w, bottom: 5.w, end: 5.w),
                     decoration: BoxDecoration(
@@ -115,7 +116,7 @@ class _courseVideoCardState extends State<courseVideoCard> {
                   ),
                 if (widget.rate < 4)
                   SizedBox(
-                    width: 100.w,
+                    width: 110.w,
                   ),
                 Icon(Icons.people_alt_outlined,
                     color: Colors.black.withOpacity(0.7)),
@@ -124,7 +125,7 @@ class _courseVideoCardState extends State<courseVideoCard> {
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.7),
                     fontWeight: FontWeight.w500,
-                    fontSize: 13.spMin,
+                    fontSize: 16.spMin,
                   ),
                 ),
                 SizedBox(
@@ -137,7 +138,7 @@ class _courseVideoCardState extends State<courseVideoCard> {
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.7),
                     fontWeight: FontWeight.w500,
-                    fontSize: 13.spMin,
+                    fontSize: 16.spMin,
                   ),
                 ),
               ],

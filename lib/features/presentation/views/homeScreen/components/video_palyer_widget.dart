@@ -37,9 +37,10 @@ class _VideoPlayerCourseItemState extends State<VideoPlayerCourseItem> {
 
   @override
   void dispose() {
-    super.dispose();
     _videoPlayerController.dispose();
+    _videoPlayerController.closedCaptionFile;
     _chewieController.dispose();
+    super.dispose();
   }
 
   @override

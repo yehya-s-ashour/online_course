@@ -1,37 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/features/data/models/courseEnroll_model.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
-import 'package:online_course/features/presentation/views/cours_berfore_enrolling/courseBrforeEnrolling.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/homeScreen/components/starsRating.dart';
+import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 
-class CourseCardd extends StatelessWidget {
-  final Course courseModel;
-
-  CourseCardd({
+class myCoursesCourseCard extends StatelessWidget {
+  final CourseEnrollModel course;
+  const myCoursesCourseCard({
     Key? key,
-    required this.courseModel,
+    required this.course,
   }) : super(key: key);
-  int rate = 0;
-
   @override
   Widget build(BuildContext context) {
-    courseModel.rate.forEach((element) {
-      rate += element;
-    });
     return InkWell(
       onTap: () {
-        Get.to(
-          courseBrforeEnrollingScreen(
-            courseModel: courseModel,
-            rate: courseModel.rate.length == 0
-                ? 0
-                : (rate / courseModel.rate.length).round(),
-          ),
-        );
+        LayoutCubit.get(context).changeIndexVideoLesson(-1);
+        Get.to(LessonScreen(
+          courseId: course.courseId,
+          mainCategory: course.mainCategory,
+          name: course.name,
+          previewVideo: course.previewVideo,
+          subCategory: course.subCategory,
+        ));
       },
       child: Container(
+        height: 5.h,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20.r),
@@ -46,12 +43,13 @@ class CourseCardd extends StatelessWidget {
         child: Column(
           children: [
             CustomImage(
-              courseModel.image,
+              course.image,
               isNetwork: true,
               width: 200.w,
-              height: 105.h,
-              radius: 15.r,
+              height: 100.h,
+              radius: 12.r,
             ),
+
             SizedBox(
               height: 8.h,
             ),
@@ -63,39 +61,31 @@ class CourseCardd extends StatelessWidget {
                 SizedBox(
                   width: 150.w,
                   child: Text(
-                    courseModel.name,
-                    maxLines: 1,
+                    course.name,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        fontSize: 12.5.spMin,
+                        fontSize: 15.5.spMin,
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                   ),
                 ),
               ],
             ),
-            SizedBox(
-              height: 2.h,
-            ),
             Row(
               children: [
                 SizedBox(
-                  width: 10.w,
+                  width: 15.w,
                 ),
                 Text(
-                  "${courseModel.numberOfLessons} Lessons",
+                  "${course.numberOfLessons} Lessons",
                   style: TextStyle(
-                      fontSize: 12.spMin,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 11.spMin,
+                      fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 153, 151, 151)),
                 ),
-                SizedBox(
-                  width: 10.h,
-                ),
-                starsRating(
-                    rating: courseModel.rate.length == 0
-                        ? 0
-                        : (rate / courseModel.rate.length).round()),
+                Spacer(),
+                starsRating(rating: 2),
+                SizedBox(width: 9.w,)
               ],
             ),
           ],

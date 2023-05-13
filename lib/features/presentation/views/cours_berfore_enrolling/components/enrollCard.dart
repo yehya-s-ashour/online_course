@@ -63,7 +63,16 @@ Widget enrollCard(
             child: InkWell(
               onTap: () {
                 LayoutCubit.get(context)
-                    .setCoursesEnroll(coursesModel: courseModel);
+                    .setCoursesEnroll(coursesModel: courseModel)
+                    .then((value) {
+                  Get.to(LessonScreen(
+                    mainCategory: courseModel.mainCategory,
+                    courseId: courseModel.courseId,
+                    subCategory: courseModel.subCategory,
+                    name: courseModel.name,
+                    previewVideo: courseModel.previewVideo,
+                  ));
+                });
               },
               child: Container(
                 width: 100.0,

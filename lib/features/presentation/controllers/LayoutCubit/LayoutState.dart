@@ -77,6 +77,10 @@ class ChangeIndexLoadinState extends LayoutState {}
 
 class ChangeIndexSuccessState extends LayoutState {}
 
+class ChangeIndexEnrolledLoadinState extends LayoutState {}
+
+class ChangeIndexEnrolledSuccessState extends LayoutState {}
+
 class GetRoadmapLoadinState extends LayoutState {}
 
 class GetRoadmapSuccessState extends LayoutState {}

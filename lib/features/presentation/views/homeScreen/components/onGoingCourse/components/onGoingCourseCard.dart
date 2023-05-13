@@ -68,7 +68,7 @@ class onGoingCourseCard extends StatelessWidget {
             LinearPercentIndicator(
               width: 228.0.w,
               lineHeight: 10.0.h,
-              percent: course.lessonsSeen.length/course.numberOfLessons,
+              percent: course.lessonsSeen.length / course.numberOfLessons,
               barRadius: Radius.circular(5.r),
               backgroundColor:
                   Color.fromARGB(255, 246, 244, 244).withOpacity(0.2),
@@ -112,7 +112,7 @@ class onGoingCourseCard extends StatelessWidget {
                   width: 78.w,
                 ),
                 Text(
-                  "${course.numberOfLessons+1} Video",
+                  "${course.numberOfLessons} Video",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontWeight: FontWeight.w500,

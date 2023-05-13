@@ -14,7 +14,6 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 5.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20.r),
@@ -32,8 +31,8 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
             courseModel.image,
             isNetwork: true,
             width: 200.w,
-            height: 100.h,
-            radius: 12,
+            height: 105.h,
+            radius: 15,
           ),
           SizedBox(
             height: 8.h,
@@ -44,7 +43,7 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
                 width: 7.w,
               ),
               SizedBox(
-                width: 85.w,
+                width: 150.w,
                 child: Text(
                   courseModel.name,
                   maxLines: 1,
@@ -55,34 +54,27 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
                       color: Colors.black),
                 ),
               ),
-              starsRating(rating: 3),
-              SizedBox(width: 2.w,),
             ],
           ),
           SizedBox(
-            height: 4.h,
+            height: 2.h,
           ),
           Row(
             children: [
               SizedBox(
-                width: 10.w,
+                width: 22.w,
               ),
               Text(
                 "${courseModel.numberOfLessons} Lessons",
                 style: TextStyle(
-                    fontSize: 9.spMin,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 12.spMin,
+                    fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 153, 151, 151)),
               ),
-              Spacer(),
-              Text(
-                "+40 Exercise",
-                style: TextStyle(
-                    fontSize: 9.spMin,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 153, 151, 151)),
+              SizedBox(
+                width: 10.h,
               ),
-              SizedBox(width: 5.w,),
+              starsRating(rating: 3),
             ],
           ),
         ],

@@ -7,7 +7,6 @@ class starsRating extends StatelessWidget {
 
   const starsRating({super.key, required this.rating});
 
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -15,31 +14,31 @@ class starsRating extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(
-            size: 12.spMin,
+            size: 13.spMin,
             Icons.star,
             color:
                 rating >= 1 ? Color.fromARGB(255, 240, 179, 88) : Colors.grey,
           ),
           Icon(
-            size: 12.spMin,
+            size: 13.spMin,
             Icons.star,
             color:
                 rating >= 2 ? Color.fromARGB(255, 240, 179, 88) : Colors.grey,
           ),
           Icon(
-            size: 12.spMin,
+            size: 13.spMin,
             Icons.star,
             color:
                 rating >= 3 ? Color.fromARGB(255, 240, 179, 88) : Colors.grey,
           ),
           Icon(
-            size: 12.spMin,
+            size: 13.spMin,
             Icons.star,
             color:
                 rating >= 4 ? Color.fromARGB(255, 240, 179, 88) : Colors.grey,
           ),
           Icon(
-            size: 12.spMin,
+            size: 13.spMin,
             Icons.star,
             color:
                 rating >= 5 ? Color.fromARGB(255, 240, 179, 88) : Colors.grey,
