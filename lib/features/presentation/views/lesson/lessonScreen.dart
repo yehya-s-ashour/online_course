@@ -42,8 +42,6 @@ class LessonScreen extends StatelessWidget {
           }
           return BlocConsumer<LayoutCubit, LayoutState>(
             builder: (context, state) {
-              print(
-                  'Awsssss${LayoutCubit.get(context).indexVideoLesson}');
               return Scaffold(
                 body: SingleChildScrollView(
                   child: Column(

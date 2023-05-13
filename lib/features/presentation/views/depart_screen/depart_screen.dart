@@ -53,7 +53,6 @@ class DepartmentScreen extends StatelessWidget {
                     width: 1.sw,
                     height: 170,
                     onTap: () {
-                      print(index);
                       Get.to(() => CoursesScreen(
                           index: index));
                     },

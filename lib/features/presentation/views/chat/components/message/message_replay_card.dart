@@ -30,8 +30,6 @@ class ReplayMessageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int colors = isGroup ? repliedToUid.hashCode ^ 8151195225 : 1;
-    print(isMe);
-    print(repliedTo + 'any thing for     ' + text);
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
       child: Container(

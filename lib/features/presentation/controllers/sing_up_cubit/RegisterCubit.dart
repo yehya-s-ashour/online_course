@@ -26,8 +26,6 @@ class RegisterCubit extends Cubit<RegisterState> {
       password: password,
     )
         .then((value) {
-      print(value.toString());
-      print(value.user!.uid);
       userCreate(
         name: name,
         email: email,
@@ -36,7 +34,6 @@ class RegisterCubit extends Cubit<RegisterState> {
       );
       emit(RegisterSuccessState(value.user!.uid));
     }).catchError((error) {
-      print('hhhhhhh');
       emit(RegisterErrorState(error.toString()));
     });
   }

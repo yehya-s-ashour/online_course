@@ -475,11 +475,9 @@ class LayoutCubit extends Cubit<LayoutState> {
       event.docs.forEach((element) {
         if (element.data()['numberOfLessons'] ==
             List<String>.from(element.data()['lessonsSeen']).length) {
-          print('aaaaaaaaaaaaa${k++}');
           completedEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
 
         } else {
-          print('ssssssssssssss${s++}');
           onGoginEnrollModel.add(CourseEnrollModel.fromMap(element.data()));
 
               }
