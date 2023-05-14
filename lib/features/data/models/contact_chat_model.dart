@@ -11,7 +11,6 @@ class ContactChatModel extends ContactChat {
     required super.lastMessage,
     required super.timeSent,
 
-    required super.muteNotification,
   });
 
   Map<String, dynamic> toMAp() => {
@@ -20,7 +19,6 @@ class ContactChatModel extends ContactChat {
         'couserId': couserId,
         'lastMessage': lastMessage,
         'timeSent': timeSent,
-        'muteNotification': muteNotification,
         'instractorName': instractorName,
       };
 
@@ -31,7 +29,6 @@ class ContactChatModel extends ContactChat {
         couserId: map['couserId'],
         instractorName: map['instractorName'],
         lastMessage: map['lastMessage'],
-        muteNotification: map['muteNotification'],
         timeSent: map['timeSent'],
       );
 }

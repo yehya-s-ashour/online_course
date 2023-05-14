@@ -5,9 +5,8 @@ class ContactChat  {
   final String profilePic;
   final String couserId;
   final String lastMessage;
-  final String timeSent;
+  final int timeSent;
   final String instractorName;
-  bool muteNotification;
 
   ContactChat({
     required this.name,
@@ -16,8 +15,6 @@ class ContactChat  {
     required this.lastMessage,
     required this.instractorName,
     required this.timeSent,
-
-    required this.muteNotification,
   });
 
   @override
@@ -28,6 +25,5 @@ class ContactChat  {
     couserId,
         lastMessage,
         timeSent,
-    muteNotification,
       ];
 }

@@ -1,5 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/core/functions/time.dart';
+import 'package:online_course/features/data/models/DummyData.dart';
+import 'package:online_course/features/data/models/contact_chat_model.dart';
 import 'package:online_course/features/data/models/message_group_model.dart';
 import '../../../../core/enums/messge_type.dart';
 import '../../../../core/shared/message_replay.dart';
@@ -111,5 +115,33 @@ class ChatCubit extends Cubit<ChatState> {
           }
           return messages;
         });
+  }
+
+  List<ContactChatModel> contactChatModel = [];
+  Future<void> setContactChat({required Course coursesModel}) async {
+    await FirebaseFirestore.instance
+        .collection('chat')
+        .doc(coursesModel.courseId)
+        .set(ContactChatModel(name: coursesModel.name, instractorName: 'Ahmed', profilePic: coursesModel.image, couserId: coursesModel.courseId, lastMessage: 'hell', timeSent: getGlobalTimeLocal()).toMAp()).then((value) {
+      emit(SetContactChatSuccessState());
+    }).catchError((error){
+      emit(SetContactChatErrorState());
+    });
+  }
+  Stream<List<ContactChatModel>> getContactChat() {
+    return FirebaseFirestore.instance
+        .collection('chat')
+        .orderBy('timeSent')
+        .where('couserId', whereIn: userEntity.courseEnroll)
+        .snapshots()
+        .map((event) {
+      emit(GetContactChatSuccessState());
+      contactChatModel = [];
+      event.docs.forEach((element) {
+        contactChatModel.add(ContactChatModel.fromMap(element.data()));
+      });
+      emit(GetContactChatSuccessState());
+      return contactChatModel;
+    });
   }
 }

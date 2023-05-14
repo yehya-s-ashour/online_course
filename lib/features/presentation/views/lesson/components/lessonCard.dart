@@ -13,7 +13,7 @@ class lessonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 73.h,
+      height: 78.h,
       // clipBehavior: Clip.none,
       decoration: BoxDecoration(
 
@@ -41,9 +41,9 @@ class lessonCard extends StatelessWidget {
                 child: CustomImage(
                   lesson.image,
                   isNetwork: true,
-                  width: 52.w,
+                  width: 55.w,
                   height: 50.h,
-                  radius: 25.r,
+                  radius: 100.r,
                 ),
               ),
               Column(
@@ -92,7 +92,7 @@ class lessonCard extends StatelessWidget {
             ],
           ),
           SizedBox(
-            width: 10.w,
+            width: 5.w,
           ),
           Text(
             "4:11",

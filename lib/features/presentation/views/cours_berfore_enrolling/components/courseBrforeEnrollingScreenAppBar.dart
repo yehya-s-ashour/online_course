@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/features/data/models/courses_model.dart';
+import 'package:online_course/features/domain/entities/courses.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 
-Widget courseBrforeEnrollingScreenAppBar(String courseName) {
+Widget courseBrforeEnrollingScreenAppBar(String courseName,BuildContext context,Course coursesModel) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
@@ -45,7 +48,7 @@ Widget courseBrforeEnrollingScreenAppBar(String courseName) {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.back();
+                    // LayoutCubit.get(context).setContactChat(coursesModel: coursesModel);
                   },
                   child: Icon(
                     Icons.favorite_sharp,

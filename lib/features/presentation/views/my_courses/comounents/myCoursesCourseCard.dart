@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/features/data/models/courseEnroll_model.dart';
-import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/homeScreen/components/starsRating.dart';
@@ -77,15 +76,20 @@ class myCoursesCourseCard extends StatelessWidget {
                   width: 15.w,
                 ),
                 Text(
-                  "${course.numberOfLessons} Lessons",
+                  "${course.lessonsSeen.length} Lessons",
                   style: TextStyle(
                       fontSize: 11.spMin,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 153, 151, 151)),
                 ),
                 Spacer(),
-                starsRating(rating: 2),
-                SizedBox(width: 9.w,)
+                Text(
+                  "${course.numberOfLessons} Lessons",
+                  style: TextStyle(
+                      fontSize: 11.spMin,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 153, 151, 151)),
+                ),                SizedBox(width: 9.w,)
               ],
             ),
           ],

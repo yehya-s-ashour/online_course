@@ -111,3 +111,16 @@ class ErrorGetContactSearchState extends ChatState{
   @override
   List<Object?> get props => [];
 }
+class SetContactChatLoadingState extends ChatState{
+}
+
+class SetContactChatSuccessState extends ChatState{
+}
+class SetContactChatErrorState extends ChatState{
+}class GetContactChatLoadingState extends ChatState{
+}
+
+class GetContactChatSuccessState extends ChatState{
+}
+class GetContactChatErrorState extends ChatState{
+}

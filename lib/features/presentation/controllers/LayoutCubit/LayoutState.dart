@@ -127,3 +127,12 @@ class SetNewUserEntityErrorState extends LayoutState {
 
   SetNewUserEntityErrorState(this.error);
 }
+class GetContactChatLoadinState extends LayoutState {}
+
+class GetContactChatSuccessState extends LayoutState {}
+
+class SetContactChatLoadinState extends LayoutState {}
+
+class SetContactChatSuccessState extends LayoutState {}
+
+class SetContactChatErrorState extends LayoutState {}

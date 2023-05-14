@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/functions/time.dart';
 import 'package:online_course/core/network/cache_helper.dart';
+import 'package:online_course/features/data/models/contact_chat_model.dart';
 import 'package:online_course/features/data/models/courseEnroll_model.dart';
 import 'package:online_course/features/data/models/courses_model.dart';
 import 'package:online_course/features/data/models/lesson_model.dart';
@@ -490,19 +491,28 @@ class LayoutCubit extends Cubit<LayoutState> {
     indexVideoLesson = index;
     emit(ChangeIndexVideoLessonSuccessState());
   }
-  Future<void> setNewUserEntity({required String name,required String email,required String bio,}) async {
+
+  Future<void> setNewUserEntity({
+    required String name,
+    required String email,
+    required String bio,
+  }) async {
     emit(SetNewUserEntityLoadinState());
     await FirebaseFirestore.instance
         .collection('users')
         .doc(userEntity.uId)
-.update({'name':name,'email':email,'bio':bio,})
-        .then((value) {
-          userEntity.name=name;
-          userEntity.email=email;
-          userEntity.bio=bio;
+        .update({
+      'name': name,
+      'email': email,
+      'bio': bio,
+    }).then((value) {
+      userEntity.name = name;
+      userEntity.email = email;
+      userEntity.bio = bio;
       emit(SetNewUserEntitySuccessState());
     }).catchError((error) {
       emit(SetNewUserEntityErrorState(error));
     });
   }
+
 }
