@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
+import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutState.dart';
 
 import 'components/profile_menu.dart';
 import 'components/profile_pic.dart';
@@ -39,6 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<LayoutCubit,LayoutState>(builder: (context, state) {
     return Scaffold(
 // appBar: MyAppBar(title: 'My Profile',),
       body: Container(
@@ -50,33 +54,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
               bioOrEnail:
                   userEntity.bio!=''?userEntity.bio:"During a typical development cycle, you test an app using flutter run ",
             ),
-            SizedBox(height: 10.h,),
+            SizedBox(height: 25.h,),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 children: [
-                  SizedBox(
-                    width: 1.sw,
-                    height: 60.h,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ...List.generate(
-                            ItemsProfileCourse.listItems.length,
-                            (index) => Padding(
-                              padding:  EdgeInsetsDirectional.only(start: 15.w,end: 15.w),
-                              child: buildContainer(context,
-                                  data: ItemsProfileCourse.listItems[index]),
-                            )),
-                      ],
-                    ),
-                  ),
+                  // SizedBox(
+                  //   width: 1.sw,
+                  //   height: 60.h,
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       ...List.generate(
+                  //           ItemsProfileCourse.listItems.length,
+                  //           (index) => Padding(
+                  //             padding:  EdgeInsetsDirectional.only(start: 15.w,end: 15.w),
+                  //             child: buildContainer(context,
+                  //                 data: ItemsProfileCourse.listItems[index]),
+                  //           )),
+                  //     ],
+                  //   ),
+                  // ),
                   const SizedBox(height: 20),
                   ...List.generate(
                       ProfileMenuModel.listData.length,
                       (index) => ProfileMenu(
                             data: ProfileMenuModel.listData[index],
-                        isNotDark: index!=0,
+                        isNotDark: true,
                           )),
                 ],
               ),
@@ -85,6 +89,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+    }, listener: (context, state) {
+
+    },);
   }
 
   Container buildContainer(BuildContext context,
@@ -168,34 +175,59 @@ class HearderProfile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            width: 40.w,
-                            height: 40.w,
-                            padding: EdgeInsets.all(5.r),
-                            decoration: const BoxDecoration(
-                              color: kWhiteColor,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Center(
-                              child: Icon(
-                                CupertinoIcons.arrow_left,
-                                size: 24,
-                                color: kDBackGColor,
+                      if(isSettingProfile!=null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Container(
+                              width: 40.w,
+                              height: 40.w,
+                              padding: EdgeInsets.all(5.r),
+                              decoration: const BoxDecoration(
+                                color: kWhiteColor,
+                                shape: BoxShape.circle,
+                              ),
+
+                              child: const Center(
+                                child: Icon(
+                                  CupertinoIcons.arrow_left,
+                                  size: 24,
+                                  color: kDBackGColor,
+                                ),
                               ),
                             ),
                           ),
                         ),
+                        if(isSettingProfile==null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Container(
+                          width: 40.w,
+                          height: 40.w,
+                          padding: EdgeInsets.all(5.r),
+                          // decoration: const BoxDecoration(
+                          //   color: kWhiteColor,
+                          //   shape: BoxShape.circle,
+                          // ),
+
+                          // child: const Center(
+                          //   child: Icon(
+                          //     CupertinoIcons.arrow_left,
+                          //     size: 24,
+                          //     color: kDBackGColor,
+                          //   ),
+                          // ),
+                        ),
                       ),
-                      Text(
-                        isSettingProfile!=null?'Setting':'Profile',
-                        textAlign: TextAlign.center,
-                          style: GoogleFonts.cairo(color: Colors.white,fontSize: 18.spMin)
+                      Center(
+                        child: Text(
+                          isSettingProfile!=null?'Setting':'Profile',
+                          textAlign: TextAlign.center,
+                            style: GoogleFonts.cairo(color: Colors.white,fontSize: 18.spMin)
+                        ),
                       ),
                       SizedBox(
                         width: 60.w,

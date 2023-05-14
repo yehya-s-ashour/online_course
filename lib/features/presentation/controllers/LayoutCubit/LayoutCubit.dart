@@ -490,4 +490,19 @@ class LayoutCubit extends Cubit<LayoutState> {
     indexVideoLesson = index;
     emit(ChangeIndexVideoLessonSuccessState());
   }
+  Future<void> setNewUserEntity({required String name,required String email,required String bio,}) async {
+    emit(SetNewUserEntityLoadinState());
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEntity.uId)
+.update({'name':name,'email':email,'bio':bio,})
+        .then((value) {
+          userEntity.name=name;
+          userEntity.email=email;
+          userEntity.bio=bio;
+      emit(SetNewUserEntitySuccessState());
+    }).catchError((error) {
+      emit(SetNewUserEntityErrorState(error));
+    });
+  }
 }

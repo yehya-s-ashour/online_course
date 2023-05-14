@@ -117,3 +117,13 @@ class GetCourseEnrollErrorState extends LayoutState {
 class ChangeIndexVideoLessonLoadinState extends LayoutState {}
 
 class ChangeIndexVideoLessonSuccessState extends LayoutState {}
+
+class SetNewUserEntityLoadinState extends LayoutState {}
+
+class SetNewUserEntitySuccessState extends LayoutState {}
+
+class SetNewUserEntityErrorState extends LayoutState {
+  final String error;
+
+  SetNewUserEntityErrorState(this.error);
+}

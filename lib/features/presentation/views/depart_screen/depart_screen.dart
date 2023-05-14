@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
@@ -23,15 +24,18 @@ class DepartmentScreen extends StatelessWidget {
             centerTitle: true,
             title: Text(
               'RoadMaps',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: kDBackGColor),
+              style: GoogleFonts.cairo(
+                  fontSize: 20.spMin,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black),
             ),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => buildColumn(roadmapModel: LayoutCubit.get(context).roadmap.values.toList(),roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
+              (context, index) => buildColumn(
+                  roadmapModel:
+                      LayoutCubit.get(context).roadmap.values.toList(),
+                  roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
               childCount: 1,
             ),
           )
@@ -40,7 +44,9 @@ class DepartmentScreen extends StatelessWidget {
     );
   }
 
-  Widget buildColumn({required List<RoadmapModel> roadmapModel,required List<String> roadmapName}) {
+  Widget buildColumn(
+      {required List<RoadmapModel> roadmapModel,
+      required List<String> roadmapName}) {
     return Padding(
       padding: EdgeInsets.only(top: 12.h, left: 15.w, right: 15.w),
       child: Column(
@@ -49,12 +55,11 @@ class DepartmentScreen extends StatelessWidget {
               roadmapModel.length,
               (index) => FeatureItem(
                     image: roadmapModel[index].image1,
-                  name: roadmapName[index],
+                    name: roadmapName[index],
                     width: 1.sw,
                     height: 170,
                     onTap: () {
-                      Get.to(() => CoursesScreen(
-                          index: index));
+                      Get.to(() => CoursesScreen(index: index));
                     },
                   )),
           const SizedBox(
@@ -113,7 +118,7 @@ class FeatureItem extends StatelessWidget {
             ),
             Container(
               width: width - 20,
-              padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+              padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
               child: Text(
                 name,
                 maxLines: 1,

@@ -16,28 +16,26 @@ Widget allCoursesRecomenedCoursesScreenListView(
         vertical: 1.h,
       ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 13.w,
-        mainAxisSpacing: 15.h,
-      ),
+          crossAxisCount: 2,
+          crossAxisSpacing: 13.w,
+          mainAxisSpacing: 15.h,
+          childAspectRatio: 0.9),
       itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {
-            LayoutCubit.get(context).changeIndexVideoLesson(-1);
-            Get.to(LessonScreen(
-              courseId: LayoutCubit.get(context).allCourses[index].courseId,
-              mainCategory:
-                  LayoutCubit.get(context).allCourses[index].mainCategory,
-              name: LayoutCubit.get(context).allCourses[index].name,
-              previewVideo:
-                  LayoutCubit.get(context).allCourses[index].previewVideo,
-              subCategory:
-                  LayoutCubit.get(context).allCourses[index].subCategory,
-            ));
-          },
-          child: AllCoursesRecomenedCoursesScreenCourseCard(
-            courseModel: LayoutCubit.get(context).allCourses[index],
-          ),
+        // onTap: () {
+        //   LayoutCubit.get(context).changeIndexVideoLesson(-1);
+        //   Get.to(LessonScreen(
+        //     courseId: LayoutCubit.get(context).allCourses[index].courseId,
+        //     mainCategory:
+        //         LayoutCubit.get(context).allCourses[index].mainCategory,
+        //     name: LayoutCubit.get(context).allCourses[index].name,
+        //     previewVideo:
+        //         LayoutCubit.get(context).allCourses[index].previewVideo,
+        //     subCategory:
+        //         LayoutCubit.get(context).allCourses[index].subCategory,
+        //   ));
+        // },
+        return AllCoursesRecomenedCoursesScreenCourseCard(
+          courseModel: LayoutCubit.get(context).allCourses[index],
         );
       },
       itemCount: LayoutCubit.get(context).allCourses.length,

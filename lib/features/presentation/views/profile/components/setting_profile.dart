@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/core/network/cache_helper.dart';
 import 'package:online_course/features/presentation/views/profile/components/change_language.dart';
 import 'package:online_course/features/presentation/views/profile/components/change_password.dart';
 import 'package:online_course/features/presentation/views/profile/components/credentail_screen.dart';
@@ -10,6 +12,7 @@ import 'package:online_course/features/presentation/views/profile/components/faq
 import 'package:online_course/features/presentation/views/profile/components/notification_screen.dart';
 import 'package:online_course/features/presentation/views/profile/components/support_screen.dart';
 import 'package:online_course/features/presentation/views/profile/profile_screen.dart';
+import 'package:online_course/features/presentation/views/splash/splash_screen.dart';
 
 class SettingProfile extends StatefulWidget {
   const SettingProfile({Key? key}) : super(key: key);
@@ -20,7 +23,6 @@ class SettingProfile extends StatefulWidget {
 
 class _SettingProfileState extends State<SettingProfile> {
   List<String> listItems = [
-    'Dark Mode',
     'Edite Profile',
     'Change your password',
     'Notification Setting',
@@ -55,32 +57,31 @@ class _SettingProfileState extends State<SettingProfile> {
                         (index) => ItemsSetting(
                               text: listItems[index],
                               onTap: () {
-                                if (index == 1) {
+                                if (index == 0) {
                                   Get.to(EditProfile());
-                                } else if (index == 2) {
+                                } else if (index == 1) {
                                   Get.to(ChangeYourPassword());
-                                } else if (index == 3) {
+                                } else if (index == 2) {
                                   Get.to(NotificationScreen());
-                                } else if (index == 4) {
+                                } else if (index == 3) {
                                   Get.to(ChooseCredentials());
-                                } else if (index == 5) {
+                                } else if (index == 4) {
                                   Get.to(ChooseLanguage());
-                                } else if (index == 6) {
+                                } else if (index == 5) {
                                   Get.to(SupportScreen());
                                 } else {
                                   Get.to(FaqScreen());
-
                                 }
                               },
-                              traiding: index == 0
-                                  ? Switch(
-                                      value: dark,
-                                      onChanged: (val) {
-                                        dark = val;
-                                        setState(() {});
-                                      },
-                                    )
-                                  : null,
+                              // traiding: index == 0
+                              //     ? Switch(
+                              //         value: dark,
+                              //         onChanged: (val) {
+                              //           dark = val;
+                              //           setState(() {});
+                              //         },
+                              //       )
+                              //     : null,
                             )),
                     SizedBox(
                       height: 6.h,
@@ -92,21 +93,93 @@ class _SettingProfileState extends State<SettingProfile> {
                         color: kWhiteColor,
                         child: Padding(
                           padding: EdgeInsets.all(6.0.r),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Icon(
-                                Icons.logout,
-                                color: kPrimaryColor,
-                              ),
-                              Text(
-                                'Logout',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(color: kPrimaryColor),
-                              )
-                            ],
+                          child: InkWell(
+                            // onTap: () {
+                            //   CacheHelper.removData(key: 'uId');
+                            //   navigateAndFinish(context, IntroScreen());
+                            // },
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => Dialog(
+                                  insetPadding: EdgeInsets.symmetric(
+                                      vertical: 10.h, horizontal: 10.w),
+                                  child: SizedBox(
+                                    height: 125.h,
+                                    width: 300.w,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 15.h,
+                                        horizontal: 15.w,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Logout',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(color: kPrimaryColor,fontSize: 20),
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                           const Text(
+                                            'Are you sure, you want to logout ?',
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                child: Text(
+                                                  'Cancel',
+                                                  style: TextStyle(color: mixedColor),
+                                                ),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                    CacheHelper.removData(key: 'uId');
+                                                    navigateAndFinish(context, IntroScreen());
+                                                },
+                                                child: Text(
+                                                  'Logout',
+                                                  style: TextStyle(color: mixedColor),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Icon(
+                                  Icons.logout,
+                                  color: kPrimaryColor,
+                                ),
+                                Text(
+                                  'Logout',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(color: kPrimaryColor),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -202,21 +275,89 @@ class _SettingProfileTeachState extends State<SettingProfileTeach> {
                         color: kWhiteColor,
                         child: Padding(
                           padding: EdgeInsets.all(6.0.r),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Icon(
-                                Icons.logout,
-                                color: kPrimaryColor,
-                              ),
-                              Text(
-                                'Logout',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(color: kPrimaryColor),
-                              )
-                            ],
+                          child: InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => Dialog(
+                                  insetPadding: EdgeInsets.symmetric(
+                                      vertical: 10.h, horizontal: 10.w),
+                                  child: SizedBox(
+                                    height: 125.h,
+                                    width: 300.w,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 15.h,
+                                        horizontal: 15.w,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Logout',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(color: kPrimaryColor,fontSize: 20),
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          const Text(
+                                            'Are you sure, you want to logout ?',
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                            children: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                child: Text(
+                                                  'Cancel',
+                                                  style: TextStyle(color: mixedColor),
+                                                ),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  CacheHelper.removData(key: 'uId');
+                                                  navigateAndFinish(context, IntroScreen());
+                                                },
+                                                child: Text(
+                                                  'Logout',
+                                                  style: TextStyle(color: mixedColor),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Icon(
+                                  Icons.logout,
+                                  color: kPrimaryColor,
+                                ),
+                                Text(
+                                  'Logout',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(color: kPrimaryColor),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -284,3 +425,9 @@ class ItemsSetting extends StatelessWidget {
     );
   }
 }
+
+Widget sss() => IconButton(
+      onPressed: () {},
+      splashRadius: 20,
+      icon: const Icon(Icons.delete),
+    );
