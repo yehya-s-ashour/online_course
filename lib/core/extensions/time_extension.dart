@@ -4,16 +4,20 @@ extension DateUtil on DateTime {
   String get lastSeen {
     return 'last seen ${DateConverter.getLastSeenDayTime(this)} at ${DateConverter.dateConverterHoursAmPmMode(this)}';
   }
-  String get amPmMode{
+
+  String get amPmMode {
     return DateConverter.dateConverterHoursAmPmMode(this);
   }
-  String get chatDayTime{
+
+  String get chatDayTime {
     return DateConverter.getChatDayTime(this);
   }
-  String get chatContactTime{
+
+  String get chatContactTime {
     return DateConverter.getChatContactTime(this);
   }
-  bool isSameDay(DateTime day2){
+
+  bool isSameDay(DateTime day2) {
     return DateConverter.isSameDay(this, day2);
   }
 }

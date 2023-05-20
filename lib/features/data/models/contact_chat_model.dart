@@ -1,5 +1,3 @@
-
-
 import 'package:online_course/features/domain/entities/contact_chat.dart';
 
 class ContactChatModel extends ContactChat {
@@ -10,7 +8,6 @@ class ContactChatModel extends ContactChat {
     required super.couserId,
     required super.lastMessage,
     required super.timeSent,
-
   });
 
   Map<String, dynamic> toMAp() => {

@@ -1,4 +1,3 @@
-
 import 'package:online_course/features/domain/entities/courses.dart';
 
 class CoursesModel extends Course {
@@ -45,7 +44,7 @@ class CoursesModel extends Course {
       'name': name,
       'description': description,
       'numberOfLessons': numberOfLessons,
-      'rate':rate,
+      'rate': rate,
       'creationDate': creationDate,
       'courseId': courseId,
       'mainCategory': mainCategory,

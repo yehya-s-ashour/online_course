@@ -14,7 +14,7 @@ class CustomListTile extends StatelessWidget {
   final int numOfMessageNotSeen;
   final VoidCallback onTap;
   final VoidCallback? onLeadingTap;
-  bool muteNotification ;
+  bool muteNotification;
 
   CustomListTile({
     super.key,
@@ -56,8 +56,9 @@ class CustomListTile extends StatelessWidget {
           if (time != null)
             Text(
               time!,
-              style: numOfMessageNotSeen>0
-                  ? context.labelLarge!.copyWith(color: context.colorScheme.onPrimaryContainer)
+              style: numOfMessageNotSeen > 0
+                  ? context.labelLarge!
+                      .copyWith(color: context.colorScheme.onPrimaryContainer)
                   : context.bodyMedium,
             ),
           if (titleButton != null)
@@ -81,16 +82,16 @@ class CustomListTile extends StatelessWidget {
                       maxLines: 1,
                     ),
                   ),
-                  if(muteNotification)
+                  if (muteNotification)
                     Icon(
                       Icons.volume_off,
                       color: Colors.grey.shade500,
                     ),
-                  if(numOfMessageNotSeen > 0)
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  if (numOfMessageNotSeen > 0&&numOfMessageNotSeen<100)
+                  if (numOfMessageNotSeen > 0)
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                  if (numOfMessageNotSeen > 0 && numOfMessageNotSeen < 100)
                     CircleAvatar(
                       minRadius: 12,
                       backgroundColor: mixedColor,
@@ -98,11 +99,12 @@ class CustomListTile extends StatelessWidget {
                         padding: const EdgeInsets.all(4.0),
                         child: Text(
                           numOfMessageNotSeen.toString(),
-                          style: context.labelLarge!.copyWith(color: Colors.white),
+                          style:
+                              context.labelLarge!.copyWith(color: Colors.white),
                         ),
                       ),
                     ),
-                  if (numOfMessageNotSeen > 0&&numOfMessageNotSeen==100)
+                  if (numOfMessageNotSeen > 0 && numOfMessageNotSeen == 100)
                     CircleAvatar(
                       minRadius: 14,
                       backgroundColor: mixedColor,

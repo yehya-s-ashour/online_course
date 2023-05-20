@@ -19,23 +19,9 @@ void showSnackBar({
 Future<File?> pickImageFromGallery(BuildContext context) async {
   File? image;
   try {
-    final pickedImage =
-    await ImagePicker().pickImage(source: ImageSource.gallery,);
-    if (pickedImage != null) {
-      image = File(pickedImage.path);
-    }
-  } catch (e) {
-    showSnackBar(
-      context: context,
-      content: e.toString(),
+    final pickedImage = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
     );
-  }
-  return image;
-}Future<File?> pickImageFromCamera(BuildContext context) async {
-  File? image;
-  try {
-    final pickedImage =
-    await ImagePicker().pickImage(source: ImageSource.camera,);
     if (pickedImage != null) {
       image = File(pickedImage.path);
     }
@@ -47,12 +33,32 @@ Future<File?> pickImageFromGallery(BuildContext context) async {
   }
   return image;
 }
+
+Future<File?> pickImageFromCamera(BuildContext context) async {
+  File? image;
+  try {
+    final pickedImage = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+    );
+    if (pickedImage != null) {
+      image = File(pickedImage.path);
+    }
+  } catch (e) {
+    showSnackBar(
+      context: context,
+      content: e.toString(),
+    );
+  }
+  return image;
+}
+
 Future<File?> pickVideoFromGallery(BuildContext context) async {
   File? video;
   try {
-    final pickedVideo =
-    await ImagePicker().pickVideo(
-      source: ImageSource.gallery,maxDuration:Duration(seconds: 120),);
+    final pickedVideo = await ImagePicker().pickVideo(
+      source: ImageSource.gallery,
+      maxDuration: Duration(seconds: 120),
+    );
 
     if (pickedVideo != null) {
       video = File(pickedVideo.path);
@@ -62,12 +68,14 @@ Future<File?> pickVideoFromGallery(BuildContext context) async {
   }
   return video;
 }
+
 Future<File?> pickVideoFromCamera(BuildContext context) async {
   File? video;
   try {
-    final pickedVideo =
-    await ImagePicker().pickVideo(
-      source: ImageSource.camera,maxDuration:Duration(seconds: 60),);
+    final pickedVideo = await ImagePicker().pickVideo(
+      source: ImageSource.camera,
+      maxDuration: Duration(seconds: 60),
+    );
 
     if (pickedVideo != null) {
       video = File(pickedVideo.path);
@@ -84,7 +92,6 @@ Future<GiphyGif?> pickGif(BuildContext context) async {
     gif = await GiphyGet.getGif(
       context: context,
       apiKey: 'GmpyPrPF9RVZ1LJY1iAe6O8MTWrBpNob',
-
     );
   } catch (e) {
     showSnackBar(context: context, content: e.toString());
@@ -92,28 +99,27 @@ Future<GiphyGif?> pickGif(BuildContext context) async {
   return gif;
 }
 
-
-Future<CroppedFile?> cropImage(String path)async{
+Future<CroppedFile?> cropImage(String path) async {
   return ImageCropper().cropImage(
     sourcePath: path,
     aspectRatioPresets: Platform.isAndroid
         ? [
-      CropAspectRatioPreset.square,
-      CropAspectRatioPreset.ratio3x2,
-      CropAspectRatioPreset.original,
-      CropAspectRatioPreset.ratio4x3,
-      CropAspectRatioPreset.ratio16x9
-    ]
+            CropAspectRatioPreset.square,
+            CropAspectRatioPreset.ratio3x2,
+            CropAspectRatioPreset.original,
+            CropAspectRatioPreset.ratio4x3,
+            CropAspectRatioPreset.ratio16x9
+          ]
         : [
-      CropAspectRatioPreset.original,
-      CropAspectRatioPreset.square,
-      CropAspectRatioPreset.ratio3x2,
-      CropAspectRatioPreset.ratio4x3,
-      CropAspectRatioPreset.ratio5x3,
-      CropAspectRatioPreset.ratio5x4,
-      CropAspectRatioPreset.ratio7x5,
-      CropAspectRatioPreset.ratio16x9
-    ],
+            CropAspectRatioPreset.original,
+            CropAspectRatioPreset.square,
+            CropAspectRatioPreset.ratio3x2,
+            CropAspectRatioPreset.ratio4x3,
+            CropAspectRatioPreset.ratio5x3,
+            CropAspectRatioPreset.ratio5x4,
+            CropAspectRatioPreset.ratio7x5,
+            CropAspectRatioPreset.ratio16x9
+          ],
     aspectRatio: const CropAspectRatio(
       ratioX: 1.0,
       ratioY: 1.0,
@@ -125,15 +131,14 @@ Future<CroppedFile?> cropImage(String path)async{
     cropStyle: CropStyle.rectangle,
     uiSettings: [
       AndroidUiSettings(
-        toolbarColor:  Color(0xFF1A789F),
-        toolbarTitle: "Profile Image",
-        statusBarColor: Color(0xFF1A789F),
-        backgroundColor: Colors.white,
-        hideBottomControls: true,
-        lockAspectRatio: false,
-        initAspectRatio: CropAspectRatioPreset.square,
-        toolbarWidgetColor: Colors.white
-      ),
+          toolbarColor: Color(0xFF1A789F),
+          toolbarTitle: "Profile Image",
+          statusBarColor: Color(0xFF1A789F),
+          backgroundColor: Colors.white,
+          hideBottomControls: true,
+          lockAspectRatio: false,
+          initAspectRatio: CropAspectRatioPreset.square,
+          toolbarWidgetColor: Colors.white),
     ],
   );
 }

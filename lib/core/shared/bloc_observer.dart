@@ -5,8 +5,7 @@ class MyBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
     super.onCreate(bloc);
-    if (kDebugMode) {
-    }
+    if (kDebugMode) {}
   }
 
   @override

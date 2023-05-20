@@ -15,6 +15,7 @@ class CustomImage extends StatelessWidget {
       this.radius = 50,
       this.borderRadius,
       this.isShadow = true});
+
   final String image;
   final double width;
   final double height;

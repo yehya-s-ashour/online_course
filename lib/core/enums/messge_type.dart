@@ -1,20 +1,21 @@
-enum MessageType{
- text('text'),
- image('image'),
- gif('gif'),
- video('video'),
- audio('audio'),
- location('location'),
- contact('contact'),
- poll('poll');
+enum MessageType {
+  text('text'),
+  image('image'),
+  gif('gif'),
+  video('video'),
+  audio('audio'),
+  location('location'),
+  contact('contact'),
+  poll('poll');
 
-const MessageType(this.type);
-final String type;
+  const MessageType(this.type);
+
+  final String type;
 }
 
-extension ConvertMessage on String{
-  MessageType toEnum(){
-    switch(this){
+extension ConvertMessage on String {
+  MessageType toEnum() {
+    switch (this) {
       case 'text':
         return MessageType.text;
       case 'image':

@@ -11,33 +11,34 @@ class UserEntity {
   late String wallpaper;
   late List<String> courseEnroll;
 
-  UserEntity(
-      {required this.name,
-        required this.uId,
-        required this.bio,
-        required this.profilePic,
-        required this.email,
-        required this.password,
-        required this.token,
-        required this.language,
-        required this.theme,
-        required this.courseEnroll,
-        required this.wallpaper,});
+  UserEntity({
+    required this.name,
+    required this.uId,
+    required this.bio,
+    required this.profilePic,
+    required this.email,
+    required this.password,
+    required this.token,
+    required this.language,
+    required this.theme,
+    required this.courseEnroll,
+    required this.wallpaper,
+  });
 
   @override
   List<Object?> get props => [
-    name,
-    uId,
-    bio,
-    profilePic,
-    password,
-    token,
-    email,
-    theme,
-    courseEnroll,
-    wallpaper,
-    language,
-  ];
+        name,
+        uId,
+        bio,
+        profilePic,
+        password,
+        token,
+        email,
+        theme,
+        courseEnroll,
+        wallpaper,
+        language,
+      ];
 
   UserEntity.fromJson(Map<String, dynamic> json) {
     email = json['email'];
@@ -48,7 +49,7 @@ class UserEntity {
     profilePic = json['profilePic'];
     token = json['token'];
     language = json['language'];
-    courseEnroll =  List<String>.from(json['courseEnroll'])??[];
+    courseEnroll = List<String>.from(json['courseEnroll']) ?? [];
     theme = json['theme'];
     wallpaper = json['wallpaper'];
   }

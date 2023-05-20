@@ -8,33 +8,33 @@ class CustomPopUpMenuButton extends StatelessWidget {
 
   const CustomPopUpMenuButton({
     super.key,
-    required this.buttons, required this.isGroup,
+    required this.buttons,
+    required this.isGroup,
   });
 
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
       icon:
-      //  userEntity != null ?
-       Icon(
+          //  userEntity != null ?
+          Icon(
         Icons.more_vert,
-        color: isGroup ? (
-          // userEntity!.theme == 'Light' ? Colors.black54 : Colors.grey
-           Colors.black54
-          ) :
-          (
-            // userEntity!.theme == 'Light' ? Colors.white : Colors.grey
-            Colors.white
-            ),
+        color: isGroup
+            ? (
+                // userEntity!.theme == 'Light' ? Colors.black54 : Colors.grey
+                Colors.black54)
+            : (
+                // userEntity!.theme == 'Light' ? Colors.white : Colors.grey
+                Colors.white),
       ),
       // : Icon(
       //   Icons.more_vert,
       //   color: isGroup ? Colors.black38: Colors.white,
       // ),
       color:
-      // userEntity == null?
-       Colors.white,
-          // : (userEntity!.theme == 'Light' ? Colors.white : Color(0xFF233138)),
+          // userEntity == null?
+          Colors.white,
+      // : (userEntity!.theme == 'Light' ? Colors.white : Color(0xFF233138)),
       onSelected: (value) {
         buttons[value].onTap();
       },

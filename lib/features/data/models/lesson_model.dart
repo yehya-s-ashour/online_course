@@ -6,7 +6,6 @@ class LessonModel extends Lesson {
     required super.video,
     required super.name,
     required super.description,
-
     required super.creationDate,
     required super.lessonId,
     required super.courseId,

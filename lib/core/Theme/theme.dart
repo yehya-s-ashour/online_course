@@ -5,7 +5,6 @@ import 'package:online_course/core/Theme/styles/colors.dart';
 
 import 'light_theme.dart';
 
-
 class AppTheme {
   AppTheme._();
 
@@ -34,5 +33,4 @@ class AppTheme {
       ),
     );
   }
-
 }

@@ -1,13 +1,13 @@
 import '/core/enums/messge_type.dart';
 
-class MessageReplay  {
+class MessageReplay {
   final String message;
   final bool isMe;
   final MessageType messageType;
   final String repliedTo;
   final String repliedToUid;
 
-  const MessageReplay( {
+  const MessageReplay({
     required this.message,
     required this.isMe,
     required this.messageType,
@@ -20,6 +20,6 @@ class MessageReplay  {
         message,
         isMe,
         messageType,
-    repliedTo,
+        repliedTo,
       ];
 }

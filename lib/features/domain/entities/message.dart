@@ -1,6 +1,6 @@
 import 'package:online_course/core/enums/messge_type.dart';
 
-class Message  {
+class Message {
   final String senderId;
   final String senderName;
   final String senderPic;
@@ -9,12 +9,14 @@ class Message  {
   final int timeSent;
   final List<String> isSeen;
   final MessageType messageType;
+
   //replay message
   final String repliedMessage;
   final String repliedTo;
   final String repliedToUid;
   final MessageType repliedMessageType;
   Map<String, dynamic>? reaction;
+
   Message({
     required this.senderId,
     required this.senderPic,
@@ -33,18 +35,18 @@ class Message  {
 
   @override
   List<Object?> get props => [
-    senderId,
-    text,
-    senderPic,
-    messageId,
-    timeSent,
-    isSeen,
-    messageType,
-    repliedMessage,
-    repliedTo,
-    repliedToUid,
-    repliedMessageType,
-    senderName,
-    reaction,
-  ];
+        senderId,
+        text,
+        senderPic,
+        messageId,
+        timeSent,
+        isSeen,
+        messageType,
+        repliedMessage,
+        repliedTo,
+        repliedToUid,
+        repliedMessageType,
+        senderName,
+        reaction,
+      ];
 }

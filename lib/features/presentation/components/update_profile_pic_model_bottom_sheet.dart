@@ -36,12 +36,14 @@ Future<void> showUpdateProfilePicModelBottomSheet(BuildContext context) {
                     selectImageFromCamera(context);
                   },
                   icon: Icons.photo_camera,
-                  name:'Camera',
+                  name: 'Camera',
                 ),
                 const SizedBox(width: 40),
                 PickProfileImage(
                   onTap: () {
-                    Get.to(Images(index: 2,));
+                    Get.to(Images(
+                      index: 2,
+                    ));
                   },
                   icon: Icons.photo,
                   name: 'Gallery',
@@ -54,6 +56,7 @@ Future<void> showUpdateProfilePicModelBottomSheet(BuildContext context) {
     },
   );
 }
+
 Future<void> showUpdateGroupPicModelBottomSheet(BuildContext context) {
   return showModalBottomSheet(
     context: context,
@@ -87,7 +90,9 @@ Future<void> showUpdateGroupPicModelBottomSheet(BuildContext context) {
                 const SizedBox(width: 40),
                 PickProfileImage(
                   onTap: () {
-                    Get.to(Images(index: 5,));
+                    Get.to(Images(
+                      index: 5,
+                    ));
                   },
                   icon: Icons.photo,
                   name: 'Gallery',
@@ -103,9 +108,9 @@ Future<void> showUpdateGroupPicModelBottomSheet(BuildContext context) {
 
 void selectImageFromCamera(BuildContext context) async {
   File? image = await pickImageFromCamera(context);
-  if(image != null){
+  if (image != null) {
     cropImage(image.path).then((value) {
-      if(value != null) {
+      if (value != null) {
         // AuthCubit.get(context).updateProfilePic(value.path);
       }
       navigatePop(context);
@@ -119,10 +124,10 @@ class PickProfileImage extends StatelessWidget {
   final IconData icon;
 
   const PickProfileImage({
-  super.key,
-  required this.onTap,
-  required this.name,
-  required this.icon,
+    super.key,
+    required this.onTap,
+    required this.name,
+    required this.icon,
   });
 
   @override
