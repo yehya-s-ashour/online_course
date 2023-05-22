@@ -8,6 +8,7 @@ import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutState.dart';
+import 'package:online_course/features/presentation/views/translate.dart';
 
 import 'components/profile_menu.dart';
 import 'components/profile_pic.dart';
@@ -21,11 +22,11 @@ class ItemsProfileCourse {
       {required this.title, required this.iconData, required this.numOfTitle});
   static List<ItemsProfileCourse> listItems = [
     ItemsProfileCourse(
-        title: 'Course',
+        title: userEntity.language == 'Arabic' ? Translation.Course1 :Translation.Course2,
         numOfTitle: 15,
         iconData: CupertinoIcons.chart_bar_square_fill),
     ItemsProfileCourse(
-        title: 'Review', numOfTitle: 4.9, iconData: CupertinoIcons.star_fill),
+        title: userEntity.language == 'Arabic' ? Translation.Reviews1 :Translation.Reviews2, numOfTitle: 4.9, iconData: CupertinoIcons.star_fill),
     // ItemsProfileCourse(title: 'Videos',numOfTitle: 32, iconData: CupertinoIcons.videocam_fill),
   ];
 }
@@ -43,49 +44,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LayoutCubit,LayoutState>(builder: (context, state) {
-    return Scaffold(
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
+      child: Scaffold(
 // appBar: MyAppBar(title: 'My Profile',),
-      body: Container(
-        height: double.maxFinite,
-        width: double.maxFinite,
-        child: Column(
-          children: [
-            HearderProfile(
-              bioOrEnail:
-                  userEntity.bio!=''?userEntity.bio:"During a typical development cycle, you test an app using flutter run ",
-            ),
-            SizedBox(height: 25.h,),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                children: [
-                  // SizedBox(
-                  //   width: 1.sw,
-                  //   height: 60.h,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       ...List.generate(
-                  //           ItemsProfileCourse.listItems.length,
-                  //           (index) => Padding(
-                  //             padding:  EdgeInsetsDirectional.only(start: 15.w,end: 15.w),
-                  //             child: buildContainer(context,
-                  //                 data: ItemsProfileCourse.listItems[index]),
-                  //           )),
-                  //     ],
-                  //   ),
-                  // ),
-                  const SizedBox(height: 20),
-                  ...List.generate(
-                      ProfileMenuModel.listData.length,
-                      (index) => ProfileMenu(
-                            data: ProfileMenuModel.listData[index],
-                        isNotDark: true,
-                          )),
-                ],
+        body: Container(
+          height: double.maxFinite,
+          width: double.maxFinite,
+          child: Column(
+            children: [
+              HearderProfile(
+                bioOrEnail:
+                    userEntity.bio!=''?userEntity.bio:"During a typical development cycle, you test an app using flutter run ",
               ),
-            ),
-          ],
+              SizedBox(height: 25.h,),
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  children: [
+                    // SizedBox(
+                    //   width: 1.sw,
+                    //   height: 60.h,
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       ...List.generate(
+                    //           ItemsProfileCourse.listItems.length,
+                    //           (index) => Padding(
+                    //             padding:  EdgeInsetsDirectional.only(start: 15.w,end: 15.w),
+                    //             child: buildContainer(context,
+                    //                 data: ItemsProfileCourse.listItems[index]),
+                    //           )),
+                    //     ],
+                    //   ),
+                    // ),
+                    const SizedBox(height: 20),
+                    ...List.generate(
+                        ProfileMenuModel.listData.length,
+                        (index) => ProfileMenu(
+                              data: ProfileMenuModel.listData[index],
+                          isNotDark: true,
+                            )),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -224,7 +228,7 @@ class HearderProfile extends StatelessWidget {
                       ),
                       Center(
                         child: Text(
-                          isSettingProfile!=null?'Setting':'Profile',
+                          isSettingProfile!=null?userEntity.language == 'Arabic' ? Translation.Settings1 :Translation.Settings2:userEntity.language == 'Arabic' ? Translation.Profile1 :Translation.Profile2,
                           textAlign: TextAlign.center,
                             style: GoogleFonts.cairo(color: Colors.white,fontSize: 18.spMin)
                         ),

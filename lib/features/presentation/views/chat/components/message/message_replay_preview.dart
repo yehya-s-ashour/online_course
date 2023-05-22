@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/core/shared/message_replay.dart';
 
-import '../../../../../../core/shared/message_replay.dart';
 import 'message_replay_card.dart';
 
 class MessageReplayPreview extends StatelessWidget {
@@ -38,4 +38,3 @@ class MessageReplayPreview extends StatelessWidget {
     );
   }
 }
-

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_course/core/functions/date_converter.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/functions/time.dart';
+import 'package:online_course/features/domain/entities/message.dart';
+import 'package:online_course/features/presentation/controllers/chat_cubit/chat_cubit.dart';
 
-import '../../../../../../core/functions/navigator.dart';
 import '/core/extensions/extensions.dart';
 import '/core/extensions/time_extension.dart';
-import '../../../../../../core/functions/date_converter.dart';
-import '../../../../../domain/entities/message.dart';
-import '../../../../controllers/chat_cubit/chat_cubit.dart';
+
 import 'sender_message_card.dart';
 import 'my_message_card.dart';
 
@@ -136,8 +137,9 @@ class _MessagesGroupListState extends State<MessagesList> {
               var message = snapshot.data![snapshot.data!.length - 1 - index];
               ////////////////////////////////////////////
               isFirst = false;
-              var priviesMessage =
-                  (index > 0) ? snapshot.data![snapshot.data!.length - index] : null;
+              var priviesMessage = (index > 0)
+                  ? snapshot.data![snapshot.data!.length - index]
+                  : null;
               //check to make message small bubble for first message
               if (index == 0 ||
                   message.senderId != priviesMessage!.senderId ||
@@ -163,23 +165,24 @@ class _MessagesGroupListState extends State<MessagesList> {
                       if (index == 0 ||
                           !DateConverter.isSameDay(
                             getTime(message.timeSent),
-                            getTime(snapshot.data![snapshot.data!.length - index].timeSent),
+                            getTime(snapshot
+                                .data![snapshot.data!.length - index].timeSent),
                           ))
                         ChatTimeCard(dateTime: getTime(message.timeSent)),
                       if (message.senderId == uid)
-                       MyMessageCard(
-                                    isFirst: isFirst,
-                                    isGroup: widget.isGroup,
-                                    isReaction: cubit.reactionView,
-                                    index: cubit.currentIndex,
-                                  ),
-                       if (message.senderId != uid)
+                        MyMessageCard(
+                          isFirst: isFirst,
+                          isGroup: widget.isGroup,
+                          isReaction: cubit.reactionView,
+                          index: cubit.currentIndex,
+                        ),
+                      if (message.senderId != uid)
                         SenderMessageCard(
-                                    isGroup: widget.isGroup,
-                                    isFirst: isFirst,
-                                    isReaction: cubit.reactionView,
-                                    index: cubit.currentIndex,
-                                  ),
+                          isGroup: widget.isGroup,
+                          isFirst: isFirst,
+                          isReaction: cubit.reactionView,
+                          index: cubit.currentIndex,
+                        ),
                     ],
                   );
                 },
@@ -192,6 +195,7 @@ class _MessagesGroupListState extends State<MessagesList> {
     );
   }
 }
+
 class ChatTimeCard extends StatelessWidget {
   final DateTime dateTime;
 
@@ -217,8 +221,7 @@ class ChatTimeCard extends StatelessWidget {
         ),
         child: Text(
           dateTime.chatDayTime,
-          style: TextStyle(
-              fontSize: 14.spMin),
+          style: TextStyle(fontSize: 14.spMin),
         ),
       ),
     );

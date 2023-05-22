@@ -5,10 +5,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/generated/assets.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/components/custom_textfeild.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
+import 'package:online_course/features/presentation/views/translate.dart';
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({Key? key}) : super(key: key);
@@ -47,195 +49,199 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(
-        title: 'Reviews',
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsetsDirectional.only(
-            start: 10.w,
-          ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        4.8.toString(),
-                        style: GoogleFonts.cairo(
-                            fontSize: 45.spMin,
-                            fontWeight: FontWeight.w800,
-                            color: mixedColor),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ...List.generate(
-                              5,
-                              (index) => Icon(
-                                    Icons.star,
-                                    color: kPreviewsColors,
-                                    size: 20.r,
-                                  ))
-                        ],
-                      ),
-                      Text(
-                        '${58} reviews',
-                        style: GoogleFonts.cairo(
-                            color: Colors.black.withOpacity(0.4),
-                            fontSize: 17.spMin),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      )
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      ...listSlider
-                          .map((e) => buildRowSilder(
-                              numOfStars: e['numOfStars'], percen: e['percen']))
-                          .toList(),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Card(
-                color: Colors.white,
-                child: Container(
-                    height: 485.h,
-                    child: ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        itemBuilder: (context, index) => buildColumn(context),
-                        itemCount: 5)),
-              ),
-            ],
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
+      child: Scaffold(
+        appBar: MyAppBar(
+          title: userEntity.language == 'Arabic' ? Translation.Reviews1 :Translation.Reviews2,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsetsDirectional.only(
+              start: 10.w,
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          4.8.toString(),
+                          style: GoogleFonts.cairo(
+                              fontSize: 45.spMin,
+                              fontWeight: FontWeight.w800,
+                              color: mixedColor),
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ...List.generate(
+                                5,
+                                (index) => Icon(
+                                      Icons.star,
+                                      color: kPreviewsColors,
+                                      size: 20.r,
+                                    ))
+                          ],
+                        ),
+                        Text(
+                          '${58} reviews',
+                          style: GoogleFonts.cairo(
+                              color: Colors.black.withOpacity(0.4),
+                              fontSize: 17.spMin),
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        )
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        ...listSlider
+                            .map((e) => buildRowSilder(
+                                numOfStars: e['numOfStars'], percen: e['percen']))
+                            .toList(),
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                Card(
+                  color: Colors.white,
+                  child: Container(
+                      height: 485.h,
+                      child: ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemBuilder: (context, index) => buildColumn(context),
+                          itemCount: 5)),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      floatingActionButton: Align(
-        alignment: AlignmentDirectional.bottomEnd,
-        child: InkWell(
-          onTap: () {
-            showMaterialModalBottomSheet(
-              context: context,
-              builder: (context) => SingleChildScrollView(
-                controller: ModalScrollController.of(context),
-                child: StatefulBuilder(
-                  builder: (BuildContext context, StateSetter func) {
-                    double rating1 = 3.0;
-                    return Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 12.w, vertical: 10.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                start: 12.w, top: 5.h),
-                            child: Text(
-                              'Write a review ',
-                              style: GoogleFonts.cairo(
-                                  fontSize: 21.spMin,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black),
-                            ),
-                          ),
-                          Center(
-                            child: Container(
-                              width: 270.w,
-                              child: TextFieldWidget(
-                                hint: "Write a review ",
-                                maxLine: 3,
+        floatingActionButton: Align(
+          alignment: AlignmentDirectional.bottomEnd,
+          child: InkWell(
+            onTap: () {
+              showMaterialModalBottomSheet(
+                context: context,
+                builder: (context) => SingleChildScrollView(
+                  controller: ModalScrollController.of(context),
+                  child: StatefulBuilder(
+                    builder: (BuildContext context, StateSetter func) {
+                      double rating1 = 3.0;
+                      return Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 12.w, vertical: 10.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(
+                                  start: 12.w, top: 5.h),
+                              child: Text(
+                                userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                                style: GoogleFonts.cairo(
+                                    fontSize: 21.spMin,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          SizedBox(
-                            width: 1.sw,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                RatingBar.builder(
-                                  initialRating: rating1,
-                                  minRating: 1,
-                                  direction: Axis.horizontal,
-                                  allowHalfRating: true,
-                                  itemCount: 5,
-                                  itemSize: 25.r,
-                                  itemPadding: const EdgeInsets.symmetric(
-                                      horizontal: 1.0),
-                                  itemBuilder: (context, _) => const Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  ),
-                                  onRatingUpdate: (rating) {
-                                    rating1 = rating;
-                                    setState(() {
-                                      func(() {});
-                                    });
-                                    func(() {});
-                                  },
+                            Center(
+                              child: Container(
+                                width: 270.w,
+                                child: TextFieldWidget(
+                                  hint: userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                                  maxLine: 3,
                                 ),
-                                Padding(
-                                  padding:
-                                      EdgeInsetsDirectional.only(start: 10.w),
-                                  child: Text(
-                                    rating1.toString(),
-                                    style: GoogleFonts.cairo(
-                                        fontSize: 18.spMin,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.black),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 6.h,
-                          ),
-                          Center(
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      foregroundColor: kWhiteColor),
-                                  onPressed: () {
-                                    func(() {});
-                                    Get.back();
-                                  },
-                                  child: const Text('Submit')))
-                        ],
-                      ),
-                    );
-                  },
+                            SizedBox(
+                              height: 8.h,
+                            ),
+                            SizedBox(
+                              width: 1.sw,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  RatingBar.builder(
+                                    initialRating: rating1,
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemSize: 25.r,
+                                    itemPadding: const EdgeInsets.symmetric(
+                                        horizontal: 1.0),
+                                    itemBuilder: (context, _) => const Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                    ),
+                                    onRatingUpdate: (rating) {
+                                      rating1 = rating;
+                                      setState(() {
+                                        func(() {});
+                                      });
+                                      func(() {});
+                                    },
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsetsDirectional.only(start: 10.w),
+                                    child: Text(
+                                      rating1.toString(),
+                                      style: GoogleFonts.cairo(
+                                          fontSize: 18.spMin,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            Center(
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        foregroundColor: kWhiteColor),
+                                    onPressed: () {
+                                      func(() {});
+                                      Get.back();
+                                    },
+                                    child: Text(userEntity.language == 'Arabic' ? Translation.Submit1 :Translation.Submit2,
+                                    )))
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
+              );
+            },
+            child: Container(
+              height: 38.h,
+              width: 150.w,
+              decoration: BoxDecoration(
+                color: mixedColor,
+                borderRadius: BorderRadius.all(Radius.circular(100)),
               ),
-            );
-          },
-          child: Container(
-            height: 38.h,
-            width: 150.w,
-            decoration: BoxDecoration(
-              color: mixedColor,
-              borderRadius: BorderRadius.all(Radius.circular(100)),
+              child: Center(
+                  child: Text(userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                      style: GoogleFonts.cairo(
+                          fontSize: 21.spMin,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600))),
             ),
-            child: Center(
-                child: Text('Write a Review',
-                    style: GoogleFonts.cairo(
-                        fontSize: 21.spMin,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600))),
           ),
         ),
       ),
@@ -305,12 +311,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Write a review',
+                                userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                                 style:
                                     Theme.of(context).textTheme.headlineSmall,
                               ),
                               TextFieldWidget(
-                                hint: "Write a review",
+                                hint: userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                                 maxLine: 3,
                               ),
                               SizedBox(
@@ -358,7 +364,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                         func(() {});
                                         Get.back();
                                       },
-                                      child: const Text('Review')))
+                                      child: Text(userEntity.language == 'Arabic' ? Translation.Reviews1 :Translation.Reviews2,)))
                             ],
                           ),
                         );
@@ -368,7 +374,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 );
               },
               child: Text(
-                'Write a Reviews',
+                userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!

@@ -1,12 +1,11 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/core/extensions/time_extension.dart';
 
 class ShowFullScreenImage extends StatelessWidget {
-  ShowFullScreenImage(
-      {Key? key, required this.name, required this.image, this.timeSent})
-      : super(key: key);
+  ShowFullScreenImage({Key? key, required this.name, required this.image,this.timeSent}) : super(key: key);
 
   final String name;
   final String image;
@@ -20,11 +19,9 @@ class ShowFullScreenImage extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(name, style: TextStyle(fontSize: 14.spMin)),
-            if (timeSent != null)
-              Text(
-                  '${DateTime.fromMillisecondsSinceEpoch(timeSent!).chatContactTime}',
-                  style: TextStyle(fontSize: 14.spMin)),
+            Text(name,style: TextStyle(fontSize: 14.spMin)),
+            if(timeSent != null)
+            Text('${DateTime.fromMillisecondsSinceEpoch(timeSent!).chatContactTime}',style: TextStyle(fontSize: 14.spMin)),
           ],
         ),
       ),
@@ -35,7 +32,7 @@ class ShowFullScreenImage extends StatelessWidget {
             Center(
               child: Container(
                 height: 670.h,
-                child: CachedNetworkImage(imageUrl: image, fit: BoxFit.cover),
+                child: CachedNetworkImage(imageUrl: image,fit: BoxFit.cover),
               ),
             ),
           ],

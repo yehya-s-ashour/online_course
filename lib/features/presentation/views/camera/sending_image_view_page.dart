@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../../../../core/shared/commen.dart';
+import 'package:online_course/core/shared/commen.dart';
 import 'components/image_view_top_row_icons.dart';
 import 'components/sending_image_video_bottom_roww_widget.dart';
 
@@ -51,21 +51,21 @@ class _SendingImageViewPageState extends State<SendingImageViewPage> {
               child: SendingImageVideoBottomRowWidget(
                 onSendButtonTaped: () {
                   // if (widget.isGroup) {
-                    // ChatCubit.get(context).sendFileMessageGroup(
-                    //   receiverId: widget.receiverId,
-                    //   messageType: MessageType.image,
-                    //   file: File(widget.path),
-                    // );
+                  // ChatCubit.get(context).sendFileMessageGroup(
+                  //   receiverId: widget.receiverId,
+                  //   messageType: MessageType.image,
+                  //   file: File(widget.path),
+                  // );
 
                   // } else {
-                    // ChatCubit.get(context).sendFileMessage(
-                    //   profilePic: userdata!.profilePic,
-                    //   phoneNumber: userdata!.phoneNumber,
-                    //   name: userdata!.name,
-                    //   receiverId: widget.receiverId,
-                    //   messageType: MessageType.image,
-                    //   file: File(widget.path),
-                    // );
+                  // ChatCubit.get(context).sendFileMessage(
+                  //   profilePic: userdata!.profilePic,
+                  //   phoneNumber: userdata!.phoneNumber,
+                  //   name: userdata!.name,
+                  //   receiverId: widget.receiverId,
+                  //   messageType: MessageType.image,
+                  //   file: File(widget.path),
+                  // );
 
                   // }
                   //to back to chat screen

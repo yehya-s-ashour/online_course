@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_course/core/extensions/extensions.dart';
 import 'package:online_course/core/functions/navigator.dart';
+import 'package:online_course/features/domain/entities/message.dart';
+import 'package:online_course/features/presentation/controllers/chat_cubit/chat_cubit.dart';
 import 'package:swipe_to/swipe_to.dart';
 
-import '../../../../../../core/extensions/extensions.dart';
-import '../../../../../domain/entities/message.dart';
-import '../../../../controllers/chat_cubit/chat_cubit.dart';
 import '../message_content/message_content.dart';
 import 'first_message_small_curved_bubble.dart';
 import 'message_replay_card.dart';
@@ -38,18 +38,16 @@ class SenderMessageCard extends StatelessWidget {
             : message!.senderId.hashCode ^ 8131195225
         : 1;
 
-    final isReplying =  message!.repliedMessage.isNotEmpty;
+    final isReplying = message!.repliedMessage.isNotEmpty;
     return SwipeTo(
       onLeftSwipe: () {
-        
-          ChatCubit.get(context).onMessageSwipe(
-            message: message!.text,
-            isMe: false,
-            messageType: message!.messageType,
-            repliedTo: message!.senderName,
-            repliedToUid: message!.senderId,
-          );
-        
+        ChatCubit.get(context).onMessageSwipe(
+          message: message!.text,
+          isMe: false,
+          messageType: message!.messageType,
+          repliedTo: message!.senderName,
+          repliedToUid: message!.senderId,
+        );
       },
       child: Align(
         alignment: Alignment.centerLeft,
@@ -59,18 +57,16 @@ class SenderMessageCard extends StatelessWidget {
             left: isFirst ? 5 : 15,
           ),
           child: Container(
-            color:  ((isReaction && (index == message!.messageId))
-                    ? context.colorScheme.background.withOpacity(0.55)
-                    : null)
-                ,
+            color: ((isReaction && (index == message!.messageId))
+                ? context.colorScheme.background.withOpacity(0.55)
+                : null),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 if (isFirst)
                   Padding(
-                    padding: ( message!.reaction!.length >= 1
-                            )
+                    padding: (message!.reaction!.length >= 1)
                         ? EdgeInsets.only(top: 15.h)
                         : const EdgeInsets.all(0),
                     child: FirstMessageSmallCurvedBubble(
@@ -87,8 +83,7 @@ class SenderMessageCard extends StatelessWidget {
                     children: [
                       Card(
                         elevation: 0,
-                        margin: ( message!.reaction!.length >= 1
-                                 )
+                        margin: (message!.reaction!.length >= 1)
                             ? EdgeInsets.only(top: 15.h)
                             : isFirst
                                 ? const EdgeInsetsDirectional.only(start: 0)
@@ -97,18 +92,14 @@ class SenderMessageCard extends StatelessWidget {
                                     : const EdgeInsetsDirectional.only(
                                         start: 10),
                         color: userEntity.theme == 'Light'
-                            ?  ((isReaction &&
-                                        (index == message!.messageId))
-                                    ? context.colorScheme.background
-                                        .withOpacity(0.8)
-                                    : Colors.white)
-                                
-                            :  ((isReaction &&
-                                        (index == message!.messageId))
-                                    ? context.colorScheme.background
-                                        .withOpacity(0.8)
-                                    : Color(0xFF233138))
-                                ,
+                            ? ((isReaction && (index == message!.messageId))
+                                ? context.colorScheme.background
+                                    .withOpacity(0.8)
+                                : Colors.white)
+                            : ((isReaction && (index == message!.messageId))
+                                ? context.colorScheme.background
+                                    .withOpacity(0.8)
+                                : Color(0xFF233138)),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             topLeft: userEntity.language != 'Arabic'
@@ -144,20 +135,19 @@ class SenderMessageCard extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                
-                                  Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: ReplayMessageCard(
-                                      isGroup: isGroup,
-                                      text: message!.repliedMessage,
-                                      repliedMessageType:
-                                          message!.repliedMessageType,
-                                      isMe: message!.repliedTo !=
-                                          message!.senderName,
-                                      repliedTo: message!.repliedTo,
-                                      repliedToUid: message!.repliedToUid,
-                                    ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: ReplayMessageCard(
+                                    isGroup: isGroup,
+                                    text: message!.repliedMessage,
+                                    repliedMessageType:
+                                        message!.repliedMessageType,
+                                    isMe: message!.repliedTo !=
+                                        message!.senderName,
+                                    repliedTo: message!.repliedTo,
+                                    repliedToUid: message!.repliedToUid,
                                   ),
+                                ),
                                 MessageContent(
                                   isMe: false,
                                   isGroup: isGroup,
@@ -169,7 +159,7 @@ class SenderMessageCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      ],
+                    ],
                   ),
                 ),
               ],

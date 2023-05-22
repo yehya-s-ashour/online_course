@@ -22,8 +22,9 @@ Future<void> showContactProfilePicDialog(
         scrollable: true,
         contentPadding: EdgeInsets.zero,
         alignment: Alignment.topCenter,
-        backgroundColor: Colors.white,
-        // serEntity!.theme == 'Light' ? Colors.white : Color(0xFF233138),
+        backgroundColor:
+            Colors.white,
+            // serEntity!.theme == 'Light' ? Colors.white : Color(0xFF233138),
         content: InkWell(
           onTap: () {
             Get.to(ShowFullScreenImage(
@@ -85,10 +86,8 @@ Future<void> showContactProfilePicDialog(
         actionsAlignment: MainAxisAlignment.spaceBetween,
         actionsPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         actions: [
-          if (isGroup)
-            SizedBox(
-              width: 30.w,
-            ),
+          if(isGroup)
+            SizedBox(width: 30.w,),
           IconButton(
             onPressed: () {
               Get.to(ChatScreen(
@@ -104,38 +103,38 @@ Future<void> showContactProfilePicDialog(
               size: 25,
             ),
           ),
-          if (!isGroup)
-            IconButton(
-              onPressed: () {
-                // CallCubit.get(context).makeCall(
-                //     receiverId: contactId,
-                //     receiverName: name,
-                //     receiverPic: profilePic,
-                //     isVideo: false,
-                //     context: context);
-              },
-              icon: Icon(
-                Icons.call,
-                color: context.colorScheme.secondaryContainer,
-                size: 25,
-              ),
+          if(!isGroup)
+          IconButton(
+            onPressed: () {
+              // CallCubit.get(context).makeCall(
+              //     receiverId: contactId,
+              //     receiverName: name,
+              //     receiverPic: profilePic,
+              //     isVideo: false,
+              //     context: context);
+            },
+            icon: Icon(
+              Icons.call,
+              color: context.colorScheme.secondaryContainer,
+              size: 25,
             ),
-          if (!isGroup)
-            IconButton(
-              onPressed: () {
-                // CallCubit.get(context).makeCall(
-                //     receiverId: contactId,
-                //     receiverName: name,
-                //     receiverPic: profilePic,
-                //     isVideo: true,
-                //     context: context);
-              },
-              icon: Icon(
-                Icons.videocam,
-                color: context.colorScheme.secondaryContainer,
-                size: 25,
-              ),
+          ),
+          if(!isGroup)
+          IconButton(
+            onPressed: () {
+              // CallCubit.get(context).makeCall(
+              //     receiverId: contactId,
+              //     receiverName: name,
+              //     receiverPic: profilePic,
+              //     isVideo: true,
+              //     context: context);
+            },
+            icon: Icon(
+              Icons.videocam,
+              color: context.colorScheme.secondaryContainer,
+              size: 25,
             ),
+          ),
           IconButton(
             onPressed: () {
               // Get.to(SenderUserProfilePage(
@@ -148,10 +147,8 @@ Future<void> showContactProfilePicDialog(
               size: 25,
             ),
           ),
-          if (isGroup)
-            SizedBox(
-              width: 30.w,
-            ),
+          if(isGroup)
+            SizedBox(width: 30.w,),
         ],
       );
     },

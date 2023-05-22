@@ -9,6 +9,7 @@ import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 import 'package:online_course/features/presentation/views/constants.dart';
 import 'package:online_course/features/presentation/views/sign/sign_screen.dart';
+import 'package:online_course/features/presentation/views/translate.dart';
 
 import 'components/splash_content.dart';
 
@@ -24,20 +25,17 @@ class _IntroScreenState extends State<IntroScreen> {
   List<Map<String, String>> splashData = [
     {
       "title": "Teaching",
-      "text":
-          "Our new service makes it easy for you to work anywhere, there are new features will ready help you.",
+      "text":userEntity.language == 'Arabic' ? Translation.Teaching1 :Translation.Teaching2,
       "image": "assets/images/baorder3.png"
     },
     {
       "title": "Learning",
-      "text":
-          "Our new service makes it easy for you to work anywhere, there are new features will ready help you",
+      "text":userEntity.language == 'Arabic' ? Translation.Learning1 :Translation.Learning2,
       "image": "assets/images/baorder2.png"
     },
     {
       "title": "Examination",
-      "text":
-          "Our new service makes it easy for you to work anywhere, there are new features will ready help you.",
+      "text":userEntity.language == 'Arabic' ? Translation.Examination1 :Translation.Examination2,
       "image": "assets/images/baorder1.png"
     },
   ];
@@ -66,149 +64,152 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(
-        isleading: true,
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: InkWell(
-            onTap: currentPage >= 1
-                ? _decrementProgress
-                : () {
-                    Get.back();
-                  },
-            child: Container(
-              padding: EdgeInsets.all(3.r),
-              decoration: BoxDecoration(
-                color: kLightColor.withOpacity(0.3),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.arrow_back,
-                size: 24,
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
+      child: Scaffold(
+        appBar: MyAppBar(
+          isleading: true,
+          leading: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: InkWell(
+              onTap: currentPage >= 1
+                  ? _decrementProgress
+                  : () {
+                      Get.back();
+                    },
+              child: Container(
+                padding: EdgeInsets.all(3.r),
+                decoration: BoxDecoration(
+                  color: kLightColor.withOpacity(0.3),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.arrow_back,
+                  size: 24,
+                ),
               ),
             ),
           ),
-        ),
-        action: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-                onTap: currentPage >= 2
-                    ? () {
-                        navigateAndFinish(context, SingScreen());
-                      }
-                    : () {
-                        currentPage = 2;
-                        _progress = 1;
-                        setState(() {});
-                      },
-                child: Padding(
-                  padding: EdgeInsets.only(top: 6.h, right: 5.w),
-                  child: Center(
-                      child: Text(
-                    currentPage >= 2 ? 'Get started' : 'Skip',
-                    style: GoogleFonts.cairo(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xF90E0E0E)),
-                  )),
-                )),
-          )
-        ],
-      ),
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 6.w),
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  flex: 4,
-                  child: PageView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    pageSnapping: false,
-                    onPageChanged: (value) {
-                      setState(() {
-                        currentPage = value;
-                        if (value == 1) {
-                          _progress = 0.66;
-                        } else if (value == 2) {
-                          _progress = 1;
-                        } else {
-                          _progress -= 0.33;
+          action: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                  onTap: currentPage >= 2
+                      ? () {
+                          navigateAndFinish(context, SingScreen());
                         }
-                      });
-                    },
-                    itemCount: splashData.length,
-                    itemBuilder: (context, index) => SplashContent(
-                      title: splashData[currentPage]["title"],
-                      image: splashData[currentPage]["image"],
-                      text: splashData[currentPage]['text'],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  // flex: 2,
+                      : () {
+                          currentPage = 2;
+                          _progress = 1;
+                          setState(() {});
+                        },
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Column(
-                      children: <Widget>[
-                        const Spacer(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            splashData.length,
-                            (index) => buildDot(index: index),
-                          ),
-                        ),
-                        const Spacer(flex: 3),
-                        GestureDetector(
-                          onTap: _incrementProgress,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                width: 80.0,
-                                height: 80.0,
-                                padding: EdgeInsets.all(8.r),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Colors.grey[100]!,
-                                    width: 4.0,
-                                  ),
-                                ),
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    color: kPrimaryColor,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Center(
-                                      child: Icon(
-                                    Icons.arrow_right_alt_sharp,
-                                    color: Colors.white,
-                                  )),
-                                ),
-                              ),
-                              CustomPaint(
-                                size: const Size(80.0, 80.0),
-                                painter: CircularProgressPainter(
-                                  progress: _progress,
-                                  color: kPrimaryColor,
-                                  strokeWidth: 4.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                      ],
+                    padding: EdgeInsets.only(top: 6.h, right: 5.w),
+                    child: Center(
+                        child: Text(
+                      currentPage >= 2 ? userEntity.language == 'Arabic' ? Translation.Get_started1 :Translation.Get_started2: userEntity.language == 'Arabic' ? Translation.Skip1 :Translation.Skip2,
+                      style: GoogleFonts.cairo(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xF90E0E0E)),
+                    )),
+                  )),
+            )
+          ],
+        ),
+        body: SafeArea(
+          child: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 6.w),
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 4,
+                    child: PageView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      pageSnapping: false,
+                      onPageChanged: (value) {
+                        setState(() {
+                          currentPage = value;
+                          if (value == 1) {
+                            _progress = 0.66;
+                          } else if (value == 2) {
+                            _progress = 1;
+                          } else {
+                            _progress -= 0.33;
+                          }
+                        });
+                      },
+                      itemCount: splashData.length,
+                      itemBuilder: (context, index) => SplashContent(
+                        title: splashData[currentPage]["title"],
+                        image: splashData[currentPage]["image"],
+                        text: splashData[currentPage]['text'],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    // flex: 2,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Column(
+                        children: <Widget>[
+                          const Spacer(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(
+                              splashData.length,
+                              (index) => buildDot(index: index),
+                            ),
+                          ),
+                          const Spacer(flex: 3),
+                          GestureDetector(
+                            onTap: _incrementProgress,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  width: 80.0,
+                                  height: 80.0,
+                                  padding: EdgeInsets.all(8.r),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.grey[100]!,
+                                      width: 4.0,
+                                    ),
+                                  ),
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      color: kPrimaryColor,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Center(
+                                        child: Icon(
+                                      Icons.arrow_right_alt_sharp,
+                                      color: Colors.white,
+                                    )),
+                                  ),
+                                ),
+                                CustomPaint(
+                                  size: const Size(80.0, 80.0),
+                                  painter: CircularProgressPainter(
+                                    progress: _progress,
+                                    color: kPrimaryColor,
+                                    strokeWidth: 4.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

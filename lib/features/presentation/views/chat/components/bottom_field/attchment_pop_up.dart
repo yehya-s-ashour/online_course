@@ -1,20 +1,19 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/shared/commen.dart';
 import 'package:online_course/features/presentation/views/camera/sending_video_view_page.dart';
-
-import '../image/show_image.dart';
+import 'package:online_course/features/presentation/views/chat/components/image/show_image.dart';
 
 class AttchementPopUp extends StatelessWidget {
   final String receiverId;
   final bool isGroup;
-   AttchementPopUp({
-     required this.receiverId,
-     required this.isGroup,
+  AttchementPopUp({
+    required this.receiverId,
+    required this.isGroup,
     super.key,
   });
   void selectVideoFromGallery(BuildContext context) async {
@@ -30,9 +29,11 @@ class AttchementPopUp extends StatelessWidget {
       //     'isGroup':isGroup,
       //   },
       // );
-      Get.to(SendingVideoViewPage(path: image.path,receiverId: receiverId,isGroup:isGroup));
+      Get.to(SendingVideoViewPage(
+          path: image.path, receiverId: receiverId, isGroup: isGroup));
     }
   }
+
   void selectVideoFromCamera(BuildContext context) async {
     File? image = await pickVideoFromCamera(context);
     //if (!mounted) return;
@@ -46,109 +47,122 @@ class AttchementPopUp extends StatelessWidget {
       //     'isGroup':isGroup,
       //   },
       // );
-            Get.to(SendingVideoViewPage(path: image.path,receiverId: receiverId,isGroup:isGroup));
-
+      Get.to(SendingVideoViewPage(
+          path: image.path, receiverId: receiverId, isGroup: isGroup));
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      //RotationTransition to rotate icon with degree
-      icon: const RotationTransition(
-        turns: AlwaysStoppedAnimation(-40 / 360),
-        child: Icon(
-          Icons.attach_file,
-          color: Colors.grey,
-          size: 26,
-        ),
-      ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16),),
-     // offset: const Offset(0, -340),
-      offset: const Offset(0, -150),
-      onSelected: (val) {
-         if (FocusScope.of(context).hasFocus) {
-          Future.delayed(const Duration(milliseconds: 50)).whenComplete(
-            () {
-              FocusScope.of(context).unfocus();
-              FocusScope.of(context).dispose();
-            },
-          );
-        }
-      },
-      onCanceled: () {
-        if (!FocusScope.of(context).hasFocus) {
-          Future.delayed(const Duration(milliseconds: 50))
-              .whenComplete(() => FocusScope.of(context).unfocus());
-          FocusScope.of(context).dispose();
-        }
-      },
-      constraints: const BoxConstraints.tightFor(width: double.infinity),
-      itemBuilder: (context) {
-        return [
-          PopupMenuItem(
-            padding: const EdgeInsets.only(left: 40, right: 40, bottom: 15),
-            enabled: false,
-            onTap: () {},
-            child: Wrap(
-              spacing: 8,
-              runAlignment: WrapAlignment.spaceBetween,
-              children: [
-                AttchmentCard(
-                  name: 'Vidoe',
-                  color: Colors.deepPurpleAccent,
-                  icon: Icons.slow_motion_video_outlined,
-                  onPress: () {
-                    selectVideoFromGallery(context);
-                  },
-                ),
-                AttchmentCard(
-                  name: 'Camera',
-                  color: Colors.redAccent,
-                  icon: Icons.camera_alt,
-                  onPress: () {
-                    selectVideoFromCamera(context);
-                  },
-                ),
-                AttchmentCard(
-                  name: 'Gallery',
-                  color: Colors.purpleAccent,
-                  icon: Icons.photo,
-                  onPress: () {
-                    Get.to(Images(receiverId: receiverId,index: 1,));
-                  },
-                ),
-                // AttchmentCard(
-                //   name: 'Audio',
-                //   color: Colors.deepOrange,
-                //   icon: Icons.headset_mic_rounded,
-                //   onPress: () {},
-                // ),
-                // AttchmentCard(
-                //   name: 'Location',
-                //   color: Colors.green,
-                //   icon: Icons.location_on,
-                //   onPress: () {
-                //   },
-                // ),
-                // AttchmentCard(
-                //   name: 'Contact',
-                //   color: Colors.cyan,
-                //   icon: Icons.person,
-                //   onPress: () {
-                //     FlutterContacts.openExternalPick();
-                //   },
-                // ),
-                // AttchmentCard(
-                //   name: 'Poll',
-                //   color: Colors.teal,
-                //   icon: Icons.poll,
-                //   onPress: () {},
-                // ),
-              ],
-            ),
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic'
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      child: PopupMenuButton(
+        //RotationTransition to rotate icon with degree
+        icon: const RotationTransition(
+          turns: AlwaysStoppedAnimation(-40 / 360),
+          child: Icon(
+            Icons.attach_file,
+            color: Colors.grey,
+            size: 26,
           ),
-        ];
-      },
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        // offset: const Offset(0, -340),
+        offset: const Offset(0, -150),
+        onSelected: (val) {
+          if (FocusScope.of(context).hasFocus) {
+            Future.delayed(const Duration(milliseconds: 50)).whenComplete(
+              () {
+                FocusScope.of(context).unfocus();
+                FocusScope.of(context).dispose();
+              },
+            );
+          }
+        },
+        onCanceled: () {
+          if (!FocusScope.of(context).hasFocus) {
+            Future.delayed(const Duration(milliseconds: 50))
+                .whenComplete(() => FocusScope.of(context).unfocus());
+            FocusScope.of(context).dispose();
+          }
+        },
+        constraints: const BoxConstraints.tightFor(width: double.infinity),
+        itemBuilder: (context) {
+          return [
+            PopupMenuItem(
+              padding: const EdgeInsets.only(left: 40, right: 40, bottom: 15),
+              enabled: false,
+              onTap: () {},
+              child: Wrap(
+                spacing: 8,
+                runAlignment: WrapAlignment.spaceBetween,
+                children: [
+                  AttchmentCard(
+                    name: userEntity.language == 'Arabic' ? "فيديو" : 'Video',
+                    color: Colors.deepPurpleAccent,
+                    icon: Icons.slow_motion_video_outlined,
+                    onPress: () {
+                      selectVideoFromGallery(context);
+                    },
+                  ),
+                  AttchmentCard(
+                    name: userEntity.language == 'Arabic' ? "كاميرا" : 'Camera',
+                    color: Colors.redAccent,
+                    icon: Icons.camera_alt,
+                    onPress: () {
+                      selectVideoFromCamera(context);
+                    },
+                  ),
+                  AttchmentCard(
+                    name: userEntity.language == 'Arabic'
+                        ? "الاستديو"
+                        : 'Gallery',
+                    color: Colors.purpleAccent,
+                    icon: Icons.photo,
+                    onPress: () {
+                      Get.to(Images(
+                        receiverId: receiverId,
+                        index: 1,
+                      ));
+                    },
+                  ),
+                  // AttchmentCard(
+                  //   name: userEntity.language == 'Arabic' ? "صوت" :'Audio',
+                  //   color: Colors.deepOrange,
+                  //   icon: Icons.headset_mic_rounded,
+                  //   onPress: () {},
+                  // ),
+                  // AttchmentCard(
+                  //   name: userEntity.language == 'Arabic' ? "موقع" :'Location',
+                  //   color: Colors.green,
+                  //   icon: Icons.location_on,
+                  //   onPress: () {
+                  //   },
+                  // ),
+                  // AttchmentCard(
+                  //   name: userEntity.language == 'Arabic' ?  "جهة اتصال":'Contact',
+                  //   color: Colors.cyan,
+                  //   icon: Icons.person,
+                  //   onPress: () {
+                  //     FlutterContacts.openExternalPick();
+                  //   },
+                  // ),
+                  // AttchmentCard(
+                  //   name: userEntity.language == 'Arabic' ? "تصويت" :'Poll',
+                  //   color: Colors.teal,
+                  //   icon: Icons.poll,
+                  //   onPress: () {},
+                  // ),
+                ],
+              ),
+            ),
+          ];
+        },
+      ),
     );
   }
 }
@@ -192,6 +206,4 @@ class AttchmentCard extends StatelessWidget {
       ),
     );
   }
-
 }
-

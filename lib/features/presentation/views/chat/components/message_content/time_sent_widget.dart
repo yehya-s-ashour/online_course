@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:online_course/core/extensions/time_extension.dart';
 import 'package:online_course/core/functions/time.dart';
+import 'package:online_course/features/domain/entities/message.dart';
 
 import '/core/extensions/extensions.dart';
-import '../../../../../domain/entities/message.dart';
 
 class TimeSentWidget extends StatelessWidget {
   TimeSentWidget({
-  super.key,
-  this.message,
-  required this.isMe,
-  required this.textColor,
+    super.key,
+    this.message,
+    required this.isMe,
+    required this.textColor,
   });
 
   final Message? message;
@@ -25,8 +25,8 @@ class TimeSentWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            getTime(message!.timeSent).amPmMode ,
-            style:  TextStyle(
+            getTime(message!.timeSent).amPmMode,
+            style: TextStyle(
               fontSize: 13,
               color: textColor,
             ),
@@ -34,11 +34,13 @@ class TimeSentWidget extends StatelessWidget {
           const SizedBox(
             width: 5,
           ),
-            if(isMe)
+          if (isMe)
             Icon(
               Icons.done_all,
               size: 20,
-              color: message!.isSeen.length == message!.isSeen.length? context.colorScheme.onTertiary : textColor,
+              color: message!.isSeen.length == message!.isSeen.length
+                  ? context.colorScheme.onTertiary
+                  : textColor,
             ),
         ],
       ),

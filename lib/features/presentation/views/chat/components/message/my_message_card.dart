@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_course/core/functions/navigator.dart';
-import 'package:online_course/features/presentation/components/my_cached_net_image.dart';
+import 'package:online_course/features/domain/entities/message.dart';
+import 'package:online_course/features/presentation/controllers/chat_cubit/chat_cubit.dart';
 import 'package:swipe_to/swipe_to.dart';
 
 import '/core/extensions/extensions.dart';
-import '../../../../../domain/entities/message.dart';
-import '../../../../controllers/chat_cubit/chat_cubit.dart';
+
 import 'first_message_small_curved_bubble.dart';
 import '../message_content/message_content.dart';
 import 'message_replay_card.dart';
@@ -33,13 +32,12 @@ class MyMessageCard extends StatelessWidget {
     int all = 0;
     return SwipeTo(
       onRightSwipe: () {
-          ChatCubit.get(context).onMessageSwipe(
-              message: message!.text,
-              isMe: true,
-              messageType: message!.messageType,
-              repliedTo: message!.senderName,
-              repliedToUid: message!.senderId);
-        
+        ChatCubit.get(context).onMessageSwipe(
+            message: message!.text,
+            isMe: true,
+            messageType: message!.messageType,
+            repliedTo: message!.senderName,
+            repliedToUid: message!.senderId);
       },
       child: Align(
         alignment: AlignmentDirectional.centerStart,
@@ -47,9 +45,9 @@ class MyMessageCard extends StatelessWidget {
           padding:
               EdgeInsetsDirectional.only(top: 5.h, start: isFirst ? 5 : 15),
           child: Container(
-            color:  ((isReaction && (index == message!.messageId))
-                    ?  context.colorScheme.surface.withOpacity(0.55)
-                    : null),
+            color: ((isReaction && (index == message!.messageId))
+                ? context.colorScheme.surface.withOpacity(0.55)
+                : null),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -68,8 +66,7 @@ class MyMessageCard extends StatelessWidget {
                             : isFirst
                                 ? const EdgeInsetsDirectional.only(start: 0)
                                 : const EdgeInsetsDirectional.only(end: 10),
-                        color: 
-                            ((isReaction && (index == message!.messageId))
+                        color: ((isReaction && (index == message!.messageId))
                             ? context.colorScheme.surface.withOpacity(0.8)
                             : context.colorScheme.surface),
                         shape: RoundedRectangleBorder(
@@ -89,15 +86,15 @@ class MyMessageCard extends StatelessWidget {
                             if (isReplying)
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child:  ReplayMessageCard(
-                                        isGroup: false,
-                                        text: message!.repliedMessage,
-                                        repliedMessageType:
-                                            message!.repliedMessageType,
-                                        isMe: message!.repliedTo ==
-                                            message!.senderName,
-                                        repliedTo: message!.repliedTo,
-                                      ),
+                                child: ReplayMessageCard(
+                                  isGroup: false,
+                                  text: message!.repliedMessage,
+                                  repliedMessageType:
+                                      message!.repliedMessageType,
+                                  isMe:
+                                      message!.repliedTo == message!.senderName,
+                                  repliedTo: message!.repliedTo,
+                                ),
                               ),
                             MessageContent(
                               isGroup: isGroup,
@@ -107,12 +104,12 @@ class MyMessageCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      ],
+                    ],
                   ),
                 ),
                 if (isFirst)
                   Padding(
-                    padding: ( message!.reaction!.length >= 1)
+                    padding: (message!.reaction!.length >= 1)
                         ? EdgeInsets.only(top: 15.h)
                         : const EdgeInsets.all(0),
                     child: const FirstMessageSmallCurvedBubble(

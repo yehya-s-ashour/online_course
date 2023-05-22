@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/controllers/Setting/SettingCubit.dart';
 import 'package:online_course/features/presentation/controllers/Setting/SettingState.dart';
 
-import '../../../../../../core/functions/navigator.dart';
 import 'image_details.dart';
 
 class Images extends StatefulWidget {
@@ -51,25 +51,31 @@ class _ImagesState extends State<Images>
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SettingCubit, SettingState>(
-        builder: (context, state) {
-          return Directionality(
-            textDirection: TextDirection.ltr,
-            child: Scaffold(
-              appBar: AppBar(
-                title: Text('Gallery'),
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic'
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      child: BlocConsumer<SettingCubit, SettingState>(
+          builder: (context, state) {
+            return Directionality(
+              textDirection: TextDirection.ltr,
+              child: Scaffold(
+                appBar: AppBar(
+                  title: Text(
+                      userEntity.language == 'Arabic' ? "الاستديو" : 'Gallery'),
+                ),
+                body: Column(
+                  children: [
+                    Expanded(
+                      child: GalleryWallpaper(),
+                    ),
+                  ],
+                ),
               ),
-              body: Column(
-                children: [
-                  Expanded(
-                    child: GalleryWallpaper(),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-        listener: (context, state) {});
+            );
+          },
+          listener: (context, state) {}),
+    );
   }
 
   Widget GalleryWallpaper() => Padding(
@@ -90,8 +96,7 @@ class _ImagesState extends State<Images>
                         var file = SettingCubit.get(context).files[i];
                         return GestureDetector(
                             onTap: () {
-                              Get.to(
-                                  ImageDetails(
+                              Get.to(ImageDetails(
                                 receiverId: widget.receiverId,
                                 title: file.folder,
                                 file: file,

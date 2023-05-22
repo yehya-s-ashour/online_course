@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/views/camera/sending_image_view_page.dart';
 
 import '../../components/loader.dart';
@@ -37,109 +38,116 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: CameraAppBar(
-        isFlashOn: isFlashOn,
-        onFlashPressed: toggleFlash,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                FutureBuilder(
-                  future: _cameraValue,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      return SizedBox(
-                        width: double.infinity,
-                        child: CameraPreview(_cameraController),
-                      );
-                    } else {
-                      return const Loader();
-                    }
-                  },
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SelectImageFromGalleryButton(
-                            receiverId: widget.receiverId),
-                        GestureDetector(
-                          onTap: () {
-                            if (!isRecording) takePhoto(context);
-                          },
-                          // onLongPress: () async {
-                          //   await _cameraController.startVideoRecording();
-                          //   setState(() {
-                          //     isRecording = true;
-                          //   });
-                          // },
-                          // onLongPressUp: () async {
-                          //   XFile videoPath =
-                          //       await _cameraController.stopVideoRecording();
-                          //   setState(() {
-                          //     isRecording = false;
-                          //   });
-                          //   if (!mounted) return;
-                          //   Navigator.of(context).push(
-                          //     MaterialPageRoute(
-                          //       builder: (_) => SendingVideoViewPage(
-                          //           path: widget.receiverId, receiverId: videoPath.path,isGroup:widget.isGroup),
-                          //     ),
-                          //   );
-                          //   // navigateTo(
-                          //   //   context,
-                          //   //   Routes.sendingVideoViewRoute,
-                          //   //   arguments: {
-                          //   //     'uId': widget.receiverId,
-                          //   //     'path': videoPath.path,
-                          //   //   },
-                          //   // );
-                          // },
-                          child: cameraIcon(),
-                        ),
-                        GestureDetector(
-                          onTap: toggleCameraFront,
-                          child: const CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.black38,
-                            child: Icon(
-                              Icons.flip_camera_ios,
-                              size: 30,
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic'
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: CameraAppBar(
+          isFlashOn: isFlashOn,
+          onFlashPressed: toggleFlash,
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  FutureBuilder(
+                    future: _cameraValue,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return SizedBox(
+                          width: double.infinity,
+                          child: CameraPreview(_cameraController),
+                        );
+                      } else {
+                        return const Loader();
+                      }
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SelectImageFromGalleryButton(
+                              receiverId: widget.receiverId),
+                          GestureDetector(
+                            onTap: () {
+                              if (!isRecording) takePhoto(context);
+                            },
+                            // onLongPress: () async {
+                            //   await _cameraController.startVideoRecording();
+                            //   setState(() {
+                            //     isRecording = true;
+                            //   });
+                            // },
+                            // onLongPressUp: () async {
+                            //   XFile videoPath =
+                            //       await _cameraController.stopVideoRecording();
+                            //   setState(() {
+                            //     isRecording = false;
+                            //   });
+                            //   if (!mounted) return;
+                            //   Navigator.of(context).push(
+                            //     MaterialPageRoute(
+                            //       builder: (_) => SendingVideoViewPage(
+                            //           path: widget.receiverId, receiverId: videoPath.path,isGroup:widget.isGroup),
+                            //     ),
+                            //   );
+                            //   // navigateTo(
+                            //   //   context,
+                            //   //   Routes.sendingVideoViewRoute,
+                            //   //   arguments: {
+                            //   //     'uId': widget.receiverId,
+                            //   //     'path': videoPath.path,
+                            //   //   },
+                            //   // );
+                            // },
+                            child: cameraIcon(),
+                          ),
+                          GestureDetector(
+                            onTap: toggleCameraFront,
+                            child: const CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.black38,
+                              child: Icon(
+                                Icons.flip_camera_ios,
+                                size: 30,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 8, bottom: 8),
-            child: Text(
-              'Hold for video, tap for photo',
-              style: TextStyle(fontSize: 16),
+            Padding(
+              padding: EdgeInsets.only(top: 8, bottom: 8),
+              child: Text(
+                userEntity.language == 'Arabic'
+                    ? "اضغط مطولا لالتقاط فيديو,أو ضغطة واحدة لالتقاط صورة"
+                    : 'Hold for video, tap for photo',
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Icon cameraIcon() {
     return const Icon(
-            Icons.panorama_fish_eye,
-            size: 80,
-            color: Colors.white,
-          );
+      Icons.panorama_fish_eye,
+      size: 80,
+      color: Colors.white,
+    );
   }
 
   void toggleFlash() {
@@ -164,7 +172,10 @@ class _CameraScreenState extends State<CameraScreen> {
   void takePhoto(BuildContext context) async {
     XFile file = await _cameraController.takePicture();
     if (!mounted) return;
-    Get.to(SendingImageViewPage(path: file.path, receiverId: widget.receiverId, ));
+    Get.to(SendingImageViewPage(
+      path: file.path,
+      receiverId: widget.receiverId,
+    ));
     // navigateTo(context, Routes.sendingImageViewRoute, );
   }
 

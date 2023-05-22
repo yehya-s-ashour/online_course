@@ -6,7 +6,6 @@ class CustomNetworkImage extends StatelessWidget {
   final String imageUrl;
 
   const CustomNetworkImage({super.key, required this.imageUrl});
-
   @override
   Widget build(BuildContext context) {
     return ClipOval(
@@ -22,11 +21,11 @@ class CustomNetworkImage extends StatelessWidget {
   }
 }
 
+
 class CustomAssetsGroupImage extends StatelessWidget {
   final String imageUrl;
 
   const CustomAssetsGroupImage({super.key, required this.imageUrl});
-
   @override
   Widget build(BuildContext context) {
     return ClipOval(

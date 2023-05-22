@@ -11,6 +11,7 @@ import 'package:online_course/features/presentation/components/custom_textfeild.
 import 'package:online_course/features/presentation/controllers/sing_up_cubit/RegisterCubit.dart';
 import 'package:online_course/features/presentation/controllers/sing_up_cubit/RegisterState.dart';
 import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
+import 'package:online_course/features/presentation/views/translate.dart';
 
 import '../../../components/no_account_text.dart';
 import '../../sign_in/sign_in_screen.dart';
@@ -43,66 +44,72 @@ class _SignUpFormState extends State<SignUpForm> {
         }
       },
       builder: (context, state) {
-        return SizedBox(
-          width: 1.sw,
-          height: 1.sh*0.6,
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                TextFieldWidget(
-                  text: 'Name',
-                  controller: name,
-                  validator: 'please enter your name',
-                ),
-                TextFieldWidget(
-                  text: 'Email',
-                  controller: email,
-                  validator: 'please enter your email address',
-                ),
-                TextFieldWidget(
-                  hint: 'Password',
-                  validator: 'please enter your password',
-                  controller: password,
-                  isHidden: RegisterCubit.get(context).isPassword,
-                  inkell: RegisterCubit.get(context).suffix,
-                  onTap: () {
-                    RegisterCubit.get(context).changePasswordVisibility();
-                  },
-                ),
-                const Spacer(),
-                if (state is! RegisterLoadingState)
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          minimumSize: Size(1.sw, 50),
-                          maximumSize: Size(1.sw, 50),
-                          foregroundColor: kWhiteColor),
-                      onPressed: () {
+        return Directionality(
+          textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
+          child: SizedBox(
+            width: 1.sw,
+            height: 1.sh*0.6,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFieldWidget(
+                    // userEntity.language == 'Arabic' ? Translation.Name :Translation.Create_Account2,
 
-                        if (_formKey.currentState!.validate()) {
-                          RegisterCubit.get(context).userRegister(
-                              name: name.text,
-                              email: email.text,
-                              password: password.text);
-                        }
-                      },
-                      child: const Text('Sign Up')),
-                if (state is RegisterLoadingState)
-                  Center(
-                    child: CircularProgressIndicator(
-                      color: mixedColor,
-                    ),
+                    text: 'Name',
+                    controller: name,
+                    validator: 'please enter your name',
                   ),
-                SizedBox(height: 20.h),
-                NoAccountText(
-                  text: 'Already have an account?',
-                  goTitle: 'Sign In',
-                  onTapTitle: () {
-                    Get.to(() => const SignInScreen());
-                  },
-                ),
-                const Spacer(),
-              ],
+                  TextFieldWidget(
+                    text: 'Email',
+                    controller: email,
+                    validator: 'please enter your email address',
+                  ),
+                  TextFieldWidget(
+                    hint: 'Password',
+                    validator: 'please enter your password',
+                    controller: password,
+                    isHidden: RegisterCubit.get(context).isPassword,
+                    inkell: RegisterCubit.get(context).suffix,
+                    onTap: () {
+                      RegisterCubit.get(context).changePasswordVisibility();
+                    },
+                  ),
+                  const Spacer(),
+                  if (state is! RegisterLoadingState)
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(1.sw, 50),
+                            maximumSize: Size(1.sw, 50),
+                            foregroundColor: kWhiteColor),
+                        onPressed: () {
+
+                          if (_formKey.currentState!.validate()) {
+                            RegisterCubit.get(context).userRegister(
+                                name: name.text,
+                                email: email.text,
+                                password: password.text);
+                          }
+                        },
+                        child: Text(userEntity.language == 'Arabic' ? Translation.Sign_up1 :Translation.Sign_up2,
+                        )),
+                  if (state is RegisterLoadingState)
+                    Center(
+                      child: CircularProgressIndicator(
+                        color: mixedColor,
+                      ),
+                    ),
+                  SizedBox(height: 20.h),
+                  NoAccountText(
+                    text:userEntity.language == 'Arabic' ? Translation.Already_have_an_account1 :Translation.Already_have_an_account2,
+                    goTitle: userEntity.language == 'Arabic' ? Translation.Sign_In2 :Translation.Sign_In2,
+                    onTapTitle: () {
+                      Get.to(() => const SignInScreen());
+                    },
+                  ),
+                  const Spacer(),
+                ],
+              ),
             ),
           ),
         );

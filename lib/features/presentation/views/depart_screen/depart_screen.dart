@@ -3,43 +3,48 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/depart_screen/components/course_screen.dart';
+import 'package:online_course/features/presentation/views/translate.dart';
 
 class DepartmentScreen extends StatelessWidget {
   const DepartmentScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            backgroundColor: kWhiteColor,
-            pinned: true,
-            snap: true,
-            floating: true,
-            centerTitle: true,
-            title: Text(
-              'RoadMaps',
-              style: GoogleFonts.cairo(
-                  fontSize: 20.spMin,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black),
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: kWhiteColor,
+              pinned: true,
+              snap: true,
+              floating: true,
+              centerTitle: true,
+              title: Text(
+                userEntity.language == 'Arabic' ? Translation.RoadMap1 :Translation.RoadMap2,
+                style: GoogleFonts.cairo(
+                    fontSize: 20.spMin,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+              ),
             ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => buildColumn(
-                  roadmapModel:
-                      LayoutCubit.get(context).roadmap.values.toList(),
-                  roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
-              childCount: 1,
-            ),
-          )
-        ],
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => buildColumn(
+                    roadmapModel:
+                        LayoutCubit.get(context).roadmap.values.toList(),
+                    roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
+                childCount: 1,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

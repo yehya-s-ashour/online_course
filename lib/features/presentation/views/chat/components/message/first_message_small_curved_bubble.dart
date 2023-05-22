@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/functions/navigator.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import '/core/extensions/extensions.dart';
 
 class FirstMessageSmallCurvedBubble extends StatelessWidget {

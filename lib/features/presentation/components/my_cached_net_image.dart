@@ -38,6 +38,8 @@ class MyCachedNetImage extends StatelessWidget {
   }
 }
 
+
+
 class MyCachedGroup extends StatelessWidget {
   final String imageUrl;
   final double radius;
@@ -64,7 +66,8 @@ class MyCachedGroup extends StatelessWidget {
             )
           ],
         ),
-        errorWidget: (context, url, error) => Image.asset(AppImage.photoGroup),
+        errorWidget: (context, url, error) =>
+            Image.asset(AppImage.photoGroup),
         //height: 180.0,
         fit: BoxFit.cover,
       ),

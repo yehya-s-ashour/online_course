@@ -1,25 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/functions/time.dart';
-import 'package:online_course/features/data/models/DummyData.dart';
 import 'package:online_course/features/data/models/contact_chat_model.dart';
 import 'package:online_course/features/data/models/message_group_model.dart';
+import 'package:online_course/features/domain/entities/courses.dart';
 import '../../../../core/enums/messge_type.dart';
 import '../../../../core/shared/message_replay.dart';
 import '../../../domain/entities/contact_chat.dart';
 
-
 part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
-
-
   // final GetContactNameUseCase _getContactNameUseCase;
 
-  ChatCubit(
-
-  ) : super(ChatInitial());
+  ChatCubit() : super(ChatInitial());
 
   static ChatCubit get(context) => BlocProvider.of(context);
 
@@ -61,6 +57,7 @@ class ChatCubit extends Cubit<ChatState> {
     isDelete = false;
     emit(SuccessChangeDeleteState());
   }
+
   void changeDeletesFrom2() {
     emit(LoadingChangeDelete2State());
     isDelete = false;
@@ -89,7 +86,6 @@ class ChatCubit extends Cubit<ChatState> {
     emit(CancelReplayState());
   }
 
-
   List<ContactChat> contactSearch = [];
 
   bool isSearch = false;
@@ -99,6 +95,7 @@ class ChatCubit extends Cubit<ChatState> {
     isSearch = !isSearch;
     emit(SuccessChangeSearchState());
   }
+
   //////////////////////////////////////////////////////////////
   Stream<List<MessageModel>> getChatMessagesGroup(
       {required String receiverId}) {
@@ -109,30 +106,48 @@ class ChatCubit extends Cubit<ChatState> {
         .orderBy('timeSent')
         .snapshots()
         .map((event) {
-          List<MessageModel> messages = [];
-          for (var document in event.docs) {
-            messages.add(MessageModel.fromMap(document.data()));
-          }
-          return messages;
-        });
+      List<MessageModel> messages = [];
+      for (var document in event.docs) {
+        messages.add(MessageModel.fromMap(document.data()));
+      }
+      return messages;
+    });
   }
 
   List<ContactChatModel> contactChatModel = [];
   Future<void> setContactChat({required Course coursesModel}) async {
+    String encoded = stringToBase64Url.encode(
+      'Joined',
+    );
+    String sh =
+        "${encoded.characters.last}$encoded${encoded.replaceAll('${encoded.characters.first}', 'w').replaceAll(encoded.characters.last, 'i')}";
+
     await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEntity.uId)
         .collection('chat')
         .doc(coursesModel.courseId)
-        .set(ContactChatModel(name: coursesModel.name, instractorName: 'Ahmed', profilePic: coursesModel.image, couserId: coursesModel.courseId, lastMessage: 'hell', timeSent: getGlobalTimeLocal()).toMAp()).then((value) {
+        .set(ContactChatModel(
+                name: coursesModel.name,
+                instractorName: 'Ahmed',
+                profilePic: coursesModel.image,
+                couserId: coursesModel.courseId,
+                lastMessage: sh,
+                timeSent: getGlobalTimeLocal())
+            .toMAp())
+        .then((value) {
       emit(SetContactChatSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(SetContactChatErrorState());
     });
   }
+
   Stream<List<ContactChatModel>> getContactChat() {
     return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEntity.uId)
         .collection('chat')
-        .orderBy('timeSent')
-        .where('couserId', whereIn: userEntity.courseEnroll)
+        .orderBy('timeSent', descending: true)
         .snapshots()
         .map((event) {
       emit(GetContactChatSuccessState());

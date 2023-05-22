@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/enums/messge_type.dart';
 import 'package:online_course/core/functions/navigator.dart';
-import '../../../../../../core/enums/messge_type.dart';
-import '../../../../controllers/chat_cubit/chat_cubit.dart';
+import 'package:online_course/features/presentation/controllers/chat_cubit/chat_cubit.dart';
 
 class ReplayMessageCard extends StatelessWidget {
   final bool showCloseButton;
@@ -46,15 +46,15 @@ class ReplayMessageCard extends StatelessWidget {
               : Color(0xFF233138),
           border: Border(
             left: BorderSide(
-              color:  isGroup
+              color: isGroup
                   ? (repliedToUid == userEntity.uId
-                  ? mixedColor!
-                  : Color(colors))
+                      ? mixedColor!
+                      : Color(colors))
                   : isMe
-                  ? mixedColor!
-                  : isGroup
-                  ? Color(colors)
-                  : Colors.deepPurple,
+                      ? mixedColor!
+                      : isGroup
+                          ? Color(colors)
+                          : Colors.deepPurple,
               width: 5,
             ),
           ),

@@ -3,12 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/utils/data.dart';
 import 'package:online_course/features/data/models/roadmap_model.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/depart_screen/components/course_screen.dart';
 import 'package:online_course/features/presentation/views/depart_screen/depart_screen.dart';
+import 'package:online_course/features/presentation/views/translate.dart';
 
 class AchievementScreen extends StatefulWidget {
   const AchievementScreen({Key? key}) : super(key: key);
@@ -20,20 +22,23 @@ class AchievementScreen extends StatefulWidget {
 class _AchievementScreenState extends State<AchievementScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: MyAppBar(title: "Language"),
-      appBar: MyAppBar(
-        title: "Achievement",
-        backgroundColor: kPrimaryColor,
-        color: Colors.white,
-        titleColor: Colors.white,
-      ),
-      body: Container(
-        width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 20.h),
-        child: buildColumn(
-            roadmapModel: LayoutCubit.get(context).roadmap.values.toList(),
-            roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
+      child: Scaffold(
+        // appBar: MyAppBar(title: "Language"),
+        appBar: MyAppBar(
+          title: userEntity.language == 'Arabic' ? Translation.Achievements1 :Translation.Achievements2,
+          backgroundColor: kPrimaryColor,
+          color: Colors.white,
+          titleColor: Colors.white,
+        ),
+        body: Container(
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 20.h),
+          child: buildColumn(
+              roadmapModel: LayoutCubit.get(context).roadmap.values.toList(),
+              roadmapName: LayoutCubit.get(context).roadmap.keys.toList()),
+        ),
       ),
     );
   }

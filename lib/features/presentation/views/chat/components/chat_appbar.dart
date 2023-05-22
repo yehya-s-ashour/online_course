@@ -1,11 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:online_course/features/presentation/components/my_cached_net_image.dart';
-import '/core/functions/navigator.dart';
-import '../../../../domain/entities/user.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String name;
@@ -44,7 +39,9 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
               Hero(
                 tag: 'asw',
                 child: MyCachedGroup(
-                    imageUrl: '', radius: 23.r,),
+                  imageUrl: '',
+                  radius: 23.r,
+                ),
               ),
             ],
           ),
@@ -72,11 +69,9 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-      actions: [
-      ],
+      actions: [],
     );
   }
-
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:giphy_get/giphy_get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/shared/commen.dart';
 import 'package:online_course/features/presentation/controllers/bottom_chat_cubit/bottom_chat_cubit.dart';
 import 'package:online_course/features/presentation/controllers/chat_cubit/chat_cubit.dart';
 import 'package:online_course/features/presentation/views/camera/camera_screen.dart';
 
-import '../../../../../../core/shared/commen.dart';
 import 'bottom_chat_field.dart';
 import 'emoji_picker_widget.dart';
 

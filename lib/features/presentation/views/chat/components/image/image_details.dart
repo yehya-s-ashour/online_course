@@ -2,12 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/shared/commen.dart';
 import 'package:online_course/features/data/models/file_model.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../../../../../../core/shared/commen.dart';
 
 class ImageDetails extends StatelessWidget {
-   ImageDetails(
+  ImageDetails(
       {Key? key,
       required this.title,
       required this.file,
@@ -20,13 +20,9 @@ class ImageDetails extends StatelessWidget {
   final FileModel file;
   final String? receiverId;
 
-
-
   @override
   Widget build(BuildContext context) {
     String a = '';
-
-
 
     return Directionality(
         textDirection: TextDirection.ltr,
@@ -46,7 +42,6 @@ class ImageDetails extends StatelessWidget {
                       crossAxisSpacing: 10.w,
                     ),
                     itemBuilder: (_, i) {
-
                       return GestureDetector(
                         onTap: () {
                           File compressImage = File(file.file[i]);
@@ -85,14 +80,12 @@ class ImageDetails extends StatelessWidget {
                             int count = 0;
                             Navigator.of(context)
                                 .popUntil((route) => count++ >= 2);
-                          }
-                          else if (index == 5) {
+                          } else if (index == 5) {
                             cropImage(file.file[i]).then((value) {
                               if (value != null) {
                                 // GroupCubit.get(context)
                                 //     .updateGroupPic(value.path).then((value) {
                                 // });
-
                               }
                               int count = 0;
                               Navigator.of(context)
@@ -121,9 +114,8 @@ class ImageDetails extends StatelessWidget {
         ));
   }
 
-   @override
-   initState()
-   async{
-     await Permission.storage.request();
-   }
+  @override
+  initState() async {
+    await Permission.storage.request();
+  }
 }

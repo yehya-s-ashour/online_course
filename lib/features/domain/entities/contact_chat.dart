@@ -1,4 +1,6 @@
-class ContactChat {
+
+
+class ContactChat  {
   final String name;
   final String profilePic;
   final String couserId;
@@ -19,8 +21,8 @@ class ContactChat {
   List<Object?> get props => [
         name,
         profilePic,
-        instractorName,
-        couserId,
+    instractorName,
+    couserId,
         lastMessage,
         timeSent,
       ];

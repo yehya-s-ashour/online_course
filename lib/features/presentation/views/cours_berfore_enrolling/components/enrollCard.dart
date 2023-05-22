@@ -6,131 +6,140 @@ import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
+import 'package:online_course/features/presentation/controllers/chat_cubit/chat_cubit.dart';
 import 'package:online_course/features/presentation/views/lesson/lessonScreen.dart';
 import 'package:online_course/features/presentation/views/review_screen/review_screen.dart';
 
 Widget enrollCard(
     {required Course courseModel, required BuildContext context}) {
-  return Padding(
-    padding: EdgeInsetsDirectional.only(top: 20.h, start: 20.w, end: 20.w),
-    child: Stack(
-      children: [
-        Column(
-          children: [
-            SizedBox(
-              height: 10.h,
-            ),
-            CustomPaint(
-              size: Size(430, (270 * 0.3125).toDouble()),
-              painter: RPSCustomPainter(),
-            ),
-          ],
-        ),
-        // if(userEntity.courseEnroll.contains(courseModel.courseId))
-        Positioned(
-          left: 10.w,
-          child: Container(
-            width: 55.0,
-            height: 55.0,
-            decoration: BoxDecoration(
-              color: mixedColor,
-              borderRadius: BorderRadius.circular(40.0),
-              boxShadow: [
-                BoxShadow(
-                  color: mixedColor!.withOpacity(0.3),
-                  blurRadius: 5.0,
-                  spreadRadius: 0.5,
-                  offset: Offset(0, 3),
-                ),
-              ],
-            ),
-            child: IconButton(
-              icon: Icon(
-                Icons.message_sharp,
-                color: Colors.white,
-                size: 25.0,
+  return Directionality(
+    textDirection:
+        userEntity.language == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
+    child: Padding(
+      padding: EdgeInsetsDirectional.only(top: 20.h, start: 20.w, end: 20.w),
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              SizedBox(
+                height: 10.h,
               ),
-              onPressed: () {
-                Get.to(ReviewScreen());
-              },
+              CustomPaint(
+                size: Size(430, (270 * 0.3125).toDouble()),
+                painter: RPSCustomPainter(),
+              ),
+            ],
+          ),
+          // if(userEntity.courseEnroll.contains(courseModel.courseId))
+          Positioned(
+            left: 10.w,
+            child: Container(
+              width: 55.0,
+              height: 55.0,
+              decoration: BoxDecoration(
+                color: mixedColor,
+                borderRadius: BorderRadius.circular(40.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: mixedColor!.withOpacity(0.3),
+                    blurRadius: 5.0,
+                    spreadRadius: 0.5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.message_sharp,
+                  color: Colors.white,
+                  size: 25.0,
+                ),
+                onPressed: () {
+                  Get.to(ReviewScreen());
+                },
+              ),
             ),
           ),
-        ),
-        if (!userEntity.courseEnroll.contains(courseModel.courseId))
-          Positioned(
-            left: 212.w,
-            top: 23.h,
-            child: InkWell(
-              onTap: () {
-                LayoutCubit.get(context)
-                    .setCoursesEnroll(coursesModel: courseModel)
-                    .then((value) {
-                  Get.to(LessonScreen(
-                    mainCategory: courseModel.mainCategory,
-                    courseId: courseModel.courseId,
-                    subCategory: courseModel.subCategory,
-                    name: courseModel.name,
-                    previewVideo: courseModel.previewVideo,
-                  ));
-                });
-              },
-              child: Container(
-                width: 100.0,
-                height: 55.0,
-                decoration: BoxDecoration(
-                  color: Colors.white24,
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: mixedColor!.withOpacity(0.25),
-                      blurRadius: 7.0,
-                      spreadRadius: 1.5,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Text(
-                    "Enroll Now",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.5.spMin,
+          if (!userEntity.courseEnroll.contains(courseModel.courseId))
+            Positioned(
+              left: 212.w,
+              top: 23.h,
+              child: InkWell(
+                onTap: () {
+                  LayoutCubit.get(context)
+                      .setCoursesEnroll(coursesModel: courseModel)
+                      .then((value) {
+                    ChatCubit.get(context)
+                        .setContactChat(coursesModel: courseModel);
+                    Get.to(LessonScreen(
+                      mainCategory: courseModel.mainCategory,
+                      courseId: courseModel.courseId,
+                      subCategory: courseModel.subCategory,
+                      name: courseModel.name,
+                      previewVideo: courseModel.previewVideo,
+                    ));
+                  });
+                },
+                child: Container(
+                  width: 100.0,
+                  height: 55.0,
+                  decoration: BoxDecoration(
+                    color: Colors.white24,
+                    borderRadius: BorderRadius.circular(10.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: mixedColor!.withOpacity(0.25),
+                        blurRadius: 7.0,
+                        spreadRadius: 1.5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      userEntity.language == 'Arabic'
+                          ? "التسجيل الآن"
+                          : "Enroll Now",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.5.spMin,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        Positioned(
-          left: 85.w,
-          top: 27.h,
-          child: Center(
-            child: Text(
-              "Course Price",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                fontSize: 18.spMin,
+          Positioned(
+            left: 85.w,
+            top: 27.h,
+            child: Center(
+              child: Text(
+                userEntity.language == 'Arabic' ? "سعر الكورس" : "Course Price",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18.spMin,
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          left: 95.w,
-          top: 47.h,
-          child: Center(
-            child: Text(
-              "Free",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 18.spMin,
+          Positioned(
+            left: 95.w,
+            top: 47.h,
+            child: Center(
+              child: Text(
+                userEntity.language == 'Arabic' ? "مجانا" : "Free",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18.spMin,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

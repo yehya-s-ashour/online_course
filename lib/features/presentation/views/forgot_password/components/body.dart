@@ -2,29 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/components/custom_textfeild.dart';
 import 'package:online_course/features/presentation/views/otp/otp_screen.dart';
+import 'package:online_course/features/presentation/views/translate.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Column(
-            children: [
-              SizedBox(height: Get.height * 0.04),
-              const Text(
-                "We need your registration email to send you password reset code!",
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: Get.height * 0.1),
-              const ForgotPassForm(),
-            ],
+    return Directionality(
+      textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
+      child: SizedBox(
+        width: double.infinity,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              children: [
+                SizedBox(height: Get.height * 0.04),
+                 Text(
+                  userEntity.language == 'Arabic' ? Translation.We_need_your_registration_email_to_send_you_a_password_reset_code1 :Translation.We_need_your_registration_email_to_send_you_a_password_reset_code2,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: Get.height * 0.1),
+                const ForgotPassForm(),
+              ],
+            ),
           ),
         ),
       ),
@@ -50,7 +55,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
       child: Column(
         children: [
           TextFieldWidget(
-            text: 'Email',
+            text:userEntity.language == 'Arabic' ? Translation.E_mail1 :Translation.E_mail2,
           ),
           SizedBox(height: 20.h),
           ElevatedButton(
@@ -61,7 +66,9 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               onPressed: () {
                 Get.to(() => const OtpScreen());
               },
-              child: const Text('Send Code')),
+              child:  Text(
+                  userEntity.language == 'Arabic' ? Translation.Send_Code1 :Translation.Send_Code2,
+              )),
         ],
       ),
     );

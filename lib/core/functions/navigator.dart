@@ -23,17 +23,16 @@ void navigateAndRemove(
     (route) => false,
   );
 }
-
 void navigateAndFinish(
-  context,
-  widget,
-) =>
+    context,
+    widget,
+    ) =>
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => widget,
       ),
-      (route) => false,
+          (route) => false,
     );
 
 Future<Object?> navigateTo(
@@ -57,7 +56,6 @@ void navigateAndReplace(
     arguments: arguments,
   );
 }
-
 void showToast({
   required String text,
   required ToastStates state,
@@ -71,8 +69,7 @@ void showToast({
         textColor: Colors.black87,
         fontSize: 16.0);
 
-enum ToastStates { SUCCESS, ERROR, WARNING }
-
+enum ToastStates {SUCCESS,ERROR,WARNING}
 Color ChooseToastColor(ToastStates state) {
   Color color;
   switch (state) {
@@ -88,7 +85,6 @@ Color ChooseToastColor(ToastStates state) {
   }
   return color;
 }
-
 Codec<String, String> stringToBase64Url = utf8.fuse(base64);
 String? uid;
 String? profilePicMe;
@@ -114,15 +110,16 @@ List<String> newSeenMessage = [];
 
 List<String> seenMessageNumber = [];
 UserEntity userEntity = UserEntity(
-    name: 'UserName',
-    uId: '',
-    bio: '',
-    profilePic: '',
-    language: 'English',
-    theme: 'Light',
-    wallpaper: '',
-    token: '',
-    email: '',
-    password: '',
-    courseEnroll: []);
+  name: 'UserName',
+  uId: '',
+  bio: '',
+  profilePic: '',
+  language: 'English',
+  theme: 'Light',
+  wallpaper: '',
+  token: '',
+  email: '',
+  password: '',
+  courseEnroll: []
+);
 List<int> sub = [0, 0];

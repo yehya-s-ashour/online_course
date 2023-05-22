@@ -4,7 +4,6 @@ import 'package:online_course/core/Theme/styles/colors.dart';
 class NoAccountText extends StatelessWidget {
   final String text, goTitle;
   final Function()? onTapTitle;
-
   const NoAccountText({
     Key? key,
     required this.text,
