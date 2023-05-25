@@ -15,7 +15,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
       child: Scaffold(
         appBar: MyAppBar(
-          title: userEntity.language == 'Arabic' ? Translation.Forget_Password1 :Translation.Forget_Password2,
+          title: userEntity.language != 'Arabic' ? Translation.Forget_Password1 :Translation.Forget_Password2,
         ),
         body: const Body(),
       ),

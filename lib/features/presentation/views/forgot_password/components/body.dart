@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(height: Get.height * 0.04),
                  Text(
-                  userEntity.language == 'Arabic' ? Translation.We_need_your_registration_email_to_send_you_a_password_reset_code1 :Translation.We_need_your_registration_email_to_send_you_a_password_reset_code2,
+                  userEntity.language != 'Arabic' ? Translation.We_need_your_registration_email_to_send_you_a_password_reset_code1 :Translation.We_need_your_registration_email_to_send_you_a_password_reset_code2,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: Get.height * 0.1),
@@ -55,7 +55,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
       child: Column(
         children: [
           TextFieldWidget(
-            text:userEntity.language == 'Arabic' ? Translation.E_mail1 :Translation.E_mail2,
+            text:userEntity.language != 'Arabic' ? Translation.E_mail1 :Translation.E_mail2,
           ),
           SizedBox(height: 20.h),
           ElevatedButton(
@@ -67,7 +67,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                 Get.to(() => const OtpScreen());
               },
               child:  Text(
-                  userEntity.language == 'Arabic' ? Translation.Send_Code1 :Translation.Send_Code2,
+                  userEntity.language != 'Arabic' ? Translation.Send_Code1 :Translation.Send_Code2,
               )),
         ],
       ),

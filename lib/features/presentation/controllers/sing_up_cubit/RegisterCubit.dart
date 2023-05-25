@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/network/cache_helper.dart';
-import 'package:online_course/features/data/models/user_model.dart';
 import 'package:online_course/features/domain/entities/user.dart';
 
 import 'RegisterState.dart';
@@ -18,6 +17,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String name,
     required String email,
     required String password,
+    required bool isTeacher,
   }) {
     emit(RegisterLoadingState());
     FirebaseAuth.instance
@@ -31,6 +31,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         email: email,
         password: password,
         uId: value.user!.uid,
+        isTeacher: isTeacher
       );
       emit(RegisterSuccessState(value.user!.uid));
     }).catchError((error) {
@@ -43,6 +44,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String password,
     required String name,
     required String uId,
+    required bool isTeacher,
   }) {
     userEntity = UserEntity(
       name: name,
@@ -55,14 +57,14 @@ class RegisterCubit extends Cubit<RegisterState> {
       profilePic: '',
       token: '',
       wallpaper: '',
-      courseEnroll: []
+      courseEnroll: [],isTeacher: isTeacher,
     );
     FirebaseFirestore.instance
         .collection('users')
         .doc(uId)
         .set(userEntity.toMap())
         .then((value) {
-          CacheHelper.saveData(key: 'userEntity', value: '$uId,$name,$password,$email,${'English'},${'Light'},,,,');
+          CacheHelper.saveData(key: 'userEntity', value: '$uId,$name,$password,$email,${'English'},${'Light'},,,,,$isTeacher');
           CacheHelper.saveData(key: 'courseEnroll',value: []);
       emit(CreateUserSuccessState(userEntity.uId));
     }).catchError((error) {

@@ -12,6 +12,7 @@ import 'package:online_course/features/presentation/controllers/Setting/SettingC
 import 'package:online_course/features/presentation/controllers/chat_cubit/chat_cubit.dart';
 import 'package:online_course/features/presentation/controllers/sing_in_cubit/LoginCubit.dart';
 import 'package:online_course/features/presentation/controllers/sing_up_cubit/RegisterCubit.dart';
+import 'package:online_course/features/presentation/controllers/teacher_cubit/TeacherCubit.dart';
 
 import 'core/Theme/theme.dart';
 import 'features/presentation/controllers/bottom_chat_cubit/bottom_chat_cubit.dart';
@@ -39,6 +40,7 @@ void main() async {
         language: user[4],
         theme: user[5],
         wallpaper: user[9],
+        isTeacher: user[10]=='false'?false:true,
         courseEnroll: courseEnroll,
       );
     }
@@ -74,6 +76,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginCubit(),
         ),
+       BlocProvider(
+          create: (context) => TeacherCubit(),
+        )
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

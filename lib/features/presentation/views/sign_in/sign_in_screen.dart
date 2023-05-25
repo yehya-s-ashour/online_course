@@ -14,7 +14,7 @@ class SignInScreen extends StatelessWidget {
       textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
         appBar: MyAppBar(
-          title:userEntity.language == 'Arabic' ? Translation.Let_Sign_in1 :Translation.Let_Sign_in2,
+          title:userEntity.language != 'Arabic' ? Translation.Let_Sign_in1 :Translation.Let_Sign_in2,
         ),
         body: const Body(),
       ),

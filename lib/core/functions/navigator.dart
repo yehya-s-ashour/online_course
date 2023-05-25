@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:online_course/features/data/models/courses_model.dart';
 import 'package:online_course/features/domain/entities/user.dart';
 
 void navigatePop(
@@ -120,6 +121,7 @@ UserEntity userEntity = UserEntity(
   token: '',
   email: '',
   password: '',
-  courseEnroll: []
+  courseEnroll: [],isTeacher: false
 );
 List<int> sub = [0, 0];
+List<CoursesModel> teacherCourseslist=[];

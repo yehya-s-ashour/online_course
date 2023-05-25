@@ -14,7 +14,7 @@ class SignUpScreen extends StatelessWidget {
     return Directionality(
       textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
-        appBar: MyAppBar(title:userEntity.language == 'Arabic' ? Translation.Let_Sign_up1 :Translation.Let_Sign_up2,
+        appBar: MyAppBar(title:userEntity.language != 'Arabic' ? Translation.Let_Sign_up1 :Translation.Let_Sign_up2,
         ),
         body: const Body(),
       ),

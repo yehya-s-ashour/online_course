@@ -53,13 +53,13 @@ class _SignFormState extends State<SignForm> {
               child: Column(
                 children: [
                   TextFieldWidget(
-                    text: userEntity.language == 'Arabic' ? Translation.E_mail1 :Translation.E_mail2,
+                    text: userEntity.language != 'Arabic' ? Translation.E_mail1 :Translation.E_mail2,
                     controller: email,
-                    validator: userEntity.language == 'Arabic' ? Translation.please_enter_your_email_address1 :Translation.please_enter_your_email_address2,
+                    validator: userEntity.language != 'Arabic' ? Translation.please_enter_your_email_address1 :Translation.please_enter_your_email_address2,
                   ),
                   TextFieldWidget(
-                    hint: userEntity.language == 'Arabic' ? Translation.Password1 :Translation.Password2,
-                    validator: userEntity.language == 'Arabic' ? Translation.please_enter_your_password1 :Translation.please_enter_your_password2,
+                    hint: userEntity.language != 'Arabic' ? Translation.Password1 :Translation.Password2,
+                    validator: userEntity.language != 'Arabic' ? Translation.please_enter_your_password1 :Translation.please_enter_your_password2,
                     controller: password,
                     isHidden: LoginCubit.get(context).isPassword,
                     inkell: LoginCubit.get(context).suffix,
@@ -78,7 +78,7 @@ class _SignFormState extends State<SignForm> {
                             Get.to(() => const ForgotPasswordScreen());
                           },
                           child: Text(
-                            userEntity.language == 'Arabic' ? Translation.Forget_Password1 :Translation.Forget_Password2,
+                            userEntity.language != 'Arabic' ? Translation.Forget_Password1 :Translation.Forget_Password2,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleSmall!
@@ -102,7 +102,7 @@ class _SignFormState extends State<SignForm> {
                                 email: email.text, password: password.text,context: context );
                           }
                         },
-                        child: Text(userEntity.language == 'Arabic' ? Translation.Sign_In1 :Translation.Sign_In2,)),
+                        child: Text(userEntity.language != 'Arabic' ? Translation.Sign_In1 :Translation.Sign_In2,)),
                   if (state is LoginLoadingState)
                     Center(
                       child: CircularProgressIndicator(
@@ -111,8 +111,8 @@ class _SignFormState extends State<SignForm> {
                     ),
                   SizedBox(height: 20.h),
                   NoAccountText(
-                    text:userEntity.language == 'Arabic' ? Translation.Dont_have_an_account1 :Translation.Dont_have_an_account2,
-                    goTitle: userEntity.language == 'Arabic' ? Translation.Sign_up1 :Translation.Sign_up2,
+                    text:userEntity.language != 'Arabic' ? Translation.Dont_have_an_account1 :Translation.Dont_have_an_account2,
+                    goTitle: userEntity.language != 'Arabic' ? Translation.Sign_up1 :Translation.Sign_up2,
                     onTapTitle: () {
                       Get.to(() => const SignUpScreen());
                     },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
 import 'package:online_course/features/presentation/views/allCoursesRecomenedCourses/allCoursesRecomenedCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/contacts_chat/contacts_chat_page.dart';
@@ -10,6 +11,9 @@ import 'package:online_course/features/presentation/views/homeScreen/homeScreen.
 import 'package:online_course/features/presentation/views/my_courses/myCoursesScreen.dart';
 import 'package:online_course/features/presentation/views/profile/profile_screen.dart';
 import 'package:online_course/features/presentation/views/review_screen/review_screen.dart';
+import 'package:online_course/features/presentation/views/teacher/teacherCoursesScreen.dart';
+
+import '../profile/components/setting_profile.dart';
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({Key? key}) : super(key: key);
@@ -21,24 +25,36 @@ class MainHomeScreen extends StatefulWidget {
 class _MainHomeScreenState extends State<MainHomeScreen> {
   int _selectedIndex = 0;
 
-  final List<String> listIcon = [
-    "assets/icons/Shop_Icon.svg",
-    "assets/icons/play_icon.svg",
-    "assets/icons/Location_point.svg",
-    "assets/icons/ChatbubbleIcon.svg",
-    "assets/icons/User_Icon.svg",
-  ];
+  final List<String> listIcon = userEntity.isTeacher
+      ? [
+          "assets/icons/Shop_Icon.svg",
+          "assets/icons/User_Icon.svg",
+        ]
+      : [
+          "assets/icons/Shop_Icon.svg",
+          "assets/icons/play_icon.svg",
+          "assets/icons/Location_point.svg",
+          "assets/icons/ChatbubbleIcon.svg",
+          "assets/icons/User_Icon.svg",
+        ];
+
   @override
   void initState() {
     super.initState();
   }
-  final List<Widget> _body = [
-    homeScreen(),
-    MyCoursesScreen(),
-    const DepartmentScreen(),
-    const ContactsChatPage(),
-    const ProfileScreen(),
-  ];
+
+  final List<Widget> _body = userEntity.isTeacher
+      ? [
+          teacherCourses(),
+          const SettingProfile(),
+        ]
+      : [
+          homeScreen(),
+          MyCoursesScreen(),
+          const DepartmentScreen(),
+          const ContactsChatPage(),
+          const ProfileScreen(),
+        ];
 
   @override
   Widget build(BuildContext context) {

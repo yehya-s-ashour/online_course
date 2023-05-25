@@ -13,6 +13,7 @@ class UserModel extends UserEntity {
     required super.email,
     required super.courseEnroll,
     required super.password,
+    required super.isTeacher,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> json) {
@@ -28,6 +29,7 @@ class UserModel extends UserEntity {
       theme: json['theme'],
       courseEnroll: List<String>.from(json['courseEnroll']),
       wallpaper: json['wallpaper'],
+      isTeacher: json['isTeacher'],
     );
   }
 
@@ -44,6 +46,7 @@ class UserModel extends UserEntity {
       'language': language,
       'theme': theme,
       'wallpaper': wallpaper,
+      'isTeacher': isTeacher,
     };
   }
 }

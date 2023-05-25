@@ -14,7 +14,7 @@ class OtpScreen extends StatelessWidget {
       textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
         appBar: MyAppBar(
-          title: userEntity.language == 'Arabic' ? Translation.OTP_Verification1 :Translation.OTP_Verification2,
+          title: userEntity.language != 'Arabic' ? Translation.OTP_Verification1 :Translation.OTP_Verification2,
         ),
         body: const Body(),
       ),

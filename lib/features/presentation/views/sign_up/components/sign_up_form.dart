@@ -75,6 +75,11 @@ class _SignUpFormState extends State<SignUpForm> {
                       RegisterCubit.get(context).changePasswordVisibility();
                     },
                   ),
+
+                  SizedBox(height: 20.h),
+                  Row(children: [
+
+                  ]),
                   const Spacer(),
                   if (state is! RegisterLoadingState)
                     ElevatedButton(
@@ -88,10 +93,10 @@ class _SignUpFormState extends State<SignUpForm> {
                             RegisterCubit.get(context).userRegister(
                                 name: name.text,
                                 email: email.text,
-                                password: password.text);
+                                password: password.text,isTeacher: true);
                           }
                         },
-                        child: Text(userEntity.language == 'Arabic' ? Translation.Sign_up1 :Translation.Sign_up2,
+                        child: Text(userEntity.language != 'Arabic' ? Translation.Sign_up1 :Translation.Sign_up2,
                         )),
                   if (state is RegisterLoadingState)
                     Center(
@@ -101,8 +106,8 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                   SizedBox(height: 20.h),
                   NoAccountText(
-                    text:userEntity.language == 'Arabic' ? Translation.Already_have_an_account1 :Translation.Already_have_an_account2,
-                    goTitle: userEntity.language == 'Arabic' ? Translation.Sign_In2 :Translation.Sign_In2,
+                    text:userEntity.language != 'Arabic' ? Translation.Already_have_an_account1 :Translation.Already_have_an_account2,
+                    goTitle: userEntity.language != 'Arabic' ? Translation.Sign_In1 :Translation.Sign_In2,
                     onTapTitle: () {
                       Get.to(() => const SignInScreen());
                     },

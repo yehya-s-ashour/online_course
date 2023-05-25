@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
                   SizedBox(
                     width: 1.sw / 2.5,
                     child: Text(
-                      userEntity.language == 'Arabic' ? Translation.Create_Account1 :Translation.Create_Account2,
+                      userEntity.language != 'Arabic' ? Translation.Create_Account1 :Translation.Create_Account2,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 28,

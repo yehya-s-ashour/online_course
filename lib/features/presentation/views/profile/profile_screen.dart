@@ -179,7 +179,7 @@ class HearderProfile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      if(isSettingProfile!=null)
+                      if(isSettingProfile!=null&&!userEntity.isTeacher)
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: InkWell(
@@ -205,7 +205,7 @@ class HearderProfile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if(isSettingProfile==null)
+                        if(isSettingProfile==null&&userEntity.isTeacher)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Container(

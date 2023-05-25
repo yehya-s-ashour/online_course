@@ -9,6 +9,7 @@ class UserEntity {
   late String language;
   late String theme;
   late String wallpaper;
+  late bool isTeacher;
   late List<String> courseEnroll;
 
   UserEntity(
@@ -21,6 +22,7 @@ class UserEntity {
         required this.token,
         required this.language,
         required this.theme,
+        required this.isTeacher,
         required this.courseEnroll,
         required this.wallpaper,});
 
@@ -34,6 +36,7 @@ class UserEntity {
     token,
     email,
     theme,
+    isTeacher,
     courseEnroll,
     wallpaper,
     language,
@@ -50,6 +53,7 @@ class UserEntity {
     language = json['language'];
     courseEnroll =  List<String>.from(json['courseEnroll'])??[];
     theme = json['theme'];
+    isTeacher = json['isTeacher'];
     wallpaper = json['wallpaper'];
   }
 
@@ -60,6 +64,7 @@ class UserEntity {
       'name': name,
       'uId': uId,
       'bio': bio,
+      'isTeacher': isTeacher,
       'courseEnroll': courseEnroll,
       'profilePic': profilePic,
       'token': token,

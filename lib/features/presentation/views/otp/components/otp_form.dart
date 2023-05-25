@@ -143,7 +143,7 @@ class _OtpFormState extends State<OtpForm> {
               children:  [
                 Spacer(),
                 NoAccountText(
-                    text: userEntity.language == 'Arabic' ? Translation.Didn_receive_a_code1 :Translation.Didn_receive_a_code2, goTitle: userEntity.language == 'Arabic' ? Translation.Resent_code1 :Translation.Resent_code2),
+                    text: userEntity.language != 'Arabic' ? Translation.Didn_receive_a_code1 :Translation.Didn_receive_a_code2, goTitle: userEntity.language != 'Arabic' ? Translation.Resent_code1 :Translation.Resent_code2),
               ],
             ),
             SizedBox(height: Get.height * 0.12),
@@ -155,7 +155,7 @@ class _OtpFormState extends State<OtpForm> {
                 onPressed: () {
                   Get.to(() => const ResetPasswordScreen());
                 },
-                child: Text(userEntity.language == 'Arabic' ? Translation.Confirm1 :Translation.Confirm2))
+                child: Text(userEntity.language != 'Arabic' ? Translation.Confirm1 :Translation.Confirm2))
           ],
         ),
       ),

@@ -25,17 +25,17 @@ class _IntroScreenState extends State<IntroScreen> {
   List<Map<String, String>> splashData = [
     {
       "title": "Teaching",
-      "text":userEntity.language == 'Arabic' ? Translation.Teaching1 :Translation.Teaching2,
+      "text":userEntity.language != 'Arabic' ? Translation.Teaching1 :Translation.Teaching2,
       "image": "assets/images/baorder3.png"
     },
     {
       "title": "Learning",
-      "text":userEntity.language == 'Arabic' ? Translation.Learning1 :Translation.Learning2,
+      "text":userEntity.language != 'Arabic' ? Translation.Learning1 :Translation.Learning2,
       "image": "assets/images/baorder2.png"
     },
     {
       "title": "Examination",
-      "text":userEntity.language == 'Arabic' ? Translation.Examination1 :Translation.Examination2,
+      "text":userEntity.language != 'Arabic' ? Translation.Examination1 :Translation.Examination2,
       "image": "assets/images/baorder1.png"
     },
   ];
@@ -107,7 +107,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     padding: EdgeInsets.only(top: 6.h, right: 5.w),
                     child: Center(
                         child: Text(
-                      currentPage >= 2 ? userEntity.language == 'Arabic' ? Translation.Get_started1 :Translation.Get_started2: userEntity.language == 'Arabic' ? Translation.Skip1 :Translation.Skip2,
+                      currentPage >= 2 ? userEntity.language != 'Arabic' ? Translation.Get_started1 :Translation.Get_started2: userEntity.language != 'Arabic' ? Translation.Skip1 :Translation.Skip2,
                       style: GoogleFonts.cairo(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w600,

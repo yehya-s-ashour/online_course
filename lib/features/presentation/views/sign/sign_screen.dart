@@ -56,7 +56,7 @@ class SingScreen extends StatelessWidget {
                       onPressed: () {
                         Get.to(() => const SignInScreen());
                       },
-                      child: Text(userEntity.language == 'Arabic' ? Translation.Sign_In1 :Translation.Sign_In2,)),
+                      child: Text(userEntity.language != 'Arabic' ? Translation.Sign_In1 :Translation.Sign_In2,)),
                   const Spacer(),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -70,7 +70,7 @@ class SingScreen extends StatelessWidget {
                       onPressed: () {
                         Get.to(() => const SignUpScreen());
                       },
-                      child: Text( userEntity.language == 'Arabic' ? Translation.Sign_up1 :Translation.Sign_up2,
+                      child: Text( userEntity.language != 'Arabic' ? Translation.Sign_up1 :Translation.Sign_up2,
                       )),
                   const Spacer(),
                 ],

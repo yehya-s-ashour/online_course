@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/features/data/models/courseEnroll_model.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
-import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutState.dart';
 
 import 'components/homeAppBar.dart';
 import 'components/onGoingCourse/onGoingCourses.dart';
