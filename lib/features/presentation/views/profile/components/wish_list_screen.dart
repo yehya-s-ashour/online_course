@@ -27,7 +27,7 @@ class _WishListScreenState extends State<WishListScreen> {
     return Directionality(
       textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
-        appBar: MyAppBar(title:userEntity.language == 'Arabic' ? Translation.Wishlists1 :Translation.Wishlists2,backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
+        appBar: MyAppBar(title:userEntity.language != 'Arabic' ? Translation.Wishlists1 :Translation.Wishlists2,backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
         body: Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(horizontal: 12.w,vertical: 20.h),

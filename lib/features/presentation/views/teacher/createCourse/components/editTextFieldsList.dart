@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/shared/commen.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/controllers/teacher_cubit/TeacherCubit.dart';
+import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
 class editTextFieldsList extends StatefulWidget {
   @override
@@ -141,28 +143,41 @@ class _editTextFieldsListState extends State<editTextFieldsList> {
             SizedBox(
               height: 20.h,
             ),
-            DropdownButton<String>(
-              value: dropdownValue,
-              icon: const Icon(Icons.arrow_downward),
-              elevation: 16,
-              style: TextStyle(color: Colors.black),
-              underline: Container(
-                height: 2,
-                color: Colors.black,
-              ),
-              onChanged: (String? value) {
-                () {
-                  setState(() {
-                    dropdownValue = value!;
-                  });
-                };
-              },
-              items: list.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(end: 20.0),
+                  child: Text(
+                    "Category:",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  style: TextStyle(color: Colors.black),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.black,
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      dropdownValue = value!;
+                    });
+                  },
+                  items: list.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ],
             ),
             SizedBox(
               height: 10.h,
@@ -177,7 +192,7 @@ class _editTextFieldsListState extends State<editTextFieldsList> {
                             collection: dropdownValue,
                             description: description,
                             title: title)
-                        .then((value) => print('aaaaaaaaaaaaaaaaa'));
+                        .then((value) => Get.to(MainHomeScreen()));
                   }
                 },
                 child: Text(

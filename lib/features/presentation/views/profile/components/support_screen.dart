@@ -18,7 +18,7 @@ class SupportScreen extends StatelessWidget {
       textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: MyAppBar(title: userEntity.language == 'Arabic' ? Translation.Support1 :Translation.Support2,backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
+        appBar: MyAppBar(title: userEntity.language != 'Arabic' ? Translation.Support1 :Translation.Support2,backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: SingleChildScrollView(
@@ -38,7 +38,7 @@ class SupportScreen extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
-                        child:  Text(userEntity.language == 'Arabic' ? Translation.Your_Name1 :Translation.Your_Name2, style: TextStyle(fontSize: 18)),
+                        child:  Text(userEntity.language != 'Arabic' ? Translation.Your_Name1 :Translation.Your_Name2, style: TextStyle(fontSize: 18)),
                       ),
                       TextFieldWidget(
                         isHidden: false,
@@ -49,7 +49,7 @@ class SupportScreen extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
-                        child:  Text(userEntity.language == 'Arabic' ? Translation.E_mail1 :Translation.E_mail2, style: TextStyle(fontSize: 18)),
+                        child:  Text(userEntity.language != 'Arabic' ? Translation.E_mail1 :Translation.E_mail2, style: TextStyle(fontSize: 18)),
                       ),
                       TextFieldWidget(
                         isHidden: false,
@@ -65,7 +65,7 @@ class SupportScreen extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
-                        child:  Text(userEntity.language == 'Arabic' ? Translation.Phone_number1 :Translation.Phone_number2, style: TextStyle(fontSize: 18)),
+                        child:  Text(userEntity.language != 'Arabic' ? Translation.Phone_number1 :Translation.Phone_number2, style: TextStyle(fontSize: 18)),
                       ),
                       TextFieldWidget(
                         isHidden: false,
@@ -82,7 +82,7 @@ class SupportScreen extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
-                        child: Text(userEntity.language == 'Arabic' ? Translation.Problem_description1 :Translation.Problem_description2, style: TextStyle(fontSize: 18)),
+                        child: Text(userEntity.language != 'Arabic' ? Translation.Problem_description1 :Translation.Problem_description2, style: TextStyle(fontSize: 18)),
                       ),
                       TextFieldWidget(
                         isHidden: false,
@@ -106,7 +106,7 @@ class SupportScreen extends StatelessWidget {
                     ),
                     onPressed: (){
 
-                    }, child: Text(userEntity.language == 'Arabic' ? Translation.Send1 :Translation.Send2,)),
+                    }, child: Text(userEntity.language != 'Arabic' ? Translation.Send1 :Translation.Send2,)),
               ],
             ),
           ),

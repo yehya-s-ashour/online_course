@@ -26,6 +26,7 @@ class ChatScreen extends StatelessWidget {
       child: Stack(
         children: [
           Scaffold(
+            backgroundColor: Colors.grey[200],
             // resizeToAvoidBottomInset: false,
             appBar: ChatAppBar(
                 name: name,

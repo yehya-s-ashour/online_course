@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -113,7 +115,8 @@ class _BottomChatWithIconState extends State<BottomChatWithIcon> {
                       if (!cubit.isShownSendButton)
                         GestureDetector(
                           onTap: () {
-                            Get.to(CameraScreen(receiverId: widget.receiverId));
+                            selectImageFromCamera(context);
+                            // Get.to(CameraScreen(receiverId: widget.receiverId));
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -188,5 +191,22 @@ class _BottomChatWithIconState extends State<BottomChatWithIcon> {
   void dispose() {
     super.dispose();
     messageController.dispose();
+  }
+  void selectImageFromCamera(BuildContext context) async {
+    File? image = await pickImageFromCamera(context);
+    //if (!mounted) return;
+    if (image != null) {
+      // ignore: use_build_context_synchronously
+      // Navigator.of(context).pushNamed(
+      //   Routes.sendingVideoViewRoute,
+      //   arguments: {
+      //     'path': image.path,
+      //     'uId': receiverId,
+      //     'isGroup':isGroup,
+      //   },
+      // );
+      // Get.to(SendingVideoViewPage(
+      //     path: image.path, receiverId: receiverId, isGroup: isGroup));
+    }
   }
 }

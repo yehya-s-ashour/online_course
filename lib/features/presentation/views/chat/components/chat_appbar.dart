@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:online_course/features/presentation/components/my_cached_net_image.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -29,9 +30,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(50),
           onTap: () {
-            // ChatCubit.get(context).reactionView = false;
-            // navigateAndRemove(context, Routes.mainLayoutRoute,
-            //     arguments: false);
+            Get.back();
           },
           child: Row(
             children: [
@@ -39,7 +38,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
               Hero(
                 tag: 'asw',
                 child: MyCachedGroup(
-                  imageUrl: '',
+                  imageUrl: receiverPic,
                   radius: 23.r,
                 ),
               ),

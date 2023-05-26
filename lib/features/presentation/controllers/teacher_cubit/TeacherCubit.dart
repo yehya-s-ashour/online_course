@@ -208,15 +208,6 @@ print('ssssssssssss$lessonId');
         .collection('Lessons')
         .doc(lessonId)
         .update({'image': fileUrl, 'name': title, 'description': description});
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(userEntity.uId)
-        .collection('Course')
-        .doc(courseId)
-        .collection('Lessons')
-        .doc(lessonId)
-        .update({'image': fileUrl, 'name': title, 'description': description});
-    print('wwwwwwww${userEntity.uId}');
   }
 
   Future<String> _storeFileToFirebase(String path, File file) async {
@@ -248,9 +239,11 @@ print('ssssssssssss$lessonId');
     List<LessonModel> teacherLessonlist = [];
     emit(GetLessonsLoadinState());
     return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userEntity.uId)
-        .collection('Course')
+        .collection('Categories')
+        .doc('1')
+        .collection(teacherCourseslist[index].mainCategory)
+        .doc('1')
+        .collection(teacherCourseslist[index].subCategory)
         .doc(teacherCourseslist[index].courseId)
         .collection('Lessons')
         .snapshots()
@@ -261,6 +254,24 @@ print('ssssssssssss$lessonId');
       });
       emit(GetLessonsSuccessState());
       return teacherLessonlist;
+    });
+  }
+
+  Future<void> addCourse() async {
+    FirebaseFirestore.instance
+        .collection('Categories')
+        .doc('1')
+        .collection('Teaching & Academics')
+        .doc('1')
+        .collection('Physics')
+        .doc('7bfdc710-e845-11ed-84ca-f5558c714536')
+        .get().then((value) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc('IuvR5nVe7kT6iUV5RuggHcyV18i2')
+          .collection('Course')
+          .doc('7bfdc710-e845-11ed-84ca-f5558c714536')
+          .set(CoursesModel.fromMap(value.data()!).toMap());
     });
   }
 }

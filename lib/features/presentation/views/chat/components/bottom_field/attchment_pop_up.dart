@@ -51,6 +51,40 @@ class AttchementPopUp extends StatelessWidget {
           path: image.path, receiverId: receiverId, isGroup: isGroup));
     }
   }
+  void selectImageFromCamera(BuildContext context) async {
+    File? image = await pickImageFromCamera(context);
+    //if (!mounted) return;
+    if (image != null) {
+      // ignore: use_build_context_synchronously
+      // Navigator.of(context).pushNamed(
+      //   Routes.sendingVideoViewRoute,
+      //   arguments: {
+      //     'path': image.path,
+      //     'uId': receiverId,
+      //     'isGroup':isGroup,
+      //   },
+      // );
+      Get.to(SendingVideoViewPage(
+          path: image.path, receiverId: receiverId, isGroup: isGroup));
+    }
+  }
+  void selectImageFromGallery(BuildContext context) async {
+    File? image = await pickImageFromGallery(context);
+    //if (!mounted) return;
+    if (image != null) {
+      // ignore: use_build_context_synchronously
+      // Navigator.of(context).pushNamed(
+      //   Routes.sendingVideoViewRoute,
+      //   arguments: {
+      //     'path': image.path,
+      //     'uId': receiverId,
+      //     'isGroup':isGroup,
+      //   },
+      // );
+      Get.to(SendingVideoViewPage(
+          path: image.path, receiverId: receiverId, isGroup: isGroup));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +102,9 @@ class AttchementPopUp extends StatelessWidget {
             size: 26,
           ),
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.circular(16),
+        // ),
         // offset: const Offset(0, -340),
         offset: const Offset(0, -150),
         onSelected: (val) {
@@ -124,10 +158,11 @@ class AttchementPopUp extends StatelessWidget {
                     color: Colors.purpleAccent,
                     icon: Icons.photo,
                     onPress: () {
-                      Get.to(Images(
-                        receiverId: receiverId,
-                        index: 1,
-                      ));
+                      selectImageFromGallery(context);
+                      // Get.to(Images(
+                      //   receiverId: receiverId,
+                      //   index: 1,
+                      // ));
                     },
                   ),
                   // AttchmentCard(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/features/presentation/controllers/teacher_cubit/TeacherCubit.dart';
 import 'package:online_course/features/presentation/views/teacher/createCourse/createCourseScreen.dart';
 
-Widget teacherCoursesScreenAppBar() {
+Widget teacherCoursesScreenAppBar(context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
@@ -47,6 +48,7 @@ Widget teacherCoursesScreenAppBar() {
                       size: 35.spMax,
                     ),
                     onPressed: () {
+                      // TeacherCubit.get(context).addCourse();
                       Get.to(createCourseScreen());
                     }),
               )

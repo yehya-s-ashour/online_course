@@ -133,15 +133,15 @@ class CustomImageFile extends StatelessWidget {
                 ),
               )
             : Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(radius)),
-                image: DecorationImage(image: FileImage(File(image)),fit: BoxFit.cover)
-          ),
-              // child: Image(
-              //     image: FileImage(File(image)),
-              //     fit: fit,
-              //   ),
-            ));
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(radius)),
+                    image: DecorationImage(
+                        image: FileImage(File(image)), fit: BoxFit.cover)),
+                // child: Image(
+                //     image: FileImage(File(image)),
+                //     fit: fit,
+                //   ),
+              ));
   }
 }
 

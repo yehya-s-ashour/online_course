@@ -53,7 +53,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
       textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
         appBar: MyAppBar(
-          title: userEntity.language == 'Arabic' ? Translation.Reviews1 :Translation.Reviews2,
+          title: userEntity.language != 'Arabic' ? Translation.Reviews1 :Translation.Reviews2,
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -147,7 +147,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                               padding: EdgeInsetsDirectional.only(
                                   start: 12.w, top: 5.h),
                               child: Text(
-                                userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                                userEntity.language != 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                                 style: GoogleFonts.cairo(
                                     fontSize: 21.spMin,
                                     fontWeight: FontWeight.w500,
@@ -158,7 +158,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                               child: Container(
                                 width: 270.w,
                                 child: TextFieldWidget(
-                                  hint: userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                                  hint: userEntity.language != 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                                   maxLine: 3,
                                 ),
                               ),
@@ -218,7 +218,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                       func(() {});
                                       Get.back();
                                     },
-                                    child: Text(userEntity.language == 'Arabic' ? Translation.Submit1 :Translation.Submit2,
+                                    child: Text(userEntity.language != 'Arabic' ? Translation.Submit1 :Translation.Submit2,
                                     )))
                           ],
                         ),
@@ -236,7 +236,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(100)),
               ),
               child: Center(
-                  child: Text(userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                  child: Text(userEntity.language != 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                       style: GoogleFonts.cairo(
                           fontSize: 21.spMin,
                           color: Colors.white,
@@ -311,12 +311,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                                userEntity.language != 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                                 style:
                                     Theme.of(context).textTheme.headlineSmall,
                               ),
                               TextFieldWidget(
-                                hint: userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                                hint: userEntity.language != 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                                 maxLine: 3,
                               ),
                               SizedBox(
@@ -364,7 +364,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                         func(() {});
                                         Get.back();
                                       },
-                                      child: Text(userEntity.language == 'Arabic' ? Translation.Reviews1 :Translation.Reviews2,)))
+                                      child: Text(userEntity.language != 'Arabic' ? Translation.Reviews1 :Translation.Reviews2,)))
                             ],
                           ),
                         );
@@ -374,7 +374,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 );
               },
               child: Text(
-                userEntity.language == 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
+                userEntity.language != 'Arabic' ? Translation.Write_a_review1 :Translation.Write_a_review2,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!

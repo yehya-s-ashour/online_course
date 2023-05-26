@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/shared/commen.dart';
 import 'package:online_course/features/data/models/courses_model.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/controllers/teacher_cubit/TeacherCubit.dart';
+import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
 class editTextFieldsList extends StatefulWidget {
   final CoursesModel course;
@@ -21,11 +23,12 @@ class editTextFieldsList extends StatefulWidget {
 class _editTextFieldsListState extends State<editTextFieldsList> {
   var description = TextEditingController();
   var title = TextEditingController();
-  String image='';
+  String image = '';
+
   @override
   Widget build(BuildContext context) {
-    description.text=widget.course.description;
-    title.text=widget.course.name;
+    description.text = widget.course.description;
+    title.text = widget.course.name;
     return Column(children: [
       Column(
         children: [
@@ -149,11 +152,20 @@ class _editTextFieldsListState extends State<editTextFieldsList> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(foregroundColor: kWhiteColor),
                   onPressed: () {
-                      TeacherCubit.get(context)
-                          .editCourse(
-                          title: title.text,description: description.text,image:widget.course.image,subCategory: widget.course.subCategory,mainCategory: widget.course.mainCategory,courseId: widget.course.courseId,newImage:image )
-                          .then((value) => print('aaaaaaaaaaaaaaaaa'));
-
+                    TeacherCubit.get(context)
+                        .editCourse(
+                            title: title.text,
+                            description: description.text,
+                            image: widget.course.image,
+                            subCategory: widget.course.subCategory,
+                            mainCategory: widget.course.mainCategory,
+                            courseId: widget.course.courseId,
+                            newImage: image)
+                        .then(
+                          (value) => Get.to(
+                            MainHomeScreen(),
+                          ),
+                        );
                   },
                   child: Text(
                     userEntity.language != 'Arabic' ? 'Edit' : 'تعديل',

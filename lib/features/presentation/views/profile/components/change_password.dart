@@ -25,7 +25,7 @@ class _ChangeYourPasswordState extends State<ChangeYourPassword> {
       child: Scaffold(
           resizeToAvoidBottomInset: true,
           appBar: MyAppBar(
-              title: userEntity.language == 'Arabic' ? Translation.Create_new_Password1 :Translation.Create_new_Password2,
+              title: userEntity.language != 'Arabic' ? Translation.Create_new_Password1 :Translation.Create_new_Password2,
               backgroundColor: kPrimaryColor,
               color: Colors.white,
               titleColor: Colors.white,
@@ -38,7 +38,7 @@ class _ChangeYourPasswordState extends State<ChangeYourPassword> {
               children: [
                 SizedBox(height: Get.height * 0.04),
                  Text(
-                   userEntity.language == 'Arabic' ? Translation.Your_new_Password_must_be_different_from_previously_used_passwords1 :Translation.Your_new_Password_must_be_different_from_previously_used_passwords2,
+                   userEntity.language != 'Arabic' ? Translation.Your_new_Password_must_be_different_from_previously_used_passwords1 :Translation.Your_new_Password_must_be_different_from_previously_used_passwords2,
                 ),
                 SizedBox(height: Get.height * 0.11),
                 Form(
@@ -46,12 +46,12 @@ class _ChangeYourPasswordState extends State<ChangeYourPassword> {
                   child: Column(
                     children: [
                       TextFieldWidget(
-                        hint: userEntity.language == 'Arabic' ? Translation.New_Password1 :Translation.New_Password2,
+                        hint: userEntity.language != 'Arabic' ? Translation.New_Password1 :Translation.New_Password2,
                         isHidden: true,
                         inkell: Icons.remove_red_eye,
                       ),
                       TextFieldWidget(
-                        hint: userEntity.language == 'Arabic' ? Translation.Confirm_Password1 :Translation.Confirm_Password2,
+                        hint: userEntity.language != 'Arabic' ? Translation.Confirm_Password1 :Translation.Confirm_Password2,
                         isHidden: true,
                       ),
                       SizedBox(height: 30.h),
@@ -63,7 +63,7 @@ class _ChangeYourPasswordState extends State<ChangeYourPassword> {
                               foregroundColor: kWhiteColor,
                               backgroundColor: kPrimaryColor),
                           onPressed: () {},
-                          child:  Text(userEntity.language == 'Arabic' ? Translation.Reset_Password1 :Translation.Reset_Password2)),
+                          child:  Text(userEntity.language != 'Arabic' ? Translation.Reset_Password1 :Translation.Reset_Password2)),
                     ],
                   ),
                 ),

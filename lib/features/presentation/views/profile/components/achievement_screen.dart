@@ -27,7 +27,7 @@ class _AchievementScreenState extends State<AchievementScreen> {
       child: Scaffold(
         // appBar: MyAppBar(title: "Language"),
         appBar: MyAppBar(
-          title: userEntity.language == 'Arabic' ? Translation.Achievements1 :Translation.Achievements2,
+          title: userEntity.language != 'Arabic' ? Translation.Achievements1 :Translation.Achievements2,
           backgroundColor: kPrimaryColor,
           color: Colors.white,
           titleColor: Colors.white,

@@ -23,10 +23,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Directionality(
       textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
-        appBar: MyAppBar(title: userEntity.language == 'Arabic' ? Translation.Notifications_Setting1 :Translation.Notifications_Setting2,backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
+        appBar: MyAppBar(title: userEntity.language != 'Arabic' ? Translation.Notifications_Setting1 :Translation.Notifications_Setting2,backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
         body: ListView(
           children: [
-            ListTile(  title: Text(userEntity.language == 'Arabic' ? Translation.show_notification1 :Translation.show_notification2,style: TextStyle(color: Color(0xFF202244)),),
+            ListTile(  title: Text(userEntity.language != 'Arabic' ? Translation.show_notification1 :Translation.show_notification2,style: TextStyle(color: Color(0xFF202244)),),
               trailing: Switch(
                 value: toggleValue,
                 onChanged: (value) {
@@ -38,7 +38,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             const Divider(color: Colors.black12),
             const SizedBox(height: 10,),
             const SizedBox(height: 10,),
-            ListTile(  title: Text(userEntity.language == 'Arabic' ? Translation.show_app_icon_badges1 :Translation.show_app_icon_badges2,style: TextStyle(color: Color(0xFF202244))),
+            ListTile(  title: Text(userEntity.language != 'Arabic' ? Translation.show_app_icon_badges1 :Translation.show_app_icon_badges2,style: TextStyle(color: Color(0xFF202244))),
               trailing: Switch(
                 value: toggleValue1,
                 onChanged: (value) {
@@ -49,8 +49,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ),),
             const SizedBox(height: 10,),
             const SizedBox(height: 10,),
-            ListTile(  title: Text(userEntity.language == 'Arabic' ? Translation.Floating_notification1 :Translation.Floating_notification2,style: TextStyle(color: Color(0xFF202244))),
-              subtitle: Text(userEntity.language == 'Arabic' ? Translation.Allow_floating_notification1 :Translation.Allow_floating_notification2,),
+            ListTile(  title: Text(userEntity.language != 'Arabic' ? Translation.Floating_notification1 :Translation.Floating_notification2,style: TextStyle(color: Color(0xFF202244))),
+              subtitle: Text(userEntity.language != 'Arabic' ? Translation.Allow_floating_notification1 :Translation.Allow_floating_notification2,),
               trailing: Switch(
                 value: toggleValue2,
                 onChanged: (value) {
@@ -61,8 +61,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ),),
             const SizedBox(height: 10,),
             const SizedBox(height: 10,),
-            ListTile(  title: Text(userEntity.language == 'Arabic' ? Translation.Lock_screen_notification1 :Translation.Lock_screen_notification2,style: TextStyle(color: Color(0xFF202244))),
-              subtitle: Text(userEntity.language == 'Arabic' ? Translation.Allow_notification_on_the_lock_screen1 :Translation.Allow_notification_on_the_lock_screen2,),
+            ListTile(  title: Text(userEntity.language != 'Arabic' ? Translation.Lock_screen_notification1 :Translation.Lock_screen_notification2,style: TextStyle(color: Color(0xFF202244))),
+              subtitle: Text(userEntity.language != 'Arabic' ? Translation.Allow_notification_on_the_lock_screen1 :Translation.Allow_notification_on_the_lock_screen2,),
               trailing: Switch(
                 value: toggleValue3,
                 onChanged: (value) {
@@ -73,7 +73,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ),),
             const SizedBox(height: 10,),
             const SizedBox(height: 10,),
-            ListTile(  title: Text(userEntity.language == 'Arabic' ? Translation.Allow_sound1 :Translation.Allow_sound2,style: TextStyle(color: Color(0xFF202244))),
+            ListTile(  title: Text(userEntity.language != 'Arabic' ? Translation.Allow_sound1 :Translation.Allow_sound2,style: TextStyle(color: Color(0xFF202244))),
               trailing: Switch(
                 value: toggleValue4,
                 onChanged: (value) {
@@ -84,7 +84,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ),),
             const SizedBox(height: 10,),
             const SizedBox(height: 10,),
-            ListTile(  title: Text(userEntity.language == 'Arabic' ? Translation.Allow_vibation1 :Translation.Allow_vibation2,style: TextStyle(color: Color(0xFF202244))),
+            ListTile(  title: Text(userEntity.language != 'Arabic' ? Translation.Allow_vibation1 :Translation.Allow_vibation2,style: TextStyle(color: Color(0xFF202244))),
               trailing: Switch(
                 value: toggleValue4,
                 onChanged: (value) {
@@ -95,7 +95,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ),),
             const SizedBox(height: 10,),
             const SizedBox(height: 10,),
-            ListTile(  title: Text(userEntity.language == 'Arabic' ? Translation.Allow_using_LED_light1 :Translation.Allow_using_LED_light2,style: TextStyle(color: Color(0xFF202244))),
+            ListTile(  title: Text(userEntity.language != 'Arabic' ? Translation.Allow_using_LED_light1 :Translation.Allow_using_LED_light2,style: TextStyle(color: Color(0xFF202244))),
               trailing: Switch(activeColor: Colors.blueAccent,
                 value: toggleValue4,
                 onChanged: (value) {

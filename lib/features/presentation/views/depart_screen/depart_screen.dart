@@ -27,7 +27,7 @@ class DepartmentScreen extends StatelessWidget {
               floating: true,
               centerTitle: true,
               title: Text(
-                userEntity.language == 'Arabic' ? Translation.RoadMap1 :Translation.RoadMap2,
+                userEntity.language != 'Arabic' ? Translation.RoadMap1 :Translation.RoadMap2,
                 style: GoogleFonts.cairo(
                     fontSize: 20.spMin,
                     fontWeight: FontWeight.w600,

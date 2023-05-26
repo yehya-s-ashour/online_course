@@ -28,7 +28,7 @@ class LayoutCubit extends Cubit<LayoutState> {
       CacheHelper.saveData(
           key: 'userEntity',
           value:
-              '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper},${userEntity.courseEnroll}');
+              '${userEntity.uId},${userEntity.name},${userEntity.password},${userEntity.email},${userEntity.language},${userEntity.theme},${userEntity.profilePic},${userEntity.bio},${userEntity.token},${userEntity.wallpaper},${userEntity.isTeacher}');
       emit(GetUserSuccessState());
     }).catchError((error) {
       emit(GetUserErrorState(error.toString()));

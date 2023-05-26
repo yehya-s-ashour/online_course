@@ -24,13 +24,13 @@ class SettingProfile extends StatefulWidget {
 
 class _SettingProfileState extends State<SettingProfile> {
   List<String> listItems = [
-    userEntity.language == 'Arabic' ? Translation.Edit_Profile1 :Translation.Edit_Profile2,
-    userEntity.language == 'Arabic' ? Translation.Change_your_password1 :Translation.Change_your_password2,
-    userEntity.language == 'Arabic' ? Translation.Notifications_Setting1 :Translation.Notifications_Setting2,
-    userEntity.language == 'Arabic' ? Translation.Change_Credentials1 :Translation.Change_Credentials2,
-    userEntity.language == 'Arabic' ? Translation.Change_Language1 :Translation.Change_Language2,
-    userEntity.language == 'Arabic' ? Translation.Support1 :Translation.Support2,
-    userEntity.language == 'Arabic' ? Translation.FAQ1 :Translation.FAQ2,
+    userEntity.language != 'Arabic' ? Translation.Edit_Profile1 :Translation.Edit_Profile2,
+    userEntity.language != 'Arabic' ? Translation.Change_your_password1 :Translation.Change_your_password2,
+    userEntity.language != 'Arabic' ? Translation.Notifications_Setting1 :Translation.Notifications_Setting2,
+    userEntity.language != 'Arabic' ? Translation.Change_Credentials1 :Translation.Change_Credentials2,
+    userEntity.language != 'Arabic' ? Translation.Change_Language1 :Translation.Change_Language2,
+    userEntity.language != 'Arabic' ? Translation.Support1 :Translation.Support2,
+    userEntity.language != 'Arabic' ? Translation.FAQ1 :Translation.FAQ2,
   ];
   bool dark = false;
 
@@ -108,7 +108,7 @@ class _SettingProfileState extends State<SettingProfile> {
                                     insetPadding: EdgeInsets.symmetric(
                                         vertical: 10.h, horizontal: 10.w),
                                     child: SizedBox(
-                                      height: 125.h,
+                                      height: 150.h,
                                       width: 300.w,
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(
@@ -120,7 +120,7 @@ class _SettingProfileState extends State<SettingProfile> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              userEntity.language == 'Arabic' ? Translation.Logout1 :Translation.Logout2,
+                                              userEntity.language != 'Arabic' ? Translation.Logout1 :Translation.Logout2,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium!
@@ -130,7 +130,7 @@ class _SettingProfileState extends State<SettingProfile> {
                                               height: 8.h,
                                             ),
                                               Text(
-                                                userEntity.language == 'Arabic' ? Translation.Are_you_sure_you_want_to_log_out1 :Translation.Are_you_sure_you_want_to_log_out2,
+                                                userEntity.language != 'Arabic' ? Translation.Are_you_sure_you_want_to_log_out1 :Translation.Are_you_sure_you_want_to_log_out2,
                                             ),
                                             SizedBox(
                                               height: 8.h,
@@ -144,7 +144,7 @@ class _SettingProfileState extends State<SettingProfile> {
                                                     Get.back();
                                                   },
                                                   child: Text(
-                                                    userEntity.language == 'Arabic' ? Translation.Cancel1 :Translation.Cancel2,
+                                                    userEntity.language != 'Arabic' ? Translation.Cancel1 :Translation.Cancel2,
                                                     style: TextStyle(color: mixedColor),
                                                   ),
                                                 ),
@@ -154,7 +154,7 @@ class _SettingProfileState extends State<SettingProfile> {
                                                       navigateAndFinish(context, IntroScreen());
                                                   },
                                                   child: Text(
-                                                    userEntity.language == 'Arabic' ? Translation.Logout1 :Translation.Logout2,
+                                                    userEntity.language != 'Arabic' ? Translation.Logout1 :Translation.Logout2,
                                                     style: TextStyle(color: mixedColor),
                                                   ),
                                                 ),
@@ -175,7 +175,7 @@ class _SettingProfileState extends State<SettingProfile> {
                                     color: kPrimaryColor,
                                   ),
                                   Text(
-                                    userEntity.language == 'Arabic' ? Translation.Logout1 :Translation.Logout2,
+                                    userEntity.language != 'Arabic' ? Translation.Logout1 :Translation.Logout2,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
@@ -211,13 +211,13 @@ class SettingProfileTeach extends StatefulWidget {
 
 class _SettingProfileTeachState extends State<SettingProfileTeach> {
   List<String> listItems = [
-    userEntity.language == 'Arabic' ? Translation.Dark_Mode1 :Translation.Dark_Mode2,
-    userEntity.language == 'Arabic' ? Translation.Edit_Profile1 :Translation.Edit_Profile2,
-    userEntity.language == 'Arabic' ? Translation.Change_your_password1 :Translation.Change_your_password2,
-    userEntity.language == 'Arabic' ? Translation.Notifications_Setting1 :Translation.Notifications_Setting2,
-    userEntity.language == 'Arabic' ? Translation.Change_Credentials1 :Translation.Change_Credentials2,
-    userEntity.language == 'Arabic' ? Translation.Change_Language1 :Translation.Change_Language2,
-    userEntity.language == 'Arabic' ? Translation.Support1 :Translation.Support2,
+    userEntity.language != 'Arabic' ? Translation.Dark_Mode1 :Translation.Dark_Mode2,
+    userEntity.language != 'Arabic' ? Translation.Edit_Profile1 :Translation.Edit_Profile2,
+    userEntity.language != 'Arabic' ? Translation.Change_your_password1 :Translation.Change_your_password2,
+    userEntity.language != 'Arabic' ? Translation.Notifications_Setting1 :Translation.Notifications_Setting2,
+    userEntity.language != 'Arabic' ? Translation.Change_Credentials1 :Translation.Change_Credentials2,
+    userEntity.language != 'Arabic' ? Translation.Change_Language1 :Translation.Change_Language2,
+    userEntity.language != 'Arabic' ? Translation.Support1 :Translation.Support2,
   ];
   bool dark = false;
 
@@ -301,7 +301,7 @@ class _SettingProfileTeachState extends State<SettingProfileTeach> {
                                           CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              userEntity.language == 'Arabic' ? Translation.Logout1 :Translation.Logout2,
+                                              userEntity.language != 'Arabic' ? Translation.Logout1 :Translation.Logout2,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium!
@@ -311,7 +311,7 @@ class _SettingProfileTeachState extends State<SettingProfileTeach> {
                                               height: 8.h,
                                             ),
                                              Text(
-                                               userEntity.language == 'Arabic' ? Translation.Are_you_sure_you_want_to_log_out1 :Translation.Are_you_sure_you_want_to_log_out2,
+                                               userEntity.language != 'Arabic' ? Translation.Are_you_sure_you_want_to_log_out1 :Translation.Are_you_sure_you_want_to_log_out2,
                                             ),
                                             SizedBox(
                                               height: 8.h,
@@ -325,7 +325,7 @@ class _SettingProfileTeachState extends State<SettingProfileTeach> {
                                                     Get.back();
                                                   },
                                                   child: Text(
-                                                    userEntity.language == 'Arabic' ? Translation.Cancel1 :Translation.Cancel2,
+                                                    userEntity.language != 'Arabic' ? Translation.Cancel1 :Translation.Cancel2,
                                                     style: TextStyle(color: mixedColor),
                                                   ),
                                                 ),
@@ -335,7 +335,7 @@ class _SettingProfileTeachState extends State<SettingProfileTeach> {
                                                     navigateAndFinish(context, IntroScreen());
                                                   },
                                                   child: Text(
-                                                    userEntity.language == 'Arabic' ? Translation.Logout1 :Translation.Logout2,
+                                                    userEntity.language != 'Arabic' ? Translation.Logout1 :Translation.Logout2,
                                                     style: TextStyle(color: mixedColor),
                                                   ),
                                                 ),

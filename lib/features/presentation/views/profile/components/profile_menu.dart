@@ -34,13 +34,13 @@ class ProfileMenuModel {
         }),
     // ProfileMenuModel(text: "Payment Details", icon: "assets/icons/credit_card_solid.svg", ontap: (){}),
     ProfileMenuModel(
-        text: userEntity.language == 'Arabic' ? Translation.Achievements1 :Translation.Achievements2,
+        text: userEntity.language != 'Arabic' ? Translation.Achievements1 :Translation.Achievements2,
         icon: "assets/icons/award_solid.svg",
         ontap: () {
           Get.to(() => const AchievementScreen());
         }),
     ProfileMenuModel(
-      text:userEntity.language == 'Arabic' ? Translation.Wishlists1 :Translation.Wishlists2,
+      text:userEntity.language != 'Arabic' ? Translation.Wishlists1 :Translation.Wishlists2,
       icon: "assets/icons/heart_solid.svg",
       ontap: () {
         Get.to(() => const WishListScreen());

@@ -32,7 +32,7 @@ class _FaqScreenState extends State<FaqScreen> {
               child: Column(
                 children:  [
                   Text(
-                    userEntity.language == 'Arabic' ? Translation.FAQ1 :Translation.FAQ2,
+                    userEntity.language != 'Arabic' ? Translation.FAQ1 :Translation.FAQ2,
                     style: TextStyle(
                         color: Color(0xFF202244),
                         fontSize: 40,

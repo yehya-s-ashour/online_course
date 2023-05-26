@@ -23,7 +23,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: MyAppBar(
-          title: userEntity.language == 'Arabic' ? Translation.Reset_Password1 :Translation.Reset_Password2,
+          title: userEntity.language != 'Arabic' ? Translation.Reset_Password1 :Translation.Reset_Password2,
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -33,7 +33,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               children: [
                 SizedBox(height: Get.height * 0.04),
                  Text(
-                   userEntity.language == 'Arabic' ? Translation.Enter_a_new_password1 :Translation.Enter_a_new_password2,                  textAlign: TextAlign.center,
+                   userEntity.language != 'Arabic' ? Translation.Enter_a_new_password1 :Translation.Enter_a_new_password2,                  textAlign: TextAlign.center,
                 ),
                 SizedBox(height: Get.height * 0.11),
                 Form(
@@ -41,12 +41,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   child: Column(
                     children: [
                       TextFieldWidget(
-                        hint: userEntity.language == 'Arabic' ? Translation.New_Password1 :Translation.New_Password2,
+                        hint: userEntity.language != 'Arabic' ? Translation.New_Password1 :Translation.New_Password2,
                         isHidden: true,
                         inkell: Icons.remove_red_eye,
                       ),
                       TextFieldWidget(
-                        hint:userEntity.language == 'Arabic' ? Translation.Confirm_Password1 :Translation.Confirm_Password2,
+                        hint:userEntity.language != 'Arabic' ? Translation.Confirm_Password1 :Translation.Confirm_Password2,
                         isHidden: true,
                         inkell: Icons.remove_red_eye,
                       ),
@@ -59,7 +59,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               foregroundColor: kWhiteColor),
                           onPressed: () {},
                           child:  Text(
-                              userEntity.language == 'Arabic' ? Translation.Sign_In1 :Translation.Sign_In2,
+                              userEntity.language != 'Arabic' ? Translation.Sign_In1 :Translation.Sign_In2,
                           )),
                     ],
                   ),

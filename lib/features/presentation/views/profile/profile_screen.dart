@@ -22,11 +22,11 @@ class ItemsProfileCourse {
       {required this.title, required this.iconData, required this.numOfTitle});
   static List<ItemsProfileCourse> listItems = [
     ItemsProfileCourse(
-        title: userEntity.language == 'Arabic' ? Translation.Course1 :Translation.Course2,
+        title: userEntity.language != 'Arabic' ? Translation.Course1 :Translation.Course2,
         numOfTitle: 15,
         iconData: CupertinoIcons.chart_bar_square_fill),
     ItemsProfileCourse(
-        title: userEntity.language == 'Arabic' ? Translation.Reviews1 :Translation.Reviews2, numOfTitle: 4.9, iconData: CupertinoIcons.star_fill),
+        title: userEntity.language != 'Arabic' ? Translation.Reviews1 :Translation.Reviews2, numOfTitle: 4.9, iconData: CupertinoIcons.star_fill),
     // ItemsProfileCourse(title: 'Videos',numOfTitle: 32, iconData: CupertinoIcons.videocam_fill),
   ];
 }
@@ -226,9 +226,10 @@ class HearderProfile extends StatelessWidget {
                           // ),
                         ),
                       ),
+                      if(!userEntity.isTeacher)
                       Center(
                         child: Text(
-                          isSettingProfile!=null?userEntity.language == 'Arabic' ? Translation.Settings1 :Translation.Settings2:userEntity.language == 'Arabic' ? Translation.Profile1 :Translation.Profile2,
+                          isSettingProfile!=null?userEntity.language != 'Arabic' ? Translation.Settings1 :Translation.Settings2:userEntity.language != 'Arabic' ? Translation.Profile1 :Translation.Profile2,
                           textAlign: TextAlign.center,
                             style: GoogleFonts.cairo(color: Colors.white,fontSize: 18.spMin)
                         ),

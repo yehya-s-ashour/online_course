@@ -7,6 +7,7 @@ import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/presentation/components/cutom_appbar.dart';
 import 'package:online_course/features/presentation/controllers/Setting/SettingCubit.dart';
 import 'package:online_course/features/presentation/controllers/Setting/SettingState.dart';
+import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 import 'package:online_course/features/presentation/views/translate.dart';
 
 class ChooseLanguage extends StatefulWidget {
@@ -17,7 +18,7 @@ class ChooseLanguage extends StatefulWidget {
 }
 
 class _ChooseLanguageState extends State<ChooseLanguage> {
-  String langValue = userEntity.language == 'Arabic'
+  String langValue = userEntity.language != 'Arabic'
       ? Translation.English1
       : Translation.English2;
   @override
@@ -31,7 +32,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
           return Scaffold(
             // appBar: MyAppBar(title: "Language"),
             appBar: MyAppBar(
-              title: userEntity.language == 'Arabic'
+              title: userEntity.language != 'Arabic'
                   ? Translation.Language1
                   : Translation.Language2,
               backgroundColor: kPrimaryColor,
@@ -46,7 +47,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                      userEntity.language == 'Arabic'
+                      userEntity.language != 'Arabic'
                           ? Translation.Choose_Your_Language1
                           : Translation.Choose_Your_Language2,
                       style:
@@ -68,7 +69,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                         underline: const Divider(color: Colors.white),
                         items: [
                           DropdownMenuItem(
-                            value: userEntity.language == 'Arabic'
+                            value: userEntity.language != 'Arabic'
                                 ? Translation.English1
                                 : Translation.English2,
                             child: Padding(
@@ -77,7 +78,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                                 children: [
                                   const Icon(Icons.flag),
                                   SizedBox(width: Get.width * 0.01),
-                                  Text(userEntity.language == 'Arabic'
+                                  Text(userEntity.language != 'Arabic'
                                       ? Translation.English1
                                       : Translation.English2),
                                 ],
@@ -85,7 +86,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                             ),
                           ),
                           DropdownMenuItem(
-                            value: userEntity.language == 'Arabic'
+                            value: userEntity.language != 'Arabic'
                                 ? Translation.Arabic1
                                 : Translation.Arabic2,
                             child: Padding(
@@ -94,7 +95,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                                 children: [
                                   const Icon(Icons.flag),
                                   SizedBox(width: Get.width * 0.01),
-                                  Text(userEntity.language == 'Arabic'
+                                  Text(userEntity.language != 'Arabic'
                                       ? Translation.Arabic1
                                       : Translation.Arabic2),
                                 ],
@@ -120,10 +121,9 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                             onPressed: () {
                               SettingCubit.get(context)
                                   .changeLanguage(languageOut: langValue);
+                              Get.to(MainHomeScreen());
                             },
                             style: ButtonStyle(
-                                // backgroundColor:
-                                // const MaterialStatePropertyAll(Colors.greenAccent),
                                 foregroundColor: const MaterialStatePropertyAll(
                                     Colors.white),
                                 elevation: const MaterialStatePropertyAll(0),
@@ -137,7 +137,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                                             BorderRadius.circular(13))),
                                 side: const MaterialStatePropertyAll(
                                     BorderSide(color: Colors.white))),
-                            child: Text(userEntity.language == 'Arabic'
+                            child: Text(userEntity.language != 'Arabic'
                                 ? Translation.Confirm1
                                 : Translation.Confirm2)),
                       ],

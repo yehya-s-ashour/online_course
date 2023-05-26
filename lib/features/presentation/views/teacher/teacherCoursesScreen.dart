@@ -25,7 +25,7 @@ class teacherCourses extends StatelessWidget {
           value: SystemUiOverlayStyle.light,
           child: Scaffold(
             body: Column(
-              children: [teacherCoursesScreenAppBar(), teacherCoursesList()],
+              children: [teacherCoursesScreenAppBar(context), teacherCoursesList()],
             ),
           ),
         );

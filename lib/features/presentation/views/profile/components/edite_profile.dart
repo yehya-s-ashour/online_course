@@ -38,7 +38,7 @@ class _EditProfileState extends State<EditProfile> {
         textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
         child: Scaffold(
             appBar: MyAppBar(
-              title:userEntity.language == 'Arabic' ? Translation.Edit_Profile1 :Translation.Edit_Profile2,
+              title:userEntity.language != 'Arabic' ? Translation.Edit_Profile1 :Translation.Edit_Profile2,
               backgroundColor: kPrimaryColor,
               color: Colors.white,
               titleColor: Colors.white,
@@ -67,13 +67,13 @@ class _EditProfileState extends State<EditProfile> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                           Text(userEntity.language == 'Arabic' ? Translation.Name1 :Translation.Name2,),
+                           Text(userEntity.language != 'Arabic' ? Translation.Name1 :Translation.Name2,),
                           TextFieldWidget(
                             controller: name,
                             padding:
                             EdgeInsets.symmetric(vertical: 2.h, horizontal: 0),
                           ),
-                           Text(userEntity.language == 'Arabic' ? Translation.E_mail1 :Translation.E_mail2,),
+                           Text(userEntity.language != 'Arabic' ? Translation.E_mail1 :Translation.E_mail2,),
                           TextFieldWidget(
                             controller: email,
                             padding:
@@ -84,7 +84,7 @@ class _EditProfileState extends State<EditProfile> {
                           //   padding:
                           //       EdgeInsets.symmetric(vertical: 2.h, horizontal: 0),
                           // ),
-                          Text(userEntity.language == 'Arabic' ? Translation.Bio1 :Translation.Bio2,),
+                          Text(userEntity.language != 'Arabic' ? Translation.Bio1 :Translation.Bio2,),
                           Container(
                             child: TextFieldWidget(
                               controller: bio,
@@ -105,7 +105,7 @@ class _EditProfileState extends State<EditProfile> {
                         onPressed: () {
                           LayoutCubit.get(context).setNewUserEntity(name: name.text, email: email.text, bio: bio.text);
                         },
-                        child:  Text(userEntity.language == 'Arabic' ? Translation.save1 :Translation.save2,)),
+                        child:  Text(userEntity.language != 'Arabic' ? Translation.save1 :Translation.save2,)),
                   ],
                 ),
               ),

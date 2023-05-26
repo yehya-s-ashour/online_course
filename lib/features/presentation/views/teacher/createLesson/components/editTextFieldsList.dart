@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:online_course/core/Theme/styles/colors.dart';
 import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/shared/commen.dart';
 import 'package:online_course/features/presentation/components/custom_image.dart';
 import 'package:online_course/features/presentation/controllers/teacher_cubit/TeacherCubit.dart';
+import 'package:online_course/features/presentation/views/main_home_screen/main_home_screen.dart';
 
 class editTextFieldsList extends StatefulWidget {
   final int index;
@@ -152,7 +154,7 @@ class _editTextFieldsListState extends State<editTextFieldsList> {
                         image: File(image),
                         description: description,
                         title: title,index: widget.index)
-                        .then((value) => print('aaaaaaaaaaaaaaaaa'));
+                        .then((value) =>Get.to(MainHomeScreen()));
                   }
                 },
                 child: Text(

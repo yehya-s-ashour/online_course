@@ -14,21 +14,21 @@ class ChooseCredentials extends StatefulWidget {
 }
 
 class _ChooseCredentialsState extends State<ChooseCredentials> {
-  String langValue = userEntity.language == 'Arabic' ? Translation.Bachelor1 :Translation.Bachelor2;
+  String langValue = userEntity.language != 'Arabic' ? Translation.Bachelor1 :Translation.Bachelor2;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: userEntity.language == 'Arabic' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
-        appBar: MyAppBar(title: userEntity.language == 'Arabic' ? Translation.Credentials1 :Translation.Credentials2,backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
+        appBar: MyAppBar(title: userEntity.language != 'Arabic' ? Translation.Credentials1 :Translation.Credentials2,backgroundColor:kPrimaryColor ,color: Colors.white,titleColor: Colors.white,),
         body: Container(
           width: double.infinity,
           margin: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text(userEntity.language == 'Arabic' ? Translation.Choose_Your_Credentials1 :Translation.Choose_Your_Credentials2,
+               Text(userEntity.language != 'Arabic' ? Translation.Choose_Your_Credentials1 :Translation.Choose_Your_Credentials2,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
               SizedBox(height: Get.height * 0.05),
               Container(
@@ -46,39 +46,39 @@ class _ChooseCredentialsState extends State<ChooseCredentials> {
                     underline: const Divider(color: Colors.white),
                     items: [
                       DropdownMenuItem(
-                        value: userEntity.language == 'Arabic' ? Translation.Bachelor1 :Translation.Bachelor2,
+                        value: userEntity.language != 'Arabic' ? Translation.Bachelor1 :Translation.Bachelor2,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15.0),
                           child: Row(
                             children: [
                               const Icon(Icons.flag),
                               SizedBox(width: Get.width * 0.01),
-                               Text(userEntity.language == 'Arabic' ? Translation.Bachelor1 :Translation.Bachelor2),
+                               Text(userEntity.language != 'Arabic' ? Translation.Bachelor1 :Translation.Bachelor2),
                             ],
                           ),
                         ),
                       ),
                       DropdownMenuItem(
-                        value: userEntity.language == 'Arabic' ? Translation.Master1 :Translation.Master2,
+                        value: userEntity.language != 'Arabic' ? Translation.Master1 :Translation.Master2,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15.0),
                           child: Row(
                             children: [
                               const Icon(Icons.flag),
                               SizedBox(width: Get.width * 0.01),
-                               Text(userEntity.language == 'Arabic' ? Translation.Master1 :Translation.Master1,),
+                               Text(userEntity.language != 'Arabic' ? Translation.Master1 :Translation.Master1,),
                             ],
                           ),
                         ),
                       ),      DropdownMenuItem(
-                        value: userEntity.language == 'Arabic' ? Translation.Doctor1 :Translation.Doctor2,
+                        value: userEntity.language != 'Arabic' ? Translation.Doctor1 :Translation.Doctor2,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15.0),
                           child: Row(
                             children: [
                               const Icon(Icons.flag),
                               SizedBox(width: Get.width * 0.01),
-                               Text(userEntity.language == 'Arabic' ? Translation.Doctor1 :Translation.Doctor2,),
+                               Text(userEntity.language != 'Arabic' ? Translation.Doctor1 :Translation.Doctor2,),
                             ],
                           ),
                         ),
@@ -114,7 +114,7 @@ class _ChooseCredentialsState extends State<ChooseCredentials> {
                                     borderRadius: BorderRadius.circular(13))),
                             side: const MaterialStatePropertyAll(
                                 BorderSide(color: Colors.black12))),
-                        child:  Text(userEntity.language == 'Arabic' ? Translation.Cancel1 :Translation.Cancel2,)),
+                        child:  Text(userEntity.language != 'Arabic' ? Translation.Cancel1 :Translation.Cancel2,)),
                     SizedBox(width: Get.width * 0.05),
                     ElevatedButton(
                         onPressed: () {},
@@ -132,7 +132,7 @@ class _ChooseCredentialsState extends State<ChooseCredentials> {
                                     borderRadius: BorderRadius.circular(13))),
                             side: const MaterialStatePropertyAll(
                                 BorderSide(color: Colors.white))),
-                        child:  Text(userEntity.language == 'Arabic' ? Translation.Confirm1 :Translation.Confirm2,)),
+                        child:  Text(userEntity.language != 'Arabic' ? Translation.Confirm1 :Translation.Confirm2,)),
                   ],
                 ),
               )
