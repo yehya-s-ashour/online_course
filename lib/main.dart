@@ -39,7 +39,7 @@ void main() async {
         language: user[4],
         theme: user[5],
         wallpaper: user[9],
-        isTeacher: user[10]=='true'?true:false,
+        isTeacher: user[10] == 'true' ? true : false,
         courseEnroll: courseEnroll,
       );
     }
@@ -49,6 +49,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginCubit(),
         ),
-       BlocProvider(
+        BlocProvider(
           create: (context) => TeacherCubit(),
         )
       ],
