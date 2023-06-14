@@ -11,7 +11,7 @@ import 'first_message_small_curved_bubble.dart';
 import 'message_replay_card.dart';
 
 class SenderMessageCard extends StatelessWidget {
-  final Message? message;
+  final Message message;
   final String? receiverPic;
   final bool isFirst;
   final bool isGroup;
@@ -21,7 +21,7 @@ class SenderMessageCard extends StatelessWidget {
   SenderMessageCard({
     super.key,
     this.receiverPic,
-    this.message,
+    required this.message,
     required this.isFirst,
     required this.isGroup,
     required this.isReaction,

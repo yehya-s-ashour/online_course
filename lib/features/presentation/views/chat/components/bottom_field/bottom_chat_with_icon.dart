@@ -77,23 +77,11 @@ class _BottomChatWithIconState extends State<BottomChatWithIcon> {
                           builder: (context, state) {
                             return GestureDetector(
                               onTap: () {
-                                if (widget.isGroup) {
-                                  // ChatCubit.get(context).sendTextMessageGroup(
-                                  //   text: messageController.text.trim(),
-                                  //   receiverId: widget.receiverId,
-                                  // );
+                                ChatCubit.get(context).sendMessgeText(
+                                  widget.receiverId,
+                                  messageController.text.trim(),
 
-                                  // SettingCubit.get(context).sendNotification(body: messageController.text.trim());
-                                } else {
-                                  // ChatCubit.get(context).sendTextMessage(
-                                  //   profilePic: userdata!.profilePic,
-                                  //   phoneNumber: userdata!.phoneNumber,
-                                  //   name: userdata!.name,
-                                  //   text: messageController.text.trim(),
-                                  //   receiverId: widget.receiverId,
-                                  // );
-                                  // SettingCubit.get(context).sendNotification(body: messageController.text.trim());
-                                }
+                                );
                                 messageController.clear();
                                 cubit.ChangedStats();
                               },

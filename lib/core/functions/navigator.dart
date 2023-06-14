@@ -7,6 +7,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:online_course/features/data/models/courses_model.dart';
 import 'package:online_course/features/domain/entities/user.dart';
 
+import '../../features/domain/entities/courses.dart';
+
 void navigatePop(
   BuildContext context,
 ) {
@@ -125,3 +127,7 @@ UserEntity userEntity = UserEntity(
 );
 List<int> sub = [0, 0];
 List<CoursesModel> teacherCourseslist=[];
+
+String id='';
+Course? coursesModelC;
+

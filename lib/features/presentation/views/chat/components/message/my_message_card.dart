@@ -11,7 +11,7 @@ import '../message_content/message_content.dart';
 import 'message_replay_card.dart';
 
 class MyMessageCard extends StatelessWidget {
-  Message? message;
+  final Message message;
   final bool isFirst;
   final bool isGroup;
   final bool isReaction;
@@ -20,7 +20,7 @@ class MyMessageCard extends StatelessWidget {
   MyMessageCard({
     super.key,
     required this.isFirst,
-    this.message,
+    required this.message,
     required this.isGroup,
     required this.isReaction,
     required this.index,
@@ -28,7 +28,7 @@ class MyMessageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isReplying = message!.repliedMessage.isNotEmpty;
+    final isReplying = false;
     int all = 0;
     return SwipeTo(
       onRightSwipe: () {
@@ -61,9 +61,7 @@ class MyMessageCard extends StatelessWidget {
                     children: [
                       Card(
                         elevation: 2,
-                        margin: (message!.reaction!.length >= 1)
-                            ? EdgeInsets.only(top: 15.h)
-                            : isFirst
+                        margin: isFirst
                                 ? const EdgeInsetsDirectional.only(start: 0)
                                 : const EdgeInsetsDirectional.only(end: 10),
                         color: ((isReaction && (index == message!.messageId))
@@ -83,19 +81,6 @@ class MyMessageCard extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            if (isReplying)
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: ReplayMessageCard(
-                                  isGroup: false,
-                                  text: message!.repliedMessage,
-                                  repliedMessageType:
-                                      message!.repliedMessageType,
-                                  isMe:
-                                      message!.repliedTo == message!.senderName,
-                                  repliedTo: message!.repliedTo,
-                                ),
-                              ),
                             MessageContent(
                               isGroup: isGroup,
                               message: message,
@@ -109,9 +94,7 @@ class MyMessageCard extends StatelessWidget {
                 ),
                 if (isFirst)
                   Padding(
-                    padding: (message!.reaction!.length >= 1)
-                        ? EdgeInsets.only(top: 15.h)
-                        : const EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     child: const FirstMessageSmallCurvedBubble(
                       isMe: true,
                       isGroup: false,

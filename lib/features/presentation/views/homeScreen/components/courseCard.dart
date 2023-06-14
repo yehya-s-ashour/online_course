@@ -27,6 +27,8 @@ class CourseCardd extends StatelessWidget {
           : TextDirection.ltr,
       child: InkWell(
         onTap: () {
+          id=courseModel.courseId;
+          coursesModelC=courseModel;
           Get.to(
             courseBrforeEnrollingScreen(
               courseModel: courseModel,

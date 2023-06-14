@@ -175,6 +175,7 @@ class _MessagesGroupListState extends State<MessagesList> {
                           isGroup: widget.isGroup,
                           isReaction: cubit.reactionView,
                           index: cubit.currentIndex,
+                          message: message,
                         ),
                       if (message.senderId != uid)
                         SenderMessageCard(
@@ -182,6 +183,7 @@ class _MessagesGroupListState extends State<MessagesList> {
                           isFirst: isFirst,
                           isReaction: cubit.reactionView,
                           index: cubit.currentIndex,
+                          message: message,
                         ),
                     ],
                   );

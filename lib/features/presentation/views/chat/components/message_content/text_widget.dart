@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +6,6 @@ import 'package:online_course/features/domain/entities/message.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '/features/presentation/views/chat/components/message_content/time_sent_widget.dart';
-import '/core/extensions/extensions.dart';
 
 class TextWidget extends StatelessWidget {
   TextWidget({

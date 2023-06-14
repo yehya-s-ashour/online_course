@@ -5,7 +5,9 @@ import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/core/functions/time.dart';
 import 'package:online_course/features/data/models/contact_chat_model.dart';
 import 'package:online_course/features/data/models/message_group_model.dart';
+import 'package:online_course/features/data/models/review_model.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
+import 'package:uuid/uuid.dart';
 import '../../../../core/enums/messge_type.dart';
 import '../../../../core/shared/message_replay.dart';
 import '../../../domain/entities/contact_chat.dart';
@@ -100,10 +102,10 @@ class ChatCubit extends Cubit<ChatState> {
   Stream<List<MessageModel>> getChatMessagesGroup(
       {required String receiverId}) {
     return FirebaseFirestore.instance
-        .collection('groups')
+        .collection('chat')
         .doc(receiverId)
-        .collection('chats')
-        .orderBy('timeSent')
+        .collection('chat')
+        .orderBy('timeSent',descending: true)
         .snapshots()
         .map((event) {
       List<MessageModel> messages = [];
@@ -115,6 +117,7 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   List<ContactChatModel> contactChatModel = [];
+
   Future<void> setContactChat({required Course coursesModel}) async {
     String encoded = stringToBase64Url.encode(
       'Joined',
@@ -159,4 +162,71 @@ class ChatCubit extends Cubit<ChatState> {
       return contactChatModel;
     });
   }
+
+  List<ReviewModel> reviewModel = [];
+
+  Stream<List<ReviewModel>> getReview() {
+    return FirebaseFirestore.instance
+        .collection('review')
+        .doc(id)
+        .collection('reviews')
+        .snapshots()
+        .map((event) {
+      emit(GetContactChatSuccessState());
+      reviewModel = [];
+      event.docs.forEach((element) {
+        reviewModel.add(ReviewModel.fromMap(element.data()));
+      });
+      emit(GetContactChatSuccessState());
+      return reviewModel;
+    });
+  }
+
+  Future<void> sendReview(String text, int review) async {
+    await FirebaseFirestore.instance
+        .collection('review')
+        .doc(id)
+        .collection('reviews')
+        .add(
+          ReviewModel(
+                  image: userEntity.profilePic,
+                  text: text,
+                  name: userEntity.name,
+                  timeSend: getGlobalTimeLocal(),
+                  review: review)
+              .toMap(),
+        );
+  }
+
+  Future<void> sendMessgeText(String coursesid, String text) async {
+    var messageId = const Uuid().v1();
+    String encoded = stringToBase64Url.encode(
+      text,
+    );
+    String sh =
+        "${encoded.characters.last}$encoded${encoded.replaceAll('${encoded.characters.first}', 'w').replaceAll(encoded.characters.last, 'i')}";
+    await FirebaseFirestore.instance
+        .collection('chat')
+        .doc(coursesid)
+        .collection('chat').doc(messageId)
+        .set(
+          MessageModel(
+                  senderId: userEntity.uId,
+                  senderPic: userEntity.profilePic,
+                  text: sh,
+                  messageId: messageId,
+                  timeSent: getGlobalTimeLocal(),
+                  isSeen: [],
+                  messageType: MessageType.text,
+                  repliedMessage: '',
+                  repliedTo: '',
+                  repliedToUid: '',
+                  repliedMessageType: MessageType.text,
+                  senderName: userEntity.name,
+                  reaction: {})
+              .toMap(),
+        );
+  }
+
+
 }

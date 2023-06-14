@@ -62,22 +62,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: ListView(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   children: [
-                    // SizedBox(
-                    //   width: 1.sw,
-                    //   height: 60.h,
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     children: [
-                    //       ...List.generate(
-                    //           ItemsProfileCourse.listItems.length,
-                    //           (index) => Padding(
-                    //             padding:  EdgeInsetsDirectional.only(start: 15.w,end: 15.w),
-                    //             child: buildContainer(context,
-                    //                 data: ItemsProfileCourse.listItems[index]),
-                    //           )),
-                    //     ],
-                    //   ),
-                    // ),
                     const SizedBox(height: 20),
                     ...List.generate(
                         ProfileMenuModel.listData.length,

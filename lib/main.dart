@@ -39,7 +39,7 @@ void main() async {
         language: user[4],
         theme: user[5],
         wallpaper: user[9],
-        isTeacher: user[10] == 'true' ? true : false,
+        isTeacher: false,
         courseEnroll: courseEnroll,
       );
     }

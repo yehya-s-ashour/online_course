@@ -26,7 +26,10 @@ class AllCoursesRecomenedCoursesScreenCourseCard extends StatelessWidget {
           : TextDirection.ltr,
       child: InkWell(
         onTap: () {
+          id=courseModel.courseId;
+          coursesModelC=courseModel;
           Get.to(
+
             courseBrforeEnrollingScreen(
               courseModel: courseModel,
               rate: courseModel.rate.length == 0

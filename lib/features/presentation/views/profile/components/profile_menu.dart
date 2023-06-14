@@ -19,20 +19,12 @@ class ProfileMenuModel {
       {required this.text, required this.icon, required this.ontap});
 
   static List<ProfileMenuModel> listData = [
-    // ProfileMenuModel(text: "Dark Mode", icon: "assets/icons/moon_solid.svg", ontap: (){}),
-    // ProfileMenuModel(
-    //     text: "Dark Mode",
-    //     icon: "assets/icons/moon_solid.svg",
-    //     ontap: () {
-    //       // Get.to(() => const SettingProfile());
-    //     }),
     ProfileMenuModel(
-        text: "Setting",
+        text: userEntity.language != 'Arabic' ? "Setting" : 'الأعدادات',
         icon: "assets/icons/gear_solid.svg",
         ontap: () {
           Get.to(() => const SettingProfile());
         }),
-    // ProfileMenuModel(text: "Payment Details", icon: "assets/icons/credit_card_solid.svg", ontap: (){}),
     ProfileMenuModel(
         text: userEntity.language != 'Arabic' ? Translation.Achievements1 :Translation.Achievements2,
         icon: "assets/icons/award_solid.svg",
