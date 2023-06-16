@@ -130,4 +130,5 @@ List<CoursesModel> teacherCourseslist=[];
 
 String id='';
 Course? coursesModelC;
+bool isLike=false;
 

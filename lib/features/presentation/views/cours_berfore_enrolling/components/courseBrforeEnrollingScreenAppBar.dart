@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:online_course/core/functions/navigator.dart';
 import 'package:online_course/features/data/models/courses_model.dart';
 import 'package:online_course/features/domain/entities/courses.dart';
 import 'package:online_course/features/presentation/controllers/LayoutCubit/LayoutCubit.dart';
@@ -48,11 +49,11 @@ Widget courseBrforeEnrollingScreenAppBar(String courseName,BuildContext context,
                 ),
                 InkWell(
                   onTap: () {
-                    // LayoutCubit.get(context).setContactChat(coursesModel: coursesModel);
+                    LayoutCubit.get(context).chengetrue();
                   },
                   child: Icon(
                     Icons.favorite_sharp,
-                    color: Colors.red,
+                    color: isLike && coursesModel.courseId == "59818520-eb68-11ed-878f-2393039ac734"? Colors.red : Colors.grey[300],
                     size: 30.spMin,
                   ),
                 ),

@@ -51,9 +51,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
   double rating = 3.0;
 
   final TextEditingController _Controller = TextEditingController();
-
+  int rate = 0;
   @override
   Widget build(BuildContext context) {
+    coursesModelC!.rate.forEach((element) {
+      rate += element;
+    });
     return Directionality(
       textDirection: userEntity.language == 'Arabic'
           ? TextDirection.rtl
@@ -89,7 +92,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ...List.generate(
-                                4,
+                                coursesModelC!.rate.length == 0
+                                    ? 0
+                                    : (rate / coursesModelC!.rate.length).round(),
                                 (index) => Icon(
                                       Icons.star,
                                       color: kPreviewsColors,
@@ -98,7 +103,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           ],
                         ),
                         Text(
-                          '${3} reviews',
+                          '${coursesModelC!.rate.length} reviews',
                           style: GoogleFonts.cairo(
                               color: Colors.black.withOpacity(0.4),
                               fontSize: 17.spMin),
@@ -149,7 +154,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
             ),
           ),
         ),
-        floatingActionButton: Align(
+        floatingActionButton: (!userEntity.courseEnroll.contains(coursesModelC!.courseId))?SizedBox():Align(
           alignment: AlignmentDirectional.bottomEnd,
           child: InkWell(
             onTap: () {

@@ -45,7 +45,7 @@ class notificationCard extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100.r),
                       image: DecorationImage(
-                          image: AssetImage(notification.image),
+                          image: NetworkImage(notification.image),
                           fit: BoxFit.cover)),
                 ),
                 SizedBox(
@@ -72,8 +72,8 @@ class notificationCard extends StatelessWidget {
                     ),
                     Text(
                       userEntity.language == 'Arabic'
-                          ? "منذ 2 دقيقة"
-                          : "2 minutes ago",
+                          ? "منذ 1 دقيقة"
+                          : "1 minute ago",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

@@ -118,10 +118,6 @@ List<Category> categoryList = [
     name: 'Development',
     noOfCourses: 55,
     thumbnail: 'assets/images/image.jpg',
-  ),  Category(
-    name: 'Development',
-    noOfCourses: 55,
-    thumbnail: 'assets/images/image.jpg',
   ),
   Category(
     name: 'Development',
@@ -142,7 +138,13 @@ List<Category> categoryList = [
     name: 'Development',
     noOfCourses: 55,
     thumbnail: 'assets/images/image.jpg',
-  ),  Category(
+  ),
+  Category(
+    name: 'Development',
+    noOfCourses: 55,
+    thumbnail: 'assets/images/image.jpg',
+  ),
+  Category(
     name: 'Development',
     noOfCourses: 55,
     thumbnail: 'assets/images/image.jpg',
@@ -234,53 +236,13 @@ class Notifications {
 
 List<Notifications> notificationList = [
   Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
+    description: 'You\'re Welcome To Be Here in Learnify App',
+    image:
+        'https://firebasestorage.googleapis.com/v0/b/ilearn-app-1181f.appspot.com/o/ic_launcher.png?alt=media&token=03f8aedc-a133-4a50-a36c-f70b8bd2e25e',
   ),
   Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
-  ),
-  Notifications(
-    description:
-        'test notification test notification test notification test notification test notification test notification test notification',
-    image: 'assets/images/image.jpg',
+    description: 'You\'ve Been Successfully Enrolled In Course......',
+    image:
+        'https://firebasestorage.googleapis.com/v0/b/ilearn-app-1181f.appspot.com/o/Business%2FCommunications%2FPublic%20Speaking%3A%20You%20Can%20be%20a%20Great%20Speaker%20within%2024%20Hours%2F773414_54e6_4.jpg?alt=media&token=e03042aa-f75c-407d-a69c-cf0981f93dac',
   ),
 ];

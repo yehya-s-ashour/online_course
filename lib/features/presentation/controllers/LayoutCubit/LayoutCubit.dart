@@ -72,6 +72,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     });
   }
 
+
   List<CoursesModel> developmentCourses = [];
 
   Future<void> getDevelopmentCourses() async {
@@ -513,5 +514,17 @@ class LayoutCubit extends Cubit<LayoutState> {
       emit(SetNewUserEntityErrorState(error));
     });
   }
-
+  void chengetrue(){
+    emit(SetNewUserEntityLoadinState());
+    isLike=true;
+    emit(SetNewUserEntitySuccessState());
+  }
+  Future<void> getBusiness() async {
+    emit(GetBusinessCoursesLoadinState());
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc('IuvR5nVe7kT6iUV5RuggHcyV18i2')
+        .collection('Course').doc(teachingAcademicsCourses[3].courseId)
+        .set(teachingAcademicsCourses[3].toMap());
+  }
 }

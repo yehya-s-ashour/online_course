@@ -68,7 +68,7 @@ Widget homeAppBar(BuildContext context) {
                     size: 30.spMax,
                   ),
                   onPressed: () {
-                    // Get.to(notificationsScreen());
+                    Get.to(notificationsScreen());
                     LayoutCubit.get(context).getUserData();
                   }),
             ],

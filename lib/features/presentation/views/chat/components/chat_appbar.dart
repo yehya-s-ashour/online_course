@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:online_course/features/presentation/components/my_cached_net_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String name;
@@ -62,7 +63,10 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(name),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 10),
+                  child: Text(name),
+                ),
               ],
             ),
           ),
